@@ -211,7 +211,9 @@
             class="h-full rounded-full bg-[#E0ED4F] flex justify-center items-center"
             type="submit"
           >
-            <span class="whitespace-nowrap mx-4">Join waitlist</span>
+            <span id="waitlist-text" class="whitespace-nowrap mx-4"
+              >Join waitlist</span
+            >
           </button>
         </form>
 
@@ -276,6 +278,7 @@
         .getElementById("waitlist-form")
         .addEventListener("submit", async function (e) {
           e.preventDefault();
+          document.getElementById("waitlist-text").innerText = "...";
 
           console.log("processing waitlist........");
 
@@ -306,6 +309,7 @@
 
             const result = await response.json();
 
+            document.getElementById("waitlist-text").innerText = "✔";
             if (response.ok) {
               document.getElementById("response-message").textContent =
                 "Thank you for joining our waitlist!";
@@ -314,6 +318,10 @@
                 // Empty the email input field on successful submission
                 emailInput.value = "";
               }, 500);
+
+              setTimeout(() => {
+                document.getElementById("response-message").textContent = "";
+              }, 3000);
             } else {
               document.getElementById(
                 "response-message"
