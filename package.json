@@ -1,0 +1,12 @@
+{
+  "name": "redevise-comingsoon",
+  "version": "1.0.0",
+  "description": "Redevise coming soon page",
+  "main": "js/flipdown.js",
+  "scripts": {
+    "test": "jest --env=node"
+  },
+  "devDependencies": {
+    "jest": "^30.1.3"
+  }
+}

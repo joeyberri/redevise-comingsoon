@@ -275,3 +275,6 @@ function appendChildren(parent, children) {
     parent.appendChild(el);
   });
 }
+if (typeof module !== 'undefined') {
+  module.exports = FlipDown;
+}
