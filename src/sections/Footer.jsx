@@ -2,29 +2,43 @@ import { socials } from "../constants/index.jsx";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="container py-10">
-        <div className="flex w-full max-md:flex-col">
-          <div className="small-compact flex flex-1 flex-wrap items-center justify-center gap-5">
-            <p className="opacity-70">Copyright, Abuzar Alvi</p>
-          </div>
-          <div className="flex items-center justify-center sm:ml-auto">
-            <p className="legal-after relative mr-9 text-p5 transition-all duration-500 hover:text-p1">
+    <footer className="border-t border-dark-400/30">
+      <div className="container py-8">
+        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+          {/* Copyright */}
+          <p className="font-sans text-xs text-text-subtle">
+            © 2016 Redevise. All rights reserved.
+          </p>
+
+          {/* Legal */}
+          <div className="flex items-center gap-6">
+            <a
+              href="#"
+              className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
+            >
               Privacy Policy
-            </p>
-            <p className="text-p5 transition-all duration-500 hover:text-p1">
+            </a>
+            <a
+              href="#"
+              className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
+            >
               Terms of Use
-            </p>
+            </a>
           </div>
 
-          <ul className="flex flex-1 justify-center gap-3 max-md:mt-10 md:justify-end">
+          {/* Socials */}
+          <ul className="flex gap-3">
             {socials.map(({ id, url, icon, title }) => (
               <li key={id}>
-                <a href={url} className="social-icon">
+                <a
+                  href={url}
+                  className="flex size-9 items-center justify-center rounded-full border border-dark-400/40 bg-dark-50/40 transition-all duration-300 hover:border-lime/30 hover:bg-dark-50"
+                  aria-label={title}
+                >
                   <img
                     src={icon}
                     alt={title}
-                    className="size-1/3 object-contain"
+                    className="size-4 object-contain opacity-60"
                   />
                 </a>
               </li>
@@ -35,4 +49,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;

@@ -1,10 +1,11 @@
 import Header from "./sections/Header.jsx";
 import Hero from "./sections/Hero.jsx";
-import Features from "./sections/Features.jsx";
-import Pricing from "./sections/Pricing.jsx";
-import Faq from "./sections/Faq.jsx";
-import Testimonials from "./sections/Testimonial.jsx";
-import Download from "./sections/Download.jsx";
+import Pillars from "./sections/Pillars.jsx";
+import Jarvis from "./sections/Jarvis.jsx";
+import Products from "./sections/Products.jsx";
+import Services from "./sections/Services.jsx";
+import About from "./sections/About.jsx";
+import CtaFooter from "./sections/CtaFooter.jsx";
 import Footer from "./sections/Footer.jsx";
 
 const App = () => {
@@ -12,11 +13,12 @@ const App = () => {
     <main className="overflow-hidden">
       <Header />
       <Hero />
-      <Features />
-      <Pricing />
-      <Faq />
-      <Testimonials />
-      <Download />
+      <Pillars />
+      <Jarvis />
+      <Products />
+      <Services />
+      <About />
+      <CtaFooter />
       <Footer />
     </main>
   );

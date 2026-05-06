@@ -1,56 +1,84 @@
-import clsx from "clsx";
-import Marker from "./Marker.jsx";
+import { motion } from "framer-motion";
+import { Link as LinkScroll } from "react-scroll";
+import { cn } from "../utils/cn";
 
 const Button = ({
-  icon,
   children,
   href,
+  to,
   onClick,
-  containerClassName,
-  markerFill,
+  className,
+  variant = "primary",
+  offset = -100,
+  spy = true,
+  smooth = true,
 }) => {
-  const Inner = () => (
-    <>
-      <span className="relative flex items-center min-h-[60px] px-4 g4 rounded-2xl inner-before group-hover:before:opacity-100 overflow-hidden">
-        <span className="absolute -left-[1px] ">
-          <Marker markerFill={markerFill} />
-        </span>
-        {icon && (
-          <img
-            src={icon}
-            alt="circle"
-            className="size-10 mr-5 object-contain z-10"
-          />
-        )}
-        <span className="relative z-2 font-poppins base-bold text-p1 uppercase">
-          {children}
-        </span>
-      </span>
+  const baseStyles = "inline-flex items-center gap-2 rounded-lg px-6 py-3 font-sans text-sm tracking-wide transition-all duration-300 relative overflow-hidden group";
+  
+  const variants = {
+    primary: "bg-lime font-semibold text-dark hover:shadow-lg hover:shadow-lime/20",
+    secondary: "border border-dark-400 bg-transparent font-medium text-text hover:border-lime/40 hover:text-lime",
+    ghost: "text-text-muted hover:text-text bg-transparent p-0",
+  };
 
-      <span className="glow-before glow-after" />
+  const combinedClasses = cn(baseStyles, variants[variant], className);
+
+  const MotionContent = () => (
+    <>
+      <span className="relative z-10">{children}</span>
+      {variant === "primary" && (
+        <motion.span 
+          initial={{ x: "-100%" }}
+          whileHover={{ x: "100%" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-lime/20 to-transparent"
+        />
+      )}
     </>
   );
 
-  return href ? (
-    <a
-      href={href}
-      className={clsx(
-        "relative p-0.5 g5 rounded-2xl shadow-500 group",
-        containerClassName,
-      )}
+  const motionProps = {
+    whileHover: { scale: 1.02 },
+    whileTap: { scale: 0.98 },
+  };
+
+  if (to) {
+    return (
+      <LinkScroll
+        to={to}
+        offset={offset}
+        spy={spy}
+        smooth={smooth}
+        onClick={onClick}
+      >
+        <motion.div {...motionProps} className={cn(combinedClasses, "cursor-pointer")}>
+          <MotionContent />
+        </motion.div>
+      </LinkScroll>
+    );
+  }
+
+  if (href) {
+    return (
+      <motion.a 
+        {...motionProps}
+        href={href} 
+        className={combinedClasses}
+      >
+        <MotionContent />
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button 
+      {...motionProps}
+      onClick={onClick} 
+      className={combinedClasses}
     >
-      <Inner />
-    </a>
-  ) : (
-    <button
-      onClick={onClick}
-      className={clsx(
-        "relative p-0.5 g5 rounded-2xl shadow-500 group",
-        containerClassName,
-      )}
-    >
-      <Inner />
-    </button>
+      <MotionContent />
+    </motion.button>
   );
 };
+
 export default Button;
