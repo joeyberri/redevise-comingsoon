@@ -23,14 +23,14 @@ const MobileMenu = ({ isOpen, onClose, navLinks }) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 z-[70] h-full w-[80%] bg-dark-50 p-8 border-l border-white/[0.05] md:hidden"
+            className="fixed right-0 top-0 z-[70] h-full w-[80%] bg-dark-50 p-8 border-l border-text/[0.08] md:hidden"
           >
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between mb-12">
                 <span className="font-serif text-xl text-gradient">Menu</span>
                 <button 
                   onClick={onClose}
-                  className="size-10 flex items-center justify-center rounded-full border border-white/[0.1] text-text"
+                  className="size-10 flex items-center justify-center rounded-full border border-text/[0.1] text-text"
                 >
                   <X size={20} />
                 </button>
@@ -58,7 +58,7 @@ const MobileMenu = ({ isOpen, onClose, navLinks }) => {
                 ))}
               </nav>
 
-              <div className="mt-auto pt-8 border-t border-white/[0.05]">
+              <div className="mt-auto pt-8 border-t border-text/[0.08]">
                 <Button 
                   to="cta" 
                   onClick={onClose} 

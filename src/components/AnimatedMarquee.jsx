@@ -15,7 +15,7 @@ const AnimatedMarquee = ({ items }) => {
         {[...items, ...items, ...items, ...items].map((item, i) => (
           <span
             key={i}
-            className="font-sans text-xs font-medium uppercase tracking-widest text-text-subtle/60 transition-colors hover:text-lime"
+            className="font-sans text-xs font-medium uppercase tracking-widest text-text-muted transition-colors hover:text-lime"
           >
             {item}
           </span>

@@ -16,7 +16,7 @@ const Button = ({
   const baseStyles = "inline-flex items-center gap-2 rounded-lg px-6 py-3 font-sans text-sm tracking-wide transition-all duration-300 relative overflow-hidden group";
   
   const variants = {
-    primary: "bg-lime font-semibold text-dark hover:shadow-lg hover:shadow-lime/20",
+    primary: "bg-lime font-semibold text-[#080D27] hover:shadow-lg hover:shadow-lime/20",
     secondary: "border border-dark-400 bg-transparent font-medium text-text hover:border-lime/40 hover:text-lime",
     ghost: "text-text-muted hover:text-text bg-transparent p-0",
   };

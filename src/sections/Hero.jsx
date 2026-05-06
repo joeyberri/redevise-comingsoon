@@ -4,11 +4,15 @@ import { useState } from "react";
 import Button from "../components/Button.jsx";
 import GlowOrb from "../components/GlowOrb.jsx";
 import FadeIn from "../components/FadeIn.jsx";
-import AnimatedMarquee from "../components/AnimatedMarquee.jsx";
+import MarqueeBanner from "../components/MarqueeBanner.jsx";
 import GridSpotlight from "../components/GridSpotlight.jsx";
 import BorderBeam from "../components/BorderBeam.jsx";
+import MagneticButton from "../components/MagneticButton.jsx";
 import MagneticWrapper from "../components/MagneticWrapper.jsx";
+import ScrollParallax from "../components/ScrollParallax.jsx";
 import { taglines } from "../constants/index.jsx";
+import { Heading, Text } from "../components/Typography.jsx";
+import Pill from "../components/Pill.jsx";
 
 // Animation Variants for a cleaner staggered entrance
 const containerVariants = {
@@ -46,9 +50,13 @@ const Hero = () => {
           className="relative min-h-[90vh] flex items-center overflow-hidden pt-32 pb-20 md:pt-48 md:pb-32"
           spotlightSize={900}
         >
-          {/* Decorative Glows */}
-          <GlowOrb position="top" className="size-glow-md lg:size-glow-lg opacity-30 mix-blend-soft-light" />
-          <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-primary/10 blur-[120px] rounded-full -z-10" />
+          {/* Decorative Glows with parallax depth */}
+          <ScrollParallax speed={0.4}>
+            <GlowOrb position="top" className="size-glow-md lg:size-glow-lg opacity-30 mix-blend-soft-light" />
+          </ScrollParallax>
+          <ScrollParallax speed={-0.2}>
+            <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-primary/10 blur-[120px] rounded-full -z-10" />
+          </ScrollParallax>
 
           <div className="container relative z-10">
             <motion.div
@@ -59,51 +67,44 @@ const Hero = () => {
               className="max-w-5xl"
             >
               {/* Badge/Small Tag */}
-              <motion.span
-                variants={itemVariants}
-                className="inline-block px-4 py-1.5 mb-6 text-xs font-medium tracking-widest uppercase border rounded-full border-white/10 bg-white/5 backdrop-blur-md"
-              >
+              <Pill animated delay={0.2} className="mb-6">
                 Innovation in Motion
-              </motion.span>
+              </Pill>
 
               {/* Refined Headline */}
-              <motion.h1
-                variants={itemVariants}
-                className="mb-8 font-serif text-5xl leading-[1.1] text-text md:text-7xl lg:text-8xl"
-              >
+              <Heading level={1} variant="hero-title" className="mb-8">
                 We build the systems <br className="hidden md:block" />
                 <span className="flex flex-wrap items-baseline gap-x-4">
                   that
-                  <span className="text-gradient italic font-normal">make things work</span>
+                  <span className="text-gradient italic font-normal py-1">make things work</span>
                   better.
                 </span>
-              </motion.h1>
+              </Heading>
 
               {/* Subtext for Context */}
-              <motion.p
-                variants={itemVariants}
-                className="max-w-xl mb-10 text-lg leading-relaxed text-text/60 md:text-xl"
-              >
+              <Text variant="hero-sub" className="mb-10">
                 High-performance infrastructure and seamless digital experiences
                 crafted for the next generation of industry leaders.
-              </motion.p>
+              </Text>
 
               {/* CTAs */}
-              <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-6">
-                <MagneticWrapper strength={0.2}>
-                  <div className="relative group">
-                    <Button to="products" variant="primary" className="px-10 py-5 text-base">
-                      Explore Products
-                    </Button>
-                    <BorderBeam size={120} duration={6} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </MagneticWrapper>
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
+                <MagneticButton 
+                  to="products" 
+                  variant="primary" 
+                  strength={0.2} 
+                  withBeam 
+                >
+                  Explore Products
+                </MagneticButton>
 
-                <MagneticWrapper strength={0.1}>
-                  <Button to="services" variant="secondary" className="px-10 py-5 text-base hover:bg-white/5 transition-colors">
-                    Work with us
-                  </Button>
-                </MagneticWrapper>
+                <MagneticButton 
+                  to="services" 
+                  variant="secondary" 
+                  strength={0.1}
+                >
+                  Work with us
+                </MagneticButton>
               </motion.div>
             </motion.div>
           </div>
@@ -114,14 +115,12 @@ const Hero = () => {
       <div className="relative overflow-hidden">
         <AnimatePresence>
           {showHeroMarquee && (
-            <motion.div 
-              initial={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="relative border-y border-white/5 bg-black/20 backdrop-blur-sm py-8"
-            >
-              <AnimatedMarquee items={taglines} />
-            </motion.div>
+            <MarqueeBanner 
+              items={taglines} 
+              visible={true}
+              animate={true}
+              containerClassName="py-8"
+            />
           )}
         </AnimatePresence>
       </div>

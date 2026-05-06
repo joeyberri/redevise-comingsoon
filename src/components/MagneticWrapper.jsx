@@ -1,9 +1,15 @@
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-const MagneticWrapper = ({ children, strength = 0.35 }) => {
+const MagneticWrapper = ({ children, strength = 0.35, className }) => {
   const ref = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { stiffness: 150, damping: 15, mass: 0.1 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
 
   const handleMouseMove = (e) => {
     if (!ref.current) return;
@@ -11,22 +17,22 @@ const MagneticWrapper = ({ children, strength = 0.35 }) => {
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * strength, y: middleY * strength });
+    x.set(middleX * strength);
+    y.set(middleY * strength);
   };
 
   const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
+    x.set(0);
+    y.set(0);
   };
-
-  const { x, y } = position;
 
   return (
     <motion.div
       ref={ref}
+      className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      animate={{ x, y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      style={{ x: springX, y: springY }}
     >
       {children}
     </motion.div>

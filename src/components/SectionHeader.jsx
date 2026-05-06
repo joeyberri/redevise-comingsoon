@@ -1,5 +1,7 @@
 import { cn } from "../utils/cn";
 import FadeIn from "./FadeIn.jsx";
+import { Heading, Text } from "./Typography.jsx";
+import Pill from "./Pill.jsx";
 
 const SectionHeader = ({ 
   pill, 
@@ -12,22 +14,29 @@ const SectionHeader = ({
   return (
     <div className={cn("mb-16", className)}>
       {pill && (
-        <FadeIn direction="down">
-          <div className="pill mb-6 inline-block">{pill}</div>
-        </FadeIn>
+        <Pill animated className="mb-6">
+          {pill}
+        </Pill>
       )}
       
       <FadeIn delay={0.2}>
-        <h2 className={cn("section-title mb-6", titleClassName)}>
+        <Heading 
+          level={2} 
+          variant="section-title" 
+          className={cn("mb-6", titleClassName)}
+        >
           {title}
-        </h2>
+        </Heading>
       </FadeIn>
       
       {subtitle && (
         <FadeIn delay={0.3}>
-          <p className={cn("section-sub", subtitleClassName)}>
+          <Text 
+            variant="section-sub" 
+            className={subtitleClassName}
+          >
             {subtitle}
-          </p>
+          </Text>
         </FadeIn>
       )}
     </div>

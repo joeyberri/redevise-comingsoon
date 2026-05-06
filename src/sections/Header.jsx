@@ -5,8 +5,9 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import { cn } from "../utils/cn";
 import Button from "../components/Button.jsx";
 import MobileMenu from "../components/MobileMenu.jsx";
-import AnimatedMarquee from "../components/AnimatedMarquee.jsx";
+import MarqueeBanner from "../components/MarqueeBanner.jsx";
 import Logo from "../components/Logo.jsx";
+import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import { navLinks, taglines } from "../constants/index.jsx";
 
 const Header = () => {
@@ -28,7 +29,7 @@ const Header = () => {
         className={cn(
           "fixed top-0 left-0 z-50 w-full transition-all duration-700 ease-in-out",
           hasScrolled 
-            ? "bg-dark/70 backdrop-blur-md border-b border-white/[0.08] translate-y-0" 
+            ? "bg-dark/70 backdrop-blur-md border-b border-text/10 translate-y-0" 
             : "bg-transparent py-2"
         )}
       >
@@ -46,7 +47,7 @@ const Header = () => {
               smooth
               className="cursor-pointer group relative overflow-hidden"
             >
-              <Logo showText={true} iconSize={28} />
+              <Logo showText={true} iconSize="size-7" />
             </LinkScroll>
 
             {/* Desktop Nav - Optimized with active indicator */}
@@ -58,7 +59,7 @@ const Header = () => {
                   offset={-80}
                   spy
                   smooth
-                  activeClass="text-white bg-white/5"
+                  activeClass="text-text bg-text/5"
                   className={cn(
                     "relative cursor-pointer rounded-full px-5 py-2 font-sans text-[13px] font-medium tracking-wide text-text-muted transition-all duration-300 hover:text-text",
                   )}
@@ -69,7 +70,8 @@ const Header = () => {
                 </LinkScroll>
               ))}
               
-              <div className="ml-4 pl-4 border-l border-white/10">
+              <div className="ml-4 pl-4 border-l border-text/10 flex items-center gap-4">
+                <ThemeSwitcher className="hidden lg:flex" />
                 <Button 
                   to="cta" 
                   className="h-9 px-6 text-[11px] uppercase tracking-widest font-bold shadow-lg shadow-lime/10"
@@ -79,33 +81,24 @@ const Header = () => {
               </div>
             </nav>
 
-            {/* Mobile Toggle with Animation */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-text md:hidden"
-              onClick={() => setIsOpen(true)}
-            >
-              <Menu size={20} />
-            </motion.button>
+            <div className="flex items-center gap-4 md:hidden">
+              <ThemeSwitcher />
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="flex size-10 items-center justify-center rounded-full border border-text/10 bg-text/5 text-text"
+                onClick={() => setIsOpen(true)}
+              >
+                <Menu size={20} />
+              </motion.button>
+            </div>
           </div>
         </div>
 
-        {/* Marquee Bar with improved easing */}
-        <AnimatePresence>
-          {showMarquee && (
-            <motion.div
-              initial={{ height: 0, y: -20, opacity: 0 }}
-              animate={{ height: "auto", y: 0, opacity: 1 }}
-              exit={{ height: 0, y: -20, opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              className="overflow-hidden border-t border-white/[0.05] bg-dark/40 backdrop-blur-sm"
-            >
-              <div className="py-2">
-                <AnimatedMarquee items={taglines} />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <MarqueeBanner 
+          items={taglines} 
+          visible={showMarquee} 
+          className="border-t border-text/5"
+        />
       </header>
 
       <MobileMenu 

@@ -1,9 +1,8 @@
 import { Element } from "react-scroll";
 import { motion } from "framer-motion";
 import Button from "../components/Button.jsx";
+import MagneticButton from "../components/MagneticButton.jsx";
 import GridSpotlight from "../components/GridSpotlight.jsx";
-import MagneticWrapper from "../components/MagneticWrapper.jsx";
-import BorderBeam from "../components/BorderBeam.jsx";
 
 const CtaFooter = () => {
   return (
@@ -35,20 +34,22 @@ const CtaFooter = () => {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-6">
-              <MagneticWrapper strength={0.2}>
-                <div className="relative group">
-                  <Button href="#products" variant="primary" className="px-10 py-5 text-base">
-                    Explore our products
-                  </Button>
-                  <BorderBeam size={100} duration={6} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </MagneticWrapper>
+              <MagneticButton 
+                href="#products" 
+                variant="primary" 
+                strength={0.2} 
+                withBeam
+              >
+                Explore our products
+              </MagneticButton>
               
-              <MagneticWrapper strength={0.15}>
-                <Button href="#services" variant="secondary" className="px-10 py-5 text-base hover:bg-white/5 transition-colors">
-                  Request consultation
-                </Button>
-              </MagneticWrapper>
+              <MagneticButton 
+                href="#services" 
+                variant="secondary" 
+                strength={0.15}
+              >
+                Request consultation
+              </MagneticButton>
             </div>
           </motion.div>
         </div>

@@ -1,16 +1,15 @@
-import clsx from "clsx";
+import FeatureCard from "./FeatureCard.jsx";
 import FeatureItem from "./FeatureItem.jsx";
 
-const ServiceCard = ({ title, tagline, features, cta, className }) => {
+const ServiceCard = ({ title, tagline, features, cta, className, index = 0 }) => {
   return (
-    <div className={clsx("card p-8 md:p-10 flex flex-col", className)}>
-      <h3 className="mb-3 font-serif text-2xl text-text md:text-3xl">
-        {title}
-      </h3>
-      <p className="mb-8 text-sm leading-relaxed text-text-muted">
-        {tagline}
-      </p>
-
+    <FeatureCard
+      index={index}
+      groupName="service"
+      title={title}
+      description={tagline}
+      className={className}
+    >
       <div className="mb-8 space-y-3 flex-1">
         <ul className="space-y-3">
           {features.map((feat, i) => (
@@ -27,7 +26,7 @@ const ServiceCard = ({ title, tagline, features, cta, className }) => {
       >
         {cta}
       </a>
-    </div>
+    </FeatureCard>
   );
 };
 

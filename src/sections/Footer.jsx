@@ -1,4 +1,4 @@
-import { socials } from "../constants/index.jsx";
+import SocialLinks from "../components/SocialLinks.jsx";
 
 const Footer = () => {
   return (
@@ -27,23 +27,7 @@ const Footer = () => {
           </div>
 
           {/* Socials */}
-          <ul className="flex gap-3">
-            {socials.map(({ id, url, icon, title }) => (
-              <li key={id}>
-                <a
-                  href={url}
-                  className="flex size-9 items-center justify-center rounded-full border border-dark-400/40 bg-dark-50/40 transition-all duration-300 hover:border-lime/30 hover:bg-dark-50"
-                  aria-label={title}
-                >
-                  <img
-                    src={icon}
-                    alt={title}
-                    className="size-4 object-contain opacity-60"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
+          <SocialLinks />
         </div>
       </div>
     </footer>

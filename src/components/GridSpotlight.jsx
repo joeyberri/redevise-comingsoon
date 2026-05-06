@@ -1,38 +1,44 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { cn } from "../utils/cn";
 
 const GridSpotlight = ({
   children,
   className,
   as: Component = "div",
-  gridColor = "rgb(var(--color-lime) / 0.04)",
-  spotlightColor = "rgb(var(--color-lime) / 0.15)",
+  gridColor = "rgb(var(--color-grid))",
+  spotlightColor = "rgb(var(--color-lime) / 0.08)",
   spotlightSize = 500,
 }) => {
   const containerRef = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const opacity = useMotionValue(0);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   };
+
+  const spotlightBg = useMotionTemplate`radial-gradient(${spotlightSize}px circle at ${mouseX}px ${mouseY}px, ${spotlightColor}, transparent 80%)`;
 
   return (
     <Component
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => opacity.set(1)}
+      onMouseLeave={() => opacity.set(0)}
       className={cn("relative w-full overflow-hidden", className)}
     >
-      {/* Spotlight */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-700 ease-in-out"
+      {/* Spotlight — driven by motion values, zero re-renders */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0"
         style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(${spotlightSize}px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          opacity,
+          background: spotlightBg,
+          transition: "opacity 0.7s ease-in-out",
         }}
       />
       

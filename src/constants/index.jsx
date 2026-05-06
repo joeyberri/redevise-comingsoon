@@ -1,4 +1,4 @@
-﻿/* ─── Three Pillars ─── */
+/* ─── Three Pillars ─── */
 export const pillars = [
   {
     id: "0",
@@ -152,3 +152,40 @@ export const socials = [
     url: "#",
   },
 ];
+
+/* ─── About Content ─── */
+export const aboutContent = {
+  pill: "About",
+  title: (
+    <>
+      The Redevise <span className="text-gradient">Way.</span>
+    </>
+  ),
+  paragraphs: [
+    "Redevise started with a simple observation: most software makes processes more complicated, not less. Most consultants produce decks instead of outcomes. And most companies accept this as normal - because everyone else does, too.",
+    <>
+      We didn't. We built Redevise around a single, non-negotiable standard:{" "}
+      <strong className="font-semibold text-text">
+        if the improvement isn't dramatic, we don't build it.
+      </strong>{" "}
+      Not for our own products. Not for our clients. Incremental gains don't
+      justify the cognitive overhead of adopting something new.
+    </>,
+    "What emerged is something that doesn't fit a neat category. We're part product company, part engineering firm, part optimization consultancy - all unified by a shared intelligence layer we call Jarvis, and a shared philosophy we simply call: make it work better, or don't make it at all.",
+    "The long-term mission is compounding intelligence: every product we ship and every client problem we solve makes Jarvis - and therefore all of Redevise - sharper. This is how we compete. Not on features. Not on hourly rates. On outcomes, intelligence, and execution speed.",
+  ],
+};
+
+/* ─── Jarvis Content ─── */
+export const jarvisContent = {
+  pill: "The Intelligence Layer",
+  title: (
+    <>
+      The unfair advantage is called <span className="text-gradient">Jarvis.</span>
+    </>
+  ),
+  paragraphs: [
+    "Most companies have a tech stack. We have a context engine. Jarvis is the shared intelligence layer running underneath every Redevise product and every client engagement.",
+    "It learns. It connects. It accelerates. And it makes everything we build - and everything we do for you - dramatically more effective than what you'd get anywhere else.",
+  ],
+};

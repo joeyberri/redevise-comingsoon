@@ -6,11 +6,11 @@
 
 @layer base {
   html {
-    @apply bg-dark scroll-smooth;
+    @apply bg-dark transition-colors duration-700 ease-in-out;
   }
 
   body {
-    @apply font-sans text-base text-text antialiased;
+    @apply font-sans text-base text-text antialiased transition-colors duration-700 ease-in-out;
   }
 
   a {
@@ -36,48 +36,56 @@
   .pill {
     @apply inline-block rounded-full border border-dark-400/50 bg-dark-50/50
            px-4 py-1.5 font-sans text-xs font-medium uppercase tracking-widest
-           text-text-subtle;
+           text-text-subtle transition-colors duration-700 ease-in-out;
   }
 
   /* ─── Section Title ─── */
   .section-title {
-    @apply font-serif text-3xl font-normal leading-tight text-text
-           md:text-4xl lg:text-5xl;
+    @apply font-sans text-3xl font-bold leading-tight text-text
+           md:text-4xl lg:text-5xl tracking-tight transition-colors duration-700 ease-in-out;
   }
 
   /* ─── Section Subtitle ─── */
   .section-sub {
-    @apply max-w-xl text-base leading-relaxed text-text-muted md:text-lg;
+    @apply max-w-xl text-base leading-relaxed text-text-muted md:text-lg transition-colors duration-700 ease-in-out;
   }
 
   /* ─── Buttons ─── */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-lg bg-lime px-6 py-3
            font-sans text-sm font-semibold tracking-wide text-dark
-           transition-all duration-300 hover:bg-lime-400 hover:shadow-lg
+           transition-all duration-700 ease-in-out hover:bg-lime-400 hover:shadow-lg
            hover:shadow-lime/20;
   }
 
   .btn-secondary {
     @apply inline-flex items-center gap-2 rounded-lg border border-dark-400
            bg-transparent px-6 py-3 font-sans text-sm font-medium tracking-wide
-           text-text transition-all duration-300 hover:border-lime/40
+           text-text transition-all duration-700 ease-in-out hover:border-lime/40
            hover:text-lime;
   }
 
   /* ─── Card Base ─── */
   .card {
-    @apply rounded-2xl border border-dark-400/40 bg-dark-50/60
-           backdrop-blur-sm transition-all duration-300;
+    @apply rounded-2xl border transition-all duration-700 ease-in-out backdrop-blur-sm;
+    border-color: rgb(var(--color-surface-border));
+    background-color: rgb(var(--color-surface-bg));
   }
 
   .card:hover {
-    @apply border-dark-400/70 bg-dark-50/90;
+    @apply border-dark-400/70;
+    background-color: rgb(var(--color-surface-bg));
   }
 
   /* ─── Glow Orb ─── */
   .glow-orb {
     @apply absolute rounded-full bg-lime/[0.035] -translate-x-1/2 -translate-y-1/2 blur-6xl;
+    will-change: transform;
+    contain: layout style paint;
+  }
+
+  .light .glow-orb {
+    @apply bg-lime/[0.015] blur-5xl;
   }
 
   /* ─── Marquee Container ─── */
@@ -120,6 +128,15 @@
     background-clip: text;
   }
 
+  .light .text-gradient {
+    background-image: linear-gradient(
+      135deg, 
+      rgb(var(--color-lime-600)) 0%, 
+      rgb(var(--color-green)) 50%, 
+      rgb(var(--color-green-600)) 100%
+    );
+  }
+
   /* ─── Glow Effects ─── */
   .glow-green {
     box-shadow: 0 0 60px rgba(var(--color-lime), 0.08),
@@ -134,8 +151,8 @@
   /* ─── Subtle bg patterns ─── */
   .bg-grid {
     background-image:
-      linear-gradient(rgba(var(--color-lime), 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--color-lime), 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(var(--color-grid)) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--color-grid)) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
