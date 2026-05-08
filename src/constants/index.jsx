@@ -39,7 +39,7 @@ export const products = [
     id: "0",
     label: "B2B · Support Intelligence",
     name: "SupporTribe",
-    text: "Your customer support team, finally operating at its ceiling. SupporTribe brings AI-powered intelligence to agent performance, conversation quality, and workflow clarity - so every interaction becomes a data point that makes the next one better.",
+    text: "Your customer support team, finally operating at its ceiling. SupporTribe brings AI-powered intelligence to agent performance, conversation quality, and workflow clarity - so every interaction becomes a data point that makes the next one better",
   },
   {
     id: "1",
@@ -64,6 +64,8 @@ export const products = [
     label: "Vertical · Ministry",
     name: "Ascribe",
     text: "Built for the specific rhythms of church life. Ascribe is presentation software designed with deep niche utility - intuitive, focused, and built to serve communities that have been underserved by generic tools.",
+    cta: "Explore Church Ecosystem",
+    href: "https://church.redevise.com",
   },
 ];
 
@@ -81,8 +83,36 @@ export const consultingFeatures = [
   "Workflow automation strategy - not just recommendations, but implementation",
   "Advanced data analytics that turns your numbers into decisions",
   "Digital transformation with measurable, time-bound outcomes",
-  "Jarvis-powered analysis means we see patterns your team can't",
+  "Ministry Infrastructure: specialized consulting for modern worship environments",
 ];
+
+/* ─── Church Specific Content ─── */
+export const churchConstants = {
+  hero: {
+    title: "Engineering Excellence for the Modern Church",
+    subtitle: "High-performance media systems, streamlined management, and specialized training built to serve your community.",
+  },
+  services: [
+    {
+      id: "0",
+      title: "Media Infrastructure",
+      description: "From projection setups to multi-platform live streaming (including mobile-first setups), we build the hardware and software systems that make your message clear.",
+      items: ["Projection Setup", "Multi-Platform Streaming", "Mobile Streaming Ops"],
+    },
+    {
+      id: "1",
+      title: "Capacity Building",
+      description: "Technology is only as good as the team running it. We provide end-to-end training for media teams, alongside rebranding and analytics strategies.",
+      items: ["Team Training", "Strategic Rebranding", "Analytics & Insights"],
+    },
+    {
+      id: "2",
+      title: "Church Operations",
+      description: "Dedicated software and management systems designed specifically for the unique rhythms and workflows of ministry life.",
+      items: ["Ascribe Software", "Operations Management", "Digital Workflows"],
+    },
+  ],
+};
 
 /* ─── Values ─── */
 export const values = [

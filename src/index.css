@@ -11,6 +11,56 @@
 
   body {
     @apply font-sans text-base text-text antialiased transition-colors duration-700 ease-in-out;
+    position: relative;
+  }
+}
+
+/* ─── Premium Custom Scrollbars (Global Override) ─── */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(190, 255, 80, 0.2) transparent;
+  scrollbar-gutter: stable;
+}
+
+/* Chrome, Edge, Safari */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(190, 255, 80, 0.1);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(190, 255, 80, 0.25);
+  border: 1px solid rgba(190, 255, 80, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(190, 255, 80, 0.5) !important;
+  box-shadow: 0 0 10px rgba(190, 255, 80, 0.3);
+}
+
+/* Prevent scroll chaining utility */
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
+
+@layer base {
+  /* ─── Cinematic Grain ─── */
+  body::before {
+    content: "";
+    @apply pointer-events-none fixed inset-0 z-50 opacity-[0.03];
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    filter: brightness(100%) contrast(150%);
   }
 
   a {

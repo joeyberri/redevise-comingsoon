@@ -2,6 +2,7 @@ import { cn } from "../utils/cn";
 import FadeIn from "./FadeIn.jsx";
 import { Heading, Text } from "./Typography.jsx";
 import Pill from "./Pill.jsx";
+import TextReveal from "./TextReveal.jsx";
 
 const SectionHeader = ({ 
   pill, 
@@ -19,15 +20,17 @@ const SectionHeader = ({
         </Pill>
       )}
       
-      <FadeIn delay={0.2}>
-        <Heading 
-          level={2} 
-          variant="section-title" 
-          className={cn("mb-6", titleClassName)}
-        >
-          {title}
-        </Heading>
-      </FadeIn>
+      <Heading 
+        level={2} 
+        variant="section-title" 
+        className={cn("mb-6", titleClassName)}
+      >
+        {typeof title === "string" ? (
+          <TextReveal text={title} />
+        ) : (
+          title
+        )}
+      </Heading>
       
       {subtitle && (
         <FadeIn delay={0.3}>

@@ -6,13 +6,11 @@ import SmoothScroll from "./components/SmoothScroll.jsx";
 import ScrollProgress from "./components/ScrollProgress.jsx";
 import PageLoader from "./components/PageLoader.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import ChurchApp from "./ChurchApp.jsx";
 import GridSpotlight from "./components/GridSpotlight.jsx";
 import InquiryModal from "./components/InquiryModal.jsx";
-import { isChurchSubdomain } from "./utils/subdomain.js";
 
 // Pages
-import HomePage from "./pages/HomePage.jsx";
+import ChurchHomePage from "./pages/church/ChurchHomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import TermsPage from "./pages/TermsPage.jsx";
 import PrivacyPage from "./pages/PrivacyPage.jsx";
@@ -25,7 +23,7 @@ const ScrollToTopOnNavigate = () => {
   return null;
 };
 
-const AppContent = () => {
+const ChurchApp = () => {
   const [modalContext, setModalContext] = useState({ isOpen: false, initialType: "" });
 
   const handleOpenInquiry = (type = "") => {
@@ -35,11 +33,6 @@ const AppContent = () => {
   const handleCloseInquiry = () => {
     setModalContext(prev => ({ ...prev, isOpen: false }));
   };
-
-  // Check if we are on the church subdomain
-  if (isChurchSubdomain()) {
-    return <ChurchApp />;
-  }
 
   return (
     <SmoothScroll>
@@ -52,12 +45,16 @@ const AppContent = () => {
           onClose={handleCloseInquiry} 
           initialType={modalContext.initialType}
         />
-        <GridSpotlight spotlightSize={600} className="bg-dark min-h-screen">
+        <GridSpotlight 
+          spotlightSize={700} 
+          spotlightColor="rgba(255, 190, 80, 0.04)" 
+          className="bg-dark min-h-screen"
+        >
           <main className="relative z-10 flex flex-col min-h-screen">
             <Header onOpenInquiry={handleOpenInquiry} />
             <div className="flex-1">
               <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<ChurchHomePage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/terms" element={<TermsPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
@@ -71,8 +68,4 @@ const AppContent = () => {
   );
 };
 
-const App = () => {
-  return <AppContent />;
-};
-
-export default App;
+export default ChurchApp;

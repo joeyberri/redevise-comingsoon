@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link as LinkScroll } from "react-scroll";
-import { Menu, X } from "lucide-react";
+import { Link as LinkScroll, scroller } from "react-scroll";
+import { Link as LinkRouter, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, ChevronDown, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "../utils/cn";
 import Button from "../components/Button.jsx";
@@ -8,15 +9,40 @@ import MobileMenu from "../components/MobileMenu.jsx";
 import MarqueeBanner from "../components/MarqueeBanner.jsx";
 import Logo from "../components/Logo.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
-import { navLinks, taglines } from "../constants/index.jsx";
+import { navLinks, taglines, products } from "../constants/index.jsx";
+import { isChurchSubdomain } from "../utils/subdomain.js";
 
-const Header = () => {
+const Header = ({ onOpenInquiry }) => {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [showMarquee, setShowMarquee] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Using Framer Motion's useScroll hook for better performance
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  
+  const isChurch = isChurchSubdomain();
   const { scrollY } = useScroll();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHomePage = location.pathname === "/";
+
+  const handleNavClick = (id) => {
+    if (id === "about") {
+      navigate("/about");
+      return;
+    }
+
+    if (!isHomePage) {
+      navigate("/", { state: { scrollTo: id } });
+    } else {
+      scroller.scrollTo(id, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+        offset: -80,
+      });
+    }
+    setIsMegaMenuOpen(false);
+  };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setHasScrolled(latest > 50);
@@ -29,7 +55,7 @@ const Header = () => {
         className={cn(
           "fixed top-0 left-0 z-50 w-full transition-all duration-700 ease-in-out",
           hasScrolled 
-            ? "bg-dark/70 backdrop-blur-md border-b border-text/10 translate-y-0" 
+            ? "bg-dark-100/70 backdrop-blur-xl border-b border-text/10 translate-y-0" 
             : "bg-transparent py-2"
         )}
       >
@@ -39,44 +65,80 @@ const Header = () => {
             hasScrolled ? "h-16" : "h-20"
           )}>
             
-            {/* Logo with Magnetic-style hover */}
-            <LinkScroll
-              to="hero"
-              offset={-200}
-              spy
-              smooth
+            <LinkRouter
+              to="/"
               className="cursor-pointer group relative overflow-hidden"
+              onClick={() => isHomePage && scroller.scrollTo("hero", { smooth: true, offset: -200 })}
             >
               <Logo showText={true} iconSize="size-7" />
-            </LinkScroll>
+            </LinkRouter>
 
-            {/* Desktop Nav - Optimized with active indicator */}
+            {/* Desktop Nav */}
             <nav className="hidden items-center gap-1 md:flex">
               {navLinks.map((link) => (
-                <LinkScroll
+                <div 
                   key={link.id}
-                  to={link.id}
-                  offset={-80}
-                  spy
-                  smooth
-                  activeClass="text-text bg-text/5"
-                  className={cn(
-                    "relative cursor-pointer rounded-full px-5 py-2 font-sans text-[13px] font-medium tracking-wide text-text-muted transition-all duration-300 hover:text-text",
-                  )}
+                  className="relative group/nav"
+                  onMouseEnter={() => link.id === "products" && setIsMegaMenuOpen(true)}
+                  onMouseLeave={() => link.id === "products" && setIsMegaMenuOpen(false)}
                 >
-                  {link.label}
-                  {/* Active dot indicator */}
-                  <span className="absolute bottom-1.5 left-1/2 h-[3px] w-0 -translate-x-1/2 rounded-full bg-lime transition-all duration-300 [.active>&]:w-1" />
-                </LinkScroll>
+                  <button
+                    onClick={() => handleNavClick(link.id)}
+                    className={cn(
+                      "relative cursor-pointer rounded-full px-5 py-2 font-sans text-[13px] font-medium tracking-wide text-text-muted transition-all duration-300 hover:text-text flex items-center gap-1.5",
+                      !isHomePage && link.id !== "about" ? "" : (isHomePage && link.id !== "about" ? "active-scroll" : "")
+                    )}
+                  >
+                    {link.label}
+                    {link.id === "products" && (
+                      <ChevronDown size={14} className={cn("transition-transform duration-300", isMegaMenuOpen && "rotate-180")} />
+                    )}
+                    <span className="absolute bottom-1.5 left-1/2 h-[3px] w-0 -translate-x-1/2 rounded-full bg-lime transition-all duration-300 [.active-scroll>&]:w-1" />
+                  </button>
+
+                  {/* Mega Menu Dropdown */}
+                  {link.id === "products" && (
+                    <AnimatePresence>
+                      {isMegaMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                          exit={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[600px]"
+                        >
+                          <div className="bg-dark-100/90 backdrop-blur-2xl border border-text/10 rounded-[2rem] p-8 shadow-2xl overflow-hidden relative">
+                            <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
+                            <div className="grid grid-cols-2 gap-6 relative z-10">
+                              {products.map((product) => (
+                                <button
+                                  key={product.id}
+                                  onClick={() => handleNavClick("products")}
+                                  className="p-4 rounded-xl hover:bg-text/5 transition-all group/prod border border-transparent hover:border-text/10 text-left"
+                                >
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[10px] font-bold tracking-widest text-lime uppercase">{product.label.split(' · ')[1]}</span>
+                                    <ArrowUpRight size={14} className="opacity-0 group-hover/prod:opacity-100 transition-opacity text-lime" />
+                                  </div>
+                                  <div className="font-bold text-text mb-1">{product.name}</div>
+                                  <div className="text-[11px] text-text-muted leading-relaxed line-clamp-2">{product.text}</div>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
               ))}
               
               <div className="ml-4 pl-4 border-l border-text/10 flex items-center gap-4">
                 <ThemeSwitcher className="hidden lg:flex" />
                 <Button 
-                  to="cta" 
-                  className="h-9 px-6 text-[11px] uppercase tracking-widest font-bold shadow-lg shadow-lime/10"
+                  onClick={() => onOpenInquiry(isChurch ? "Church Infrastructure" : "Custom Engineering")}
+                  className="h-10 px-8 text-[11px] uppercase tracking-widest font-bold shadow-xl shadow-lime/5 border border-lime/20 hover:border-lime/50 transition-all"
                 >
-                  Start Project
+                  {isChurch ? "Optimize Ministry" : "Start Project"}
                 </Button>
               </div>
             </nav>
@@ -86,7 +148,7 @@ const Header = () => {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 className="flex size-10 items-center justify-center rounded-full border border-text/10 bg-text/5 text-text"
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsMobileMenuOpen(true)}
               >
                 <Menu size={20} />
               </motion.button>
@@ -102,8 +164,9 @@ const Header = () => {
       </header>
 
       <MobileMenu 
-        isOpen={isOpen} 
-        onClose={() => setIsOpen(false)} 
+        isOpen={isMobileMenuOpen} 
+        onClose={() => setIsMobileMenuOpen(false)} 
+        onOpenInquiry={onOpenInquiry}
         navLinks={navLinks} 
       />
     </>

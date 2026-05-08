@@ -1,3 +1,4 @@
+import { Link as LinkRouter } from "react-router-dom";
 import SocialLinks from "../components/SocialLinks.jsx";
 
 const Footer = () => {
@@ -12,18 +13,18 @@ const Footer = () => {
 
           {/* Legal */}
           <div className="flex items-center gap-6">
-            <a
-              href="#"
+            <LinkRouter
+              to="/privacy"
               className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </LinkRouter>
+            <LinkRouter
+              to="/terms"
               className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
             >
               Terms of Use
-            </a>
+            </LinkRouter>
           </div>
 
           {/* Socials */}

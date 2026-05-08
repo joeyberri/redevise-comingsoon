@@ -33,6 +33,10 @@ const Services = () => {
           tagline="Process optimization and advanced analytics for organizations ready to close the gap between how they operate and how they could."
           features={consultingFeatures}
           cta="Get an efficiency audit →"
+          footerNote={{
+            text: "Explore Ministry Infrastructure",
+            href: "https://church.redevise.com"
+          }}
         />
       </Grid>
     </Section>
