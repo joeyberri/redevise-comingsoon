@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
 import Hero from "../sections/Hero.jsx";
 import Pillars from "../sections/Pillars.jsx";
-import Jarvis from "../sections/Jarvis.jsx";
+import Core from "../sections/Core.jsx";
 import Products from "../sections/Products.jsx";
 import Services from "../sections/Services.jsx";
 import About from "../sections/About.jsx";
 import CtaFooter from "../sections/CtaFooter.jsx";
 
-const HomePage = () => {
+const HomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
 
   useEffect(() => {
@@ -27,13 +27,13 @@ const HomePage = () => {
 
   return (
     <>
-      <Hero />
+      <Hero onOpenInquiry={onOpenInquiry} />
       <Pillars />
-      <Jarvis />
+      <Core />
       <Products />
-      <Services />
+      <Services onOpenInquiry={onOpenInquiry} />
       <About />
-      <CtaFooter />
+      <CtaFooter onOpenInquiry={onOpenInquiry} />
     </>
   );
 };

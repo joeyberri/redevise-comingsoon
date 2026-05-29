@@ -34,7 +34,7 @@
   /* Surface Colors (for Glass cards) */
   --color-surface-border: 255 255 255 / 0.08;
   --color-surface-bg: 255 255 255 / 0.02;
-  --color-grid: var(--color-lime) / 0.06;
+  --color-grid: var(--color-lime) / 0.09;
 
   /* ─── Typography ─── */
   --font-serif: "DM Serif Display", Georgia, serif;
@@ -57,9 +57,9 @@
   --size-glow-lg: 800px;
 
   /* ─── Effects ─── */
-  --blur-4xl: 80px;
-  --blur-5xl: 100px;
-  --blur-6xl: 120px;
+  --blur-4xl: 60px;
+  --blur-5xl: 80px;
+  --blur-6xl: 100px;
 
   --radius-2xl: 16px;
   --radius-3xl: 24px;
@@ -83,7 +83,7 @@
 
   --color-surface-border: 15 23 42 / 0.12;
   --color-surface-bg: 15 23 42 / 0.03;
-  --color-grid: var(--color-text) / 0.06;
+  --color-grid: var(--color-text) / 0.09;
 
   /* Tweak lime for light mode contrast */
   --color-lime: 154 210 0;

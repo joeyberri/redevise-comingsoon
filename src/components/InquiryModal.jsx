@@ -13,6 +13,7 @@ import MagneticButton from "./MagneticButton.jsx";
 import HeadlessCalendar from "./HeadlessCalendar.jsx";
 import { Heading, Text } from "./Typography.jsx";
 import { cn } from "../utils/cn";
+import secretaryImg from "../assets/images/secretary.webp";
 
 // ── Interest Options ─────────────────────────────────────────────────────────
 const interestOptions = [
@@ -52,7 +53,6 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       setIsBooking(false);
       setIsSubmitting(false);
 
-      // Pre-select the interest if an initialType was passed
       if (initialType) {
         setFormData((prev) => ({
           ...prev,
@@ -62,11 +62,9 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
         }));
       }
 
-      // Lock scroll on both body and html to ensure background stays fixed
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
-      // Restore scroll
       document.body.style.overflow = "unset";
       document.documentElement.style.overflow = "unset";
     }
@@ -77,9 +75,56 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
     };
   }, [isOpen, initialType]);
 
-  // ── Navigation ──────────────────────────────────────────────────────────
+  const [validationErrors, setValidationErrors] = useState({ name: "", email: "" });
+
+  // ── Validation & Navigation ─────────────────────────────────────────────
+  const validateStep1 = () => {
+    const errors = { name: "", email: "" };
+    let isValid = true;
+
+    const trimmedName = formData.name.trim();
+    if (!trimmedName) {
+      errors.name = "Please enter your name or organization.";
+      isValid = false;
+    } else if (trimmedName.length < 2) {
+      errors.name = "Name must be at least 2 characters.";
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const trimmedEmail = formData.email.trim();
+    if (!trimmedEmail) {
+      errors.email = "Please enter your email address.";
+      isValid = false;
+    } else if (!emailRegex.test(trimmedEmail)) {
+      errors.email = "Please enter a valid email address.";
+      isValid = false;
+    }
+
+    setValidationErrors(errors);
+    return isValid;
+  };
+
   const handleNext = () => {
-    if (step === 1 && formData.name && formData.email) setStep(2);
+    if (step === 1) {
+      if (validateStep1()) {
+        setStep(2);
+      }
+    }
+  };
+
+  const handleNameChange = (val) => {
+    setFormData((prev) => ({ ...prev, name: val }));
+    if (validationErrors.name) {
+      setValidationErrors((prev) => ({ ...prev, name: "" }));
+    }
+  };
+
+  const handleEmailChange = (val) => {
+    setFormData((prev) => ({ ...prev, email: val }));
+    if (validationErrors.email) {
+      setValidationErrors((prev) => ({ ...prev, email: "" }));
+    }
   };
 
   const handleChoice = (selectedChoice) => {
@@ -88,7 +133,6 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
     setStep(4);
   };
 
-  // Toggle an interest on/off
   const toggleInterest = (interest) => {
     setFormData((prev) => ({
       ...prev,
@@ -149,7 +193,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
+          Authorization: `Bearer ${apiKey}`,
           "cal-api-version": "2026-02-25",
         },
         body: JSON.stringify({
@@ -208,6 +252,18 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
         sub: "Share what's on your mind and we'll get back to you.",
       };
     }
+    if (step === 2) {
+      return {
+        title: <>Your<br />Focus.</>,
+        sub: "Select the areas you'd like to improve or explore.",
+      };
+    }
+    if (step === 3) {
+      return {
+        title: <>Next<br />Steps.</>,
+        sub: "How would you like to proceed with your inquiry?",
+      };
+    }
     return {
       title: <>Get in<br />Touch.</>,
       sub: "We'd love to learn about your project and find the best way to help.",
@@ -216,7 +272,6 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
 
   const panelCopy = getLeftPanelCopy();
 
-  // ── Render ──────────────────────────────────────────────────────────────
   return (
     <AnimatePresence>
       {isOpen && (
@@ -232,484 +287,516 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-0 bg-dark-50/40 backdrop-blur-3xl"
+            className="absolute inset-0 bg-dark-50/40 backdrop-blur-xl"
             onClick={onClose}
           />
 
-          {/* Modal Shell */}
-          <motion.div
-            initial={{ scale: 0.98, y: 20, opacity: 0 }}
-            animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.98, y: 20, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 350, mass: 0.5 }}
-            className="relative w-full max-w-5xl rounded-[2.5rem] border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-hidden"
-            style={{ maxHeight: "90vh" }}
-          >
-            {/* Inner layout */}
-            <div className="flex flex-col md:flex-row flex-1 min-h-0 overflow-hidden" style={{ minHeight: "580px" }}>
-              {/* ── Left Panel ── */}
-              <div className="hidden md:flex w-full md:w-[300px] shrink-0 bg-text/[0.03] p-10 flex-col justify-between border-r border-text/[0.05] relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
+          {/* Wrapper for absolute positioning of Secretary relative to Modal */}
+          <div className="relative w-full max-w-5xl flex items-center justify-center">
 
-                <div className="relative z-10">
-                  <div className="size-14 rounded-2xl bg-lime flex items-center justify-center mb-10 text-dark-100 shadow-[0_0_30px_rgba(190,255,80,0.3)]">
-                    {isSubmitted ? (
-                      <Check size={28} strokeWidth={3} />
-                    ) : (
-                      <Sparkles size={26} />
-                    )}
-                  </div>
-                  <Heading level={3} className="mb-4 text-3xl">
-                    {panelCopy.title}
-                  </Heading>
-                  <Text variant="small" className="text-text-subtle">
-                    {panelCopy.sub}
-                  </Text>
-                </div>
-
-                {/* Step dots */}
-                <div className="relative z-10 flex gap-2">
-                  {[1, 2, 3, 4].map((s) => (
-                    <div
-                      key={s}
-                      className={cn(
-                        "h-1 rounded-full transition-all duration-700 ease-out",
-                        step >= s
-                          ? "w-10 bg-lime shadow-[0_0_10px_rgba(190,255,80,0.5)]"
-                          : "w-4 bg-text/10"
-                      )}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* ── Right Panel ── */}
-              <div className="flex-1 flex flex-col min-h-0 relative bg-gradient-to-br from-transparent to-text/[0.02]">
-                {/* Close Button - Moved inside Right Panel for better integration */}
-                <button
-                  onClick={onClose}
-                  className="absolute top-6 right-6 z-50 text-text/40 hover:text-text transition-colors p-2 rounded-full hover:bg-text/5"
+            {/* ── THE SECRETARY (Floating Person) ── */}
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+              className="absolute -left-12 md:-left-32 bottom-0 z-[210] pointer-events-none hidden lg:block"
+            >
+              <div className="relative group/secretary">
+                {/* Secretary Image with Floating/Breathing Animation */}
+                <motion.div
+                  animate={{
+                    y: [0, -12, 0],
+                    rotate: [0, -1, 0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative transition-transform duration-700 group-hover/secretary:scale-[1.02]"
                 >
-                  <X size={22} />
-                </button>
-                <AnimatePresence mode="wait">
-                  {/* ── SUCCESS STATE ── */}
-                  {isSubmitted ? (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="flex flex-col items-center justify-center flex-1 p-8 md:p-16 text-center space-y-6"
-                    >
-                      <div className="size-20 rounded-full bg-lime/10 border border-lime/20 flex items-center justify-center text-lime mb-4">
-                        <Check size={40} />
-                      </div>
-                      <Heading level={2} className="text-4xl">
-                        {choice === "book" ? (
-                          <>You're Booked!</>
-                        ) : (
-                          <>Message Sent!</>
-                        )}
-                      </Heading>
-                      <Text className="text-text-subtle max-w-sm mx-auto">
-                        {choice === "book"
-                          ? "You'll receive a confirmation email shortly. Looking forward to speaking with you!"
-                          : "We've got your message and will get back to you as soon as possible."}
-                      </Text>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key={step}
-                      initial={{ x: 20, opacity: 0, filter: "blur(10px)" }}
-                      animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-                      exit={{ x: -20, opacity: 0, filter: "blur(10px)" }}
-                      transition={{ duration: 0.4, ease: "circOut" }}
-                      className="flex-1 flex flex-col min-h-0"
-                    >
-                      {/* ── STEP 1: Who are you ── */}
-                      {step === 1 && (
-                        <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
-                          <div>
-                            <Text variant="tiny" className="text-lime mb-3">
-                              Step 1 of 4
-                            </Text>
-                            <Heading
-                              level={2}
-                              className="text-3xl md:text-5xl leading-tight mb-3"
-                            >
-                              Let's start with you.
-                            </Heading>
-                            <Text className="text-text-subtle text-lg">
-                              Who should we be reaching out to?
-                            </Text>
-                          </div>
+                  <img
+                    src={secretaryImg}
+                    alt="Assistant"
+                    className="w-[420px] h-auto object-contain brightness-[0.95] contrast-[1.05]"
+                    style={{
+                      maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+                      WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+                    }}
+                  />
+                </motion.div>
 
-                          <div className="space-y-6">
-                            <input
-                              type="text"
-                              placeholder="Your name or organization"
-                              className="w-full bg-transparent border-b-2 border-text/10 py-5 text-xl md:text-2xl outline-none focus:border-lime transition-colors placeholder:text-text/10"
-                              autoFocus
-                              value={formData.name}
-                              onChange={(e) =>
-                                setFormData({ ...formData, name: e.target.value })
-                              }
-                              onKeyDown={(e) => e.key === "Enter" && handleNext()}
-                            />
-                            <input
-                              type="email"
-                              placeholder="Your email address"
-                              className="w-full bg-transparent border-b-2 border-text/10 py-5 text-xl md:text-2xl outline-none focus:border-lime transition-colors placeholder:text-text/10"
-                              value={formData.email}
-                              onChange={(e) =>
-                                setFormData({ ...formData, email: e.target.value })
-                              }
-                              onKeyDown={(e) => e.key === "Enter" && handleNext()}
-                            />
-                          </div>
+                {/* Person "Status" Indicator - Positioned near shoulder */}
+                <motion.div
+                  initial={{ scale: 0, x: 20 }}
+                  animate={{ scale: 1, x: 0 }}
+                  transition={{ delay: 1, type: "spring", stiffness: 200 }}
+                  className="absolute top-[28%] right-[15%] bg-dark-100/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-3 z-20"
+                >
+                  <div className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-lime shadow-[0_0_10px_rgba(190,255,80,0.8)]"></span>
+                  </div>
+                  <div className="flex flex-col">
+                    <Text variant="tiny" className="text-white font-bold uppercase tracking-widest text-[10px] leading-none mb-1">Live Assistant</Text>
+                    <Text variant="tiny" className="text-text-subtle text-[9px] leading-none">Ready to help</Text>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
 
-                          <div className="flex justify-end items-center pt-8 border-t border-text/[0.05]">
-                            <div className="flex items-center gap-6">
-                              <Text variant="tiny" className="hidden sm:block text-text/20">
-                                Press Enter ↵
+            {/* Modal Shell - Removed overflow-hidden so secretary can overlap */}
+            <motion.div
+              initial={{ scale: 0.98, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.98, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350, mass: 0.5 }}
+              className="relative w-full rounded-[2.5rem] border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-visible"
+              style={{ maxHeight: "90vh" }}
+            >
+              {/* Inner layout container - Needs overflow-hidden to clip background grids/panels */}
+              <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-[2.5rem]">
+
+                {/* ── Left Panel ── */}
+                {/* Kept as a spacer for the floating secretary, but removed redundant content */}
+                <div className="hidden md:flex w-full md:w-[320px] shrink-0 p-10 flex-col justify-between border-r border-text/[0.05] relative" />
+
+                {/* ── Right Panel ── */}
+                <div className="flex-1 flex flex-col min-h-0 relative bg-gradient-to-br from-transparent to-text/[0.02]">
+                  <button
+                    onClick={onClose}
+                    className="absolute top-6 right-6 z-50 text-text/40 hover:text-text transition-colors p-2 rounded-full hover:bg-text/5"
+                  >
+                    <X size={22} />
+                  </button>
+
+                  <AnimatePresence mode="wait">
+                    {isSubmitted ? (
+                      <motion.div
+                        key="success"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="flex flex-col items-center justify-center flex-1 p-8 md:p-16 text-center space-y-6"
+                      >
+                        <div className="size-20 rounded-full bg-lime/10 border border-lime/20 flex items-center justify-center text-lime mb-4">
+                          <Check size={40} />
+                        </div>
+                        <Heading level={2} className="text-4xl">
+                          {choice === "book" ? <>You're Booked!</> : <>Message Sent!</>}
+                        </Heading>
+                        <Text className="text-text-subtle max-w-sm mx-auto">
+                          {choice === "book"
+                            ? "You'll receive a confirmation email shortly. Looking forward to speaking with you!"
+                            : "We've got your message and will get back to you as soon as possible."}
+                        </Text>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key={step}
+                        initial={{ x: 20, opacity: 0, filter: "blur(10px)" }}
+                        animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+                        exit={{ x: -20, opacity: 0, filter: "blur(10px)" }}
+                        transition={{ duration: 0.4, ease: "circOut" }}
+                        className="flex-1 flex flex-col min-h-0"
+                      >
+                        {/* ── STEP 1: Who are you ── */}
+                        {step === 1 && (
+                          <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
+                            <div>
+                              <Text variant="tiny" className="text-lime mb-3">
+                                Step 1 of 4
                               </Text>
-                              <MagneticButton
-                                onClick={handleNext}
-                                variant="primary"
-                                className="px-10 py-4"
-                                disabled={!formData.name || !formData.email}
+                              <Heading
+                                level={2}
+                                className="text-3xl md:text-5xl leading-tight mb-3"
                               >
-                                Continue
-                              </MagneticButton>
+                                Let's start with you.
+                              </Heading>
+                              <Text className="text-text-subtle text-lg">
+                                Who should we be reaching out to?
+                              </Text>
                             </div>
-                          </div>
-                        </div>
-                      )}
 
-                      {/* ── STEP 2: Interests (multi-select + skip) ── */}
-                      {step === 2 && (
-                        <div 
-                          data-lenis-prevent
-                          className="p-8 md:p-14 flex-1 flex flex-col overflow-y-auto custom-scrollbar overscroll-contain"
-                        >
-                          <div className="mb-8">
-                            <button
-                              onClick={() => setStep(1)}
-                              className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
-                            >
-                              <ArrowLeft
-                                size={14}
-                                className="group-hover:-translate-x-1 transition-transform"
-                              />
-                              <span className="text-xs uppercase tracking-widest font-bold">
-                                Back
-                              </span>
-                            </button>
-                            <Text variant="tiny" className="text-lime mb-3">
-                              Step 2 of 4
-                            </Text>
-                            <Heading
-                              level={2}
-                              className="text-3xl md:text-5xl leading-tight mb-3"
-                            >
-                              What brings you here?
-                            </Heading>
-                            <Text className="text-text-subtle text-lg">
-                              Select everything that applies — or skip if you're not sure yet.
-                            </Text>
-                          </div>
-
-                          <div className="flex flex-col gap-3 mb-8">
-                            {interestOptions.map((interest) => {
-                              const isSelected = formData.interests.includes(interest);
-                              return (
-                                <button
-                                  key={interest}
-                                  onClick={() => toggleInterest(interest)}
+                            <div className="space-y-6">
+                              <div>
+                                <input
+                                  type="text"
+                                  placeholder="Your name or organization"
                                   className={cn(
-                                    "px-5 py-4 rounded-2xl border text-left transition-all duration-200 flex items-center gap-4",
-                                    isSelected
-                                      ? "border-lime/40 bg-lime/5"
-                                      : "border-text/10 hover:border-text/20 bg-text/[0.02]"
+                                    "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10",
+                                    validationErrors.name 
+                                      ? "border-red-500/50 focus:border-red-500" 
+                                      : "border-text/10 focus:border-lime"
                                   )}
-                                >
-                                  <div
-                                    className={cn(
-                                      "size-5 rounded-md border-2 flex items-center justify-center transition-all shrink-0",
-                                      isSelected
-                                        ? "border-lime bg-lime"
-                                        : "border-text/20"
-                                    )}
+                                  autoFocus
+                                  value={formData.name}
+                                  onChange={(e) => handleNameChange(e.target.value)}
+                                  onKeyDown={(e) => e.key === "Enter" && handleNext()}
+                                />
+                                {validationErrors.name && (
+                                  <motion.p
+                                    initial={{ opacity: 0, y: -5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-red-400 text-xs mt-2 flex items-center gap-1.5"
                                   >
-                                    {isSelected && (
-                                      <Check
-                                        size={12}
-                                        className="text-dark-100"
-                                        strokeWidth={3}
-                                      />
-                                    )}
-                                  </div>
-                                  <span
-                                    className={cn(
-                                      "font-medium transition-colors",
-                                      isSelected ? "text-text" : "text-text/60"
-                                    )}
-                                  >
-                                    {interest}
-                                  </span>
-                                </button>
-                              );
-                            })}
-                          </div>
-
-                          <div className="flex items-center justify-between pt-6 border-t border-text/[0.05] mt-auto">
-                            <button
-                              onClick={() => setStep(3)}
-                              className="text-text/30 hover:text-text transition-colors text-xs font-bold uppercase tracking-widest"
-                            >
-                              Skip this step →
-                            </button>
-                            <MagneticButton
-                              onClick={() => setStep(3)}
-                              variant="primary"
-                              className="px-10 py-4"
-                            >
-                              Continue
-                            </MagneticButton>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* ── STEP 3: Choose path ── */}
-                      {step === 3 && (
-                        <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
-                          <div className="text-center mb-2">
-                            <button
-                              onClick={() => setStep(2)}
-                              className="inline-flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
-                            >
-                              <ArrowLeft
-                                size={14}
-                                className="group-hover:-translate-x-1 transition-transform"
-                              />
-                              <span className="text-xs uppercase tracking-widest font-bold">
-                                Back
-                              </span>
-                            </button>
-                            <Text variant="tiny" className="text-lime mb-3">
-                              Step 3 of 4
-                            </Text>
-                            <Heading
-                              level={2}
-                              className="text-3xl md:text-5xl leading-tight mb-3"
-                            >
-                              How would you like to connect?
-                            </Heading>
-                            <Text className="text-text-subtle text-lg">
-                              Choose whichever works best for you.
-                            </Text>
-                          </div>
-
-                          <div className="flex flex-col md:flex-row gap-5 justify-center">
-                            <button
-                              onClick={() => handleChoice("book")}
-                              className="flex-1 group/btn p-8 rounded-[2rem] border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4"
-                            >
-                              <div className="size-16 rounded-2xl bg-lime text-dark-100 flex items-center justify-center shadow-[0_0_30px_rgba(190,255,80,0.2)] group-hover/btn:scale-110 transition-transform">
-                                <Calendar size={30} />
-                              </div>
-                              <div>
-                                <div className="font-bold text-xl mb-1 text-text">
-                                  Book a Call
-                                </div>
-                                <div className="text-sm text-text-muted">
-                                  Pick a time · 15–30 min chat
-                                </div>
-                              </div>
-                            </button>
-
-                            <button
-                              onClick={() => handleChoice("message")}
-                              className="flex-1 group/btn p-8 rounded-[2rem] border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4"
-                            >
-                              <div className="size-16 rounded-2xl bg-text/10 text-text flex items-center justify-center group-hover/btn:scale-110 transition-transform">
-                                <MessageSquare size={30} />
-                              </div>
-                              <div>
-                                <div className="font-bold text-xl mb-1 text-text">
-                                  Send a Message
-                                </div>
-                                <div className="text-sm text-text-muted">
-                                  We'll reply to your email
-                                </div>
-                              </div>
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* ── STEP 4a: Message ── */}
-                      {step === 4 && choice === "message" && (
-                        <div className="p-8 md:p-14 flex-1 flex flex-col">
-                          <div className="mb-6">
-                            <button
-                              onClick={() => {
-                                setStep(3);
-                                setSubmitError(null);
-                              }}
-                              className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
-                            >
-                              <ArrowLeft
-                                size={14}
-                                className="group-hover:-translate-x-1 transition-transform"
-                              />
-                              <span className="text-xs uppercase tracking-widest font-bold">
-                                Back
-                              </span>
-                            </button>
-                            <Text variant="tiny" className="text-lime mb-3">
-                              Step 4 of 4
-                            </Text>
-                            <Heading
-                              level={2}
-                              className="text-3xl md:text-5xl leading-tight mb-3"
-                            >
-                              Tell us a bit more.
-                            </Heading>
-                            <Text className="text-text-subtle text-lg">
-                              What problem are you trying to solve? The more
-                              detail, the better we can help.
-                            </Text>
-                          </div>
-
-                          <div className="flex-1 flex flex-col min-h-0">
-                            <textarea
-                              data-lenis-prevent
-                              placeholder="What's on your mind..."
-                              className="w-full flex-1 bg-transparent border-b-2 border-text/10 py-4 text-lg outline-none focus:border-lime transition-colors resize-none placeholder:text-text/10 min-h-[140px]"
-                              autoFocus
-                              value={formData.message}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  message: e.target.value,
-                                })
-                              }
-                            />
-                            {submitError && (
-                              <div className="flex items-center gap-2 mt-4 text-red-400 text-sm">
-                                <AlertCircle size={14} />
-                                <span>{submitError}</span>
-                              </div>
-                            )}
-                            <div className="mt-auto pt-8 flex justify-end">
-                              <MagneticButton
-                                onClick={handleSubmitMessage}
-                                variant="primary"
-                                className={cn(
-                                  "px-10 py-4",
-                                  (isSubmitting || !formData.message.trim()) &&
-                                    "opacity-50 pointer-events-none"
+                                    <AlertCircle size={12} />
+                                    {validationErrors.name}
+                                  </motion.p>
                                 )}
-                                disabled={isSubmitting || !formData.message.trim()}
-                                withBeam
-                              >
-                                {isSubmitting ? "Sending..." : "Send Message"}
-                              </MagneticButton>
+                              </div>
+
+                              <div>
+                                <input
+                                  type="email"
+                                  placeholder="Your email address"
+                                  className={cn(
+                                    "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10",
+                                    validationErrors.email 
+                                      ? "border-red-500/50 focus:border-red-500" 
+                                      : "border-text/10 focus:border-lime"
+                                  )}
+                                  value={formData.email}
+                                  onChange={(e) => handleEmailChange(e.target.value)}
+                                  onKeyDown={(e) => e.key === "Enter" && handleNext()}
+                                />
+                                {validationErrors.email && (
+                                  <motion.p
+                                    initial={{ opacity: 0, y: -5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-red-400 text-xs mt-2 flex items-center gap-1.5"
+                                  >
+                                    <AlertCircle size={12} />
+                                    {validationErrors.email}
+                                  </motion.p>
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="flex justify-end items-center pt-8">
+                              <div className="flex items-center gap-6">
+                                <Text variant="tiny" className="hidden sm:block text-text/20">
+                                  Press Enter ↵
+                                </Text>
+                                <MagneticButton
+                                  onClick={handleNext}
+                                  variant="primary"
+                                  className="px-10 py-4"
+                                  disabled={!formData.name.trim() || !formData.email.trim()}
+                                >
+                                  Continue
+                                </MagneticButton>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
+                        )}
 
-                      {/* ── STEP 4b: Book — Headless Calendar ── */}
-                      {step === 4 && choice === "book" && (
-                        <div className="flex-1 flex flex-col min-h-0">
-                          {/* Toolbar */}
-                          <div className="px-6 md:px-10 py-6 border-b border-text/10 flex items-center justify-start gap-8 bg-dark-100/30 backdrop-blur-md shrink-0">
-                            <div className="flex items-center gap-6">
+                        {/* ── STEP 2: Interests ── */}
+                        {step === 2 && (
+                          <div
+                            data-lenis-prevent
+                            className="p-8 md:p-14 flex-1 flex flex-col overflow-y-auto custom-scrollbar overscroll-contain"
+                          >
+                            <div className="mb-8">
                               <button
-                                onClick={() => {
-                                  setStep(3);
-                                  setSelectedSlot(null);
-                                  setSubmitError(null);
-                                }}
-                                className="flex items-center gap-2 text-text/40 hover:text-text transition-colors group"
+                                onClick={() => setStep(1)}
+                                className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
                               >
                                 <ArrowLeft
                                   size={14}
                                   className="group-hover:-translate-x-1 transition-transform"
                                 />
-                                <span className="text-[10px] uppercase tracking-widest font-bold">
+                                <span className="text-xs uppercase tracking-widest font-bold">
                                   Back
                                 </span>
                               </button>
-                              <div className="w-px h-3 bg-text/10" />
-                              <Text variant="tiny" className="text-lime uppercase tracking-widest">
-                                Step 4 of 4
+                              <Text variant="tiny" className="text-lime mb-3">
+                                Step 2 of 4
                               </Text>
+                              <Heading
+                                level={2}
+                                className="text-3xl md:text-5xl leading-tight mb-3"
+                              >
+                                What brings you here?
+                              </Heading>
+                            </div>
+
+                            <div className="flex flex-col gap-3 mb-8">
+                              {interestOptions.map((interest) => {
+                                const isSelected = formData.interests.includes(interest);
+                                return (
+                                  <button
+                                    key={interest}
+                                    onClick={() => toggleInterest(interest)}
+                                    className={cn(
+                                      "px-5 py-4 rounded-2xl border text-left transition-all duration-200 flex items-center gap-4",
+                                      isSelected
+                                        ? "border-lime/40 bg-lime/5"
+                                        : "border-text/10 hover:border-text/20 bg-text/[0.02]"
+                                    )}
+                                  >
+                                    <div
+                                      className={cn(
+                                        "size-5 rounded-md border-2 flex items-center justify-center transition-all shrink-0",
+                                        isSelected ? "border-lime bg-lime" : "border-text/20"
+                                      )}
+                                    >
+                                      {isSelected && (
+                                        <Check
+                                          size={12}
+                                          className="text-dark-100"
+                                          strokeWidth={3}
+                                        />
+                                      )}
+                                    </div>
+                                    <span
+                                      className={cn(
+                                        "font-medium transition-colors",
+                                        isSelected ? "text-text" : "text-text/60"
+                                      )}
+                                    >
+                                      {interest}
+                                    </span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            <div className="flex items-center justify-between pt-6 border-t border-text/[0.05] mt-auto">
+                              <button
+                                onClick={() => setStep(3)}
+                                className="text-text/30 hover:text-text transition-colors text-xs font-bold uppercase tracking-widest"
+                              >
+                                Skip this step →
+                              </button>
+                              <MagneticButton
+                                onClick={() => setStep(3)}
+                                variant="primary"
+                                className="px-10 py-4"
+                              >
+                                Continue
+                              </MagneticButton>
                             </div>
                           </div>
+                        )}
 
-                          {/* Calendar - No longer scrolls here, scrolling is handled inside the component */}
-                          <div className="flex-1 overflow-hidden p-6 md:p-10">
-                            <HeadlessCalendar
-                              onSelectSlot={handleSlotSelect}
-                              isBooking={isBooking}
-                            />
-                          </div>
-
-                          {/* Confirm bar — pinned to bottom when a slot is selected */}
-                          <AnimatePresence>
-                            {selectedSlot && (
-                              <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: 20, opacity: 0 }}
-                                className="shrink-0 px-6 py-4 border-t border-text/10 bg-dark-100/80 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                        {/* ── STEP 3: Choose Path ── */}
+                        {step === 3 && (
+                          <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
+                            <div className="text-center mb-2">
+                              <button
+                                onClick={() => setStep(2)}
+                                className="inline-flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
                               >
-                                <div className="min-w-0">
-                                  <Text variant="tiny" className="text-lime mb-0.5">
-                                    Selected
-                                  </Text>
-                                  <div className="font-bold text-sm text-text truncate">
-                                    {selectedSlot.date.toLocaleDateString("en-US", {
-                                      weekday: "short",
-                                      month: "long",
-                                      day: "numeric",
-                                    })}{" "}
-                                    at {selectedSlot.time}
-                                  </div>
-                                  {submitError && (
-                                    <div className="flex items-center gap-1.5 mt-1 text-red-400 text-xs">
-                                      <AlertCircle size={12} />
-                                      <span>{submitError}</span>
-                                    </div>
-                                  )}
+                                <ArrowLeft
+                                  size={14}
+                                  className="group-hover:-translate-x-1 transition-transform"
+                                />
+                                <span className="text-xs uppercase tracking-widest font-bold">
+                                  Back
+                                </span>
+                              </button>
+                              <Text variant="tiny" className="text-lime mb-3">
+                                Step 3 of 4
+                              </Text>
+                              <Heading
+                                level={2}
+                                className="text-3xl md:text-5xl leading-tight mb-3"
+                              >
+                                How would you like to connect?
+                              </Heading>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-5 justify-center">
+                              <button
+                                onClick={() => handleChoice("book")}
+                                className="flex-1 group/btn p-8 rounded-[2rem] border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4"
+                              >
+                                <div className="size-16 rounded-2xl bg-lime text-dark-100 flex items-center justify-center shadow-[0_0_30px_rgba(190,255,80,0.2)] group-hover/btn:scale-110 transition-transform">
+                                  <Calendar size={30} />
                                 </div>
+                                <div>
+                                  <div className="font-bold text-xl mb-1 text-text">
+                                    Book a Call
+                                  </div>
+                                  <div className="text-sm text-text-muted">
+                                    Pick a time · 15–30 min chat
+                                  </div>
+                                </div>
+                              </button>
+
+                              <button
+                                onClick={() => handleChoice("message")}
+                                className="flex-1 group/btn p-8 rounded-[2rem] border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4"
+                              >
+                                <div className="size-16 rounded-2xl bg-text/10 text-text flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+                                  <MessageSquare size={30} />
+                                </div>
+                                <div>
+                                  <div className="font-bold text-xl mb-1 text-text">
+                                    Send a Message
+                                  </div>
+                                  <div className="text-sm text-text-muted">
+                                    We'll reply to your email
+                                  </div>
+                                </div>
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* ── STEP 4a: Message ── */}
+                        {step === 4 && choice === "message" && (
+                          <div className="p-8 md:p-14 flex-1 flex flex-col">
+                            <div className="mb-6">
+                              <button
+                                onClick={() => {
+                                  setStep(3);
+                                  setSubmitError(null);
+                                }}
+                                className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
+                              >
+                                <ArrowLeft
+                                  size={14}
+                                  className="group-hover:-translate-x-1 transition-transform"
+                                />
+                                <span className="text-xs uppercase tracking-widest font-bold">
+                                  Back
+                                </span>
+                              </button>
+                              <Text variant="tiny" className="text-lime mb-3">
+                                Step 4 of 4
+                              </Text>
+                              <Heading
+                                level={2}
+                                className="text-3xl md:text-5xl leading-tight mb-3"
+                              >
+                                Tell us a bit more.
+                              </Heading>
+                            </div>
+
+                            <div className="flex-1 flex flex-col min-h-0">
+                              <textarea
+                                data-lenis-prevent
+                                placeholder="What's on your mind..."
+                                className="w-full flex-1 bg-transparent border-b-2 border-text/10 py-4 text-lg outline-none focus:border-lime transition-colors resize-none placeholder:text-text/10 min-h-[140px]"
+                                autoFocus
+                                value={formData.message}
+                                onChange={(e) =>
+                                  setFormData({ ...formData, message: e.target.value })
+                                }
+                              />
+                              {submitError && (
+                                <div className="flex items-center gap-2 mt-4 text-red-400 text-sm">
+                                  <AlertCircle size={14} />
+                                  <span>{submitError}</span>
+                                </div>
+                              )}
+                              <div className="mt-auto pt-8 flex justify-end">
                                 <MagneticButton
-                                  onClick={handleConfirmBooking}
+                                  onClick={handleSubmitMessage}
                                   variant="primary"
                                   className={cn(
-                                    "px-8 py-3 text-sm shrink-0",
-                                    isBooking && "opacity-50 pointer-events-none"
+                                    "px-10 py-4",
+                                    (isSubmitting || !formData.message.trim()) &&
+                                    "opacity-50 pointer-events-none"
                                   )}
-                                  disabled={isBooking}
+                                  disabled={isSubmitting || !formData.message.trim()}
                                   withBeam
                                 >
-                                  {isBooking ? "Booking..." : "Confirm Booking"}
+                                  {isSubmitting ? "Sending..." : "Send Message"}
                                 </MagneticButton>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* ── STEP 4b: Book (Calendar) ── */}
+                        {step === 4 && choice === "book" && (
+                          <div className="flex-1 flex flex-col min-h-0">
+                            <div className="px-6 md:px-10 py-6 border-b border-text/10 flex items-center justify-start gap-8 bg-dark-100/30 backdrop-blur-md shrink-0">
+                              <div className="flex items-center gap-6">
+                                <button
+                                  onClick={() => {
+                                    setStep(3);
+                                    setSelectedSlot(null);
+                                    setSubmitError(null);
+                                  }}
+                                  className="flex items-center gap-2 text-text/40 hover:text-text transition-colors group"
+                                >
+                                  <ArrowLeft
+                                    size={14}
+                                    className="group-hover:-translate-x-1 transition-transform"
+                                  />
+                                  <span className="text-[10px] uppercase tracking-widest font-bold">
+                                    Back
+                                  </span>
+                                </button>
+                                <div className="w-px h-3 bg-text/10" />
+                                <Text variant="tiny" className="text-lime uppercase tracking-widest">
+                                  Step 4 of 4
+                                </Text>
+                              </div>
+                            </div>
+
+                            <div className="flex-1 overflow-hidden p-6 md:p-10">
+                              <HeadlessCalendar
+                                onSelectSlot={handleSlotSelect}
+                                isBooking={isBooking}
+                              />
+                            </div>
+
+                            <AnimatePresence>
+                              {selectedSlot && (
+                                <motion.div
+                                  initial={{ y: 20, opacity: 0 }}
+                                  animate={{ y: 0, opacity: 1 }}
+                                  exit={{ y: 20, opacity: 0 }}
+                                  className="shrink-0 px-6 py-4 border-t border-text/10 bg-dark-100/80 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                                >
+                                  <div className="min-w-0">
+                                    <Text variant="tiny" className="text-lime mb-0.5">
+                                      Selected
+                                    </Text>
+                                    <div className="font-bold text-sm text-text truncate">
+                                      {selectedSlot.date.toLocaleDateString("en-US", {
+                                        weekday: "short",
+                                        month: "long",
+                                        day: "numeric",
+                                      })}{" "}
+                                      at {selectedSlot.time}
+                                    </div>
+                                    {submitError && (
+                                      <div className="flex items-center gap-1.5 mt-1 text-red-400 text-xs">
+                                        <AlertCircle size={12} />
+                                        <span>{submitError}</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                  <MagneticButton
+                                    onClick={handleConfirmBooking}
+                                    variant="primary"
+                                    className={cn(
+                                      "px-8 py-3 text-sm shrink-0",
+                                      isBooking && "opacity-50 pointer-events-none"
+                                    )}
+                                    disabled={isBooking}
+                                    withBeam
+                                  >
+                                    {isBooking ? "Booking..." : "Confirm Booking"}
+                                  </MagneticButton>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

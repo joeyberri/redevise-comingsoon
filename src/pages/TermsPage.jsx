@@ -36,7 +36,7 @@ const TermsPage = () => {
             <section>
               <Heading level={3} className="mb-4">3. Intellectual Property</Heading>
               <Text>
-                The Redevise name, logo, Jarvis intelligence layer, and all associated software and content are the exclusive property of Redevise. You may not reproduce, distribute, or create derivative works without explicit written permission.
+                The Redevise name, logo, Core intelligence layer, and all associated software and content are the exclusive property of Redevise. You may not reproduce, distribute, or create derivative works without explicit written permission.
               </Text>
             </section>
 

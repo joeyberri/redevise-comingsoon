@@ -9,10 +9,10 @@ const FadeIn = ({
   className 
 }) => {
   const directions = {
-    up: { y: 20, x: 0 },
-    down: { y: -20, x: 0 },
-    left: { y: 0, x: 20 },
-    right: { y: 0, x: -20 },
+    up: { y: 16, x: 0 },
+    down: { y: -16, x: 0 },
+    left: { y: 0, x: 16 },
+    right: { y: 0, x: -16 },
     none: { y: 0, x: 0 },
   };
 
@@ -24,11 +24,11 @@ const FadeIn = ({
         x: directions[direction].x 
       }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{
-        duration: 0.8,
+        duration: 0.5,
         delay: delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className={cn(fullWidth ? "w-full" : "w-auto", className)}
     >

@@ -2,26 +2,60 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { cn } from "../utils/cn";
 
-const TextReveal = ({ text, className, delay = 0, once = true }) => {
+const TextReveal = ({ text, className, delay = 0, once = true, keepTogether = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-10%" });
 
-  // Split text into characters including spaces
-  const characters = text.split("");
+  if (keepTogether) {
+    const singleVariant = {
+      visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: {
+          delay,
+          duration: 0.35,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        },
+      },
+      hidden: {
+        opacity: 0,
+        y: 6,
+        filter: "blur(3px)",
+      },
+    };
+
+    return (
+      <motion.span
+        ref={ref}
+        variants={singleVariant}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className={cn("inline-block", className)}
+        style={{ 
+          whiteSpace: "nowrap",
+          paddingRight: className?.includes("italic") ? "0.15em" : undefined 
+        }}
+      >
+        {text}
+      </motion.span>
+    );
+  }
+
+  // Split text into words (not characters) for a faster, cleaner reveal
+  const words = text.split(" ");
 
   const container = {
     hidden: { 
       opacity: 0,
-      y: 10 
     },
     visible: {
       opacity: 1,
-      y: 0,
       transition: { 
-        staggerChildren: 0.015, 
+        staggerChildren: 0.04, 
         delayChildren: delay,
-        duration: 0.8,
-        ease: [0.215, 0.61, 0.355, 1],
+        duration: 0.3,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
@@ -29,57 +63,42 @@ const TextReveal = ({ text, className, delay = 0, once = true }) => {
   const child = {
     visible: {
       opacity: 1,
+      y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        duration: 0.35,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
     hidden: {
       opacity: 0,
-      filter: "blur(4px)",
+      y: 6,
+      filter: "blur(3px)",
     },
   };
 
-  // To make a continuous gradient across separate spans, we "stitch" them 
-  // by scaling the background and offsetting it per character.
-  const total = characters.length;
-  
+
   return (
     <motion.span
       ref={ref}
       variants={container}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className={cn("inline-block", className?.replace("text-gradient", ""))}
+      className={cn("inline", className)}
     >
-      {characters.map((char, index) => {
-        const isGradient = className?.includes("text-gradient");
-        
-        return (
-          <motion.span
-            key={index}
-            variants={child}
-            className={cn(
-              "inline-block relative align-baseline",
-              isGradient && "text-gradient"
-            )}
-            style={{ 
-              whiteSpace: "pre",
-              // Generous oversize to prevent ANY clipping of italics or descenders
-              padding: "0.2em 0.25em",
-              margin: "-0.2em -0.25em",
-              // Ensure background/clipping box is not restricted by parent line-height
-              overflow: "visible",
-              // Stitching logic
-              backgroundSize: isGradient ? `${total * 100}% 100%` : undefined,
-              backgroundPosition: isGradient ? `${(index / (total - 1)) * 100}% 0%` : undefined,
-            }}
-          >
-            {char}
-          </motion.span>
-        );
-      })}
+      {words.map((word, index) => (
+        <motion.span
+          key={index}
+          variants={child}
+          className="inline-block"
+          style={{ 
+            whiteSpace: "nowrap",
+            marginRight: index < words.length - 1 ? "0.3em" : undefined,
+          }}
+        >
+          {word}
+        </motion.span>
+      ))}
     </motion.span>
   );
 };

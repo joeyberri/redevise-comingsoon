@@ -4,7 +4,7 @@ import Button from "../components/Button.jsx";
 import MagneticButton from "../components/MagneticButton.jsx";
 import GridSpotlight from "../components/GridSpotlight.jsx";
 
-const CtaFooter = () => {
+const CtaFooter = ({ onOpenInquiry = () => {} }) => {
   return (
     <Element name="cta">
       <GridSpotlight 
@@ -35,20 +35,20 @@ const CtaFooter = () => {
 
             <div className="flex flex-wrap items-center justify-center gap-6">
               <MagneticButton 
-                href="#products" 
+                onClick={() => onOpenInquiry("Just exploring my options")} 
                 variant="primary" 
                 strength={0.2} 
                 withBeam
               >
-                Explore our products
+                Request consultation
               </MagneticButton>
               
               <MagneticButton 
-                href="#services" 
+                to="products" 
                 variant="secondary" 
                 strength={0.15}
               >
-                Request consultation
+                Explore our products
               </MagneticButton>
             </div>
           </motion.div>

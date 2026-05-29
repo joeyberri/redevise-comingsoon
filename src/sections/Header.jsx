@@ -55,7 +55,7 @@ const Header = ({ onOpenInquiry }) => {
         className={cn(
           "fixed top-0 left-0 z-50 w-full transition-all duration-700 ease-in-out",
           hasScrolled 
-            ? "bg-dark-100/70 backdrop-blur-xl border-b border-text/10 translate-y-0" 
+            ? "bg-dark-100/70 backdrop-blur-md border-b border-text/10 translate-y-0" 
             : "bg-transparent py-2"
         )}
       >
@@ -93,7 +93,7 @@ const Header = ({ onOpenInquiry }) => {
                     {link.id === "products" && (
                       <ChevronDown size={14} className={cn("transition-transform duration-300", isMegaMenuOpen && "rotate-180")} />
                     )}
-                    <span className="absolute bottom-1.5 left-1/2 h-[3px] w-0 -translate-x-1/2 rounded-full bg-lime transition-all duration-300 [.active-scroll>&]:w-1" />
+
                   </button>
 
                   {/* Mega Menu Dropdown */}
@@ -106,7 +106,7 @@ const Header = ({ onOpenInquiry }) => {
                           exit={{ opacity: 0, y: 10, filter: "blur(10px)" }}
                           className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[600px]"
                         >
-                          <div className="bg-dark-100/90 backdrop-blur-2xl border border-text/10 rounded-[2rem] p-8 shadow-2xl overflow-hidden relative">
+                          <div className="bg-dark-100/90 backdrop-blur-lg border border-text/10 rounded-[2rem] p-8 shadow-2xl overflow-hidden relative">
                             <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
                             <div className="grid grid-cols-2 gap-6 relative z-10">
                               {products.map((product) => (

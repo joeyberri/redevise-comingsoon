@@ -8,7 +8,8 @@ export default function SmoothScroll({ children }) {
         lerp: 0.1,
         smoothWheel: true,
         smoothTouch: false,
-        wheelMultiplier: 1,
+        wheelMultiplier: 1.2,
+        duration: 0.8,
       }}
     >
       {children}

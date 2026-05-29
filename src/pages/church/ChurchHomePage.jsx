@@ -8,7 +8,7 @@ import ChurchServices from "../../sections/church/ChurchServices.jsx";
 import About from "../../sections/About.jsx";
 import CtaFooter from "../../sections/CtaFooter.jsx";
 
-const ChurchHomePage = () => {
+const ChurchHomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
 
   useEffect(() => {
@@ -26,12 +26,12 @@ const ChurchHomePage = () => {
 
   return (
     <>
-      <ChurchHero />
+      <ChurchHero onOpenInquiry={onOpenInquiry} />
       <Pillars />
       <Products />
       <ChurchServices />
       <About />
-      <CtaFooter />
+      <CtaFooter onOpenInquiry={onOpenInquiry} />
     </>
   );
 };

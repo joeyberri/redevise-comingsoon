@@ -2,23 +2,23 @@ import FeatureItem from "../components/FeatureItem.jsx";
 import FadeIn from "../components/FadeIn.jsx";
 import Section from "../components/Section.jsx";
 import SectionHeader from "../components/SectionHeader.jsx";
-import JarvisOrb from "../components/JarvisOrb.jsx";
-import { jarvisCapabilities, jarvisContent } from "../constants/index.jsx";
+import CoreOrb from "../components/CoreOrb.jsx";
+import { coreCapabilities, coreContent } from "../constants/index.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import Grid from "../components/Grid.jsx";
 import ScrollParallax from "../components/ScrollParallax.jsx";
 
-const Jarvis = () => {
+const Core = () => {
   return (
-    <Section name="jarvis" className="relative" showDivider>
+    <Section name="core" className="relative" showDivider>
       {/* Cinematic Intelligence Core */}
       <div className="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none">
-        <JarvisOrb className="opacity-40" />
+        <CoreOrb className="opacity-40" />
       </div>
 
       <FadeIn>
-        <div className="relative overflow-hidden rounded-[2rem] border border-text/[0.08] bg-text/[0.02] backdrop-blur-3xl">
+        <div className="relative overflow-hidden rounded-[2rem] border border-text/[0.08] bg-text/[0.02] backdrop-blur-lg">
           {/* Subtle grid inside the block */}
           <div className="absolute inset-0 bg-grid opacity-20" />
           
@@ -34,13 +34,13 @@ const Jarvis = () => {
             {/* Left: Copy */}
             <div>
               <Pill className="mb-8 border-text/[0.1] text-text-subtle">
-                {jarvisContent.pill}
+                {coreContent.pill}
               </Pill>
               <Heading level={2} className="mb-6 md:text-5xl lg:text-6xl">
-                {jarvisContent.title}
+                {coreContent.title}
               </Heading>
               <div className="space-y-6">
-                {jarvisContent.paragraphs.map((para, i) => (
+                {coreContent.paragraphs.map((para, i) => (
                   <Text key={i} className="text-lg">
                     {para}
                   </Text>
@@ -51,7 +51,7 @@ const Jarvis = () => {
             {/* Right: Capabilities */}
             <div className="flex items-center">
               <ul className="space-y-6 w-full">
-                {jarvisCapabilities.map((cap, i) => (
+                {coreCapabilities.map((cap, i) => (
                   <FadeIn key={i} delay={0.2 + i * 0.1} direction="left">
                     <FeatureItem className="text-base py-3 border-b border-text/[0.05] last:border-0">
                       {cap}
@@ -67,4 +67,4 @@ const Jarvis = () => {
   );
 };
 
-export default Jarvis;
+export default Core;

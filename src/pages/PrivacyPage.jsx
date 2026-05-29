@@ -22,14 +22,14 @@ const PrivacyPage = () => {
             <section>
               <Heading level={3} className="mb-4">1. Data Philosophy</Heading>
               <Text>
-                At Redevise, we believe data should serve you, not exploit you. We only collect the minimum amount of information necessary to provide our services and power the Jarvis intelligence layer to your benefit.
+                At Redevise, we believe data should serve you, not exploit you. We only collect the minimum amount of information necessary to provide our services and power your dedicated Core workspace to your benefit.
               </Text>
             </section>
 
             <section>
               <Heading level={3} className="mb-4">2. Information We Collect</Heading>
               <Text>
-                We collect information you provide directly (such as when you fill out an inquiry form), technical usage data (IP addresses, browser types), and context-specific data used to optimize your workflows via Jarvis.
+                We collect information you provide directly (such as when you fill out an inquiry form), technical usage data (IP addresses, browser types), and context-specific data used to optimize your workflows via your Core instance.
               </Text>
             </section>
 
@@ -39,7 +39,7 @@ const PrivacyPage = () => {
                 We use your data to:
                 <ul className="list-disc list-inside mt-4 space-y-2 opacity-80">
                   <li>Deliver and improve our products and services.</li>
-                  <li>Train the Jarvis intelligence layer for cross-product optimization.</li>
+                  <li>Train and optimize Core within your workspace to maximize performance for your products.</li>
                   <li>Communicate with you regarding your inquiries and projects.</li>
                   <li>Ensure the security and integrity of our platform.</li>
                 </ul>

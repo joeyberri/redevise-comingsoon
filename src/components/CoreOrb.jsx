@@ -2,7 +2,7 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 import { useEffect } from "react";
 import { cn } from "../utils/cn";
 
-const JarvisOrb = ({ className }) => {
+const CoreOrb = ({ className }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -83,4 +83,6 @@ const JarvisOrb = ({ className }) => {
   );
 };
 
-export default JarvisOrb;
+CoreOrb.displayName = "CoreOrb";
+
+export default CoreOrb;

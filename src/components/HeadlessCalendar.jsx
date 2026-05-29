@@ -185,7 +185,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
       </div>
 
       {/* Day Grid */}
-      <div className="grid grid-cols-7 gap-1 mb-3 text-center">
+      <div className="relative grid grid-cols-7 gap-1 mb-3 text-center">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
           <div
             key={day}

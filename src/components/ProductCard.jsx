@@ -19,6 +19,8 @@ const ProductCard = ({ label, name, text, cta, href, className, index = 0 }) => 
       badge={badge}
       className={className}
     >
+
+
       {cta && href && (
         <div className="pt-6 border-t border-text/[0.05]">
           <MagneticWrapper strength={0.1}>

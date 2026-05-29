@@ -29,7 +29,7 @@ const GlassCard = ({ children, className, hover = true, delay = 0 }) => {
       onBlur={() => setIsHovered(false)}
       tabIndex={0}
       className={cn(
-        "group relative overflow-hidden rounded-3xl border transition-all duration-500 p-8 backdrop-blur-xl outline-none",
+        "group relative overflow-hidden rounded-3xl border transition-all duration-500 p-8 backdrop-blur-md outline-none",
         hover && "hover:border-text/20 focus:border-text/20 active:bg-text/5",
         className
       )}

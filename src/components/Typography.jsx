@@ -11,7 +11,7 @@ export const Heading = ({
   const Tag = `h${level}`;
   
   const variants = {
-    "hero-title": "font-serif text-5xl leading-[1.2] text-text md:text-7xl lg:text-8xl",
+    "hero-title": "font-serif tracking-tight font-normal text-[2.75rem] text-text sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
     "section-title": "font-sans text-3xl font-bold leading-tight text-text md:text-4xl lg:text-5xl tracking-tight",
     "card-title": "font-sans text-2xl font-bold text-text leading-tight md:text-3xl tracking-tight",
     "small-title": "font-sans text-xl font-semibold text-text leading-tight",

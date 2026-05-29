@@ -6,12 +6,24 @@
 
 @layer base {
   html {
-    @apply bg-dark transition-colors duration-700 ease-in-out;
+    @apply bg-dark transition-colors duration-300 ease-in-out;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 
   body {
-    @apply font-sans text-base text-text antialiased transition-colors duration-700 ease-in-out;
+    @apply font-sans text-base text-text antialiased transition-colors duration-300 ease-in-out;
     position: relative;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 }
 
@@ -56,11 +68,11 @@
 
 @layer base {
   /* ─── Cinematic Grain ─── */
+  /* Optimized: Removed filter and used a more performant noise implementation */
   body::before {
     content: "";
-    @apply pointer-events-none fixed inset-0 z-50 opacity-[0.03];
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    filter: brightness(100%) contrast(150%);
+    @apply pointer-events-none fixed inset-0 z-50 opacity-[0.02];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
 
   a {
@@ -74,50 +86,61 @@
   ::selection {
     @apply bg-lime/20 text-lime;
   }
+
+  /* Prevent browser autofill from forcing native background colors */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px rgb(var(--color-dark)) inset !important;
+    -webkit-text-fill-color: rgb(var(--color-text)) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 @layer components {
   /* ─── Layout ─── */
   .container {
-    @apply mx-auto max-w-container px-6 md:px-10 lg:px-16;
+    @apply mx-auto max-w-container px-6 md:px-10;
   }
 
   /* ─── Pill / Label ─── */
   .pill {
     @apply inline-block rounded-full border border-dark-400/50 bg-dark-50/50
            px-4 py-1.5 font-sans text-xs font-medium uppercase tracking-widest
-           text-text-subtle transition-colors duration-700 ease-in-out;
+           text-text-subtle transition-colors duration-300 ease-in-out;
   }
 
   /* ─── Section Title ─── */
   .section-title {
     @apply font-sans text-3xl font-bold leading-tight text-text
-           md:text-4xl lg:text-5xl tracking-tight transition-colors duration-700 ease-in-out;
+           md:text-4xl lg:text-5xl tracking-tight transition-colors duration-300 ease-in-out;
   }
 
   /* ─── Section Subtitle ─── */
   .section-sub {
-    @apply max-w-xl text-base leading-relaxed text-text-muted md:text-lg transition-colors duration-700 ease-in-out;
+    @apply max-w-xl text-base leading-relaxed text-text-muted md:text-lg transition-colors duration-300 ease-in-out;
   }
 
   /* ─── Buttons ─── */
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-lg bg-lime px-6 py-3
            font-sans text-sm font-semibold tracking-wide text-dark
-           transition-all duration-700 ease-in-out hover:bg-lime-400 hover:shadow-lg
+           transition-all duration-300 ease-in-out hover:bg-lime-400 hover:shadow-lg
            hover:shadow-lime/20;
   }
 
   .btn-secondary {
     @apply inline-flex items-center gap-2 rounded-lg border border-dark-400
            bg-transparent px-6 py-3 font-sans text-sm font-medium tracking-wide
-           text-text transition-all duration-700 ease-in-out hover:border-lime/40
+           text-text transition-all duration-300 ease-in-out hover:border-lime/40
            hover:text-lime;
   }
 
   /* ─── Card Base ─── */
+  /* Optimized: Removed backdrop-blur-sm as it causes significant paint lag on scroll */
   .card {
-    @apply rounded-2xl border transition-all duration-700 ease-in-out backdrop-blur-sm;
+    @apply rounded-2xl border transition-all duration-300 ease-in-out;
     border-color: rgb(var(--color-surface-border));
     background-color: rgb(var(--color-surface-bg));
   }

@@ -1,7 +1,6 @@
 import FeatureCard from "./FeatureCard.jsx";
 import FeatureItem from "./FeatureItem.jsx";
-
-const ServiceCard = ({ title, tagline, features, cta, footerNote, className, index = 0 }) => {
+const ServiceCard = ({ title, tagline, features, cta, footerNote, className, index = 0, onOpenInquiry = () => {} }) => {
   return (
     <FeatureCard
       index={index}
@@ -10,6 +9,8 @@ const ServiceCard = ({ title, tagline, features, cta, footerNote, className, ind
       description={tagline}
       className={className}
     >
+
+
       <div className="mb-8 space-y-3 flex-1">
         <ul className="space-y-3">
           {features.map((feat, i) => (
@@ -21,12 +22,19 @@ const ServiceCard = ({ title, tagline, features, cta, footerNote, className, ind
       </div>
 
       <div className="flex flex-col gap-6">
-        <a
-          href="#cta"
-          className="group inline-flex items-center gap-2 border-b border-text-subtle pb-1 font-sans text-xs font-semibold uppercase tracking-wider text-text transition-all duration-300 hover:border-lime hover:text-lime w-fit"
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onOpenInquiry(
+              title === "Redevise Labs"
+                ? "Build a new product or platform"
+                : "Automate repetitive workflows"
+            );
+          }}
+          className="group inline-flex items-center gap-2 border-b border-text-subtle pb-1 font-sans text-xs font-semibold uppercase tracking-wider text-text transition-all duration-300 hover:border-lime hover:text-lime w-fit text-left bg-transparent cursor-pointer outline-none"
         >
           {cta}
-        </a>
+        </button>
 
         {footerNote && (
           <div className="pt-4 border-t border-dark-400/30">

@@ -35,7 +35,7 @@ const ScrollToTop = () => {
           <MagneticWrapper strength={0.2}>
             <button
               onClick={scrollToTop}
-              className="flex size-12 items-center justify-center rounded-full border border-text/[0.08] bg-dark-50/80 text-text-subtle backdrop-blur-xl transition-all duration-300 hover:border-lime/40 hover:text-lime hover:shadow-[0_0_20px_rgba(var(--color-lime),0.15)] group"
+              className="flex size-12 items-center justify-center rounded-full border border-text/[0.08] bg-dark-50/80 text-text-subtle backdrop-blur-md transition-all duration-300 hover:border-lime/40 hover:text-lime hover:shadow-[0_0_20px_rgba(var(--color-lime),0.15)] group"
               aria-label="Scroll to top"
             >
               <ArrowUp size={20} className="transition-transform duration-300 group-hover:-translate-y-0.5" />

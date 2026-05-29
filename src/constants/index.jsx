@@ -23,14 +23,14 @@ export const pillars = [
   },
 ];
 
-/* ─── Jarvis Capabilities ─── */
-export const jarvisCapabilities = [
-  "Cross-product data understanding that compounds over time",
+/* ─── Core Capabilities ─── */
+export const coreCapabilities = [
+  "Context-aware reasoning engine that compounds workflow efficiency over time",
   "Behavioral pattern recognition across workflows",
   "Context-aware recommendations at every decision point",
   "Workflow automation triggers that remove thinking overhead",
-  "Shared intelligence means every product gets smarter as all of them do",
-  "When our engineers deploy for clients, Jarvis maps, generates architectures, and optimizes - in parallel",
+  "Unified context layer that allows integrated tools to operate with shared context seamlessly",
+  "When our engineers build for you, Core maps, generates architectures, and optimizes workflows in parallel",
 ];
 
 /* ─── Product Ecosystem ─── */
@@ -73,7 +73,7 @@ export const products = [
 export const labsFeatures = [
   "End-to-end product development from discovery to launch",
   "MVPs built to validate quickly, then scale without rewrites",
-  "Jarvis-augmented architecture: problems mapped and solved at machine speed",
+  "Core-augmented architecture: problems mapped and solved at machine speed",
   "Top-tier engineering on technologies that don't become liabilities",
   "Optimization-first thinking baked into every architectural decision",
 ];
@@ -142,7 +142,7 @@ export const values = [
 export const taglines = [
   "OPTIMIZATION INFRASTRUCTURE",
   "INTELLIGENCE-FIRST ENGINEERING",
-  "POWERED BY JARVIS",
+  "POWERED BY CORE",
   "PRODUCTS + SERVICES",
   "DRAMATIC IMPROVEMENT OR NOTHING",
 ];
@@ -155,33 +155,7 @@ export const navLinks = [
   { id: "about", label: "About" },
 ];
 
-/* ─── Socials ─── */
-export const socials = [
-  {
-    id: "0",
-    title: "x",
-    icon: "/images/socials/x.svg",
-    url: "#",
-  },
-  {
-    id: "1",
-    title: "Threads",
-    icon: "/images/socials/threads.svg",
-    url: "#",
-  },
-  {
-    id: "2",
-    title: "Instagram",
-    icon: "/images/socials/instagram.svg",
-    url: "#",
-  },
-  {
-    id: "3",
-    title: "Discord",
-    icon: "/images/socials/discord.svg",
-    url: "#",
-  },
-];
+
 
 /* ─── About Content ─── */
 export const aboutContent = {
@@ -201,21 +175,21 @@ export const aboutContent = {
       Not for our own products. Not for our clients. Incremental gains don't
       justify the cognitive overhead of adopting something new.
     </>,
-    "What emerged is something that doesn't fit a neat category. We're part product company, part engineering firm, part optimization consultancy - all unified by a shared intelligence layer we call Jarvis, and a shared philosophy we simply call: make it work better, or don't make it at all.",
-    "The long-term mission is compounding intelligence: every product we ship and every client problem we solve makes Jarvis - and therefore all of Redevise - sharper. This is how we compete. Not on features. Not on hourly rates. On outcomes, intelligence, and execution speed.",
+    "What emerged is something that doesn't fit a neat category. We're part product company, part engineering firm, part optimization consultancy - all unified by a foundational intelligence engine we call Core, and a shared philosophy we simply call: make it work better, or don't make it at all.",
+    "The long-term mission is compounding engineering expertise: every product we build and every workflow we optimize refines our core blueprints and speed of execution, delivering superior outcomes faster. This is how we compete. Not on features. Not on hourly rates. On outcomes, intelligence, and execution speed.",
   ],
 };
 
-/* ─── Jarvis Content ─── */
-export const jarvisContent = {
+/* ─── Core Content ─── */
+export const coreContent = {
   pill: "The Intelligence Layer",
   title: (
     <>
-      The unfair advantage is called <span className="text-gradient">Jarvis.</span>
+      We have an unfair <span className="text-gradient">advantage</span>
     </>
   ),
   paragraphs: [
-    "Most companies have a tech stack. We have a context engine. Jarvis is the shared intelligence layer running underneath every Redevise product and every client engagement.",
-    "It learns. It connects. It accelerates. And it makes everything we build - and everything we do for you - dramatically more effective than what you'd get anywhere else.",
+    "Most companies have a tech stack. We have a context engine. Core is the underlying intelligence engine that powers Redevise products and client deployments.",
+    "It maps workflows, automates processes, and accelerates execution. It makes everything we build - and everything we do for you - dramatically more effective than what you'd get anywhere else.",
   ],
 };
