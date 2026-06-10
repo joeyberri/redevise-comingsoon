@@ -14,15 +14,6 @@ export default defineConfig({
         headers: {
           'Origin': 'https://api.cal.com'
         }
-      },
-      // Proxy Resend API calls in dev (production uses Cloudflare Function)
-      '/resend-api': {
-        target: 'https://api.resend.com',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/resend-api/, ''),
-        headers: {
-          'Origin': 'https://api.resend.com'
-        }
       }
     }
   }

@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           {/* Copyright */}
           <p className="font-sans text-xs text-text-subtle">
-            © 2016 Redevise. All rights reserved.
+            © 2026 Redevise. All rights reserved.
           </p>
 
           {/* Legal */}

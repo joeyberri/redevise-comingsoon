@@ -43,6 +43,8 @@ const ServiceCard = ({ title, tagline, features, cta, footerNote, className, ind
             </p>
             <a 
               href={footerNote.href}
+              target={footerNote.href?.startsWith("http") ? "_blank" : undefined}
+              rel={footerNote.href?.startsWith("http") ? "noopener noreferrer" : undefined}
               className="text-xs font-medium text-text-subtle hover:text-lime transition-colors duration-300 flex items-center gap-1.5"
             >
               {footerNote.text}

@@ -186,14 +186,12 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
     setSubmitError(null);
 
     try {
-      const apiKey = import.meta.env.VITE_CAL_API_KEY;
       const eventTypeId = import.meta.env.VITE_CAL_EVENT_TYPE_ID;
 
       const res = await fetch(`/cal-api/v2/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
           "cal-api-version": "2026-02-25",
         },
         body: JSON.stringify({

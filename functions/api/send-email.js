@@ -47,8 +47,8 @@ export async function onRequestPost(context) {
     : '<li style="padding: 4px 0; color: #666; font-style: italic;">None selected</li>';
 
   const emailPayload = {
-    from: "Redevise <hello@support.redevise.com>",
-    to: ["hello@redevise.com"],
+    from: "Redevise <team@redevise.com>",
+    to: ["team@redevise.com"],
     reply_to: email,
     subject: `New inquiry from ${name}`,
     html: `

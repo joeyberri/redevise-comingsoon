@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect, useState } from "react";
 import Header from "./sections/Header.jsx";
 import Footer from "./sections/Footer.jsx";
@@ -23,6 +23,12 @@ const ScrollToTopOnNavigate = () => {
   }, [pathname]);
   return null;
 };
+
+const PageSuspenseFallback = () => (
+  <div className="flex items-center justify-center min-h-[60vh] bg-dark">
+    <div className="size-2 rounded-full bg-lime animate-ping" />
+  </div>
+);
 
 const ChurchApp = () => {
   const [modalContext, setModalContext] = useState({ isOpen: false, initialType: "" });
@@ -52,12 +58,13 @@ const ChurchApp = () => {
           <main className="relative z-10 flex flex-col min-h-screen">
             <Header onOpenInquiry={handleOpenInquiry} />
             <div className="flex-1">
-              <Suspense fallback={null}>
+              <Suspense fallback={<PageSuspenseFallback />}>
                 <Routes>
                   <Route path="/" element={<ChurchHomePage onOpenInquiry={handleOpenInquiry} />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/privacy" element={<PrivacyPage />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </Suspense>
             </div>

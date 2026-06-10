@@ -11,7 +11,6 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_KEY = import.meta.env.VITE_CAL_API_KEY;
   const EVENT_TYPE_ID = import.meta.env.VITE_CAL_EVENT_TYPE_ID;
 
   const daysInMonth = (date) =>
@@ -20,7 +19,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
     new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 
   const fetchAvailability = async (date) => {
-    if (!API_KEY || !EVENT_TYPE_ID) {
+    if (!EVENT_TYPE_ID) {
       setError("Calendar not configured yet.");
       return;
     }
@@ -48,7 +47,6 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
 
       const response = await fetch(`/cal-api/v2/slots?${params.toString()}`, {
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
           "cal-api-version": "2024-09-04",
         },
       });

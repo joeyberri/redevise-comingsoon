@@ -26,6 +26,8 @@ const ProductCard = ({ label, name, text, cta, href, className, index = 0 }) => 
           <MagneticWrapper strength={0.1}>
             <a 
               href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="inline-flex items-center gap-2 text-xs font-medium text-lime hover:text-lime-400 transition-colors group/link"
             >
               {cta}

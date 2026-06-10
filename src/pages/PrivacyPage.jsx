@@ -20,43 +20,75 @@ const PrivacyPage = () => {
 
           <div className="space-y-12">
             <section>
-              <Heading level={3} className="mb-4">1. Data Philosophy</Heading>
+              <Heading level={2} variant="card-title" className="mb-4">1. Data Philosophy & Sovereignty</Heading>
               <Text>
-                At Redevise, we believe data should serve you, not exploit you. We only collect the minimum amount of information necessary to provide our services and power your dedicated Core workspace to your benefit.
+                At Redevise, we reject the surveillance economy. We believe that your data belongs to you. We strictly design our systems to collect the absolute minimum amount of information necessary to deliver, secure, and optimize our services. When we deploy custom intelligence systems (such as Core instances), we enforce absolute data isolation—your institutional knowledge never cross-contaminates another organization's systems or training data.
               </Text>
             </section>
 
             <section>
-              <Heading level={3} className="mb-4">2. Information We Collect</Heading>
+              <Heading level={2} variant="card-title" className="mb-4">2. Information We Collect</Heading>
               <Text>
-                We collect information you provide directly (such as when you fill out an inquiry form), technical usage data (IP addresses, browser types), and context-specific data used to optimize your workflows via your Core instance.
-              </Text>
-            </section>
-
-            <section>
-              <Heading level={3} className="mb-4">3. How We Use Data</Heading>
-              <Text>
-                We use your data to:
+                We only collect data that you explicitly provide to us, or that is technically required to serve you:
                 <ul className="list-disc list-inside mt-4 space-y-2 opacity-80">
-                  <li>Deliver and improve our products and services.</li>
-                  <li>Train and optimize Core within your workspace to maximize performance for your products.</li>
-                  <li>Communicate with you regarding your inquiries and projects.</li>
-                  <li>Ensure the security and integrity of our platform.</li>
+                  <li><strong>Inquiry & Consultation Data:</strong> Name, organization, email address, interests, and freeform messages sent via our consultation flow or scheduling forms.</li>
+                  <li><strong>Core Instance Data:</strong> Under specific consulting arrangements, the data processed by your dedicated Core instance is stored within secure, isolated environments under your control.</li>
+                  <li><strong>Technical Usage Metadata:</strong> Basic web client logs (IP address, browser type, device type, referrer) used exclusively for performance tuning, DDoS mitigation, and system health monitoring.</li>
                 </ul>
               </Text>
             </section>
 
             <section>
-              <Heading level={3} className="mb-4">4. Data Sharing</Heading>
+              <Heading level={2} variant="card-title" className="mb-4">3. How We Use Data</Heading>
               <Text>
-                We do not sell your personal data. We only share information with trusted third-party service providers necessary for operation (e.g., hosting, email delivery) or when required by law.
+                We use the information we collect to:
+                <ul className="list-disc list-inside mt-4 space-y-2 opacity-80">
+                  <li>Respond to inquiries, coordinate consultations, and execute projects.</li>
+                  <li>Configure, maintain, and optimize your dedicated Core instances and custom integrations.</li>
+                  <li>Develop and refine our product offerings without compromising individual privacy (we do not use client-specific proprietary data to train models for competitors).</li>
+                  <li>Ensure the security, availability, and reliability of our network infrastructure.</li>
+                </ul>
               </Text>
             </section>
 
             <section>
-              <Heading level={3} className="mb-4">5. Your Rights</Heading>
+              <Heading level={2} variant="card-title" className="mb-4">4. Cookies & Tracking Technologies</Heading>
               <Text>
-                You have the right to access, correct, or delete your personal information. If you wish to exercise these rights or have questions about our data practices, please contact us via the inquiry flow.
+                We do not use tracking cookies or cross-site advertising scripts. We may use local storage or session-based state purely for system operations (such as maintaining your active state in the consultation booking modal). Any analytics we collect are aggregated, anonymous, and focused strictly on performance optimization.
+              </Text>
+            </section>
+
+            <section>
+              <Heading level={2} variant="card-title" className="mb-4">5. Data Retention & Deletion</Heading>
+              <Text>
+                We retain consultation requests and contact information only as long as necessary to manage our relationship with you or execute active agreements. If you request that your data be deleted, we will purge it from our production systems within 30 days, except where retention is required by law.
+              </Text>
+            </section>
+
+            <section>
+              <Heading level={2} variant="card-title" className="mb-4">6. Third-Party Service Providers</Heading>
+              <Text>
+                We selectively work with third-party providers who share our commitment to privacy and security. These include:
+                <ul className="list-disc list-inside mt-4 space-y-2 opacity-80">
+                  <li><strong>Cloudflare:</strong> For secure, edge-based application hosting and security.</li>
+                  <li><strong>Resend:</strong> For transactional email delivery.</li>
+                  <li><strong>Cal.com:</strong> For scheduling and appointment bookings.</li>
+                </ul>
+                We do not sell, rent, or lease your personal information to third parties.
+              </Text>
+            </section>
+
+            <section>
+              <Heading level={2} variant="card-title" className="mb-4">7. International Transfers & Security</Heading>
+              <Text>
+                Your data may be processed on servers located in the United States or other jurisdictions, depending on where our hosting partners route traffic. We implement industry-standard security measures, including transport encryption (HTTPS) and isolated container architectures, to safeguard your data against unauthorized access, alteration, or loss.
+              </Text>
+            </section>
+
+            <section>
+              <Heading level={2} variant="card-title" className="mb-4">8. Your Rights & Contact Information</Heading>
+              <Text>
+                Depending on your location, you may have rights under the GDPR, CCPA, or other regional data protection frameworks (such as rights of access, correction, portability, and erasure). If you wish to exercise any of these rights, or if you have questions regarding this policy, please reach out to us directly at <a href="mailto:team@redevise.com" className="text-lime hover:underline">team@redevise.com</a>.
               </Text>
             </section>
           </div>
