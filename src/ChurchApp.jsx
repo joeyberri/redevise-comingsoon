@@ -7,14 +7,17 @@ import ScrollProgress from "./components/ScrollProgress.jsx";
 import PageLoader from "./components/PageLoader.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import { lazyWithRetry } from "./utils/lazyWithRetry.js";
+
 // Lazy Loaded Components
-const InquiryModal = lazy(() => import("./components/InquiryModal.jsx"));
+const InquiryModal = lazyWithRetry(() => import("./components/InquiryModal.jsx"));
 
 // Lazy Loaded Pages
-const ChurchHomePage = lazy(() => import("./pages/church/ChurchHomePage.jsx"));
-const AboutPage = lazy(() => import("./pages/AboutPage.jsx"));
-const TermsPage = lazy(() => import("./pages/TermsPage.jsx"));
-const PrivacyPage = lazy(() => import("./pages/PrivacyPage.jsx"));
+const ChurchHomePage = lazyWithRetry(() => import("./pages/church/ChurchHomePage.jsx"));
+const AboutPage = lazyWithRetry(() => import("./pages/AboutPage.jsx"));
+const TermsPage = lazyWithRetry(() => import("./pages/TermsPage.jsx"));
+const PrivacyPage = lazyWithRetry(() => import("./pages/PrivacyPage.jsx"));
 
 const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
@@ -42,8 +45,9 @@ const ChurchApp = () => {
   };
 
   return (
-    <SmoothScroll>
-      <PageLoader>
+    <ErrorBoundary>
+      <SmoothScroll>
+        <PageLoader>
         <ScrollProgress />
         <ScrollToTop />
         <ScrollToTopOnNavigate />
@@ -58,21 +62,24 @@ const ChurchApp = () => {
           <main className="relative z-10 flex flex-col min-h-screen">
             <Header onOpenInquiry={handleOpenInquiry} />
             <div className="flex-1">
-              <Suspense fallback={<PageSuspenseFallback />}>
-                <Routes>
-                  <Route path="/" element={<ChurchHomePage onOpenInquiry={handleOpenInquiry} />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/terms" element={<TermsPage />} />
-                  <Route path="/privacy" element={<PrivacyPage />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<PageSuspenseFallback />}>
+                  <Routes>
+                    <Route path="/" element={<ChurchHomePage onOpenInquiry={handleOpenInquiry} />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/terms" element={<TermsPage />} />
+                    <Route path="/privacy" element={<PrivacyPage />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </Suspense>
+              </ErrorBoundary>
             </div>
             <Footer />
           </main>
         </div>
       </PageLoader>
     </SmoothScroll>
+    </ErrorBoundary>
   );
 };
 

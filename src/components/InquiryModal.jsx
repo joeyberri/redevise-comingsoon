@@ -25,6 +25,34 @@ const interestOptions = [
   "Just exploring my options",
 ];
 
+// ── Friendly Error Helper ───────────────────────────────────────────────────
+const getFriendlyErrorMessage = (error, context = "general") => {
+  const msg = error?.message || "";
+  
+  if (msg.includes("Failed to fetch") || msg.includes("network") || msg.includes("NetworkError")) {
+    return "We're having trouble connecting to the network. Please check your internet connection and try again.";
+  }
+  
+  if (context === "email") {
+    if (msg.includes("RESEND_API_KEY") || msg.includes("misconfiguration")) {
+      return "Our message server is undergoing minor maintenance. Please try scheduling a call directly, or contact us at team@redevise.com.";
+    }
+    if (msg.includes("delivery failed") || msg.includes("Resend")) {
+      return "Your message couldn't be sent right now. You can try scheduling a call instead, or email us at team@redevise.com.";
+    }
+    return "Something went wrong while sending your message. Please try again or reach us at team@redevise.com.";
+  }
+  
+  if (context === "booking") {
+    if (msg.includes("slots") || msg.includes("availability") || msg.includes("401") || msg.includes("failed")) {
+      return "Our scheduling service is temporarily unavailable. Please send us a message under the 'Send a Message' option, or contact us at team@redevise.com.";
+    }
+    return "We couldn't confirm your appointment. Please double-check your booking time or try sending us a message directly.";
+  }
+  
+  return "An unexpected error occurred. Please try again, or reach us at team@redevise.com.";
+};
+
 // ── Component ────────────────────────────────────────────────────────────────
 const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
   const [step, setStep] = useState(1);
@@ -169,7 +197,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       setTimeout(() => onClose(), 4000);
     } catch (err) {
       console.error("Email send error:", err);
-      setSubmitError(err.message || "Something went wrong. Please try again.");
+      setSubmitError(getFriendlyErrorMessage(err, "email"));
     } finally {
       setIsSubmitting(false);
     }
@@ -218,7 +246,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       setTimeout(() => onClose(), 4000);
     } catch (err) {
       console.error("Booking error:", err);
-      setSubmitError(err.message || "Couldn't complete the booking.");
+      setSubmitError(getFriendlyErrorMessage(err, "booking"));
     } finally {
       setIsBooking(false);
     }

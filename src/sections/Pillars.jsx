@@ -11,8 +11,8 @@ const Pillars = () => {
         pill="Three ways to work with us"
         title={(
           <>
-            Not an agency.<br className="hidden md:block" />
-            Not just a product company.<br className="hidden md:block" />
+            Not an agency.<br />
+            Not just a product company.<br />
             <span className="text-gradient">Something sharper.</span>
           </>
         )}

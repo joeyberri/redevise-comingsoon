@@ -71,7 +71,12 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
       setSlots(formatted);
     } catch (err) {
       console.error("Cal.com API Error:", err);
-      setError("Couldn't load times. Try another date.");
+      const msg = err?.message || "";
+      if (msg.includes("Failed to fetch") || msg.includes("network") || msg.includes("NetworkError")) {
+        setError("Network error. Please check your connection.");
+      } else {
+        setError("Couldn't load times. Please try again later.");
+      }
     } finally {
       setLoading(false);
     }
