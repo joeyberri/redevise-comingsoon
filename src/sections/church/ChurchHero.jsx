@@ -6,9 +6,9 @@ import MarqueeBanner from "../../components/MarqueeBanner.jsx";
 import GridSpotlight from "../../components/GridSpotlight.jsx";
 import MagneticButton from "../../components/MagneticButton.jsx";
 import ScrollParallax from "../../components/ScrollParallax.jsx";
-import { taglines, churchConstants } from "../../constants/index.jsx";
 import { Heading, Text } from "../../components/Typography.jsx";
 import Pill from "../../components/Pill.jsx";
+import { useLanguage } from "../../utils/LanguageContext.jsx";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,6 +31,7 @@ const itemVariants = {
 const ChurchHero = () => {
   const [showHeroMarquee, setShowHeroMarquee] = useState(true);
   const { scrollY } = useScroll();
+  const { t } = useLanguage();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setShowHeroMarquee(latest <= 800);
@@ -60,31 +61,34 @@ const ChurchHero = () => {
               className="max-w-5xl"
             >
               <Pill animated delay={0.2} className="mb-6">
-                Ministry Infrastructure
+                {t('church.hero.pill')}
               </Pill>
 
               <Heading level={1} variant="hero-title" className="mb-8">
-                {churchConstants.hero.title.split(" ").map((word, i) => (
-                  <span key={i}>
-                    {word === "Excellence" ? (
-                      <span className="text-gradient italic font-normal">{word} </span>
-                    ) : (
-                      word + " "
-                    )}
-                  </span>
-                ))}
+                {t('church.hero.title').split(" ").map((word, i) => {
+                  const isExcellence = word.toLowerCase().includes("excelen");
+                  return (
+                    <span key={i}>
+                      {isExcellence ? (
+                        <span className="text-gradient italic font-normal">{word} </span>
+                      ) : (
+                        word + " "
+                      )}
+                    </span>
+                  );
+                })}
               </Heading>
 
               <Text variant="hero-sub" className="mb-10">
-                {churchConstants.hero.subtitle}
+                {t('church.hero.subtitle')}
               </Text>
 
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
                 <MagneticButton to="services" variant="primary" strength={0.2} withBeam>
-                  Our Services
+                  {t('church.hero.ourServices')}
                 </MagneticButton>
                 <MagneticButton to="about" variant="secondary" strength={0.1}>
-                  Learn More
+                  {t('church.hero.learnMore')}
                 </MagneticButton>
               </motion.div>
             </motion.div>
@@ -96,7 +100,7 @@ const ChurchHero = () => {
         <AnimatePresence>
           {showHeroMarquee && (
             <MarqueeBanner 
-              items={taglines} 
+              items={t('aboutSection.taglines')} 
               visible={true}
               animate={true}
               containerClassName="py-8"

@@ -3,19 +3,21 @@ import SectionHeader from "../../components/SectionHeader.jsx";
 import Grid from "../../components/Grid.jsx";
 import FeatureCard from "../../components/FeatureCard.jsx";
 import CardBadge from "../../components/CardBadge.jsx";
-import { churchConstants } from "../../constants/index.jsx";
+import { useLanguage } from "../../utils/LanguageContext.jsx";
 
 const ChurchServices = () => {
+  const { t } = useLanguage();
+
   return (
     <Section name="services" showDivider>
       <SectionHeader
-        pill="Church Solutions"
-        title="Ministry Infrastructure."
-        subtitle="We build the systems that help you focus on ministry, while we handle the technology."
+        pill={t('church.services.pill')}
+        title={t('church.services.title')}
+        subtitle={t('church.services.subtitle')}
       />
 
       <Grid cols={3} gap={8}>
-        {churchConstants.services.map((service, index) => (
+        {t('church.services.list').map((service, index) => (
           <FeatureCard
             key={service.id}
             index={index}

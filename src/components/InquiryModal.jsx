@@ -7,54 +7,17 @@ import {
   MessageSquare,
   ArrowLeft,
   AlertCircle,
-  Sparkles,
 } from "lucide-react";
 import MagneticButton from "./MagneticButton.jsx";
 import HeadlessCalendar from "./HeadlessCalendar.jsx";
 import { Heading, Text } from "./Typography.jsx";
 import { cn } from "../utils/cn";
 import secretaryImg from "../assets/images/secretary.webp";
-
-// ── Interest Options ─────────────────────────────────────────────────────────
-const interestOptions = [
-  "Improve my website or digital presence",
-  "Build a new product or platform",
-  "Automate repetitive workflows",
-  "Get better analytics & insights",
-  "Set up church or ministry tech",
-  "Just exploring my options",
-];
-
-// ── Friendly Error Helper ───────────────────────────────────────────────────
-const getFriendlyErrorMessage = (error, context = "general") => {
-  const msg = error?.message || "";
-  
-  if (msg.includes("Failed to fetch") || msg.includes("network") || msg.includes("NetworkError")) {
-    return "We're having trouble connecting to the network. Please check your internet connection and try again.";
-  }
-  
-  if (context === "email") {
-    if (msg.includes("RESEND_API_KEY") || msg.includes("misconfiguration")) {
-      return "Our message server is undergoing minor maintenance. Please try scheduling a call directly, or contact us at team@redevise.com.";
-    }
-    if (msg.includes("delivery failed") || msg.includes("Resend")) {
-      return "Your message couldn't be sent right now. You can try scheduling a call instead, or email us at team@redevise.com.";
-    }
-    return "Something went wrong while sending your message. Please try again or reach us at team@redevise.com.";
-  }
-  
-  if (context === "booking") {
-    if (msg.includes("slots") || msg.includes("availability") || msg.includes("401") || msg.includes("failed")) {
-      return "Our scheduling service is temporarily unavailable. Please send us a message under the 'Send a Message' option, or contact us at team@redevise.com.";
-    }
-    return "We couldn't confirm your appointment. Please double-check your booking time or try sending us a message directly.";
-  }
-  
-  return "An unexpected error occurred. Please try again, or reach us at team@redevise.com.";
-};
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 // ── Component ────────────────────────────────────────────────────────────────
 const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
+  const { t, locale } = useLanguage();
   const [step, setStep] = useState(1);
   const [choice, setChoice] = useState(null); // 'book' | 'message'
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,6 +33,74 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
     message: "",
   });
 
+  const getFriendlyErrorMessage = (error, context = "general") => {
+    const msg = error?.message || "";
+    
+    if (msg.includes("Failed to fetch") || msg.includes("network") || msg.includes("NetworkError")) {
+      return t('modal.errors.network');
+    }
+    
+    if (context === "email") {
+      if (msg.includes("RESEND_API_KEY") || msg.includes("misconfiguration")) {
+        return t('modal.errors.emailKey');
+      }
+      if (msg.includes("delivery failed") || msg.includes("Resend")) {
+        return t('modal.errors.emailFail');
+      }
+      return t('modal.errors.emailGeneral');
+    }
+    
+    if (context === "booking") {
+      if (msg.includes("slots") || msg.includes("availability") || msg.includes("401") || msg.includes("failed")) {
+        return t('modal.errors.bookingSlots');
+      }
+      return t('modal.errors.bookingConfirm');
+    }
+    
+    return t('modal.errors.general');
+  };
+
+  // Helper to map incoming initialType to active locale equivalent
+  const getLocalizedInitialType = (type) => {
+    if (!type) return "";
+    // If it's one of the options in English/Spanish, return translated version
+    const enInterests = [
+      "Improve my website or digital presence",
+      "Build a new product or platform",
+      "Automate repetitive workflows",
+      "Get better analytics & insights",
+      "Set up church or ministry tech",
+      "Just exploring my options"
+    ];
+    const esInterests = [
+      "Mejorar mi sitio web o presencia digital",
+      "Crear un nuevo producto o plataforma",
+      "Automatizar flujos de trabajo repetitivos",
+      "Obtener mejores análisis e información",
+      "Configurar tecnología para iglesias o ministerios",
+      "Solo explorando mis opciones"
+    ];
+
+    const idx = enInterests.indexOf(type);
+    if (idx !== -1) {
+      return t('modal.interests')[idx];
+    }
+    const idxEs = esInterests.indexOf(type);
+    if (idxEs !== -1) {
+      return t('modal.interests')[idxEs];
+    }
+
+    // Custom fallback mappings
+    if (type === "Custom Engineering" || type === "Ingeniería Personalizada") {
+      return locale === "es" ? "Ingeniería Personalizada" : "Custom Engineering";
+    }
+    if (type === "Church Infrastructure" || type === "Infraestructura de Iglesia") {
+      return locale === "es" ? "Infraestructura de Iglesia" : "Church Infrastructure";
+    }
+
+    return type;
+  };
+
   // Reset state every time the modal opens
   useEffect(() => {
     if (isOpen) {
@@ -82,11 +113,12 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       setIsSubmitting(false);
 
       if (initialType) {
+        const mappedType = getLocalizedInitialType(initialType);
         setFormData((prev) => ({
           ...prev,
-          interests: prev.interests.includes(initialType)
+          interests: prev.interests.includes(mappedType)
             ? prev.interests
-            : [...prev.interests, initialType],
+            : [...prev.interests, mappedType],
         }));
       }
 
@@ -101,7 +133,8 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       document.body.style.overflow = "unset";
       document.documentElement.style.overflow = "unset";
     };
-  }, [isOpen, initialType]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, initialType, locale]);
 
   const [validationErrors, setValidationErrors] = useState({ name: "", email: "" });
 
@@ -112,20 +145,20 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
 
     const trimmedName = formData.name.trim();
     if (!trimmedName) {
-      errors.name = "Please enter your name or organization.";
+      errors.name = t('modal.errors.validateName');
       isValid = false;
     } else if (trimmedName.length < 2) {
-      errors.name = "Name must be at least 2 characters.";
+      errors.name = t('modal.errors.validateNameLen');
       isValid = false;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const trimmedEmail = formData.email.trim();
     if (!trimmedEmail) {
-      errors.email = "Please enter your email address.";
+      errors.email = t('modal.errors.validateEmail');
       isValid = false;
     } else if (!emailRegex.test(trimmedEmail)) {
-      errors.email = "Please enter a valid email address.";
+      errors.email = t('modal.errors.validateEmailInvalid');
       isValid = false;
     }
 
@@ -229,7 +262,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
             name: formData.name,
             email: formData.email,
             timeZone: "Africa/Lagos",
-            language: "en",
+            language: locale,
           },
           metadata: {
             interests: formData.interests.join(", "),
@@ -256,43 +289,43 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
   const getLeftPanelCopy = () => {
     if (isSubmitted && choice === "book") {
       return {
-        title: <>You're<br />Booked.</>,
-        sub: "Check your inbox for the confirmation details.",
+        title: t('modal.panels.bookedTitle'),
+        sub: t('modal.panels.bookedSub'),
       };
     }
     if (isSubmitted) {
       return {
-        title: <>Message<br />Sent.</>,
-        sub: "We've received your note and will be in touch soon.",
+        title: t('modal.panels.sentTitle'),
+        sub: t('modal.panels.sentSub'),
       };
     }
     if (step === 4 && choice === "book") {
       return {
-        title: <>Pick a<br />Time.</>,
-        sub: "Choose a time that works for you — we'll handle the rest.",
+        title: t('modal.panels.pickTitle'),
+        sub: t('modal.panels.pickSub'),
       };
     }
     if (step === 4 && choice === "message") {
       return {
-        title: <>Almost<br />There.</>,
-        sub: "Share what's on your mind and we'll get back to you.",
+        title: t('modal.panels.almostTitle'),
+        sub: t('modal.panels.almostSub'),
       };
     }
     if (step === 2) {
       return {
-        title: <>Your<br />Focus.</>,
-        sub: "Select the areas you'd like to improve or explore.",
+        title: t('modal.panels.focusTitle'),
+        sub: t('modal.panels.focusSub'),
       };
     }
     if (step === 3) {
       return {
-        title: <>Next<br />Steps.</>,
-        sub: "How would you like to proceed with your inquiry?",
+        title: t('modal.panels.nextTitle'),
+        sub: t('modal.panels.nextSub'),
       };
     }
     return {
-      title: <>Get in<br />Touch.</>,
-      sub: "We'd love to learn about your project and find the best way to help.",
+      title: t('modal.panels.touchTitle'),
+      sub: t('modal.panels.touchSub'),
     };
   };
 
@@ -364,14 +397,14 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-lime shadow-[0_0_10px_rgba(190,255,80,0.8)]"></span>
                   </div>
                   <div className="flex flex-col">
-                    <Text variant="tiny" className="text-white font-bold uppercase tracking-widest text-[10px] leading-none mb-1">Live Assistant</Text>
-                    <Text variant="tiny" className="text-text-subtle text-[9px] leading-none">Ready to help</Text>
+                    <Text variant="tiny" className="text-white font-bold uppercase tracking-widest text-[10px] leading-none mb-1">{t('common.liveAssistant')}</Text>
+                    <Text variant="tiny" className="text-text-subtle text-[9px] leading-none">{t('common.readyToHelp')}</Text>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
 
-            {/* Modal Shell - Removed overflow-hidden so secretary can overlap */}
+            {/* Modal Shell */}
             <motion.div
               initial={{ scale: 0.98, y: 20, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -380,18 +413,28 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
               className="relative w-full rounded-[2.5rem] border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-visible"
               style={{ maxHeight: "90vh" }}
             >
-              {/* Inner layout container - Needs overflow-hidden to clip background grids/panels */}
+              {/* Inner layout container */}
               <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-[2.5rem]">
 
-                {/* ── Left Panel ── */}
-                {/* Kept as a spacer for the floating secretary, but removed redundant content */}
-                <div className="hidden md:flex w-full md:w-[320px] shrink-0 p-10 flex-col justify-between border-r border-text/[0.05] relative" />
+                {/* ── Left Panel (Spacer) ── */}
+                <div className="hidden md:flex w-full md:w-[320px] shrink-0 p-10 flex-col justify-between border-r border-text/[0.05] relative">
+                  <div className="flex flex-col h-full justify-between">
+                    <div>
+                      <Heading level={2} className="text-5xl leading-tight text-text mb-4 mt-12">
+                        {panelCopy.title}
+                      </Heading>
+                      <Text className="text-text-muted text-base leading-relaxed">
+                        {panelCopy.sub}
+                      </Text>
+                    </div>
+                  </div>
+                </div>
 
                 {/* ── Right Panel ── */}
                 <div className="flex-1 flex flex-col min-h-0 relative bg-gradient-to-br from-transparent to-text/[0.02]">
                   <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 z-50 text-text/40 hover:text-text transition-colors p-2 rounded-full hover:bg-text/5"
+                    className="absolute top-6 right-6 z-50 text-text/40 hover:text-text transition-colors p-2 rounded-full hover:bg-text/5 cursor-pointer"
                   >
                     <X size={22} />
                   </button>
@@ -409,12 +452,12 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                           <Check size={40} />
                         </div>
                         <Heading level={2} className="text-4xl">
-                          {choice === "book" ? <>You're Booked!</> : <>Message Sent!</>}
+                          {choice === "book" ? t('modal.success.booked') : t('modal.success.sent')}
                         </Heading>
                         <Text className="text-text-subtle max-w-sm mx-auto">
                           {choice === "book"
-                            ? "You'll receive a confirmation email shortly. Looking forward to speaking with you!"
-                            : "We've got your message and will get back to you as soon as possible."}
+                            ? t('modal.success.bookedSub')
+                            : t('modal.success.sentSub')}
                         </Text>
                       </motion.div>
                     ) : (
@@ -431,16 +474,16 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                           <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
                             <div>
                               <Text variant="tiny" className="text-lime mb-3">
-                                Step 1 of 4
+                                {t('common.step', { current: 1, total: 4 })}
                               </Text>
                               <Heading
                                 level={2}
                                 className="text-3xl md:text-5xl leading-tight mb-3"
                               >
-                                Let's start with you.
+                                {t('modal.steps.step1Title')}
                               </Heading>
                               <Text className="text-text-subtle text-lg">
-                                Who should we be reaching out to?
+                                {t('modal.steps.step1Sub')}
                               </Text>
                             </div>
 
@@ -448,7 +491,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                               <div>
                                 <input
                                   type="text"
-                                  placeholder="Your name or organization"
+                                  placeholder={t('modal.steps.placeholderName')}
                                   className={cn(
                                     "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10",
                                     validationErrors.name 
@@ -475,7 +518,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                               <div>
                                 <input
                                   type="email"
-                                  placeholder="Your email address"
+                                  placeholder={t('modal.steps.placeholderEmail')}
                                   className={cn(
                                     "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10",
                                     validationErrors.email 
@@ -502,7 +545,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                             <div className="flex justify-end items-center pt-8">
                               <div className="flex items-center gap-6">
                                 <Text variant="tiny" className="hidden sm:block text-text/20">
-                                  Press Enter ↵
+                                  {t('common.pressEnter')}
                                 </Text>
                                 <MagneticButton
                                   onClick={handleNext}
@@ -510,7 +553,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                   className="px-10 py-4"
                                   disabled={!formData.name.trim() || !formData.email.trim()}
                                 >
-                                  Continue
+                                  {t('common.continue')}
                                 </MagneticButton>
                               </div>
                             </div>
@@ -526,36 +569,36 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                             <div className="mb-8">
                               <button
                                 onClick={() => setStep(1)}
-                                className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
+                                className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group cursor-pointer"
                               >
                                 <ArrowLeft
                                   size={14}
                                   className="group-hover:-translate-x-1 transition-transform"
                                 />
                                 <span className="text-xs uppercase tracking-widest font-bold">
-                                  Back
+                                  {t('common.back')}
                                 </span>
                               </button>
                               <Text variant="tiny" className="text-lime mb-3">
-                                Step 2 of 4
+                                {t('common.step', { current: 2, total: 4 })}
                               </Text>
                               <Heading
                                 level={2}
                                 className="text-3xl md:text-5xl leading-tight mb-3"
                               >
-                                What brings you here?
+                                {t('modal.steps.step2Title')}
                               </Heading>
                             </div>
 
                             <div className="flex flex-col gap-3 mb-8">
-                              {interestOptions.map((interest) => {
+                              {t('modal.interests').map((interest) => {
                                 const isSelected = formData.interests.includes(interest);
                                 return (
                                   <button
                                     key={interest}
                                     onClick={() => toggleInterest(interest)}
                                     className={cn(
-                                      "px-5 py-4 rounded-2xl border text-left transition-all duration-200 flex items-center gap-4",
+                                      "px-5 py-4 rounded-2xl border text-left transition-all duration-200 flex items-center gap-4 cursor-pointer",
                                       isSelected
                                         ? "border-lime/40 bg-lime/5"
                                         : "border-text/10 hover:border-text/20 bg-text/[0.02]"
@@ -591,16 +634,16 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                             <div className="flex items-center justify-between pt-6 border-t border-text/[0.05] mt-auto">
                               <button
                                 onClick={() => setStep(3)}
-                                className="text-text/30 hover:text-text transition-colors text-xs font-bold uppercase tracking-widest"
+                                className="text-text/30 hover:text-text transition-colors text-xs font-bold uppercase tracking-widest cursor-pointer"
                               >
-                                Skip this step →
+                                {t('common.skipStep')}
                               </button>
                               <MagneticButton
                                 onClick={() => setStep(3)}
                                 variant="primary"
                                 className="px-10 py-4"
                               >
-                                Continue
+                                {t('common.continue')}
                               </MagneticButton>
                             </div>
                           </div>
@@ -612,58 +655,58 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                             <div className="text-center mb-2">
                               <button
                                 onClick={() => setStep(2)}
-                                className="inline-flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
+                                className="inline-flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group cursor-pointer"
                               >
                                 <ArrowLeft
                                   size={14}
                                   className="group-hover:-translate-x-1 transition-transform"
                                 />
                                 <span className="text-xs uppercase tracking-widest font-bold">
-                                  Back
+                                  {t('common.back')}
                                 </span>
                               </button>
                               <Text variant="tiny" className="text-lime mb-3">
-                                Step 3 of 4
+                                {t('common.step', { current: 3, total: 4 })}
                               </Text>
                               <Heading
                                 level={2}
                                 className="text-3xl md:text-5xl leading-tight mb-3"
                               >
-                                How would you like to connect?
+                                {t('modal.steps.step3Title')}
                               </Heading>
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-5 justify-center">
                               <button
                                 onClick={() => handleChoice("book")}
-                                className="flex-1 group/btn p-8 rounded-[2rem] border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4"
+                                className="flex-1 group/btn p-8 rounded-[2rem] border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
                               >
                                 <div className="size-16 rounded-2xl bg-lime text-dark-100 flex items-center justify-center shadow-[0_0_30px_rgba(190,255,80,0.2)] group-hover/btn:scale-110 transition-transform">
                                   <Calendar size={30} />
                                 </div>
                                 <div>
                                   <div className="font-bold text-xl mb-1 text-text">
-                                    Book a Call
+                                    {t('modal.steps.bookCall')}
                                   </div>
                                   <div className="text-sm text-text-muted">
-                                    Pick a time · 15–30 min chat
+                                    {t('modal.steps.bookCallSub')}
                                   </div>
                                 </div>
                               </button>
 
                               <button
                                 onClick={() => handleChoice("message")}
-                                className="flex-1 group/btn p-8 rounded-[2rem] border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4"
+                                className="flex-1 group/btn p-8 rounded-[2rem] border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
                               >
                                 <div className="size-16 rounded-2xl bg-text/10 text-text flex items-center justify-center group-hover/btn:scale-110 transition-transform">
                                   <MessageSquare size={30} />
                                 </div>
                                 <div>
                                   <div className="font-bold text-xl mb-1 text-text">
-                                    Send a Message
+                                    {t('modal.steps.sendMessage')}
                                   </div>
                                   <div className="text-sm text-text-muted">
-                                    We'll reply to your email
+                                    {t('modal.steps.sendMessageSub')}
                                   </div>
                                 </div>
                               </button>
@@ -680,31 +723,31 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                   setStep(3);
                                   setSubmitError(null);
                                 }}
-                                className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group"
+                                className="flex items-center gap-2 text-text/40 hover:text-text mb-5 transition-colors group cursor-pointer"
                               >
                                 <ArrowLeft
                                   size={14}
                                   className="group-hover:-translate-x-1 transition-transform"
                                 />
                                 <span className="text-xs uppercase tracking-widest font-bold">
-                                  Back
+                                  {t('common.back')}
                                 </span>
                               </button>
                               <Text variant="tiny" className="text-lime mb-3">
-                                Step 4 of 4
+                                {t('common.step', { current: 4, total: 4 })}
                               </Text>
                               <Heading
                                 level={2}
                                 className="text-3xl md:text-5xl leading-tight mb-3"
                               >
-                                Tell us a bit more.
+                                {t('modal.steps.step4Title')}
                               </Heading>
                             </div>
 
                             <div className="flex-1 flex flex-col min-h-0">
                               <textarea
                                 data-lenis-prevent
-                                placeholder="What's on your mind..."
+                                placeholder={t('modal.steps.placeholderMsg')}
                                 className="w-full flex-1 bg-transparent border-b-2 border-text/10 py-4 text-lg outline-none focus:border-lime transition-colors resize-none placeholder:text-text/10 min-h-[140px]"
                                 autoFocus
                                 value={formData.message}
@@ -730,7 +773,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                   disabled={isSubmitting || !formData.message.trim()}
                                   withBeam
                                 >
-                                  {isSubmitting ? "Sending..." : "Send Message"}
+                                  {isSubmitting ? t('common.sending') : t('common.sendMessage')}
                                 </MagneticButton>
                               </div>
                             </div>
@@ -748,19 +791,19 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                     setSelectedSlot(null);
                                     setSubmitError(null);
                                   }}
-                                  className="flex items-center gap-2 text-text/40 hover:text-text transition-colors group"
+                                  className="flex items-center gap-2 text-text/40 hover:text-text transition-colors group cursor-pointer"
                                 >
                                   <ArrowLeft
                                     size={14}
                                     className="group-hover:-translate-x-1 transition-transform"
                                   />
                                   <span className="text-[10px] uppercase tracking-widest font-bold">
-                                    Back
+                                    {t('common.back')}
                                   </span>
                                 </button>
                                 <div className="w-px h-3 bg-text/10" />
                                 <Text variant="tiny" className="text-lime uppercase tracking-widest">
-                                  Step 4 of 4
+                                  {t('common.step', { current: 4, total: 4 })}
                                 </Text>
                               </div>
                             </div>
@@ -782,10 +825,10 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                 >
                                   <div className="min-w-0">
                                     <Text variant="tiny" className="text-lime mb-0.5">
-                                      Selected
+                                      {t('common.selected')}
                                     </Text>
                                     <div className="font-bold text-sm text-text truncate">
-                                      {selectedSlot.date.toLocaleDateString("en-US", {
+                                      {selectedSlot.date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                                         weekday: "short",
                                         month: "long",
                                         day: "numeric",
@@ -809,7 +852,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                     disabled={isBooking}
                                     withBeam
                                   >
-                                    {isBooking ? "Booking..." : "Confirm Booking"}
+                                    {isBooking ? t('common.booking') : t('common.confirmBooking')}
                                   </MagneticButton>
                                 </motion.div>
                               )}

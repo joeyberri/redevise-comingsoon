@@ -1,17 +1,18 @@
 import FeatureItem from "../components/FeatureItem.jsx";
 import FadeIn from "../components/FadeIn.jsx";
 import Section from "../components/Section.jsx";
-import SectionHeader from "../components/SectionHeader.jsx";
 import CoreOrb from "../components/CoreOrb.jsx";
-import { coreCapabilities, coreContent } from "../constants/index.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import Grid from "../components/Grid.jsx";
 import ScrollParallax from "../components/ScrollParallax.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const Core = () => {
+  const { t } = useLanguage();
+
   return (
-    <Section name="core" className="relative" showDivider>
+    <Section name="core" className="relative" spacing="generous">
       {/* Cinematic Intelligence Core */}
       <div className="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none">
         <CoreOrb className="opacity-40" />
@@ -34,13 +35,13 @@ const Core = () => {
             {/* Left: Copy */}
             <div>
               <Pill className="mb-8 border-text/[0.1] text-text-subtle">
-                {coreContent.pill}
+                {t('core.pill')}
               </Pill>
               <Heading level={2} className="mb-6 md:text-5xl lg:text-6xl">
-                {coreContent.title}
+                {t('core.title')}
               </Heading>
               <div className="space-y-6">
-                {coreContent.paragraphs.map((para, i) => (
+                {t('core.paragraphs').map((para, i) => (
                   <Text key={i} className="text-lg">
                     {para}
                   </Text>
@@ -51,7 +52,7 @@ const Core = () => {
             {/* Right: Capabilities */}
             <div className="flex items-center">
               <ul className="space-y-6 w-full">
-                {coreCapabilities.map((cap, i) => (
+                {t('core.capabilities').map((cap, i) => (
                   <FadeIn key={i} delay={0.2 + i * 0.1} direction="left">
                     <FeatureItem className="text-base py-3 border-b border-text/[0.05] last:border-0">
                       {cap}

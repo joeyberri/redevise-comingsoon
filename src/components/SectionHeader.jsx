@@ -10,10 +10,11 @@ const SectionHeader = ({
   subtitle, 
   className,
   titleClassName,
-  subtitleClassName 
+  subtitleClassName,
+  centered = false
 }) => {
   return (
-    <div className={cn("mb-16", className)}>
+    <div className={cn("mb-16", centered && "text-center", className)}>
       {pill && (
         <Pill animated className="mb-6">
           {pill}
@@ -23,7 +24,7 @@ const SectionHeader = ({
       <Heading 
         level={2} 
         variant="section-title" 
-        className={cn("mb-6", titleClassName)}
+        className={cn("mb-6", centered && "mx-auto", titleClassName)}
       >
         {typeof title === "string" ? (
           <TextReveal text={title} />
@@ -36,7 +37,7 @@ const SectionHeader = ({
         <FadeIn delay={0.3}>
           <Text 
             variant="section-sub" 
-            className={subtitleClassName}
+            className={cn(centered && "mx-auto", subtitleClassName)}
           >
             {subtitle}
           </Text>

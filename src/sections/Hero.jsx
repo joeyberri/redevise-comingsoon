@@ -13,6 +13,7 @@ import Pill from "../components/Pill";
 import TextReveal from "../components/TextReveal";
 import { taglines } from "../constants";
 import robotWaving from "../assets/images/robot waving.svg";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 // Snappy stagger — fast cascade orchestrating the layout build sequence
 const containerVariants = {
@@ -36,6 +37,7 @@ const itemVariants = {
 const Hero = ({ onOpenInquiry = () => {} }) => {
   const [showHeroMarquee, setShowHeroMarquee] = useState(true);
   const { scrollY } = useScroll();
+  const { t, locale } = useLanguage();
 
   // Performance Guard: Prevents heavy re-renders by updating state only at the threshold crossover
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -99,53 +101,52 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="max-w-4xl lg:max-w-5xl"
+              className="max-w-4xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl"
             >
               {/* Badge Element */}
               <Pill animated delay={0.1} className="mb-4">
-                Innovation in Motion
+                {t('hero.pill')}
               </Pill>
 
               {/* Title Architecture — Structural line splits on block containers */}
               <Heading level={1} variant="hero-title" className="mb-6">
                 <span className="block">
-                  <TextReveal text="We build the systems" delay={0.1} />
+                  <TextReveal text={t('hero.buildSystems')} delay={0.1} />
                 </span>
                 <span className="block">
-                  <TextReveal text="that " delay={0.22} />
+                  <TextReveal text={t('hero.that')} delay={0.22} />
                   <TextReveal
-                    text="make things work"
+                    text={t('hero.makeThingsWork')}
                     delay={0.32}
-                    keepTogether
+                    keepTogether={locale === "en"}
                     className="text-lime italic"
                   />
                 </span>
                 <span className="block">
-                  <TextReveal text="better." delay={0.42} />
+                  <TextReveal text={t('hero.better')} delay={0.42} />
                 </span>
               </Heading>
 
               {/* Subtext Body — Embedded inside motion loop to participate in the cascade order */}
               <motion.div variants={itemVariants}>
                 <Text variant="hero-sub" className="mb-8">
-                  High-performance infrastructure and seamless digital experiences
-                  crafted for the next generation of industry leaders.
+                  {t('hero.sub')}
                 </Text>
               </motion.div>
 
               {/* Interactive Call to Action Elements */}
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
                 <MagneticButton 
-                  onClick={() => onOpenInquiry("Build a new product or platform")} 
+                  onClick={() => onOpenInquiry(t('modal.interests')[1])} 
                   variant="primary" 
                   strength={0.2} 
                   withBeam
                 >
-                  Work with us
+                  {t('hero.workWithUs')}
                 </MagneticButton>
 
                 <MagneticButton to="products" variant="secondary" strength={0.1}>
-                  Explore Products
+                  {t('hero.exploreProducts')}
                 </MagneticButton>
               </motion.div>
             </motion.div>
@@ -158,7 +159,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
         <AnimatePresence>
           {showHeroMarquee && (
             <MarqueeBanner
-              items={taglines}
+              items={t('aboutSection.taglines')}
               visible
               animate
               containerClassName="py-8"

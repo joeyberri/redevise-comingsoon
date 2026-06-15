@@ -2,12 +2,19 @@ import { Element } from "react-scroll";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 
+const spacingClasses = {
+  tight: "py-16 md:py-24",
+  default: "py-24 md:py-32",
+  generous: "py-32 md:py-40",
+};
+
 const Section = ({ 
   name, 
   children, 
   showDivider = false, 
   className,
-  containerClassName 
+  containerClassName,
+  spacing = "default"
 }) => {
   return (
     <section className={clsx("relative", className)}>
@@ -18,7 +25,7 @@ const Section = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className={clsx("container py-24 md:py-32", containerClassName)}
+          className={clsx("container", spacingClasses[spacing] || spacingClasses.default, containerClassName)}
         >
           {children}
         </motion.div>

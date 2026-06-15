@@ -1,14 +1,17 @@
 import { Link as LinkRouter } from "react-router-dom";
 import SocialLinks from "../components/SocialLinks.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-dark-400/30">
       <div className="container py-8">
         <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           {/* Copyright */}
           <p className="font-sans text-xs text-text-subtle">
-            © 2026 Redevise. All rights reserved.
+            {t('footer.copyright')}
           </p>
 
           {/* Legal */}
@@ -17,13 +20,13 @@ const Footer = () => {
               to="/privacy"
               className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
             >
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </LinkRouter>
             <LinkRouter
               to="/terms"
               className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
             >
-              Terms of Use
+              {t('footer.termsOfUse')}
             </LinkRouter>
           </div>
 

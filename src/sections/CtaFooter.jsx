@@ -1,10 +1,12 @@
 import { Element } from "react-scroll";
 import { motion } from "framer-motion";
-import Button from "../components/Button.jsx";
 import MagneticButton from "../components/MagneticButton.jsx";
 import GridSpotlight from "../components/GridSpotlight.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const CtaFooter = ({ onOpenInquiry = () => {} }) => {
+  const { t } = useLanguage();
+
   return (
     <Element name="cta">
       <GridSpotlight 
@@ -20,27 +22,21 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="mb-8 font-serif text-4xl font-normal leading-tight text-text md:text-5xl lg:text-7xl">
-              The world runs on
-              <br />
-              <span className="italic text-text-subtle">broken processes.</span>
-              <br />
-              <span className="text-gradient">Let&apos;s fix yours.</span>
+              {t('ctaFooter.heading')}
             </h2>
 
             <p className="mx-auto mb-12 max-w-xl text-base text-text-muted/70 md:text-xl leading-relaxed">
-              Whether you need a product that already exists, one we&apos;ll build
-              for you, or a team that will optimize what you already have -
-              Redevise is the answer.
+              {t('ctaFooter.desc')}
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-6">
               <MagneticButton 
-                onClick={() => onOpenInquiry("Just exploring my options")} 
+                onClick={() => onOpenInquiry(t('modal.interests')[5])} 
                 variant="primary" 
                 strength={0.2} 
                 withBeam
               >
-                Request consultation
+                {t('ctaFooter.requestConsultation')}
               </MagneticButton>
               
               <MagneticButton 
@@ -48,7 +44,7 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
                 variant="secondary" 
                 strength={0.15}
               >
-                Explore our products
+                {t('ctaFooter.exploreProducts')}
               </MagneticButton>
             </div>
           </motion.div>

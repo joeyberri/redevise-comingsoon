@@ -4,11 +4,14 @@ import { Link as LinkRouter, useLocation, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import Button from "./Button.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
   const isChurch = isChurchSubdomain();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const isHomePage = location.pathname === "/";
 
@@ -59,13 +62,16 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
           >
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between mb-12">
-                <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-text/40">Navigation</span>
-                <button 
-                  onClick={onClose}
-                  className="size-10 flex items-center justify-center rounded-full border border-text/[0.1] text-text"
-                >
-                  <X size={20} />
-                </button>
+                <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-text/40">{t('common.navigation')}</span>
+                <div className="flex items-center gap-3">
+                  <LanguageSwitcher />
+                  <button 
+                    onClick={onClose}
+                    className="size-10 flex items-center justify-center rounded-full border border-text/[0.1] text-text cursor-pointer"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
               </div>
 
               <nav className="flex flex-col gap-8">
@@ -78,9 +84,9 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                   >
                     <button
                       onClick={() => handleNavClick(link.id)}
-                      className="text-3xl font-bold text-text-muted transition-colors hover:text-lime text-left w-full"
+                      className="text-3xl font-bold text-text-muted transition-colors hover:text-lime text-left w-full cursor-pointer"
                     >
-                      {link.label}
+                      {t(`nav.${link.id}`)}
                     </button>
                   </motion.div>
                 ))}
@@ -92,7 +98,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                   fullWidth 
                   className="w-full justify-center text-sm uppercase tracking-widest font-bold py-5"
                 >
-                  {isChurch ? "Optimize Ministry" : "Start a project"} →
+                  {isChurch ? t('nav.optimize') : t('nav.startProject')} →
                 </Button>
               </div>
             </div>

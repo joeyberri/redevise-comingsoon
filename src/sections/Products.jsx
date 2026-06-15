@@ -1,28 +1,36 @@
 import Section from "../components/Section.jsx";
 import SectionHeader from "../components/SectionHeader.jsx";
 import ProductCard from "../components/ProductCard.jsx";
-import { products } from "../constants/index.jsx";
-import Grid from "../components/Grid.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const Products = () => {
+  const { t } = useLanguage();
+
+  // Zigzag pattern: index 0 = wide, 1 = narrow, 2 = narrow, 3 = wide, 4 = full
+  const getSpanClass = (i) => {
+    if (i === 0 || i === 3) return "lg:col-span-2";
+    if (i === 4) return "lg:col-span-3";
+    return "";
+  };
+
   return (
-    <Section name="products" showDivider>
+    <Section name="products">
       <SectionHeader
-        pill="The Product Ecosystem"
-        title={(
-          <>
-            Tools built to eliminate friction -{" "}
-            <span className="text-gradient">not add to it.</span>
-          </>
-        )}
-        subtitle="Each Redevise product is purpose-built around a single mission: dramatic, measurable improvement in how a specific workflow operates."
+        pill={t('products.pill')}
+        title={t('products.title')}
+        subtitle={t('products.subtitle')}
       />
 
-      <Grid cols={3} gap={6}>
-        {products.map((product, i) => (
-          <ProductCard key={product.id} {...product} index={i} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {t('products.list').map((product, i) => (
+          <ProductCard 
+            key={product.id} 
+            {...product} 
+            index={i} 
+            className={getSpanClass(i)}
+          />
         ))}
-      </Grid>
+      </div>
     </Section>
   );
 };

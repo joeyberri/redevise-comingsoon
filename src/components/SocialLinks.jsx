@@ -7,7 +7,7 @@ const SocialLinks = memo(({ className, itemClassName }) => {
     {
       id: "email",
       title: "Email",
-      url: "mailto:info@support.redevise.com",
+      url: "mailto:team@redevise.com",
       icon: <Mail className="size-4 text-text transition-opacity opacity-60 group-hover:opacity-100" />,
     },
     {

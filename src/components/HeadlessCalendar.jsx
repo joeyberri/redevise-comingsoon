@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { cn } from "../utils/cn";
 import { Heading, Text } from "./Typography.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -10,6 +11,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { t, locale } = useLanguage();
 
   const EVENT_TYPE_ID = import.meta.env.VITE_CAL_EVENT_TYPE_ID;
 
@@ -20,7 +22,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
 
   const fetchAvailability = async (date) => {
     if (!EVENT_TYPE_ID) {
-      setError("Calendar not configured yet.");
+      setError(t('modal.errors.calConfig'));
       return;
     }
 
@@ -35,9 +37,6 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
       const day = String(date.getDate()).padStart(2, "0");
       const dateString = `${year}-${month}-${day}`;
 
-      // Cal.com v2 API — GET /v2/slots
-      // In dev: Vite proxy handles CORS, API key passed as query param
-      // In prod: Cloudflare function injects Bearer auth from server env
       const params = new URLSearchParams({
         eventTypeId: EVENT_TYPE_ID,
         start: dateString,
@@ -57,10 +56,9 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
 
       const data = await response.json();
 
-      // v2 response: { status: "success", data: { "YYYY-MM-DD": [{ start: "..." }] } }
       const daySlots = data?.data?.[dateString] ?? [];
       const formatted = daySlots.map((s) => ({
-        time: new Date(s.start).toLocaleTimeString("en-US", {
+        time: new Date(s.start).toLocaleTimeString(locale === "es" ? "es-ES" : "en-US", {
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
@@ -73,9 +71,9 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
       console.error("Cal.com API Error:", err);
       const msg = err?.message || "";
       if (msg.includes("Failed to fetch") || msg.includes("network") || msg.includes("NetworkError")) {
-        setError("Network error. Please check your connection.");
+        setError(t('modal.errors.networkShort'));
       } else {
-        setError("Couldn't load times. Please try again later.");
+        setError(t('modal.errors.timesFail'));
       }
     } finally {
       setLoading(false);
@@ -161,11 +159,11 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
         <div className="flex flex-col">
           <Text variant="tiny" className="text-lime uppercase tracking-widest">
             {selectedDate
-              ? selectedDate.toLocaleDateString("en-US", { weekday: "long" })
-              : "Pick a date"}
+              ? selectedDate.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", { weekday: "long" })
+              : t('common.pickDate')}
           </Text>
           <Heading level={4} className="text-xl">
-            {currentDate.toLocaleDateString("en-US", {
+            {currentDate.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
               month: "long",
               year: "numeric",
             })}
@@ -174,13 +172,13 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
         <div className="flex gap-2">
           <button
             onClick={prevMonth}
-            className="p-2 rounded-full border border-text/10 hover:bg-text/5 transition-colors"
+            className="p-2 rounded-full border border-text/10 hover:bg-text/5 transition-colors cursor-pointer"
           >
             <ChevronLeft size={18} />
           </button>
           <button
             onClick={nextMonth}
-            className="p-2 rounded-full border border-text/10 hover:bg-text/5 transition-colors"
+            className="p-2 rounded-full border border-text/10 hover:bg-text/5 transition-colors cursor-pointer"
           >
             <ChevronRight size={18} />
           </button>
@@ -189,7 +187,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
 
       {/* Day Grid */}
       <div className="relative grid grid-cols-7 gap-1 mb-3 text-center">
-        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
+        {t('calendar.weekdays').map((day) => (
           <div
             key={day}
             className="text-[10px] font-bold text-text/20 uppercase py-1.5"
@@ -217,7 +215,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
                 variant="tiny"
                 className="text-text/40 font-bold uppercase tracking-widest"
               >
-                Available times
+                {t('common.availableTimes')}
               </Text>
             </div>
 
@@ -242,7 +240,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
                       })
                     }
                     className={cn(
-                      "p-3 rounded-xl border border-text/10 bg-text/[0.02] hover:border-lime/50 hover:bg-lime/5 transition-all text-center group",
+                      "p-3 rounded-xl border border-text/10 bg-text/[0.02] hover:border-lime/50 hover:bg-lime/5 transition-all text-center group cursor-pointer",
                       isBooking && "opacity-50 pointer-events-none"
                     )}
                   >
@@ -253,7 +251,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
                 ))
               ) : (
                 <div className="col-span-2 text-center py-6 text-text/40 text-sm italic">
-                  No times available for this day.
+                  {t('common.noTimes')}
                 </div>
               )}
             </div>

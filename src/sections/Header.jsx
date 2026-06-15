@@ -9,6 +9,8 @@ import MobileMenu from "../components/MobileMenu.jsx";
 import MarqueeBanner from "../components/MarqueeBanner.jsx";
 import Logo from "../components/Logo.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
+import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 import { navLinks, taglines, products } from "../constants/index.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 
@@ -22,6 +24,7 @@ const Header = ({ onOpenInquiry }) => {
   const { scrollY } = useScroll();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const isHomePage = location.pathname === "/";
 
@@ -89,7 +92,7 @@ const Header = ({ onOpenInquiry }) => {
                       !isHomePage && link.id !== "about" ? "" : (isHomePage && link.id !== "about" ? "active-scroll" : "")
                     )}
                   >
-                    {link.label}
+                    {t(`nav.${link.id}`)}
                     {link.id === "products" && (
                       <ChevronDown size={14} className={cn("transition-transform duration-300", isMegaMenuOpen && "rotate-180")} />
                     )}
@@ -109,7 +112,7 @@ const Header = ({ onOpenInquiry }) => {
                           <div className="bg-dark-100/90 backdrop-blur-lg border border-text/10 rounded-[2rem] p-8 shadow-2xl overflow-hidden relative">
                             <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
                             <div className="grid grid-cols-2 gap-6 relative z-10">
-                              {products.map((product) => (
+                              {t('products.list').map((product) => (
                                 <button
                                   key={product.id}
                                   onClick={() => handleNavClick("products")}
@@ -133,17 +136,19 @@ const Header = ({ onOpenInquiry }) => {
               ))}
               
               <div className="ml-4 pl-4 border-l border-text/10 flex items-center gap-4">
+                <LanguageSwitcher className="hidden lg:flex" />
                 <ThemeSwitcher className="hidden lg:flex" />
                 <Button 
                   onClick={() => onOpenInquiry(isChurch ? "Church Infrastructure" : "Custom Engineering")}
                   className="h-10 px-8 text-[11px] uppercase tracking-widest font-bold shadow-xl shadow-lime/5 border border-lime/20 hover:border-lime/50 transition-all"
                 >
-                  {isChurch ? "Optimize Ministry" : "Start Project"}
+                  {isChurch ? t('nav.optimize') : t('nav.start')}
                 </Button>
               </div>
             </nav>
 
-            <div className="flex items-center gap-4 md:hidden">
+            <div className="flex items-center gap-3 md:hidden">
+              <LanguageSwitcher />
               <ThemeSwitcher />
               <motion.button
                 whileTap={{ scale: 0.9 }}
@@ -157,7 +162,7 @@ const Header = ({ onOpenInquiry }) => {
         </div>
 
         <MarqueeBanner 
-          items={taglines} 
+          items={t('aboutSection.taglines')} 
           visible={showMarquee} 
           className="border-t border-text/5"
         />

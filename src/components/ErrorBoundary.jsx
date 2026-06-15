@@ -1,6 +1,9 @@
 import React from "react";
+import { LanguageContext } from "../utils/LanguageContext.jsx";
 
 class ErrorBoundary extends React.Component {
+  static contextType = LanguageContext;
+
   constructor(props) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -11,7 +14,6 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // We log to console.error so developers can see it, but we don't spam console.log
     console.error("ErrorBoundary caught an uncaught error:", error, errorInfo);
   }
 
@@ -20,12 +22,13 @@ class ErrorBoundary extends React.Component {
   };
 
   handleGoHome = () => {
-    // Safely redirect to root
     window.location.href = "/";
   };
 
   render() {
     if (this.state.hasError) {
+      const t = this.context?.t || ((key) => key);
+
       return (
         <div className="min-h-screen bg-dark text-text flex items-center justify-center p-6 select-none font-sans">
           {/* Ambient glow backgrounds */}
@@ -52,11 +55,11 @@ class ErrorBoundary extends React.Component {
             </div>
 
             <h1 className="text-2xl font-bold font-sans tracking-tight mb-3 text-text">
-              Something had a hiccup.
+              {t('errorBoundary.title')}
             </h1>
             
             <p className="text-sm text-text-muted leading-relaxed mb-8">
-              We encountered a minor system error. Let's try reloading the page, or you can go back to the homepage.
+              {t('errorBoundary.desc')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -64,19 +67,19 @@ class ErrorBoundary extends React.Component {
                 onClick={this.handleReload}
                 className="px-5 py-2.5 rounded-xl bg-lime hover:bg-lime/95 text-dark font-semibold text-sm transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(190,255,80,0.2)] hover:shadow-[0_0_20px_rgba(190,255,80,0.3)] active:scale-[0.98]"
               >
-                Reload Page
+                {t('common.reload')}
               </button>
               
               <button
                 onClick={this.handleGoHome}
                 className="px-5 py-2.5 rounded-xl border border-text/10 bg-text/[0.02] hover:bg-text/5 text-text-muted hover:text-text font-medium text-sm transition-all duration-200 cursor-pointer active:scale-[0.98]"
               >
-                Go Home
+                {t('common.goHome')}
               </button>
             </div>
             
             <div className="mt-8 pt-6 border-t border-text/[0.05] text-[10px] text-text-subtle uppercase tracking-widest">
-              Redevise Operations
+              {t('common.redeviseOps')}
             </div>
           </div>
         </div>

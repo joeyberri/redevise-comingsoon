@@ -239,4 +239,12 @@
       transparent
     );
   }
+
+  /* ─── Dot Grid Background ─── */
+  .bg-dots {
+    background-image: radial-gradient(rgba(var(--color-text), 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(ellipse at center, white, transparent 70%);
+    mask-image: radial-gradient(ellipse at center, white, transparent 70%);
+  }
 }
