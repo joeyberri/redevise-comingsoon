@@ -34,6 +34,36 @@
 
   <!-- Blog Posts -->
   <url>
+    <loc>https://redevise.com/blog/automation-that-masks-mistakes</loc>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/daily-pulse-optimized-team</loc>
+    <lastmod>2024-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/first-day-training-that-sticks</loc>
+    <lastmod>2024-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/hidden-cost-support-tickets-never-close</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/when-documentation-becomes-a-wall</loc>
+    <lastmod>2023-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://redevise.com/blog/why-optimization-infrastructure-is-the-future-of-business</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
