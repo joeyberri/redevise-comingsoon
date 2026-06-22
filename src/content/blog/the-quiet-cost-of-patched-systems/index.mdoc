@@ -1,0 +1,52 @@
+---
+title: "The quiet cost of patched systems"
+date: "2025-03-10"
+summary: "Compare long-term expenses of a patched solution against an engineered architecture. Understand the financial drain of technical debt."
+coverImage: ""
+tags:
+  - "System Architecture"
+  - "Optimization"
+author: "Redevise"
+---
+
+A quick fix today guarantees an expensive disaster tomorrow.
+
+A company needs to sync customer data between their billing system and their marketing platform. An engineer writes a small script to copy the data every night. The script works. The company saves money by avoiding a proper integration.
+
+The quiet cost of patched systems compounds silently in the background.
+
+## The accumulation of technical debt
+
+Six months later, the marketing team adds a new data field. The engineer updates the script. A year later, the billing system changes its API format. The script breaks. The marketing emails send blank fields to ten thousand customers.
+
+The engineer spends two days rewriting the script. The script becomes more complex. It requires more maintenance. It fails more frequently.
+
+The company trades immediate speed for long-term fragility.
+
+## Comparing the financial models
+
+Evaluate the true cost using a simple timeline.
+
+Model A represents the patched solution. Building the script takes one day. Maintaining the script requires five days of engineering time over the next two years. Fixing the errors caused by the script requires twenty hours of support time. The total cost includes the engineering time, the support time, and the lost revenue from the botched marketing campaign.
+
+Model B represents the engineered architecture. Building a proper integration using webhooks and error handling takes five days. The system runs autonomously for two years. It requires zero maintenance. It causes zero errors.
+
+The patched solution appears cheaper on day one. It costs significantly more by day seven hundred.
+
+## Breaking the cycle
+
+You must stop rewarding speed when it creates fragility. You must mandate architectural reviews for any process handling critical business data.
+
+When a team proposes a quick fix, force them to calculate the maintenance cost over two years. The calculation will prove the engineered solution is the cheaper option.
+
+We design infrastructure to eliminate these fragile patches. We build robust connections that scale without requiring constant human intervention. We optimize for stability over immediate gratification.
+
+Identify the oldest script currently running in your infrastructure. How many times has your team fixed it this year?
+
+The insidious nature of patched systems lies in their invisibility. The business continues to operate. The revenue continues to flow. The leadership team believes the infrastructure is stable. They do not see the fragile web of scripts and manual workarounds holding the operation together.
+
+This fragility creates a ceiling on growth. When the company attempts to launch a new product line or enter a new market, the patched systems break under the strain. The marketing team cannot segment the new customers because the data script fails to handle the new variables. The billing team cannot process the new currency because the integration relies on a hardcoded value.
+
+The cost of fixing the patched systems at this critical moment is exponential. The engineering team must unravel years of technical debt while simultaneously trying to support the new initiative. The launch is delayed. The competitors gain ground.
+
+You must adopt a zero-tolerance policy for permanent workarounds. If a script is written as a temporary fix, it must have a firm expiration date. A ticket to build the proper engineered solution must be added to the backlog immediately. The temporary fix is only acceptable if it buys the team time to build the permanent architecture. If you leave the patch in place indefinitely, you are actively choosing future pain.
