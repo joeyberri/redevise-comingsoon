@@ -5,11 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-sitemap.js",
     "build": "vite build",
+    "build:sitemap": "node scripts/generate-sitemap.js",
+    "import:blogs": "node scripts/import-blogs.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@keystatic/core": "^0.5.50",
     "@studio-freight/react-lenis": "^0.0.47",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
@@ -18,9 +22,11 @@
     "react": "^18.3.1",
     "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.15.0",
     "react-scroll": "^1.9.0",
     "react-slidedown": "^2.4.7",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

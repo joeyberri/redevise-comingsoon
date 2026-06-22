@@ -247,4 +247,113 @@
     -webkit-mask-image: radial-gradient(ellipse at center, white, transparent 70%);
     mask-image: radial-gradient(ellipse at center, white, transparent 70%);
   }
+
+  /* ─── Blog Prose Typography ─── */
+  .blog-prose {
+    @apply text-text-muted text-base md:text-lg leading-relaxed;
+    font-family: var(--font-sans);
+  }
+
+  .blog-prose h1 {
+    @apply font-sans text-3xl md:text-4xl font-bold text-text mt-12 mb-6 leading-tight tracking-tight;
+  }
+
+  .blog-prose h2 {
+    @apply font-sans text-2xl md:text-3xl font-bold text-text mt-10 mb-5 leading-tight tracking-tight;
+  }
+
+  .blog-prose h3 {
+    @apply font-sans text-xl md:text-2xl font-semibold text-text mt-8 mb-4 tracking-tight;
+  }
+
+  .blog-prose h4 {
+    @apply font-sans text-lg font-semibold text-text mt-6 mb-3;
+  }
+
+  .blog-prose p {
+    @apply mb-6;
+  }
+
+  .blog-prose a {
+    @apply text-lime font-medium underline underline-offset-4 decoration-lime/30 transition-all duration-300;
+  }
+
+  .blog-prose a:hover {
+    @apply decoration-lime/80;
+  }
+
+  .blog-prose strong {
+    @apply font-bold text-text;
+  }
+
+  .blog-prose em {
+    @apply italic text-text-muted;
+  }
+
+  .blog-prose blockquote {
+    @apply border-l-2 border-lime/40 pl-6 py-2 my-8 text-text-muted italic;
+    background: linear-gradient(90deg, rgba(var(--color-lime), 0.03), transparent);
+  }
+
+  .blog-prose ul {
+    @apply list-none pl-0 mb-6 space-y-2;
+  }
+
+  .blog-prose ul li {
+    @apply relative pl-6;
+  }
+
+  .blog-prose ul li::before {
+    content: "";
+    @apply absolute left-0 top-[0.65em] w-1.5 h-1.5 rounded-full bg-lime/50;
+  }
+
+  .blog-prose ol {
+    @apply list-decimal pl-6 mb-6 space-y-2;
+  }
+
+  .blog-prose ol li {
+    @apply pl-1;
+  }
+
+  .blog-prose ol li::marker {
+    @apply text-lime/70 font-bold;
+  }
+
+  .blog-prose code {
+    @apply font-mono text-sm px-1.5 py-0.5 rounded-md;
+    background-color: rgb(var(--color-dark-200) / 0.6);
+    color: rgb(var(--color-lime-400));
+  }
+
+  .blog-prose pre {
+    @apply rounded-xl p-5 mb-6 overflow-x-auto border border-dark-400/30;
+    background-color: rgb(var(--color-dark-50));
+  }
+
+  .blog-prose pre code {
+    @apply bg-transparent p-0 text-text-muted;
+  }
+
+  .blog-prose hr {
+    @apply my-10 border-0;
+    background: linear-gradient(90deg, transparent, rgba(var(--color-lime), 0.15), transparent);
+    height: 1px;
+  }
+
+  .blog-prose img {
+    @apply rounded-xl my-8 border border-dark-400/30;
+  }
+
+  .blog-prose table {
+    @apply w-full mb-6 border-collapse;
+  }
+
+  .blog-prose th {
+    @apply text-left text-xs font-bold uppercase tracking-widest text-text-subtle py-3 px-4 border-b border-dark-400/40;
+  }
+
+  .blog-prose td {
+    @apply py-3 px-4 text-sm border-b border-dark-400/20;
+  }
 }

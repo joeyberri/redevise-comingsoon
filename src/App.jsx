@@ -19,6 +19,9 @@ const HomePage = lazyWithRetry(() => import("./pages/HomePage.jsx"));
 const AboutPage = lazyWithRetry(() => import("./pages/AboutPage.jsx"));
 const TermsPage = lazyWithRetry(() => import("./pages/TermsPage.jsx"));
 const PrivacyPage = lazyWithRetry(() => import("./pages/PrivacyPage.jsx"));
+const BlogListPage = lazyWithRetry(() => import("./pages/BlogListPage.jsx"));
+const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage.jsx"));
+const KeystaticPage = lazyWithRetry(() => import("./pages/KeystaticPage.jsx"));
 
 const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
@@ -49,6 +52,18 @@ const AppContent = () => {
   const handleCloseInquiry = () => {
     setModalContext(prev => ({ ...prev, isOpen: false }));
   };
+
+  const location = useLocation();
+  const isKeystatic = location.pathname.startsWith('/keystatic');
+
+  // Keystatic Admin — render standalone (no site header/footer)
+  if (isKeystatic) {
+    return (
+      <Suspense fallback={<PageLoader isLoading={true} />}>
+        <KeystaticPage />
+      </Suspense>
+    );
+  }
 
   // Check if we are on the church subdomain
   if (isChurchSubdomain()) {
@@ -83,6 +98,8 @@ const AppContent = () => {
                   <Routes>
                     <Route path="/" element={<HomePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/blog" element={<BlogListPage />} />
+                    <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terms" element={<TermsPage />} />
                     <Route path="/privacy" element={<PrivacyPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
