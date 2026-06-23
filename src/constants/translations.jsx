@@ -625,45 +625,111 @@ export const translations = {
         { id: "analytics", label: "Analytics & Reporting" },
         { id: "i18n", label: "Multi-language Support" },
         { id: "seo", label: "SEO Optimization" }
-      ],
-      seo: {
-        home: {
-          title: "Redevise | Optimization Infrastructure",
-          desc: "Redevise is an Optimization Infrastructure Company. We build custom software, web and mobile apps, and business automation platforms powered by Core."
-        },
-        about: {
-          title: "About Redevise | Our Optimization Philosophy",
-          desc: "Learn about the Redevise way: part product lab, part custom software studio, part operations consultancy. We deliver 10x efficiency gains or we don't build it."
-        },
-        services: {
-          title: "Redevise Services | Custom Software & Business Automation",
-          desc: "Explore Redevise services. We build custom web and mobile apps, landing pages, custom APIs, and execute workflow audits and automation consulting."
-        },
-        process: {
-          title: "Our Process | How Redevise Works",
-          desc: "From free discovery call to design, prototype, code development, launch, and ongoing support. Transparent custom software development workflow."
-        },
-        estimate: {
-          title: "Get a Project Estimate | Ballpark Pricing",
-          desc: "Estimate the cost of your custom web app, mobile app, website, e-commerce, or business software with our interactive project price estimator."
-        },
-        blog: {
-          title: "Redevise Blog | Insights on Optimization & AI Workflows",
-          desc: "Articles and case studies on automation, custom software architecture, support operations, school management systems, and workflow optimization."
-        },
-        terms: {
-          title: "Terms of Service | Redevise",
-          desc: "Terms of Service and legal agreements for Redevise custom software development and operations consulting services."
-        },
-        privacy: {
-          title: "Privacy Policy | Redevise Data Sovereignty",
-          desc: "Read the Redevise Privacy Policy. We enforce absolute data isolation and collect the minimum necessary data to host and secure your services."
-        },
-        church: {
-          title: "Ministry Infrastructure | Redevise Church Tech",
-          desc: "High-performance media systems, projection setups, live streaming, and specialized admin tools (Ascribe) built specifically for modern worship environments."
-        }
+      ]
+    },
+    seo: {
+      home: {
+        title: "Redevise | Optimization Infrastructure",
+        desc: "Redevise is an Optimization Infrastructure Company. We build custom software, web and mobile apps, and business automation platforms powered by Core."
+      },
+      about: {
+        title: "About Redevise | Our Optimization Philosophy",
+        desc: "Learn about the Redevise way: part product lab, part custom software studio, part operations consultancy. We deliver 10x efficiency gains or we don't build it."
+      },
+      services: {
+        title: "Redevise Services | Custom Software & Business Automation",
+        desc: "Explore Redevise services. We build custom web and mobile apps, landing pages, custom APIs, and execute workflow audits and automation consulting."
+      },
+      process: {
+        title: "Our Process | How Redevise Works",
+        desc: "From free discovery call to design, prototype, code development, launch, and ongoing support. Transparent custom software development workflow."
+      },
+      estimate: {
+        title: "Get a Project Estimate | Ballpark Pricing",
+        desc: "Estimate the cost of your custom web app, mobile app, website, e-commerce, or business software with our interactive project price estimator."
+      },
+      blog: {
+        title: "Redevise Blog | Insights on Optimization & AI Workflows",
+        desc: "Articles and case studies on automation, custom software architecture, support operations, school management systems, and workflow optimization."
+      },
+      terms: {
+        title: "Terms of Service | Redevise",
+        desc: "Terms of Service and legal agreements for Redevise custom software development and operations consulting services."
+      },
+      privacy: {
+        title: "Privacy Policy | Redevise Data Sovereignty",
+        desc: "Read the Redevise Privacy Policy. We enforce absolute data isolation and collect the minimum necessary data to host and secure your services."
+      },
+      church: {
+        title: "Ministry Infrastructure | Redevise Church Tech",
+        desc: "High-performance media systems, projection setups, live streaming, and specialized admin tools (Ascribe) built specifically for modern worship environments."
       }
+    },
+    difference: {
+      pill: "The Difference",
+      title: "Why work with Redevise?",
+      subtitle: "How we compare to traditional agencies and software development houses.",
+      themLabel: "Traditional Agencies",
+      usLabel: "Redevise Studio",
+      items: [
+        {
+          title: "Core Foundation",
+          them: "Generic templates, copy-paste builders, or outdated tech stacks.",
+          us: "Powered by Core—our custom-built software optimization engine."
+        },
+        {
+          title: "Speed & Iteration",
+          them: "Weeks of silent periods, manual handoffs, and delayed feedback.",
+          us: "Weekly test updates, git-backed transparency, and rapid delivery cycles."
+        },
+        {
+          title: "Process Integration",
+          them: "Apps built as isolated silos without considering workflow bottlenecks.",
+          us: "Deep business-process analysis and custom automation by default."
+        },
+        {
+          title: "Pricing Structure",
+          them: "Opaque hourly billing that rewards slow work and scope-creep.",
+          us: "Fixed, transparent project ranges adapted to your local currency."
+        },
+        {
+          title: "Post-Launch Care",
+          them: "Static handoff of code with no ongoing performance optimization.",
+          us: "Continuous monitoring, proactive support, and weekly maintenance."
+        }
+      ]
+    },
+    statement: {
+      title: "We don't build generic systems. We engineer custom tools to eliminate manual steps, reduce overhead, and help your team work faster."
+    },
+    results: {
+      items: [
+        {
+          metric: "14 Days",
+          label: "Prototype Speed",
+          description: "Average time to a fully functional prototype you can test."
+        },
+        {
+          metric: "60%",
+          label: "Task Reduction",
+          description: "Average reduction in manual steps and repetitive work."
+        },
+        {
+          metric: "2.4s",
+          label: "Page Speed",
+          description: "Average load time for pages, keeping visitors engaged."
+        },
+        {
+          metric: "2x",
+          label: "Output Speed",
+          description: "Twice the speed of traditional agency development cycles."
+        }
+      ]
+    },
+    testimonial: {
+      quote: "Redevise redesigned our entire delivery pipeline. We went from processing orders manually to complete automation in 14 days.",
+      author: "K. Boateng",
+      role: "Operations Director, Lunaris Coffee Co."
     }
   },
   es: {
@@ -1289,45 +1355,111 @@ export const translations = {
         { id: "analytics", label: "Informes y Analítica" },
         { id: "i18n", label: "Soporte Multiidioma" },
         { id: "seo", label: "Optimización SEO" }
-      ],
-      seo: {
-        home: {
-          title: "Redevise | Infraestructura de Optimización",
-          desc: "Redevise es una empresa de Infraestructura de Optimización. Construimos software a medida, apps web y móviles y plataformas de automatización empresarial impulsadas por Core."
-        },
-        about: {
-          title: "Sobre Redevise | Nuestra Filosofía de Optimización",
-          desc: "Conozca el estilo Redevise: parte laboratorio de productos, parte estudio de software a medida, parte consultoría de operaciones. Ofrecemos mejoras de eficiencia de 10x."
-        },
-        services: {
-          title: "Servicios de Redevise | Software a Medida y Automatización de Negocios",
-          desc: "Explore los servicios de Redevise. Diseñamos apps web y móviles, páginas de aterrizaje, APIs a medida y realizamos auditorías de flujo de trabajo y consultoría de automatización."
-        },
-        process: {
-          title: "Nuestro Proceso | Cómo Trabaja Redevise",
-          desc: "Desde la llamada de descubrimiento gratuita hasta el diseño, prototipo, desarrollo de código, lanzamiento y soporte continuo. Flujo de trabajo transparente de desarrollo de software."
-        },
-        estimate: {
-          title: "Obtenga un Presupuesto de Proyecto | Precios Estimados",
-          desc: "Calcule el costo de su app web a medida, app móvil, sitio web, e-commerce o software empresarial con nuestro estimador interactivo de precios."
-        },
-        blog: {
-          title: "Blog de Redevise | Ideas sobre Optimización y Flujos de Trabajo de IA",
-          desc: "Artículos y casos de estudio sobre automatización, arquitectura de software a medida, operaciones de soporte, sistemas de gestión escolar y optimización de flujos de trabajo."
-        },
-        terms: {
-          title: "Términos de Servicio | Redevise",
-          desc: "Términos de Servicio y acuerdos legales para el desarrollo de software a medida y servicios de consultoría operativa de Redevise."
-        },
-        privacy: {
-          title: "Política de Privacidad | Soberanía de Datos de Redevise",
-          desc: "Lea la Política de Privacidad de Redevise. Imponemos un aislamiento absoluto de datos y recopilamos los datos mínimos necesarios para hospedar y asegurar sus servicios."
-        },
-        church: {
-          title: "Infraestructura de Ministerio | Redevise Church Tech",
-          desc: "Sistemas de medios de alto rendimiento, proyección, transmisión en vivo y herramientas administrativas (Ascribe) diseñadas para iglesias modernas."
-        }
+      ]
+    },
+    seo: {
+      home: {
+        title: "Redevise | Infraestructura de Optimización",
+        desc: "Redevise es una empresa de Infraestructura de Optimización. Construimos software a medida, apps web y móviles y plataformas de automatización empresarial impulsadas por Core."
+      },
+      about: {
+        title: "Sobre Redevise | Nuestra Filosofía de Optimización",
+        desc: "Conozca el estilo Redevise: parte laboratorio de productos, parte estudio de software a medida, parte consultoría de operaciones. Ofrecemos mejoras de eficiencia de 10x."
+      },
+      services: {
+        title: "Servicios de Redevise | Software a Medida y Automatización de Negocios",
+        desc: "Explore los servicios de Redevise. Diseñamos apps web y móviles, páginas de aterrizaje, APIs a medida y realizamos auditorías de flujo de trabajo y consultoría de automatización."
+      },
+      process: {
+        title: "Nuestro Proceso | Cómo Trabaja Redevise",
+        desc: "Desde la llamada de descubrimiento gratuita hasta el diseño, prototipo, desarrollo de código, lanzamiento y soporte continuo. Flujo de trabajo transparente de desarrollo de software."
+      },
+      estimate: {
+        title: "Obtenga un Presupuesto de Proyecto | Precios Estimados",
+        desc: "Calcule el costo de su app web a medida, app móvil, sitio web, e-commerce o software empresarial con nuestro estimador interactivo de precios."
+      },
+      blog: {
+        title: "Blog de Redevise | Ideas sobre Optimización y Flujos de Trabajo de IA",
+        desc: "Artículos y casos de estudio sobre automatización, arquitectura de software a medida, operaciones de soporte, sistemas de gestión escolar y optimización de flujos de trabajo."
+      },
+      terms: {
+        title: "Términos de Servicio | Redevise",
+        desc: "Términos de Servicio y acuerdos legales para el desarrollo de software a medida y servicios de consultoría operativa de Redevise."
+      },
+      privacy: {
+        title: "Política de Privacidad | Soberanía de Datos de Redevise",
+        desc: "Lea la Política de Privacidad de Redevise. Imponemos un aislamiento absoluto de datos y recopilamos los datos mínimos necesarios para hospedar y asegurar sus servicios."
+      },
+      church: {
+        title: "Infraestructura de Ministerio | Redevise Church Tech",
+        desc: "Sistemas de medios de alto rendimiento, proyección, transmisión en vivo y herramientas administrativas (Ascribe) diseñadas para iglesias modernas."
       }
+    },
+    difference: {
+      pill: "La Diferencia",
+      title: "¿Por qué trabajar con Redevise?",
+      subtitle: "Cómo nos comparamos con las agencias tradicionales y los estudios de desarrollo de software.",
+      themLabel: "Agencias Tradicionales",
+      usLabel: "Estudio Redevise",
+      items: [
+        {
+          title: "Base Tecnológica",
+          them: "Plantillas genéricas, constructores preestablecidos o tecnologías desactualizadas.",
+          us: "Impulsado por Core: nuestro motor propio de optimización de software."
+        },
+        {
+          title: "Velocidad e Iteración",
+          them: "Semanas de silencio, entregas manuales y comentarios retrasados.",
+          us: "Pruebas de enlace semanales, transparencia en GitHub y ciclos rápidos."
+        },
+        {
+          title: "Integración de Procesos",
+          them: "Aplicaciones aisladas sin considerar los cuellos de botella operativos.",
+          us: "Análisis de procesos de negocio y automatización a medida por defecto."
+        },
+        {
+          title: "Estructura de Precios",
+          them: "Facturación por horas opaca que incentiva el trabajo lento y sobrecostos.",
+          us: "Rangos de precios fijos y transparentes adaptados a tu moneda local."
+        },
+        {
+          title: "Soporte Post-Lanzamiento",
+          them: "Entrega estática de código sin optimización continua del rendimiento.",
+          us: "Monitoreo constante, soporte proactivo y mantenimiento semanal."
+        }
+      ]
+    },
+    statement: {
+      title: "We don't build generic systems. We engineer custom tools to eliminate manual steps, reduce overhead, and help your team work faster."
+    },
+    results: {
+      items: [
+        {
+          metric: "14 Days",
+          label: "Prototype Speed",
+          description: "Average time to a fully functional prototype you can test."
+        },
+        {
+          metric: "60%",
+          label: "Task Reduction",
+          description: "Average reduction in manual steps and repetitive work."
+        },
+        {
+          metric: "2.4s",
+          label: "Page Speed",
+          description: "Average load time for pages, keeping visitors engaged."
+        },
+        {
+          metric: "2x",
+          label: "Output Speed",
+          description: "Twice the speed of traditional agency development cycles."
+        }
+      ]
+    },
+    testimonial: {
+      quote: "Redevise redesigned our entire delivery pipeline. We went from processing orders manually to complete automation in 14 days.",
+      author: "K. Boateng",
+      role: "Operations Director, Lunaris Coffee Co."
     }
   }
 };

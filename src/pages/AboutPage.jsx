@@ -18,7 +18,6 @@ const AboutPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Pill className="mb-6">{t('aboutPage.pill')}</Pill>
           <Heading level={1} className="mb-12 text-5xl md:text-7xl">
             {t('aboutPage.title')}
           </Heading>
@@ -32,8 +31,30 @@ const AboutPage = () => {
               ))}
             </div>
             
-            <div className="relative">
-              <GridSpotlight className="rounded-3xl border border-dark-400/30 aspect-square flex items-center justify-center overflow-hidden">
+            <div className="relative group">
+              {/* Corner indicators */}
+              <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none">
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
+                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              </div>
+              <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none">
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
+                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              </div>
+              <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none">
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
+                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              </div>
+              <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none">
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
+                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              </div>
+
+              <GridSpotlight className="rounded-none border border-dark-400/30 aspect-square flex items-center justify-center overflow-hidden">
                 <div className="text-center p-8">
                   <div className="text-6xl font-bold text-lime mb-4">{t('aboutPage.stats.num')}</div>
                   <Text className="uppercase tracking-widest font-semibold text-xs">{t('aboutPage.stats.caption')}</Text>

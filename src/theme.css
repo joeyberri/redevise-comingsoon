@@ -13,19 +13,19 @@
   --color-green-500: 20 146 8;
   --color-green-600: 0 134 9;
 
-  /* Dark Backgrounds (Default) */
-  --color-dark: 8 13 39;
-  --color-dark-50: 12 24 56;
-  --color-dark-100: 14 20 52;
-  --color-dark-200: 27 39 90;
-  --color-dark-300: 38 52 102;
-  --color-dark-400: 51 70 121;
-  --color-dark-500: 25 89 173;
+  /* Dark Backgrounds (Neutral Dark Mode - Framer Inspired) */
+  --color-dark: 3 7 18;
+  --color-dark-50: 9 9 11;
+  --color-dark-100: 24 24 27;
+  --color-dark-200: 39 39 42;
+  --color-dark-300: 63 63 70;
+  --color-dark-400: 82 82 91;
+  --color-dark-500: 113 113 122;
 
-  /* Text */
-  --color-text: 234 237 255;
-  --color-text-muted: 196 203 245;
-  --color-text-subtle: 138 148 192;
+  /* Text (Neutral Zinc Tones) */
+  --color-text: 244 244 245;
+  --color-text-muted: 161 161 170;
+  --color-text-subtle: 113 113 122;
 
   /* Accents */
   --color-accent: 46 242 255;
@@ -40,6 +40,7 @@
   /* ─── Typography ─── */
   --font-serif: "DM Serif Display", Georgia, serif;
   --font-sans: "DM Sans", "Inter", "Outfit", system-ui, sans-serif;
+  --font-space: "Space Grotesk", "DM Sans", "Inter", system-ui, sans-serif;
 
   --ls-tightest: -0.03em;
   --ls-tighter: -0.02em;

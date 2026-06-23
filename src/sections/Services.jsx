@@ -16,12 +16,9 @@ const Services = ({ onOpenInquiry = () => {} }) => {
       {/* Centered heading — no pill, no subtitle (contrast with other sections) */}
       <FadeIn>
         <div className="text-center mb-16">
-          <Heading level={2} variant="section-title" className="mb-6 mx-auto max-w-3xl">
+          <Heading level={2} variant="section-title" className="mx-auto max-w-3xl">
             {t('services.title')}
           </Heading>
-          <Text variant="section-sub" className="mx-auto">
-            {t('services.subtitle')}
-          </Text>
         </div>
       </FadeIn>
 

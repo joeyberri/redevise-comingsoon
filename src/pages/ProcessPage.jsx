@@ -172,11 +172,6 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
       {/* ─── Hero ─── */}
       <Section name="process-hero" className="pt-32 md:pt-40" spacing="tight">
         <div className="max-w-3xl mx-auto text-center">
-          <FadeIn direction="down" delay={0}>
-            <Pill animated className="mb-6">
-              {t('processPage.hero.pill')}
-            </Pill>
-          </FadeIn>
           <FadeIn delay={0.1}>
             <Heading level={1} variant="hero-title" className="mb-6">
               {t('processPage.hero.title')}

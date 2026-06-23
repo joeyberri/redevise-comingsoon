@@ -41,6 +41,7 @@ export default {
       fontFamily: {
         serif: 'var(--font-serif)',
         sans: 'var(--font-sans)',
+        space: 'var(--font-space)',
       },
       letterSpacing: {
         tightest: 'var(--ls-tightest)',

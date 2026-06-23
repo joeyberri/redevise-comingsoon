@@ -17,7 +17,6 @@ const PrivacyPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Pill className="mb-6">{t('privacy.pill')}</Pill>
           <Heading level={1} className="mb-8 text-gradient">{t('privacy.title')}</Heading>
           <Text className="mb-12 text-lg text-text-muted">
             {t('privacy.updated')}

@@ -142,7 +142,7 @@ const ServiceRow = ({ icon: Icon, title, description, onStartProject }) => {
 const SpecializedBlock = ({ icon: Icon, title, description, link, linkLabel, onStartProject }) => (
   <div className="border-b border-text/[0.08] last:border-0 pb-12 mb-12 last:pb-0 last:mb-0 last:border-b-0">
     <div className="max-w-4xl">
-      <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-lime/10 text-lime mb-6">
+      <div className="flex items-center justify-center w-14 h-14 rounded-sm border border-lime/20 bg-lime/10 text-lime mb-6">
         <Icon className="h-7 w-7" strokeWidth={1.5} />
       </div>
       
@@ -248,12 +248,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
       {/* ── Hero ── */}
       <Section name="services-hero" className="pt-32 md:pt-40" spacing="tight">
         <div className="max-w-3xl">
-          <FadeIn direction="down" delay={0}>
-            <Pill animated className="mb-6">
-              {t('servicesPage.hero.pill')}
-            </Pill>
-          </FadeIn>
-
           <FadeIn delay={0.1}>
             <Heading level={1} variant="hero-title" className="mb-6">
               {t('servicesPage.hero.title')}
@@ -277,9 +271,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
               <Heading level={2} variant="section-title" className="mb-3">
                 {t('servicesPage.dev.title')}
               </Heading>
-              <Text variant="section-sub">
-                {t('servicesPage.dev.sub')}
-              </Text>
             </div>
           </FadeIn>
 
@@ -308,9 +299,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
               <Heading level={2} variant="section-title" className="mb-3">
                 {t('servicesPage.consulting.title')}
               </Heading>
-              <Text variant="section-sub">
-                {t('servicesPage.consulting.sub')}
-              </Text>
             </div>
           </FadeIn>
 
@@ -338,9 +326,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
               <Heading level={2} variant="section-title" className="mb-3">
                 {t('servicesPage.specialized.title')}
               </Heading>
-              <Text variant="section-sub">
-                {t('servicesPage.specialized.sub')}
-              </Text>
             </div>
           </FadeIn>
 

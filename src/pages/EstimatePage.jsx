@@ -230,9 +230,6 @@ const EstimatePage = ({ onOpenInquiry }) => {
       {/* ─── Hero ─── */}
       <Section name="estimate-hero" className="pt-32 pb-0" spacing="tight">
         <div className="max-w-3xl mx-auto text-center">
-          <FadeIn direction="down" delay={0}>
-            <Pill className="mb-6">{t('estimatePage.hero.pill')}</Pill>
-          </FadeIn>
           <FadeIn delay={0.1}>
             <Heading
               level={1}

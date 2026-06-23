@@ -360,3 +360,9 @@
     @apply py-3 px-4 text-sm border-b border-dark-400/20;
   }
 }
+
+/* ─── Global Font Override for Uppercase Typography ─── */
+.uppercase {
+  font-family: var(--font-space), var(--font-sans), sans-serif !important;
+}
+

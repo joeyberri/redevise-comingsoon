@@ -108,7 +108,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               </Pill>
 
               {/* Title Architecture — Structural line splits on block containers */}
-              <Heading level={1} variant="hero-title" className="mb-6" serif>
+              <Heading level={1} variant="hero-title" className="mb-6">
                 <span className="block">
                   <TextReveal text={t('hero.buildSystems')} delay={0.1} />
                 </span>
@@ -126,12 +126,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
                 </span>
               </Heading>
 
-              {/* Subtext Body — Embedded inside motion loop to participate in the cascade order */}
-              <motion.div variants={itemVariants}>
-                <Text variant="hero-sub" className="mb-8">
-                  {t('hero.sub')}
-                </Text>
-              </motion.div>
+
 
               {/* Interactive Call to Action Elements */}
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
