@@ -30,6 +30,7 @@
   /* Accents */
   --color-accent: 46 242 255;
   --color-accent-dim: 60 82 217;
+  --color-primary: 46 242 255;
 
   /* Surface Colors (for Glass cards) */
   --color-surface-border: 255 255 255 / 0.08;
@@ -90,4 +91,6 @@
   --color-lime-400: 170 225 10;
   --color-lime-500: 135 185 0;
   --color-lime-600: 105 145 0;
+
+  --color-primary: 25 89 173;
 }

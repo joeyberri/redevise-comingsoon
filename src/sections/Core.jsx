@@ -19,7 +19,7 @@ const Core = () => {
       </div>
 
       <FadeIn>
-        <div className="relative overflow-hidden rounded-[2rem] border border-text/[0.08] bg-text/[0.02] backdrop-blur-lg">
+        <div className="relative overflow-hidden rounded-[2rem] lg:rounded-r-none border border-text/[0.08] bg-text/[0.02] backdrop-blur-lg lg:mr-[calc(-50vw+50%)] lg:pr-[calc(50vw-50%+5rem)]">
           {/* Subtle grid inside the block */}
           <div className="absolute inset-0 bg-grid opacity-20" />
           

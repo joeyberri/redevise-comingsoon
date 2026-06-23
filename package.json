@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/generate-sitemap.js",
+    "lint:jargon": "node scripts/check-jargon.js",
+    "prebuild": "npm run lint:jargon && node scripts/generate-sitemap.js",
     "build": "vite build",
     "build:sitemap": "node scripts/generate-sitemap.js",
     "import:blogs": "node scripts/import-blogs.js",
-    "lint": "eslint .",
+    "lint": "eslint . && npm run lint:jargon",
     "preview": "vite preview"
   },
   "dependencies": {

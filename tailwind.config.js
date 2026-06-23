@@ -34,6 +34,9 @@ export default {
           DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
           dim: 'rgb(var(--color-accent-dim) / <alpha-value>)',
         },
+        primary: {
+          DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
+        },
       },
       fontFamily: {
         serif: 'var(--font-serif)',

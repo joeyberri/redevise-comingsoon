@@ -20,6 +20,9 @@ const SITE_URL = 'https://redevise.com';
 const staticPages = [
   { loc: '/', changefreq: 'monthly', priority: '1.0' },
   { loc: '/about', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services', changefreq: 'monthly', priority: '0.9' },
+  { loc: '/process', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/estimate', changefreq: 'monthly', priority: '0.8' },
   { loc: '/blog', changefreq: 'weekly', priority: '0.9' },
   { loc: '/terms', changefreq: 'monthly', priority: '0.3' },
   { loc: '/privacy', changefreq: 'monthly', priority: '0.3' },

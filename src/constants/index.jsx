@@ -1,69 +1,71 @@
+import React from "react";
+
 /* ─── Three Pillars ─── */
 export const pillars = [
   {
     id: "0",
-    num: "01 - PRODUCTS",
+    num: "01 - OUR SOFTWARE",
     title: "We build software",
-    text: "A growing ecosystem of precision-built tools - from customer support intelligence to school operations, habit systems to research workflows. Each one 10x simpler than the alternative.",
-    tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro",
+    text: "Ready-made tools for customer support teams, schools, researchers, and churches. Built to be simple, powerful, and actually pleasant to use.",
+    tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe",
   },
   {
     id: "1",
-    num: "02 - LABS",
+    num: "02 - CUSTOM DEV",
     title: "We build for you",
-    text: "Custom software, MVPs, and enterprise applications - engineered with the same intelligence infrastructure that powers our own products. Faster than a dev shop. Smarter by design.",
-    tag: "End-to-end engineering · MVP to scale",
+    text: "Need an app, website, or platform built from scratch? We handle everything from the first wireframe to launch day and beyond.",
+    tag: "Web Apps · Mobile Apps · MVPs · Enterprise Software · APIs",
   },
   {
     id: "2",
     num: "03 - CONSULTING",
     title: "We optimize you",
-    text: "Workflow audits. Automation strategy. Advanced analytics. We map where your organization leaks time and energy, then eliminate the friction - systematically.",
-    tag: "Process audits · Automation · Analytics · Training",
+    text: "Not sure what you need yet? We'll audit your workflows, find what's costing you time and money, and build a plan to fix it.",
+    tag: "Process Audits · Automation · Analytics · Digital Transformation",
   },
 ];
 
 /* ─── Core Capabilities ─── */
 export const coreCapabilities = [
-  "Context-aware reasoning engine that compounds workflow efficiency over time",
-  "Behavioral pattern recognition across workflows",
-  "Context-aware recommendations at every decision point",
-  "Workflow automation triggers that remove thinking overhead",
-  "Unified context layer that allows integrated tools to operate with shared context seamlessly",
-  "When our engineers build for you, Core maps, generates architectures, and optimizes workflows in parallel",
+  "Speeds up project scoping and architecture planning",
+  "Spots patterns and bottlenecks in workflows automatically",
+  "Generates smart recommendations at each project stage",
+  "Automates repetitive engineering tasks so we focus on what matters",
+  "Connects insights across projects to deliver better solutions",
+  "Helps our engineers build and ship faster without cutting corners",
 ];
 
 /* ─── Product Ecosystem ─── */
 export const products = [
   {
     id: "0",
-    label: "B2B · Support Intelligence",
+    label: "B2B · Support",
     name: "SupporTribe",
-    text: "Your customer support team, finally operating at its ceiling. SupporTribe brings AI-powered intelligence to agent performance, conversation quality, and workflow clarity - so every interaction becomes a data point that makes the next one better",
+    text: "AI-powered customer support analytics. See what's working, coach your agents, and improve every conversation.",
   },
   {
     id: "1",
-    label: "B2B · Education Ops",
+    label: "B2B · Education",
     name: "Eduplugg",
-    text: "School administration reimagined. Eduplugg is a modular operations system that clears the fog of scattered communication, redundant processes, and fractured workflows - giving educators back the time and clarity they came to teaching for.",
+    text: "School administration in one place. Attendance, communication, grading, and operations built for how schools actually work.",
   },
   {
     id: "2",
-    label: "B2C · Behavior",
+    label: "B2C · Habits",
     name: "StreakMonkey",
-    text: "Discipline isn't a personality trait - it's a system. StreakMonkey turns your intentions into locked-in routines through behavioral consistency tools that make showing up the path of least resistance.",
+    text: "Build better habits with streaks, reminders, and progress tracking. Simple tools that help you actually stick to your routines.",
   },
   {
     id: "3",
     label: "B2C · Research",
     name: "CitationPro",
-    text: "The browser extension that turns research from a time sink into a competitive advantage. CitationPro removes the friction from academic and professional writing - so you spend time thinking, not formatting.",
+    text: "A browser extension that handles citations and formatting so you can focus on the actual research.",
   },
   {
     id: "4",
-    label: "Vertical · Ministry",
+    label: "Ministry",
     name: "Ascribe",
-    text: "Built for the specific rhythms of church life. Ascribe is presentation software designed with deep niche utility - intuitive, focused, and built to serve communities that have been underserved by generic tools.",
+    text: "Presentation software designed specifically for churches. Intuitive, focused, and built for worship teams.",
     cta: "Explore Church Ecosystem",
     href: "https://church.redevise.com",
   },
@@ -71,19 +73,19 @@ export const products = [
 
 /* ─── Services ─── */
 export const labsFeatures = [
-  "End-to-end product development from discovery to launch",
-  "MVPs built to validate quickly, then scale without rewrites",
-  "Core-augmented architecture: problems mapped and solved at machine speed",
-  "Top-tier engineering on technologies that don't become liabilities",
-  "Optimization-first thinking baked into every architectural decision",
+  "Full project development from concept to launch",
+  "MVPs that validate your idea quickly and scale when you're ready",
+  "Clean, maintainable code on technologies that last",
+  "Regular check-ins so you always know where things stand",
+  "Backed by Core, our internal AI engine, for faster delivery",
 ];
 
 export const consultingFeatures = [
-  "Operational efficiency audits that find the real bottlenecks",
-  "Workflow automation strategy - not just recommendations, but implementation",
-  "Advanced data analytics that turns your numbers into decisions",
-  "Digital transformation with measurable, time-bound outcomes",
-  "Ministry Infrastructure: specialized consulting for modern worship environments",
+  "Workflow audits that find your real bottlenecks",
+  "Automation setup, not just recommendations",
+  "Data and analytics that help you make better decisions",
+  "Clear timelines and measurable results",
+  "Specialized consulting for churches and ministry teams",
 ];
 
 /* ─── Church Specific Content ─── */
@@ -118,33 +120,34 @@ export const churchConstants = {
 export const values = [
   {
     id: "0",
-    title: "Radical Simplicity",
-    text: "10x simpler than alternatives, or we haven't done our job.",
+    title: "Keep it Simple",
+    text: "If it's not dramatically simpler than the alternative, we haven't done our job.",
   },
   {
     id: "1",
-    title: "Intelligence-First",
-    text: "Every product and service must actively assist decision-making.",
+    title: "Smart by Default",
+    text: "Every product and service should help you make better decisions, not just more of them.",
   },
   {
     id: "2",
-    title: "Dramatic Improvement",
-    text: "Marginal gains don't justify adoption. We aim for transformative.",
+    title: "Real Results",
+    text: "Small improvements don't justify the effort of switching. We aim for transformative.",
   },
   {
     id: "3",
     title: "Connected",
-    text: "Nothing we build exists in isolation. Everything compounds.",
+    text: "Nothing we build exists in isolation. Everything we learn makes the next project better.",
   },
 ];
 
 /* ─── Tagline Bar Items ─── */
 export const taglines = [
-  "OPTIMIZATION INFRASTRUCTURE",
-  "INTELLIGENCE-FIRST ENGINEERING",
-  "POWERED BY CORE",
-  "PRODUCTS + SERVICES",
-  "DRAMATIC IMPROVEMENT OR NOTHING",
+  "WEB & MOBILE APPS",
+  "CUSTOM SOFTWARE",
+  "SCHOOL MANAGEMENT",
+  "CHURCH TECH",
+  "BUSINESS CONSULTING",
+  "AI-POWERED TOOLS",
 ];
 
 /* ─── Nav Links ─── */
@@ -152,10 +155,9 @@ export const navLinks = [
   { id: "pillars", label: "What We Do" },
   { id: "products", label: "Products" },
   { id: "services", label: "Services" },
+  { id: "process", label: "How We Work" },
   { id: "about", label: "About" },
 ];
-
-
 
 /* ─── About Content ─── */
 export const aboutContent = {
@@ -166,30 +168,30 @@ export const aboutContent = {
     </>
   ),
   paragraphs: [
-    "Redevise started with a simple observation: most software makes processes more complicated, not less. Most consultants produce decks instead of outcomes. And most companies accept this as normal - because everyone else does, too.",
+    "Redevise started with a simple observation: most software makes things more complicated, not less. Most consultants hand you a slide deck instead of actual results. And most companies accept this as normal because everyone else does too.",
     <>
-      We didn't. We built Redevise around a single, non-negotiable standard:{" "}
+      We didn't. We built Redevise around one rule:{" "}
       <strong className="font-semibold text-text">
         if the improvement isn't dramatic, we don't build it.
       </strong>{" "}
-      Not for our own products. Not for our clients. Incremental gains don't
-      justify the cognitive overhead of adopting something new.
+      Not for ourselves. Not for our clients. If switching to our tool doesn't
+      make your life significantly easier, we haven't earned the switch.
     </>,
-    "What emerged is something that doesn't fit a neat category. We're part product company, part engineering firm, part optimization consultancy - all unified by a foundational intelligence engine we call Core, and a shared philosophy we simply call: make it work better, or don't make it at all.",
-    "The long-term mission is compounding engineering expertise: every product we build and every workflow we optimize refines our core blueprints and speed of execution, delivering superior outcomes faster. This is how we compete. Not on features. Not on hourly rates. On outcomes, intelligence, and execution speed.",
+    "We're part product company, part engineering studio, part consulting firm. All tied together by an internal AI engine we call Core, and a shared belief that things should just work better.",
+    "Every product we build and every project we deliver teaches us something new. That's how we get faster and better over time. We don't compete on features or hourly rates. We compete on results.",
   ],
 };
 
 /* ─── Core Content ─── */
 export const coreContent = {
-  pill: "The Intelligence Layer",
+  pill: "Behind the Scenes",
   title: (
     <>
-      We have an unfair <span className="text-gradient">advantage</span>
+      We work faster because of <span className="text-gradient">Core</span>
     </>
   ),
   paragraphs: [
-    "Most companies have a tech stack. We have a context engine. Core is the underlying intelligence engine that powers Redevise products and client deployments.",
-    "It maps workflows, automates processes, and accelerates execution. It makes everything we build - and everything we do for you - dramatically more effective than what you'd get anywhere else.",
+    "Core is our internal AI engine. It helps our team map problems, generate solutions, and move through projects faster than traditional agencies.",
+    "You don't need to understand how it works. You just get better results, delivered sooner.",
   ],
 };

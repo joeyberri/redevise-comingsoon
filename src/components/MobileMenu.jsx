@@ -21,6 +21,14 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
       navigate("/about");
       return;
     }
+    if (id === "services") {
+      navigate("/services");
+      return;
+    }
+    if (id === "process") {
+      navigate("/process");
+      return;
+    }
 
     if (!isHomePage) {
       navigate("/", { state: { scrollTo: id } });
@@ -94,7 +102,8 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
 
               <div className="mt-auto pt-8 border-t border-text/[0.08]">
                 <Button 
-                  onClick={handleCtaClick} 
+                  to={isChurch ? undefined : "/estimate"}
+                  onClick={isChurch ? handleCtaClick : onClose} 
                   fullWidth 
                   className="w-full justify-center text-sm uppercase tracking-widest font-bold py-5"
                 >

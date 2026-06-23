@@ -106,9 +106,13 @@
 
   /* ─── Pill / Label ─── */
   .pill {
-    @apply inline-block rounded-full border border-dark-400/50 bg-dark-50/50
-           px-4 py-1.5 font-sans text-xs font-medium uppercase tracking-widest
-           text-text-subtle transition-colors duration-300 ease-in-out;
+    @apply inline-flex items-center font-mono text-[11px] font-semibold tracking-wider
+           text-text-subtle uppercase transition-colors duration-300 ease-in-out;
+  }
+
+  .pill::before {
+    content: "// ";
+    @apply text-lime mr-1.5 font-bold;
   }
 
   /* ─── Section Title ─── */
@@ -321,9 +325,8 @@
   }
 
   .blog-prose code {
-    @apply font-mono text-sm px-1.5 py-0.5 rounded-md;
+    @apply font-mono text-sm px-1.5 py-0.5 rounded-md text-lime-600 dark:text-lime-400;
     background-color: rgb(var(--color-dark-200) / 0.6);
-    color: rgb(var(--color-lime-400));
   }
 
   .blog-prose pre {

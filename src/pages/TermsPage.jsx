@@ -3,9 +3,11 @@ import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import { motion } from "framer-motion";
 import { useLanguage } from "../utils/LanguageContext.jsx";
+import { useSEO } from "../utils/useSEO.js";
 
 const TermsPage = () => {
   const { t } = useLanguage();
+  useSEO({ key: "terms" });
 
   return (
     <Section name="terms" className="pt-32">

@@ -6,6 +6,7 @@ export const translations = {
       pillars: "What We Do",
       products: "Products",
       services: "Services",
+      process: "How We Work",
       about: "About",
       optimize: "Optimize Ministry",
       start: "Start Project",
@@ -39,100 +40,100 @@ export const translations = {
       switchToDark: "Switch to dark mode"
     },
     hero: {
-      pill: "Innovation in Motion",
+      pill: "Software Studio & Consulting",
       buildSystems: "We build the systems",
       that: "that ",
       makeThingsWork: "make things work",
       better: "better.",
-      sub: "High-performance infrastructure and seamless digital experiences crafted for the next generation of industry leaders.",
+      sub: "We design, build, and optimize software for teams who need their tools to just work.",
       workWithUs: "Work with us",
       exploreProducts: "Explore Products"
     },
     pillars: {
-      title: "Three ways to work with us:",
+      title: "3 ways to work with us:",
       list: [
         {
           id: "0",
-          num: "01 - PRODUCTS",
+          num: "01 - OUR SOFTWARE",
           title: "We build software",
-          text: "A growing ecosystem of precision-built tools - from customer support intelligence to school operations, habit systems to research workflows. Each one 10x simpler than the alternative.",
-          tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro",
+          text: "Ready-made software designed to solve specific operational problems for support agents, educators, and administrators. Built to be simple, powerful, and pleasant to use.",
+          tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe",
         },
         {
           id: "1",
-          num: "02 - LABS",
+          num: "02 - CUSTOM DEV",
           title: "We build for you",
-          text: "Custom software, MVPs, and enterprise applications - engineered with the same intelligence infrastructure that powers our own products. Faster than a dev shop. Smarter by design.",
-          tag: "End-to-end engineering · MVP to scale",
+          text: "Need an app, website, or platform built from scratch? We handle everything from the first wireframe to launch day and beyond.",
+          tag: "Web Apps · Mobile Apps · MVPs · Enterprise Software · APIs",
         },
         {
           id: "2",
           num: "03 - CONSULTING",
           title: "We optimize you",
-          text: "Workflow audits. Automation strategy. Advanced analytics. We map where your organization leaks time and energy, then eliminate the friction - systematically.",
-          tag: "Process audits · Automation · Analytics · Training",
+          text: "Not sure what you need yet? We'll audit your workflows, find what's costing you time and money, and build a plan to fix it.",
+          tag: "Process Audits · Automation · Analytics · Digital Transformation",
         }
       ]
     },
     core: {
-      pill: "The Intelligence Layer",
+      pill: "Behind the Scenes",
       title: (
         <>
-          We have an unfair <span className="text-gradient">advantage</span>
+          We work faster because of <span className="text-gradient">Core</span>
         </>
       ),
       paragraphs: [
-        "Most companies have a tech stack. We have a context engine. Core is the underlying intelligence engine that powers Redevise products and client deployments.",
-        "It maps workflows, automates processes, and accelerates execution. It makes everything we build - and everything we do for you - dramatically more effective than what you'd get anywhere else."
+        "Core is our internal AI engine. It helps our team map problems, generate solutions, and move through projects faster than traditional agencies.",
+        "You don't need to understand how it works. You just get better results, delivered sooner."
       ],
       capabilities: [
-        "Context-aware reasoning engine that compounds workflow efficiency over time",
-        "Behavioral pattern recognition across workflows",
-        "Context-aware recommendations at every decision point",
-        "Workflow automation triggers that remove thinking overhead",
-        "Unified context layer that allows integrated tools to operate with shared context seamlessly",
-        "When our engineers build for you, Core maps, generates architectures, and optimizes workflows in parallel"
+        "Speeds up project scoping and architecture planning",
+        "Spots patterns and bottlenecks in workflows automatically",
+        "Generates smart recommendations at each project stage",
+        "Automates repetitive engineering tasks so we focus on what matters",
+        "Connects insights across projects to deliver better solutions",
+        "Helps our engineers build and ship faster without cutting corners"
       ]
     },
     products: {
-      pill: "The Product Ecosystem",
+      pill: "Our Products",
       title: (
         <>
-          Tools built to eliminate friction -{" "}
-          <span className="text-gradient">not add to it.</span>
+          Software we've{" "}
+          <span className="text-gradient">built.</span>
         </>
       ),
-      subtitle: "Each Redevise product is purpose-built around a single mission: dramatic, measurable improvement in how a specific workflow operates.",
+      subtitle: "Simple, focused applications built to eliminate everyday operational bottlenecks.",
       list: [
         {
           id: "0",
-          label: "B2B · Support Intelligence",
+          label: "B2B · Support",
           name: "SupporTribe",
-          text: "Your customer support team, finally operating at its ceiling. SupporTribe brings AI-powered intelligence to agent performance, conversation quality, and workflow clarity - so every interaction becomes a data point that makes the next one better",
+          text: "AI-powered customer support analytics. See what's working, coach your agents, and improve every conversation.",
         },
         {
           id: "1",
-          label: "B2B · Education Ops",
+          label: "B2B · Education",
           name: "Eduplugg",
-          text: "School administration reimagined. Eduplugg is a modular operations system that clears the fog of scattered communication, redundant processes, and fractured workflows - giving educators back the time and clarity they came to teaching for.",
+          text: "School administration in one place. Attendance, communication, grading, and operations built for how schools actually work.",
         },
         {
           id: "2",
-          label: "B2C · Behavior",
+          label: "B2C · Habits",
           name: "StreakMonkey",
-          text: "Discipline isn't a personality trait - it's a system. StreakMonkey turns your intentions into locked-in routines through behavioral consistency tools that make showing up the path of least resistance.",
+          text: "Build better habits with streaks, reminders, and progress tracking. Simple tools that help you actually stick to your routines.",
         },
         {
           id: "3",
           label: "B2C · Research",
           name: "CitationPro",
-          text: "The browser extension that turns research from a time sink into a competitive advantage. CitationPro removes the friction from academic and professional writing - so you spend time thinking, not formatting.",
+          text: "A browser extension that handles citations and formatting so you can focus on the actual research.",
         },
         {
           id: "4",
-          label: "Vertical · Ministry",
+          label: "Ministry",
           name: "Ascribe",
-          text: "Built for the specific rhythms of church life. Ascribe is presentation software designed with deep niche utility - intuitive, focused, and built to serve communities that have been underserved by generic tools.",
+          text: "Presentation software designed specifically for churches. Intuitive, focused, and built for worship teams.",
           cta: "Explore Church Ecosystem",
           href: "https://church.redevise.com",
         }
@@ -142,35 +143,35 @@ export const translations = {
       pill: "Services",
       title: (
         <>
-          World-class engineering.{" "}
-          <span className="text-gradient">Intelligence-augmented</span>{" "}
-          delivery.
+          Two ways we can{" "}
+          <span className="text-gradient">help.</span>
         </>
       ),
-      subtitle: "When you work with Redevise Labs or Redevise Consulting, you're not hiring a team of engineers. You're hiring engineers plus Core - which is a fundamentally different thing.",
+      subtitle: "Whether you need something built or something fixed, we've got you.",
+      coreNote: "All our work is accelerated by Core, our custom automation engine, helping us deliver clean code and automated workflows in half the time.",
       labs: {
         title: "Redevise Labs",
-        tagline: "Custom software built with optimization at its core. From MVP to enterprise-scale - faster and smarter than traditional dev shops.",
+        tagline: "We build apps, websites, and platforms. From first idea to finished product.",
         cta: "Start your project →",
         features: [
-          "End-to-end product development from discovery to launch",
-          "MVPs built to validate quickly, then scale without rewrites",
-          "Core-augmented architecture: problems mapped and solved at machine speed",
-          "Top-tier engineering on technologies that don't become liabilities",
-          "Optimization-first thinking baked into every architectural decision"
+          "Full project development from concept to launch",
+          "MVPs that validate your idea quickly and scale when you're ready",
+          "Clean, maintainable code on technologies that last",
+          "Regular check-ins so you always know where things stand",
+          "Weekly staging releases so you see working progress in real-time"
         ]
       },
       consulting: {
         title: "Redevise Consulting",
-        tagline: "Process optimization and advanced analytics for organizations ready to close the gap between how they operate and how they could.",
+        tagline: "We help businesses figure out what's slowing them down and fix it.",
         cta: "Get an efficiency audit →",
         exploreMinistry: "Explore Ministry Infrastructure",
         features: [
-          "Operational efficiency audits that find the real bottlenecks",
-          "Workflow automation strategy - not just recommendations, but implementation",
-          "Advanced data analytics that turns your numbers into decisions",
-          "Digital transformation with measurable, time-bound outcomes",
-          "Ministry Infrastructure: specialized consulting for modern worship environments"
+          "Workflow audits that find your real bottlenecks",
+          "Automation setup, not just recommendations",
+          "Data and analytics that help you make better decisions",
+          "Clear timelines and measurable results",
+          "Specialized consulting for churches and ministry teams"
         ]
       }
     },
@@ -178,31 +179,32 @@ export const translations = {
       values: [
         {
           id: "0",
-          title: "Radical Simplicity",
-          text: "10x simpler than alternatives, or we haven't done our job.",
+          title: "Keep it Simple",
+          text: "If it's not dramatically simpler than the alternative, we haven't done our job.",
         },
         {
           id: "1",
-          title: "Intelligence-First",
-          text: "Every product and service must actively assist decision-making.",
+          title: "Smart by Default",
+          text: "Every product and service should help you make better decisions, not just more of them.",
         },
         {
           id: "2",
-          title: "Dramatic Improvement",
-          text: "Marginal gains don't justify adoption. We aim for transformative.",
+          title: "Real Results",
+          text: "Small improvements don't justify the effort of switching. We aim for transformative.",
         },
         {
           id: "3",
           title: "Connected",
-          text: "Nothing we build exists in isolation. Everything compounds.",
+          text: "Nothing we build exists in isolation. Everything we learn makes the next project better.",
         }
       ],
       taglines: [
-        "OPTIMIZATION INFRASTRUCTURE",
-        "INTELLIGENCE-FIRST ENGINEERING",
-        "POWERED BY CORE",
-        "PRODUCTS + SERVICES",
-        "DRAMATIC IMPROVEMENT OR NOTHING",
+        "WEB & MOBILE APPS",
+        "CUSTOM SOFTWARE",
+        "SCHOOL MANAGEMENT",
+        "CHURCH TECH",
+        "BUSINESS CONSULTING",
+        "AI-POWERED TOOLS",
       ]
     },
     ctaFooter: {
@@ -215,7 +217,7 @@ export const translations = {
           <span className="text-gradient">Let's fix yours.</span>
         </>
       ),
-      desc: "Whether you need a product that already exists, one we'll build for you, or a team that will optimize what you already have - Redevise is the answer.",
+      desc: "Tell us what you're working on. We'll figure out the best way to help. No pressure, no jargon.",
       requestConsultation: "Request consultation",
       exploreProducts: "Explore our products"
     },
@@ -236,19 +238,19 @@ export const translations = {
         </>
       ),
       paragraphs: [
-        "Redevise started with a simple observation: most software makes processes more complicated, not less. Most consultants produce decks instead of outcomes. And most companies accept this as normal - because everyone else does, too.",
+        "Redevise started with a simple observation: most software makes things more complicated, not less. Most consultants hand you a slide deck instead of actual results. And most companies accept this as normal because everyone else does too.",
         (
           <>
-            We didn't. We built Redevise around a single, non-negotiable standard:{" "}
+            We didn't. We built Redevise around one rule:{" "}
             <strong className="font-semibold text-text">
               if the improvement isn't dramatic, we don't build it.
             </strong>{" "}
-            Not for our own products. Not for our clients. Incremental gains don't
-            justify the cognitive overhead of adopting something new.
+            Not for ourselves. Not for our clients. If switching to our tool doesn't
+            make your life significantly easier, we haven't earned the switch.
           </>
         ),
-        "What emerged is something that doesn't fit a neat category. We're part product company, part engineering firm, part optimization consultancy - all unified by a foundational intelligence engine we call Core, and a shared philosophy we simply call: make it work better, or don't make it at all.",
-        "The long-term mission is compounding engineering expertise: every product we build and every workflow we optimize refines our core blueprints and speed of execution, delivering superior outcomes faster. This is how we compete. Not on features. Not on hourly rates. On outcomes, intelligence, and execution speed."
+        "We're part product company, part engineering studio, part consulting firm. All tied together by an internal AI engine we call Core, and a shared belief that things should just work better.",
+        "Every product we build and every project we deliver teaches us something new. That's how we get faster and better over time. We don't compete on features or hourly rates. We compete on results."
       ],
       stats: {
         num: "10x",
@@ -256,16 +258,16 @@ export const translations = {
       },
       pillars: [
         {
-          title: "Intelligence",
-          desc: "Every product assisting your decisions."
+          title: "Smart Tools",
+          desc: "Products that help you make better decisions."
         },
         {
-          title: "Execution",
-          desc: "MVPs to scale at machine speed."
+          title: "Fast Delivery",
+          desc: "From idea to launched product, quickly."
         },
         {
-          title: "Outcome",
-          desc: "Dramatic improvement or we don't build it."
+          title: "Real Impact",
+          desc: "If it doesn't make a real difference, we don't build it."
         }
       ]
     },
@@ -340,7 +342,7 @@ export const translations = {
         sentTitle: <>Message<br />Sent.</>,
         sentSub: "We've received your note and will be in touch soon.",
         pickTitle: <>Pick a<br />Time.</>,
-        pickSub: "Choose a time that works for you — we'll handle the rest.",
+        pickSub: "Choose a time that works for you. We'll handle the rest.",
         almostTitle: <>Almost<br />There.</>,
         almostSub: "Share what's on your mind and we'll get back to you.",
         focusTitle: <>Your<br />Focus.</>,
@@ -358,7 +360,7 @@ export const translations = {
         step2Title: "What brings you here?",
         step3Title: "How would you like to connect?",
         bookCall: "Book a Call",
-        bookCallSub: "Pick a time · 15–30 min chat",
+        bookCallSub: "Pick a time · 15-30 min chat",
         sendMessage: "Send a Message",
         sendMessageSub: "We'll reply to your email",
         step4Title: "Tell us a bit more.",
@@ -429,7 +431,7 @@ export const translations = {
         {
           id: 1,
           title: "1. Data Philosophy & Sovereignty",
-          text: "At Redevise, we reject the surveillance economy. We believe that your data belongs to you. We strictly design our systems to collect the absolute minimum amount of information necessary to deliver, secure, and optimize our services. When we deploy custom intelligence systems (such as Core instances), we enforce absolute data isolation—your institutional knowledge never cross-contaminates another organization's systems or training data."
+          text: "At Redevise, we reject the surveillance economy. We believe that your data belongs to you. We strictly design our systems to collect the absolute minimum amount of information necessary to deliver, secure, and optimize our services. When we deploy custom intelligence systems (such as Core instances), we enforce absolute data isolation. Your institutional knowledge never cross-contaminates another organization's systems or training data."
         },
         {
           id: 2,
@@ -484,6 +486,184 @@ export const translations = {
           text: "Depending on your location, you may have rights under the GDPR, CCPA, or other regional data protection frameworks (such as rights of access, correction, portability, and erasure). If you wish to exercise any of these rights, or if you have questions regarding this policy, please reach out to us directly at "
         }
       ]
+    },
+    servicesPage: {
+      hero: {
+        pill: "Our Services",
+        title: "What we can build for you",
+        sub: "Everything we offer, in plain English. Pick what matches your needs, or just browse around."
+      },
+      dev: {
+        pill: "Development",
+        title: "What We Build",
+        sub: "Software, websites, and apps, designed and built from scratch for your business.",
+        items: [
+          { title: "Websites & Landing Pages", desc: "From single-page sites to full marketing websites. Clean design, fast loading, mobile-friendly." },
+          { title: "Web Applications", desc: "Custom web apps with dashboards, user accounts, and the features your business actually needs." },
+          { title: "Mobile Apps", desc: "Native and cross-platform apps for iOS and Android. From idea to App Store." },
+          { title: "E-commerce Stores", desc: "Online stores that look great and actually convert. Payment processing, inventory, the works." },
+          { title: "Custom Business Software", desc: "Internal tools, CRMs, booking systems, whatever your business runs on but can't find off the shelf." },
+          { title: "APIs & Integrations", desc: "Connect your existing tools together, or build custom APIs for your platform." }
+        ]
+      },
+      consulting: {
+        pill: "Consulting",
+        title: "What We Fix & Improve",
+        sub: "Already have systems in place? We help you make them faster, smarter, and easier to manage.",
+        items: [
+          { title: "Workflow Automation", desc: "We find the repetitive tasks your team does manually and automate them." },
+          { title: "Business Process Audits", desc: "We look at how your team works, find what's slowing you down, and map out a fix." },
+          { title: "Data & Analytics", desc: "Set up tracking, dashboards, and reports so you can make decisions based on real numbers." },
+          { title: "Digital Transformation", desc: "Modernize your operations with clear timelines and measurable results." },
+          { title: "Performance Optimization", desc: "Speed up slow websites, apps, and systems." },
+          { title: "Training & Capacity Building", desc: "Teach your team to use and maintain the tools we build." }
+        ]
+      },
+      specialized: {
+        pill: "Industry-Specific",
+        title: "Specialized",
+        sub: "Deep expertise in a few industries where we know the problems inside and out.",
+        items: [
+          { title: "Church & Ministry Tech", desc: "Live streaming, projection systems, church management software, and media team training.", linkLabel: "Visit church.redevise.com", href: "https://church.redevise.com" },
+          { title: "School Admin Systems", desc: "Attendance, communication, grading, and operations all in one place. Built for how schools actually work." },
+          { title: "Customer Support Platforms", desc: "AI-powered support tools that help your agents work faster and your customers get answers sooner." }
+        ]
+      },
+      cta: {
+        title: "Not sure what you need?",
+        sub: "Tell us what you're trying to do and we'll figure out the right approach together. No pressure, no pitch deck.",
+        estimate: "Get an estimate",
+        talk: "Talk to us"
+      }
+    },
+    processPage: {
+      hero: {
+        pill: "Our Process",
+        title: "How we work",
+        sub: "From first conversation to finished product. Here's exactly what the process looks like, step by step."
+      },
+      steps: [
+        { title: "Discovery Call", duration: "Free, 15-30 minutes", desc: "We hop on a call to understand what you need. No sales pitch, just a conversation about your project, your goals, and whether we're the right fit.", outcome: "A custom Scope of Work document and a ballpark pricing range." },
+        { title: "Proposal & Agreement", duration: "2-3 business days", desc: "We put together a detailed proposal with scope, timeline, milestones, and pricing. Everything spelled out so there are no surprises.", outcome: "A detailed project brief, milestone breakdowns, and a binding agreement." },
+        { title: "Design & Prototype", duration: "1-2 weeks", desc: "We design how your project will look and feel. You'll see mockups and clickable prototypes before we write a single line of code.", outcome: "A clickable Figma prototype showing key user flows and layouts." },
+        { title: "Development", duration: "2-12 weeks", desc: "We build your project in focused sprints, with regular check-ins so you always know what's happening. No going dark for weeks.", outcome: "A private GitHub repository and a live staging link updated weekly." },
+        { title: "Testing & QA", duration: "1-2 weeks", desc: "We test everything thoroughly. Cross-browser, cross-device, performance, security. We break it on purpose so your users don't.", outcome: "A comprehensive QA checklist across iOS, Android, and web browsers." },
+        { title: "Launch", duration: "1-3 days", desc: "We handle deployment, DNS, hosting, and all the technical details. You just tell us when you're ready to go live.", outcome: "Production deployment on cloud infrastructure (AWS/Cloudflare) and full DNS handoff." },
+        { title: "Ongoing Support", duration: "Optional, monthly", desc: "After launch, we're still here. Bug fixes, updates, new features, whatever you need. We offer flexible support plans so you're never stuck.", outcome: "Weekly maintenance logs, security patches, and a dedicated queue for updates." }
+      ],
+      faq: {
+        pill: "Common Questions",
+        title: "Frequently asked questions",
+        list: [
+          { q: "How much does a typical project cost?", a: "It depends on scope, but most projects fall between {{priceFloor}} and {{priceCeiling}}. We'll give you a clear estimate before any work starts. You can also try our project estimator for a quick ballpark." },
+          { q: "How long does a project take?", a: "Simple websites take 2-4 weeks. Web apps and mobile apps usually take 6-12 weeks. We'll give you a realistic timeline upfront." },
+          { q: "Do you work with small businesses?", a: "Absolutely. Most of our clients are small to mid-sized businesses, schools, churches, and startups." },
+          { q: "What if I don't know exactly what I need?", a: "That's totally fine. Most people don't. That's what the discovery call is for. We'll help you figure it out." },
+          { q: "Do you do maintenance after launch?", a: "Yes. We offer monthly support plans, or you can reach out for one-off updates whenever you need them." },
+          { q: "What technologies do you use?", a: "We pick the best tool for the job. That usually means React, Next.js, React Native, Node.js, and cloud platforms like AWS or Cloudflare. But we'll explain our choices in plain terms." }
+        ]
+      },
+      cta: {
+        title: "Ready to start?",
+        sub: "Let's talk about your project. No pressure, no obligations.",
+        call: "Book a free call",
+        estimate: "Get an estimate"
+      }
+    },
+    estimatePage: {
+      hero: {
+        pill: "Project Estimator",
+        title: "Get a project estimate",
+        sub: "Select your project type, scope, and features. We'll give you a ballpark range so you know what to expect before we talk."
+      },
+      step1: "What are you building?",
+      types: [
+        { id: "website", title: "Website or Landing Page", desc: "Marketing site, portfolio, or single-page site to showcase your brand." },
+        { id: "webapp", title: "Web Application", desc: "Interactive app with user accounts, data, and dynamic functionality." },
+        { id: "mobile", title: "Mobile App (iOS & Android)", desc: "Native or cross-platform app for phones and tablets." },
+        { id: "ecommerce", title: "E-commerce Store", desc: "Online store with products, cart, checkout, and order management." },
+        { id: "custom", title: "Custom Business Software", desc: "Internal tools, CRMs, or specialized software built for your workflow." },
+        { id: "unsure", title: "Not sure yet", desc: "You have an idea but haven't nailed down the format. That's totally fine." }
+      ],
+      step2: "How big is this project?",
+      scopes: [
+        { label: "Simple", desc: "1 to 5 pages, static content, basic contact forms. Ideal for simple portfolios or single product landing pages." },
+        { label: "Standard", desc: "5 to 15 pages, CMS integrations, custom APIs, third-party tools. Perfect for marketing sites and standard business software." },
+        { label: "Complex", desc: "15+ pages, custom dashboards, user authentication, role-based access control, complex databases." },
+        { label: "Enterprise", desc: "Multi-tenant setups, microservices, advanced security compliance, high-availability architecture." }
+      ],
+      step3: {
+        title: "Any extra features?",
+        sub: "Toggle on the ones you need. Each one adds a bit to the cost, but we'll show you exactly how much in the summary."
+      },
+      step4: "How soon do you need it?",
+      timelines: [
+        { id: "flexible", title: "Flexible", desc: "No rush, get it right", detail: "We take our time to make every detail perfect. Typically adds 2 to 4 extra weeks.", discount: "10% discount" },
+        { id: "standard", title: "Standard", desc: "2 to 3 months", detail: "A comfortable pace that balances speed with quality. Our most popular option.", discount: "Standard rate" },
+        { id: "urgent", title: "Urgent", desc: "ASAP, we needed this yesterday", detail: "We put more people on it and cut turnaround by about 30%. Premium pricing applies.", discount: "40% premium" }
+      ],
+      summary: {
+        range: "Estimated range",
+        to: " to ",
+        timeline: "Timeline",
+        weeks: " weeks",
+        features: "Features",
+        selected: " selected",
+        cta: "Get your custom quote"
+      },
+      bottomCta: {
+        title: "Ready to talk specifics?",
+        sub: "This estimate is just a starting point. Every project is different, and we'd love to learn more about yours. Let's hop on a quick call and figure out the details together.",
+        cta: "Get your custom quote"
+      },
+      features: [
+        { id: "auth", label: "User Authentication" },
+        { id: "payments", label: "Payment Processing" },
+        { id: "admin", label: "Admin Dashboard" },
+        { id: "api", label: "API Integrations" },
+        { id: "realtime", label: "Real-time Features" },
+        { id: "analytics", label: "Analytics & Reporting" },
+        { id: "i18n", label: "Multi-language Support" },
+        { id: "seo", label: "SEO Optimization" }
+      ],
+      seo: {
+        home: {
+          title: "Redevise | Optimization Infrastructure",
+          desc: "Redevise is an Optimization Infrastructure Company. We build custom software, web and mobile apps, and business automation platforms powered by Core."
+        },
+        about: {
+          title: "About Redevise | Our Optimization Philosophy",
+          desc: "Learn about the Redevise way: part product lab, part custom software studio, part operations consultancy. We deliver 10x efficiency gains or we don't build it."
+        },
+        services: {
+          title: "Redevise Services | Custom Software & Business Automation",
+          desc: "Explore Redevise services. We build custom web and mobile apps, landing pages, custom APIs, and execute workflow audits and automation consulting."
+        },
+        process: {
+          title: "Our Process | How Redevise Works",
+          desc: "From free discovery call to design, prototype, code development, launch, and ongoing support. Transparent custom software development workflow."
+        },
+        estimate: {
+          title: "Get a Project Estimate | Ballpark Pricing",
+          desc: "Estimate the cost of your custom web app, mobile app, website, e-commerce, or business software with our interactive project price estimator."
+        },
+        blog: {
+          title: "Redevise Blog | Insights on Optimization & AI Workflows",
+          desc: "Articles and case studies on automation, custom software architecture, support operations, school management systems, and workflow optimization."
+        },
+        terms: {
+          title: "Terms of Service | Redevise",
+          desc: "Terms of Service and legal agreements for Redevise custom software development and operations consulting services."
+        },
+        privacy: {
+          title: "Privacy Policy | Redevise Data Sovereignty",
+          desc: "Read the Redevise Privacy Policy. We enforce absolute data isolation and collect the minimum necessary data to host and secure your services."
+        },
+        church: {
+          title: "Ministry Infrastructure | Redevise Church Tech",
+          desc: "High-performance media systems, projection setups, live streaming, and specialized admin tools (Ascribe) built specifically for modern worship environments."
+        }
+      }
     }
   },
   es: {
@@ -491,6 +671,7 @@ export const translations = {
       pillars: "Qué hacemos",
       products: "Productos",
       services: "Servicios",
+      process: "Cómo trabajamos",
       about: "Nosotros",
       optimize: "Optimizar Ministerio",
       start: "Comenzar Proyecto",
@@ -524,12 +705,12 @@ export const translations = {
       switchToDark: "Cambiar a modo oscuro"
     },
     hero: {
-      pill: "Innovación en Movimiento",
+      pill: "Estudio de Software y Consultoría",
       buildSystems: "Construimos los sistemas",
       that: "que ",
       makeThingsWork: "hacen que las cosas funcionen",
       better: "mejor.",
-      sub: "Infraestructura de alto rendimiento y experiencias digitales fluidas creadas para la próxima generación de líderes de la industria.",
+      sub: "Diseñamos, construimos y optimizamos software para equipos que necesitan que sus herramientas simplemente funcionen.",
       workWithUs: "Trabaja con nosotros",
       exploreProducts: "Explorar Productos"
     },
@@ -538,86 +719,86 @@ export const translations = {
       list: [
         {
           id: "0",
-          num: "01 - PRODUCTOS",
+          num: "01 - NUESTRO SOFTWARE",
           title: "Construimos software",
-          text: "Un ecosistema en crecimiento de herramientas de alta precisión, desde inteligencia de soporte al cliente hasta operaciones escolares, sistemas de hábitos y flujos de trabajo de investigación. Cada una 10 veces más simple que la alternativa.",
-          tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro",
+          text: "Software listo para usar diseñado para resolver problemas operativos específicos de agentes de soporte, educadores y administradores. Diseñado para ser simple, potente y agradable de usar.",
+          tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe",
         },
         {
           id: "1",
-          num: "02 - LABS",
+          num: "02 - DESARROLLO",
           title: "Construimos para ti",
-          text: "Software a medida, MVPs y aplicaciones empresariales, diseñados con la misma infraestructura de inteligencia que impulsa nuestros propios productos. Más rápido que una agencia tradicional. Más inteligente por diseño.",
-          tag: "Ingeniería de extremo a extremo · MVP a escala",
+          text: "¿Necesitas una app, sitio web o plataforma desde cero? Nos encargamos de todo, desde el primer boceto hasta el día del lanzamiento.",
+          tag: "Apps Web · Apps Móviles · MVPs · Software Empresarial · APIs",
         },
         {
           id: "2",
           num: "03 - CONSULTORÍA",
           title: "Te optimizamos",
-          text: "Auditorías de flujos de trabajo. Estrategia de automatización. Análisis avanzados. Identificamos dónde pierde tiempo y energía tu organización, y luego eliminamos la fricción de manera sistemática.",
-          tag: "Auditorías de procesos · Automatización · Análisis · Capacitación",
+          text: "¿No estás seguro de lo que necesitas? Auditamos tus procesos, encontramos lo que te está costando tiempo y dinero, y creamos un plan para solucionarlo.",
+          tag: "Auditorías · Automatización · Analítica · Transformación Digital",
         }
       ]
     },
     core: {
-      pill: "La Capa de Inteligencia",
+      pill: "Tras Bastidores",
       title: (
         <>
-          Tenemos una ventaja <span className="text-gradient">injusta</span>
+          Trabajamos más rápido gracias a <span className="text-gradient">Core</span>
         </>
       ),
       paragraphs: [
-        "La mayoría de las empresas tienen una pila tecnológica. Nosotros tenemos un motor de contexto. Core es el motor de inteligencia subyacente que impulsa los productos de Redevise y los despliegues de clientes.",
-        "Mapea flujos de trabajo, automatiza procesos y acelera la ejecución. Hace que todo lo que construimos, y todo lo que hacemos por ti, sea drásticamente más efectivo que lo que obtendrías en cualquier otro lugar."
+        "Core es nuestro motor de IA interno. Ayuda a nuestro equipo a analizar problemas, generar soluciones y avanzar en los proyectos más rápido que las agencias tradicionales.",
+        "No necesitas entender cómo funciona. Solo obtienes mejores resultados, entregados antes."
       ],
       capabilities: [
-        "Motor de razonamiento consciente del contexto que potencia la eficiencia del flujo de trabajo con el tiempo",
-        "Reconocimiento de patrones de comportamiento en todos los flujos de trabajo",
-        "Recomendaciones conscientes del contexto en cada punto de decisión",
-        "Activadores de automatización de flujos de trabajo que eliminan la carga cognitiva de pensar",
-        "Capa de contexto unificada que permite a las herramientas integradas operar con contexto compartido de manera fluida",
-        "Cuando nuestros ingenieros construyen para ti, Core mapea, genera arquitecturas y optimiza flujos de trabajo en paralelo"
+        "Acelera la planificación y arquitectura de proyectos",
+        "Detecta patrones y cuellos de botella en los procesos automáticamente",
+        "Genera recomendaciones inteligentes en cada etapa del proyecto",
+        "Automatiza tareas de ingeniería repetitivas para que nos enfoquemos en lo importante",
+        "Conecta aprendizajes entre proyectos para entregar mejores soluciones",
+        "Ayuda a nuestros ingenieros a construir y entregar más rápido sin sacrificar calidad"
       ]
     },
     products: {
-      pill: "El Ecosistema de Productos",
+      pill: "Nuestros Productos",
       title: (
         <>
-          Herramientas creadas para eliminar la fricción,{" "}
-          <span className="text-gradient">no para aumentarla.</span>
+          Software que hemos{" "}
+          <span className="text-gradient">construido.</span>
         </>
       ),
-      subtitle: "Cada producto de Redevise está diseñado con un propósito específico en torno a una sola misión: una mejora drástica y medible en el funcionamiento de un flujo de trabajo concreto.",
+      subtitle: "Aplicaciones simples y enfocadas creadas para eliminar los cuellos de botella operativos diarios.",
       list: [
         {
           id: "0",
-          label: "B2B · Inteligencia de Soporte",
+          label: "B2B · Soporte",
           name: "SupporTribe",
-          text: "Tu equipo de atención al cliente, operando finalmente en su nivel máximo. SupporTribe aporta inteligencia impulsada por IA al rendimiento de los agentes, la calidad de la conversación y la claridad del flujo de trabajo, de modo que cada interacción se convierta en un punto de datos que mejore la siguiente.",
+          text: "Analítica de soporte al cliente con IA. Mira qué funciona, entrena a tus agentes y mejora cada conversación.",
         },
         {
           id: "1",
-          label: "B2B · Operaciones Educativas",
+          label: "B2B · Educación",
           name: "Eduplugg",
-          text: "La administración escolar reinventada. Eduplugg es un sistema de operaciones modular que despeja la niebla de la comunicación dispersa, los procesos redundantes y los flujos de trabajo fracturados, devolviendo a los educadores el tiempo y la claridad por los que decidieron enseñar.",
+          text: "Administración escolar en un solo lugar. Asistencia, comunicación, calificaciones y operaciones diseñadas para cómo realmente funcionan las escuelas.",
         },
         {
           id: "2",
-          label: "B2C · Comportamiento",
+          label: "B2C · Hábitos",
           name: "StreakMonkey",
-          text: "La disciplina no es un rasgo de la personalidad, es un sistema. StreakMonkey convierte tus intenciones en rutinas fijas a través de herramientas de consistencia de comportamiento que hacen que presentarse sea el camino de menor resistencia.",
+          text: "Construye mejores hábitos con rachas, recordatorios y seguimiento de progreso. Herramientas simples que te ayudan a mantener tus rutinas.",
         },
         {
           id: "3",
           label: "B2C · Investigación",
           name: "CitationPro",
-          text: "La extensión de navegador que convierte la investigación de una pérdida de tiempo en una ventaja competitiva. CitationPro elimina la fricción de la escritura académica y profesional, para que pases el tiempo pensando y no formateando.",
+          text: "Una extensión de navegador que se encarga de las citas y el formato para que puedas concentrarte en la investigación.",
         },
         {
           id: "4",
-          label: "Vertical · Ministerio",
+          label: "Ministerio",
           name: "Ascribe",
-          text: "Diseñado para los ritmos específicos de la vida de la iglesia. Ascribe es un software de presentación creado con una profunda utilidad de nicho: intuitivo, enfocado y diseñado para servir a comunidades que han sido desatendidas por herramientas genéricas.",
+          text: "Software de presentación diseñado específicamente para iglesias. Intuitivo, enfocado y hecho para equipos de adoración.",
           cta: "Explorar Ecosistema de la Iglesia",
           href: "https://church.redevise.com",
         }
@@ -627,34 +808,35 @@ export const translations = {
       pill: "Servicios",
       title: (
         <>
-          Ingeniería de clase mundial. Entregas{" "}
-          <span className="text-gradient">aumentadas por inteligencia.</span>
+          Dos formas en que podemos{" "}
+          <span className="text-gradient">ayudarte.</span>
         </>
       ),
-      subtitle: "Cuando trabajas con Redevise Labs o Redevise Consulting, no estás contratando a un equipo de ingenieros. Estás contratando ingenieros más Core, lo cual es algo fundamentalmente diferente.",
+      subtitle: "Ya sea que necesites construir algo o mejorar lo que ya tienes, estamos aquí para ti.",
+      coreNote: "Todo nuestro trabajo es acelerado por Core, nuestro motor de automatización personalizado, lo que nos ayuda a entregar código limpio y flujos de trabajo automatizados en la mitad de tiempo.",
       labs: {
         title: "Redevise Labs",
-        tagline: "Software a medida construido con la optimización en su núcleo. Desde MVP hasta escala empresarial, más rápido y más inteligente que los estudios de desarrollo tradicionales.",
+        tagline: "Construimos apps, sitios web y plataformas. Desde la primera idea hasta el producto terminado.",
         cta: "Comienza tu proyecto →",
         features: [
-          "Desarrollo de productos de extremo a extremo, desde el descubrimiento hasta el lanzamiento",
-          "MVPs creados para validar rápidamente y luego escalar sin reescrituras",
-          "Arquitectura aumentada por Core: problemas mapeados y resueltos a velocidad de máquina",
-          "Ingeniería de primer nivel con tecnologías que no se convertirán en pasivos",
-          "Pensamiento centrado en la optimización integrado en cada decisión de diseño"
+          "Desarrollo completo de proyectos desde el concepto hasta el lanzamiento",
+          "MVPs que validan tu idea rápidamente y escalan cuando estés listo",
+          "Código limpio y mantenible con tecnologías que perduran",
+          "Actualizaciones regulares para que siempre sepas cómo va todo",
+          "Entregas semanales en un entorno de pruebas para que veas el progreso en tiempo real"
         ]
       },
       consulting: {
         title: "Redevise Consulting",
-        tagline: "Optimización de procesos y análisis avanzados para organizaciones listas para cerrar la brecha entre cómo operan y cómo podrían hacerlo.",
+        tagline: "Ayudamos a las empresas a descubrir qué las está frenando y a solucionarlo.",
         cta: "Obtén una auditoría de eficiencia →",
         exploreMinistry: "Explorar Infraestructura del Ministerio",
         features: [
-          "Auditorías de eficiencia operativa que detectan los cuellos de botella reales",
-          "Estrategia de automatización de flujos de trabajo: no solo recomendaciones, sino implementación",
-          "Análisis de datos avanzado que convierte tus números en decisiones de negocio",
-          "Transformación digital con resultados medibles y limitados en el tiempo",
-          "Infraestructura del Ministerio: consultoría especializada para entornos de adoración modernos"
+          "Auditorías de flujos de trabajo que encuentran tus verdaderos cuellos de botella",
+          "Implementación de automatización, no solo recomendaciones",
+          "Datos y analítica que te ayudan a tomar mejores decisiones",
+          "Plazos claros y resultados medibles",
+          "Consultoría especializada para iglesias y equipos de ministerio"
         ]
       }
     },
@@ -662,31 +844,32 @@ export const translations = {
       values: [
         {
           id: "0",
-          title: "Simplicidad Radical",
-          text: "10 veces más simple que las alternativas, o no habremos hecho nuestro trabajo.",
+          title: "Mantenlo Simple",
+          text: "Si no es dramáticamente más simple que la alternativa, no hemos hecho nuestro trabajo.",
         },
         {
           id: "1",
-          title: "La Inteligencia Primero",
-          text: "Cada producto y servicio debe ayudar activamente en la toma de decisiones.",
+          title: "Inteligente por Defecto",
+          text: "Cada producto y servicio debe ayudarte a tomar mejores decisiones, no solo más.",
         },
         {
           id: "2",
-          title: "Mejora Drástica",
-          text: "Las ganancias marginales no justifican la adopción. Apuntamos a lo transformador.",
+          title: "Resultados Reales",
+          text: "Las mejoras pequeñas no justifican el esfuerzo del cambio. Apuntamos a lo transformador.",
         },
         {
           id: "3",
           title: "Conectado",
-          text: "Nada de lo que construimos existe de forma aislada. Todo se potencia.",
+          text: "Nada de lo que construimos existe aislado. Todo lo que aprendemos hace mejor el siguiente proyecto.",
         }
       ],
       taglines: [
-        "INFRAESTRUCTURA DE OPTIMIZACIÓN",
-        "INGENIERÍA CENTRADA EN LA INTELIGENCIA",
-        "IMPULSADO POR CORE",
-        "PRODUCTOS + SERVICIOS",
-        "MEJORA DRÁSTICA O NADA",
+        "APPS WEB Y MÓVILES",
+        "SOFTWARE A MEDIDA",
+        "GESTIÓN ESCOLAR",
+        "TECNOLOGÍA PARA IGLESIAS",
+        "CONSULTORÍA EMPRESARIAL",
+        "HERRAMIENTAS CON IA",
       ]
     },
     ctaFooter: {
@@ -699,7 +882,7 @@ export const translations = {
           <span className="text-gradient">Arreglemos los tuyos.</span>
         </>
       ),
-      desc: "Ya sea que necesites un producto que ya existe, uno que construyamos para ti o un equipo que optimice lo que ya tienes, Redevise es la respuesta.",
+      desc: "Cuéntanos en qué estás trabajando. Encontraremos la mejor forma de ayudarte. Sin presión, sin jerga.",
       requestConsultation: "Solicitar consulta",
       exploreProducts: "Explorar nuestros productos"
     },
@@ -841,7 +1024,7 @@ export const translations = {
         step2Title: "¿Qué te trae por aquí?",
         step3Title: "¿Cómo te gustaría conectarte?",
         bookCall: "Programar una Llamada",
-        bookCallSub: "Elige una hora · Charla de 15–30 min",
+        bookCallSub: "Elige una hora · Charla de 15-30 min",
         sendMessage: "Enviar un Mensaje",
         sendMessageSub: "Responderemos a tu correo",
         step4Title: "Cuéntanos un poco más.",
@@ -967,6 +1150,184 @@ export const translations = {
           text: "Dependiendo de su ubicación, es posible que tenga derechos bajo el RGPD, la CCPA u otros marcos regionales de protección de datos (como derechos de acceso, rectificación, portabilidad y eliminación). Si desea ejercer alguno de estos derechos, o si tiene preguntas sobre esta política, comuníquese con nosotros directamente en "
         }
       ]
+    },
+    servicesPage: {
+      hero: {
+        pill: "Nuestros Servicios",
+        title: "Qué podemos construir para ti",
+        sub: "Todo lo que ofrecemos, en español claro. Elige lo que se adapte a tus necesidades o simplemente echa un vistazo."
+      },
+      dev: {
+        pill: "Desarrollo",
+        title: "Lo Que Construimos",
+        sub: "Software, sitios web y aplicaciones, diseñados y construidos desde cero para tu negocio.",
+        items: [
+          { title: "Sitios Web y Landing Pages", desc: "Desde sitios de una sola página hasta webs de marketing completas. Diseño limpio, carga rápida y adaptado a móviles." },
+          { title: "Aplicaciones Web", desc: "Apps web a medida con paneles de control, cuentas de usuario y las funciones que tu negocio realmente necesita." },
+          { title: "Aplicaciones Móviles", desc: "Apps nativas y multiplataforma para iOS y Android. Desde la idea hasta la App Store." },
+          { title: "Tiendas de Comercio Electrónico", desc: "Tiendas online atractivas que realmente convierten. Procesamiento de pagos, inventario y más." },
+          { title: "Software Empresarial a Medida", desc: "Herramientas internas, CRMs, sistemas de reservas y cualquier software que tu negocio necesite pero no encuentre prefabricado." },
+          { title: "APIs e Integraciones", desc: "Conecta tus herramientas actuales entre sí o construye APIs personalizadas para tu plataforma." }
+        ]
+      },
+      consulting: {
+        pill: "Consultoría",
+        title: "Lo Que Mejoramos y Corregimos",
+        sub: "¿Ya tienes sistemas funcionando? Te ayudamos a hacerlos más rápidos, inteligentes y fáciles de administrar.",
+        items: [
+          { title: "Automatización de Procesos", desc: "Encontramos las tareas repetitivas que tu equipo hace a mano y las automatizamos." },
+          { title: "Auditorías de Procesos de Negocio", desc: "Analizamos cómo trabaja tu equipo, encontramos qué los frena y diseñamos una solución." },
+          { title: "Datos y Analítica", desc: "Configuramos seguimiento, paneles y reportes para que tomes decisiones basadas en números reales." },
+          { title: "Transformación Digital", desc: "Moderniza tus operaciones con plazos claros y resultados medibles." },
+          { title: "Optimización de Rendimiento", desc: "Aceleramos sitios web, apps y sistemas lentos." },
+          { title: "Capacitación y Formación", desc: "Enseñamos a tu equipo a usar y mantener las herramientas que construimos." }
+        ]
+      },
+      specialized: {
+        pill: "Especializado",
+        title: "Especialidades",
+        sub: "Experiencia profunda en unas pocas industrias donde conocemos los problemas al derecho y al revés.",
+        items: [
+          { title: "Tecnología para Iglesias y Ministerios", desc: "Transmisiones en vivo, sistemas de proyección, software de gestión y capacitación para tu equipo de multimedia.", linkLabel: "Visita church.redevise.com", href: "https://church.redevise.com" },
+          { title: "Sistemas para Escuelas", desc: "Asistencia, comunicación, calificaciones y operaciones en un solo lugar. Diseñado para el ritmo real de los colegios." },
+          { title: "Plataformas de Soporte al Cliente", desc: "Herramientas de soporte impulsadas por IA que ayudan a tus agentes a trabajar más rápido y a tus clientes a obtener respuestas antes." }
+        ]
+      },
+      cta: {
+        title: "¿No estás seguro de lo que necesitas?",
+        sub: "Cuéntanos qué quieres lograr y definiremos el enfoque adecuado juntos. Sin presiones ni discursos de venta.",
+        estimate: "Obtener un presupuesto",
+        talk: "Habla con nosotros"
+      }
+    },
+    processPage: {
+      hero: {
+        pill: "Nuestro Proceso",
+        title: "Cómo trabajamos",
+        sub: "Desde la primera conversación hasta el producto terminado. Así es exactamente como se ve el proceso, paso a paso."
+      },
+      steps: [
+        { title: "Llamada de Descubrimiento", duration: "Gratis, 15-30 minutos", desc: "Hablamos para entender lo que necesitas. Sin discursos de venta, solo una charla sobre tu proyecto, tus objetivos y si somos la opción adecuada.", outcome: "Un documento de alcance de trabajo personalizado y un presupuesto estimado." },
+        { title: "Propuesta y Contrato", duration: "2-3 días hábiles", desc: "Preparamos una propuesta detallada con el alcance, plazos, hitos y precios. Todo detallado para que no haya sorpresas.", outcome: "Una descripción detallada del proyecto, desglose de hitos y un contrato vinculante." },
+        { title: "Diseño y Prototipo", duration: "1-2 semanas", desc: "Diseñamos la apariencia y la navegación del proyecto. Verás maquetas y prototipos interactivos antes de que escribamos una sola línea de código.", outcome: "Un prototipo interactivo en Figma que muestra los flujos de usuario y diseños clave." },
+        { title: "Desarrollo", duration: "2-12 semanas", desc: "Construimos tu proyecto en sprints enfocados, con actualizaciones regulares para que siempre sepas qué está pasando. Sin desaparecer durante semanas.", outcome: "Un repositorio privado en GitHub y un enlace de pruebas actualizado semanalmente." },
+        { title: "Pruebas y QA", duration: "1-2 semanas", desc: "Probamos todo a fondo. Navegadores, dispositivos, rendimiento, seguridad. Lo ponemos a prueba para que tus usuarios no tengan problemas.", outcome: "Una lista de control de calidad completa en iOS, Android y navegadores web." },
+        { title: "Lanzamiento", duration: "1-3 días", desc: "Nos encargamos del despliegue, DNS, alojamiento y todos los detalles técnicos. Solo nos dices cuándo estás listo para salir al público.", outcome: "Despliegue de producción en infraestructura en la nube (AWS/Cloudflare) y transferencia completa de DNS." },
+        { title: "Soporte Continuo", duration: "Opcional, mensual", desc: "Después del lanzamiento, seguimos aquí. Corrección de errores, actualizaciones, nuevas funciones y lo que necesites. Ofrecemos planes flexibles para que nunca te quedes solo.", outcome: "Registros de mantenimiento semanales, parches de seguridad y una cola de actualizaciones dedicada." }
+      ],
+      faq: {
+        pill: "Preguntas Comunes",
+        title: "Preguntas frecuentes",
+        list: [
+          { q: "¿Cuánto cuesta un proyecto típico?", a: "Depende del alcance, pero la mayoría de los proyectos oscilan entre {{priceFloor}} y {{priceCeiling}}. Te daremos un presupuesto claro antes de empezar. También puedes probar nuestro estimador de proyectos para una idea aproximada." },
+          { q: "¿Cuánto tiempo toma un proyecto?", a: "Los sitios web simples toman de 2 a 4 semanas. Las aplicaciones web y móviles suelen tomar de 6 a 12 semanas. Te daremos un plazo realista desde el inicio." },
+          { q: "¿Trabajan con pequeñas empresas?", a: "Por supuesto. La mayoría de nuestros clientes son pequeñas y medianas empresas, colegios, iglesias y startups." },
+          { q: "¿Qué pasa si no sé exactamente lo que necesito?", a: "No te preocupes. La mayoría no lo sabe al principio. Para eso es la llamada de descubrimiento, te ayudaremos a definirlo." },
+          { q: "¿Ofrecen mantenimiento después del lanzamiento?", a: "Sí. Ofrecemos planes de soporte mensuales o puedes contactarnos para actualizaciones puntuales cuando las necesites." },
+          { q: "¿Qué tecnologías utilizan?", a: "Elegimos la mejor herramienta para cada caso. Por lo general, usamos React, Next.js, React Native, Node.js y plataformas en la nube como AWS o Cloudflare. Pero te explicaremos nuestras decisiones en términos sencillos." }
+        ]
+      },
+      cta: {
+        title: "¿Listo para empezar?",
+        sub: "Hablemos de tu proyecto. Sin presiones ni compromisos.",
+        call: "Programar llamada",
+        estimate: "Obtener un presupuesto"
+      }
+    },
+    estimatePage: {
+      hero: {
+        pill: "Estimador de Proyectos",
+        title: "Obtén un presupuesto estimado",
+        sub: "Selecciona el tipo de proyecto, alcance y características. Te daremos un rango estimado para que sepas qué esperar antes de hablar."
+      },
+      step1: "¿Qué estás construyendo?",
+      types: [
+        { id: "website", title: "Sitio Web o Landing Page", desc: "Sitio de marketing, portafolio o web de una sola página para mostrar tu marca." },
+        { id: "webapp", title: "Aplicación Web", desc: "App interactiva con cuentas de usuario, gestión de datos y funciones dinámicas." },
+        { id: "mobile", title: "Aplicación Móvil (iOS y Android)", desc: "App nativa o multiplataforma para teléfonos y tabletas." },
+        { id: "ecommerce", title: "Tienda Online", desc: "Comercio electrónico con catálogo, carrito, pasarela de pago y gestión de pedidos." },
+        { id: "custom", title: "Software Empresarial Personalizado", desc: "Herramientas internas, CRMs o software especializado diseñado para tu flujo de trabajo." },
+        { id: "unsure", title: "No estoy seguro todavía", desc: "Tienes una idea pero no has definido el formato. No te preocupes, te ayudamos." }
+      ],
+      step2: "¿Qué tan grande es el proyecto?",
+      scopes: [
+        { label: "Simple", desc: "1 a 5 páginas, contenido estático, formularios de contacto básicos. Ideal para portafolios simples o landing pages de un solo producto." },
+        { label: "Estándar", desc: "5 a 15 páginas, integraciones de CMS, APIs personalizadas, herramientas de terceros. Perfecto para sitios de marketing y software empresarial estándar." },
+        { label: "Complejo", desc: "Más de 15 páginas, paneles personalizados, autenticación de usuarios, control de acceso basado en roles, bases de datos complejas." },
+        { label: "Enterprise", desc: "Arquitectura multiinquilino, microservicios, cumplimiento avanzado de seguridad, infraestructura de alta disponibilidad." }
+      ],
+      step3: {
+        title: "¿Alguna característica adicional?",
+        sub: "Activa las que necesites. Cada una añade un poco al costo, pero te mostraremos exactamente cuánto en el resumen."
+      },
+      step4: "¿Qué tan pronto lo necesitas?",
+      timelines: [
+        { id: "flexible", title: "Flexible", desc: "Sin prisa, con cuidado", detail: "Nos tomamos el tiempo para perfeccionar cada detalle. Suele añadir de 2 a 4 semanas adicionales.", discount: "10% de descuento" },
+        { id: "standard", title: "Estándar", desc: "2 a 3 meses", detail: "Un ritmo cómodo que equilibra velocidad y calidad. Nuestra opción más popular.", discount: "Tarifa estándar" },
+        { id: "urgent", title: "Urgente", desc: "Lo antes posible", detail: "Asignamos más ingenieros y reducimos el plazo en un 30%. Se aplica tarifa premium.", discount: "40% de recargo" }
+      ],
+      summary: {
+        range: "Rango estimado",
+        to: " a ",
+        timeline: "Plazo",
+        weeks: " semanas",
+        features: "Características",
+        selected: " seleccionadas",
+        cta: "Obtén tu cotización a medida"
+      },
+      bottomCta: {
+        title: "¿Listo para hablar de detalles?",
+        sub: "Esta estimación es solo un punto de partida. Cada proyecto es diferente y nos encantaría saber más sobre el tuyo. Hablemos en una llamada rápida para definir los detalles.",
+        cta: "Obtén tu cotización a medida"
+      },
+      features: [
+        { id: "auth", label: "Autenticación de Usuarios" },
+        { id: "payments", label: "Procesamiento de Pagos" },
+        { id: "admin", label: "Panel de Administración" },
+        { id: "api", label: "Integraciones de API" },
+        { id: "realtime", label: "Funciones en Tiempo Real" },
+        { id: "analytics", label: "Informes y Analítica" },
+        { id: "i18n", label: "Soporte Multiidioma" },
+        { id: "seo", label: "Optimización SEO" }
+      ],
+      seo: {
+        home: {
+          title: "Redevise | Infraestructura de Optimización",
+          desc: "Redevise es una empresa de Infraestructura de Optimización. Construimos software a medida, apps web y móviles y plataformas de automatización empresarial impulsadas por Core."
+        },
+        about: {
+          title: "Sobre Redevise | Nuestra Filosofía de Optimización",
+          desc: "Conozca el estilo Redevise: parte laboratorio de productos, parte estudio de software a medida, parte consultoría de operaciones. Ofrecemos mejoras de eficiencia de 10x."
+        },
+        services: {
+          title: "Servicios de Redevise | Software a Medida y Automatización de Negocios",
+          desc: "Explore los servicios de Redevise. Diseñamos apps web y móviles, páginas de aterrizaje, APIs a medida y realizamos auditorías de flujo de trabajo y consultoría de automatización."
+        },
+        process: {
+          title: "Nuestro Proceso | Cómo Trabaja Redevise",
+          desc: "Desde la llamada de descubrimiento gratuita hasta el diseño, prototipo, desarrollo de código, lanzamiento y soporte continuo. Flujo de trabajo transparente de desarrollo de software."
+        },
+        estimate: {
+          title: "Obtenga un Presupuesto de Proyecto | Precios Estimados",
+          desc: "Calcule el costo de su app web a medida, app móvil, sitio web, e-commerce o software empresarial con nuestro estimador interactivo de precios."
+        },
+        blog: {
+          title: "Blog de Redevise | Ideas sobre Optimización y Flujos de Trabajo de IA",
+          desc: "Artículos y casos de estudio sobre automatización, arquitectura de software a medida, operaciones de soporte, sistemas de gestión escolar y optimización de flujos de trabajo."
+        },
+        terms: {
+          title: "Términos de Servicio | Redevise",
+          desc: "Términos de Servicio y acuerdos legales para el desarrollo de software a medida y servicios de consultoría operativa de Redevise."
+        },
+        privacy: {
+          title: "Política de Privacidad | Soberanía de Datos de Redevise",
+          desc: "Lea la Política de Privacidad de Redevise. Imponemos un aislamiento absoluto de datos y recopilamos los datos mínimos necesarios para hospedar y asegurar sus servicios."
+        },
+        church: {
+          title: "Infraestructura de Ministerio | Redevise Church Tech",
+          desc: "Sistemas de medios de alto rendimiento, proyección, transmisión en vivo y herramientas administrativas (Ascribe) diseñadas para iglesias modernas."
+        }
+      }
     }
   }
 };

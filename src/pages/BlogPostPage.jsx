@@ -91,7 +91,7 @@ const BlogPostPage = () => {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1.5 rounded-full border border-dark-400/40 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-text-subtle"
+                className="inline-flex items-center gap-1.5 rounded border border-text/10 bg-text/5 px-2.5 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
               >
                 <Tag size={10} />
                 {tag}
@@ -190,7 +190,7 @@ const BlogPostPage = () => {
                     {related.tags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-dark-400/30 px-2 py-0.5 text-[9px] font-medium uppercase tracking-widest text-text-subtle"
+                        className="rounded border border-text/10 bg-text/5 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
                       >
                         {tag}
                       </span>

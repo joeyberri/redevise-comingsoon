@@ -390,7 +390,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                   initial={{ scale: 0, x: 20 }}
                   animate={{ scale: 1, x: 0 }}
                   transition={{ delay: 1, type: "spring", stiffness: 200 }}
-                  className="absolute top-[28%] right-[15%] bg-dark-100/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-3 z-20"
+                  className="absolute top-[28%] right-[15%] bg-slate-900/90 backdrop-blur-xl border border-slate-700/50 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-3 z-20"
                 >
                   <div className="relative flex h-2.5 w-2.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime opacity-75"></span>
@@ -398,7 +398,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                   </div>
                   <div className="flex flex-col">
                     <Text variant="tiny" className="text-white font-bold uppercase tracking-widest text-[10px] leading-none mb-1">{t('common.liveAssistant')}</Text>
-                    <Text variant="tiny" className="text-text-subtle text-[9px] leading-none">{t('common.readyToHelp')}</Text>
+                    <Text variant="tiny" className="text-slate-300 text-[9px] leading-none">{t('common.readyToHelp')}</Text>
                   </div>
                 </motion.div>
               </div>
@@ -507,7 +507,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                   <motion.p
                                     initial={{ opacity: 0, y: -5 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="text-red-400 text-xs mt-2 flex items-center gap-1.5"
+                                    className="text-red-500 dark:text-red-400 text-xs mt-2 flex items-center gap-1.5"
                                   >
                                     <AlertCircle size={12} />
                                     {validationErrors.name}
@@ -533,7 +533,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                   <motion.p
                                     initial={{ opacity: 0, y: -5 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="text-red-400 text-xs mt-2 flex items-center gap-1.5"
+                                    className="text-red-500 dark:text-red-400 text-xs mt-2 flex items-center gap-1.5"
                                   >
                                     <AlertCircle size={12} />
                                     {validationErrors.email}
@@ -756,7 +756,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                 }
                               />
                               {submitError && (
-                                <div className="flex items-center gap-2 mt-4 text-red-400 text-sm">
+                                <div className="flex items-center gap-2 mt-4 text-red-500 dark:text-red-400 text-sm">
                                   <AlertCircle size={14} />
                                   <span>{submitError}</span>
                                 </div>
@@ -836,7 +836,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                       at {selectedSlot.time}
                                     </div>
                                     {submitError && (
-                                      <div className="flex items-center gap-1.5 mt-1 text-red-400 text-xs">
+                                      <div className="flex items-center gap-1.5 mt-1 text-red-500 dark:text-red-400 text-xs">
                                         <AlertCircle size={12} />
                                         <span>{submitError}</span>
                                       </div>

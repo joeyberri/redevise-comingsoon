@@ -11,7 +11,6 @@ import ScrollParallax from "../components/ScrollParallax";
 import { Heading, Text } from "../components/Typography";
 import Pill from "../components/Pill";
 import TextReveal from "../components/TextReveal";
-import { taglines } from "../constants";
 import robotWaving from "../assets/images/robot waving.svg";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
@@ -109,7 +108,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               </Pill>
 
               {/* Title Architecture — Structural line splits on block containers */}
-              <Heading level={1} variant="hero-title" className="mb-6">
+              <Heading level={1} variant="hero-title" className="mb-6" serif>
                 <span className="block">
                   <TextReveal text={t('hero.buildSystems')} delay={0.1} />
                 </span>

@@ -35,7 +35,7 @@ const CoreOrb = ({ className }) => {
       <div className="absolute inset-[-100px] bg-primary/10 blur-[120px] rounded-full scale-150" />
       
       {/* Structural Core */}
-      <div className="relative size-64 md:size-96 rounded-full border border-white/[0.03] bg-dark-100/5 backdrop-blur-[2px] overflow-hidden">
+      <div className="relative size-64 md:size-96 rounded-full border border-text/[0.03] bg-dark-100/5 backdrop-blur-[2px] overflow-hidden">
         {/* Rotating Intelligence Ring */}
         <motion.div
           animate={{

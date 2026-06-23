@@ -47,6 +47,16 @@ const Services = ({ onOpenInquiry = () => {} }) => {
           onOpenInquiry={onOpenInquiry}
         />
       </Grid>
+
+      {t('services.coreNote') && (
+        <FadeIn delay={0.3}>
+          <div className="mt-12 text-center max-w-2xl mx-auto">
+            <p className="text-xs font-sans text-text-muted leading-relaxed">
+              {t('services.coreNote')}
+            </p>
+          </div>
+        </FadeIn>
+      )}
     </Section>
   );
 };

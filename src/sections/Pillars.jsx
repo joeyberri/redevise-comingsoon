@@ -21,7 +21,7 @@ const Pillars = () => {
         {t('pillars.list').map((pillar, i) => (
           <FadeIn key={pillar.id} delay={0.1 * i}>
             <div 
-              className={`grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-12 py-10 md:py-12 ${
+              className={`grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-12 py-10 md:py-12 lg:-mx-[calc(50vw-50%)] lg:px-[calc(50vw-50%)] ${
                 i < t('pillars.list').length - 1 ? 'border-b border-text/[0.06]' : ''
               }`}
             >

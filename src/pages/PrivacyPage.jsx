@@ -3,9 +3,11 @@ import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import { motion } from "framer-motion";
 import { useLanguage } from "../utils/LanguageContext.jsx";
+import { useSEO } from "../utils/useSEO.js";
 
 const PrivacyPage = () => {
   const { t } = useLanguage();
+  useSEO({ key: "privacy" });
 
   return (
     <Section name="privacy" className="pt-32">

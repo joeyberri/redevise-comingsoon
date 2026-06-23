@@ -3,14 +3,15 @@ import { useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
 import Hero from "../sections/Hero.jsx";
 import Pillars from "../sections/Pillars.jsx";
-import Core from "../sections/Core.jsx";
 import Products from "../sections/Products.jsx";
 import Services from "../sections/Services.jsx";
 import About from "../sections/About.jsx";
 import CtaFooter from "../sections/CtaFooter.jsx";
+import { useSEO } from "../utils/useSEO.js";
 
 const HomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
+  useSEO({ key: "home" });
 
   useEffect(() => {
     if (state?.scrollTo) {
@@ -29,7 +30,6 @@ const HomePage = ({ onOpenInquiry }) => {
     <>
       <Hero onOpenInquiry={onOpenInquiry} />
       <Pillars />
-      <Core />
       <Products />
       <Services onOpenInquiry={onOpenInquiry} />
       <About />

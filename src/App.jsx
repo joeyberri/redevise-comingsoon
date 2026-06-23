@@ -21,7 +21,10 @@ const TermsPage = lazyWithRetry(() => import("./pages/TermsPage.jsx"));
 const PrivacyPage = lazyWithRetry(() => import("./pages/PrivacyPage.jsx"));
 const BlogListPage = lazyWithRetry(() => import("./pages/BlogListPage.jsx"));
 const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage.jsx"));
+const ServicesPage = lazyWithRetry(() => import("./pages/ServicesPage.jsx"));
 const KeystaticPage = lazyWithRetry(() => import("./pages/KeystaticPage.jsx"));
+const ProcessPage = lazyWithRetry(() => import("./pages/ProcessPage.jsx"));
+const EstimatePage = lazyWithRetry(() => import("./pages/EstimatePage.jsx"));
 
 const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
@@ -98,8 +101,11 @@ const AppContent = () => {
                   <Routes>
                     <Route path="/" element={<HomePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/services" element={<ServicesPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/blog" element={<BlogListPage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
+                    <Route path="/process" element={<ProcessPage onOpenInquiry={handleOpenInquiry} />} />
+                    <Route path="/estimate" element={<EstimatePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/terms" element={<TermsPage />} />
                     <Route path="/privacy" element={<PrivacyPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />

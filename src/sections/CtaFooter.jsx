@@ -2,6 +2,7 @@ import { Element } from "react-scroll";
 import { motion } from "framer-motion";
 import MagneticButton from "../components/MagneticButton.jsx";
 import GridSpotlight from "../components/GridSpotlight.jsx";
+import { Heading } from "../components/Typography.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const CtaFooter = ({ onOpenInquiry = () => {} }) => {
@@ -21,9 +22,9 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="mb-8 font-serif text-4xl font-normal leading-tight text-text md:text-5xl lg:text-7xl">
+            <Heading level={2} variant="hero-title" className="mb-8" serif>
               {t('ctaFooter.heading')}
-            </h2>
+            </Heading>
 
             <p className="mx-auto mb-12 max-w-xl text-base text-text-muted/70 md:text-xl leading-relaxed">
               {t('ctaFooter.desc')}

@@ -64,7 +64,7 @@ const ChurchHero = () => {
                 {t('church.hero.pill')}
               </Pill>
 
-              <Heading level={1} variant="hero-title" className="mb-8">
+              <Heading level={1} variant="hero-title" className="mb-8" serif>
                 {t('church.hero.title').split(" ").map((word, i) => {
                   const isExcellence = word.toLowerCase().includes("excelen");
                   return (

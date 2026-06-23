@@ -4,7 +4,7 @@ import FadeIn from "./FadeIn.jsx";
 const Pill = ({ children, className, animated = false, delay = 0 }) => {
   const content = (
     <div className={cn(
-      "pill inline-block", 
+      "pill", 
       className
     )}>
       {children}

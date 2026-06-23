@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 
 const spacingClasses = {
-  tight: "py-16 md:py-24",
-  default: "py-24 md:py-32",
-  generous: "py-32 md:py-40",
+  tight: "py-10 md:py-12",
+  default: "py-16 md:py-20",
+  generous: "py-20 md:py-28",
 };
 
 const Section = ({ 

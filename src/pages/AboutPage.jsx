@@ -4,9 +4,11 @@ import Pill from "../components/Pill.jsx";
 import { motion } from "framer-motion";
 import GridSpotlight from "../components/GridSpotlight.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
+import { useSEO } from "../utils/useSEO.js";
 
 const AboutPage = () => {
   const { t } = useLanguage();
+  useSEO({ key: "about" });
 
   return (
     <Section name="about-page" className="pt-32">

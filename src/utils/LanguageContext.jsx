@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { translations } from "../constants/translations";
+import { detectCurrency, formatPrice } from "./currency";
 
 export const LanguageContext = createContext();
 
@@ -8,12 +9,27 @@ export const LanguageProvider = ({ children }) => {
     return localStorage.getItem("locale") || "en";
   });
 
+  const [currency, setCurrencyState] = useState(() => {
+    return localStorage.getItem("currency") || detectCurrency();
+  });
+
   const setLocale = useCallback((newLocale) => {
     if (newLocale === "en" || newLocale === "es") {
       setLocaleState(newLocale);
       localStorage.setItem("locale", newLocale);
     }
   }, []);
+
+  const setCurrency = useCallback((newCurrency) => {
+    if (newCurrency === "USD" || newCurrency === "GHS") {
+      setCurrencyState(newCurrency);
+      localStorage.setItem("currency", newCurrency);
+    }
+  }, []);
+
+  const formatPriceLocal = useCallback((amountUSD) => {
+    return formatPrice(amountUSD, currency);
+  }, [currency]);
 
   const t = useCallback((key, params = {}) => {
     const keys = key.split(".");
@@ -50,7 +66,7 @@ export const LanguageProvider = ({ children }) => {
   }, [locale]);
 
   return (
-    <LanguageContext.Provider value={{ locale, setLocale, t }}>
+    <LanguageContext.Provider value={{ locale, setLocale, currency, setCurrency, formatPrice: formatPriceLocal, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -63,3 +79,4 @@ export const useLanguage = () => {
   }
   return context;
 };
+

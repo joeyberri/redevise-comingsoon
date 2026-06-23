@@ -33,6 +33,14 @@ const Header = ({ onOpenInquiry }) => {
       navigate("/about");
       return;
     }
+    if (id === "services") {
+      navigate("/services");
+      return;
+    }
+    if (id === "process") {
+      navigate("/process");
+      return;
+    }
 
     if (!isHomePage) {
       navigate("/", { state: { scrollTo: id } });
@@ -139,8 +147,9 @@ const Header = ({ onOpenInquiry }) => {
                 <LanguageSwitcher className="hidden lg:flex" />
                 <ThemeSwitcher className="hidden lg:flex" />
                 <Button 
-                  onClick={() => onOpenInquiry(isChurch ? "Church Infrastructure" : "Custom Engineering")}
-                  className="h-10 px-8 text-[11px] uppercase tracking-widest font-bold shadow-xl shadow-lime/5 border border-lime/20 hover:border-lime/50 transition-all"
+                  to={isChurch ? undefined : "/estimate"}
+                  onClick={isChurch ? () => onOpenInquiry("Church Infrastructure") : undefined}
+                  className="h-10 px-8 text-[11px] uppercase tracking-widest font-bold shadow-xl shadow-lime/5 border border-lime/20 hover:border-lime/50 transition-all justify-center"
                 >
                   {isChurch ? t('nav.optimize') : t('nav.start')}
                 </Button>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link as LinkScroll } from "react-scroll";
+import { Link as LinkRouter } from "react-router-dom";
 import { cn } from "../utils/cn";
 
 const Button = ({
@@ -43,6 +44,15 @@ const Button = ({
   };
 
   if (to) {
+    if (typeof to === "string" && to.startsWith("/")) {
+      return (
+        <LinkRouter to={to} onClick={onClick}>
+          <motion.div {...motionProps} className={cn(combinedClasses, "cursor-pointer")}>
+            <MotionContent />
+          </motion.div>
+        </LinkRouter>
+      );
+    }
     return (
       <LinkScroll
         to={to}

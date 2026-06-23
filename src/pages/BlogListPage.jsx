@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, Calendar, Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
 import { getAllPosts, getAllTags, getReadingTime } from "../utils/blog";
+import { useSEO } from "../utils/useSEO.js";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,6 +19,7 @@ const BlogListPage = () => {
   const allTags = getAllTags();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTag, setActiveTag] = useState(null);
+  useSEO({ key: "blog" });
 
   const filteredPosts = useMemo(() => {
     return allPosts.filter((post) => {
@@ -90,10 +92,10 @@ const BlogListPage = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setActiveTag(null)}
-              className={`rounded-full px-4 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 border ${
+              className={`rounded border px-3 py-1 font-mono text-[10px] uppercase tracking-wider transition-all duration-300 ${
                 !activeTag
-                  ? "border-lime/40 bg-lime/10 text-lime"
-                  : "border-dark-400/50 bg-dark-50/30 text-text-subtle hover:border-dark-400 hover:text-text-muted"
+                  ? "border-lime/30 bg-lime/10 text-lime"
+                  : "border-text/10 bg-text/5 text-text-subtle hover:border-text/30 hover:text-text-muted"
               }`}
             >
               All
@@ -102,10 +104,10 @@ const BlogListPage = () => {
               <button
                 key={tag}
                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                className={`rounded-full px-4 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 border ${
+                className={`rounded border px-3 py-1 font-mono text-[10px] uppercase tracking-wider transition-all duration-300 ${
                   activeTag === tag
-                    ? "border-lime/40 bg-lime/10 text-lime"
-                    : "border-dark-400/50 bg-dark-50/30 text-text-subtle hover:border-dark-400 hover:text-text-muted"
+                    ? "border-lime/30 bg-lime/10 text-lime"
+                    : "border-text/10 bg-text/5 text-text-subtle hover:border-text/30 hover:text-text-muted"
                 }`}
               >
                 {tag}
@@ -160,13 +162,13 @@ const BlogListPage = () => {
                 {/* Content */}
                 <div className={`p-8 md:p-10 flex flex-col justify-center ${featuredPost.coverImage ? 'lg:w-1/2' : 'w-full'}`}>
                   <div className="flex flex-wrap items-center gap-3 mb-5">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-lime/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-lime">
+                    <span className="inline-flex items-center gap-1.5 rounded border border-lime/30 bg-lime/10 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-lime">
                       Featured
                     </span>
                     {featuredPost.tags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center gap-1 rounded-full border border-dark-400/40 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-text-subtle"
+                        className="inline-flex items-center gap-1 rounded border border-text/10 bg-text/5 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
                       >
                         <Tag size={9} />
                         {tag}
@@ -235,7 +237,7 @@ const BlogListPage = () => {
                       {post.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-dark-400/30 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-widest text-text-subtle"
+                          className="rounded border border-text/10 bg-text/5 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
                         >
                           {tag}
                         </span>

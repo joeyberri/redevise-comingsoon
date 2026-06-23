@@ -7,9 +7,11 @@ import Products from "../../sections/Products.jsx";
 import ChurchServices from "../../sections/church/ChurchServices.jsx";
 import About from "../../sections/About.jsx";
 import CtaFooter from "../../sections/CtaFooter.jsx";
+import { useSEO } from "../../utils/useSEO.js";
 
 const ChurchHomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
+  useSEO({ key: "church" });
 
   useEffect(() => {
     if (state?.scrollTo) {
