@@ -2,7 +2,7 @@ import Section from "../components/Section.jsx";
 import ServiceCard from "../components/ServiceCard.jsx";
 import Grid from "../components/Grid.jsx";
 import FadeIn from "../components/FadeIn.jsx";
-import { Heading, Text } from "../components/Typography.jsx";
+import { Heading } from "../components/Typography.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const Services = ({ onOpenInquiry = () => {} }) => {

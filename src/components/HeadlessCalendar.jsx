@@ -143,7 +143,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
             <motion.div
               layoutId="active-day"
               className="absolute inset-0 border-2 border-lime rounded-xl pointer-events-none"
-              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              transition={{ type: "spring", bounce: 0.1, duration: 0.35 }}
             />
           )}
         </button>
@@ -206,7 +206,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
             className="flex flex-col pt-5 border-t border-text/10"
           >
             <div className="flex items-center gap-2 mb-3">

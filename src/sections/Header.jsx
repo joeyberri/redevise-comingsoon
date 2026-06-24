@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
-import { Link as LinkScroll, scroller } from "react-scroll";
+import { useState } from "react";
+import { scroller } from "react-scroll";
 import { Link as LinkRouter, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, ArrowUpRight } from "lucide-react";
+import { Menu, ChevronDown, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "../utils/cn";
 import Button from "../components/Button.jsx";
@@ -11,7 +11,7 @@ import Logo from "../components/Logo.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
-import { navLinks, taglines, products } from "../constants/index.jsx";
+import { navLinks } from "../constants/index.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 
 const Header = ({ onOpenInquiry }) => {
@@ -41,14 +41,18 @@ const Header = ({ onOpenInquiry }) => {
       navigate("/process");
       return;
     }
+    if (id === "blog") {
+      navigate("/blog");
+      return;
+    }
 
     if (!isHomePage) {
       navigate("/", { state: { scrollTo: id } });
     } else {
       scroller.scrollTo(id, {
-        duration: 800,
+        duration: 400,
         delay: 0,
-        smooth: "easeInOutQuart",
+        smooth: "easeOutCubic",
         offset: -80,
       });
     }
@@ -64,7 +68,7 @@ const Header = ({ onOpenInquiry }) => {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 z-50 w-full transition-all duration-700 ease-in-out",
+          "fixed top-0 left-0 z-50 w-full transition-all duration-200 ease-in-out",
           hasScrolled 
             ? "bg-dark-100/70 backdrop-blur-md border-b border-text/10 translate-y-0" 
             : "bg-transparent py-2"
@@ -72,7 +76,7 @@ const Header = ({ onOpenInquiry }) => {
       >
         <div className="relative z-10">
           <div className={cn(
-            "container flex items-center justify-between transition-all duration-500",
+            "container flex items-center justify-between transition-all duration-200",
             hasScrolled ? "h-16" : "h-20"
           )}>
             
@@ -147,8 +151,7 @@ const Header = ({ onOpenInquiry }) => {
                 <LanguageSwitcher className="hidden lg:flex" />
                 <ThemeSwitcher className="hidden lg:flex" />
                 <Button 
-                  to={isChurch ? undefined : "/estimate"}
-                  onClick={isChurch ? () => onOpenInquiry("Church Infrastructure") : undefined}
+                  onClick={() => onOpenInquiry(isChurch ? "Church Infrastructure" : t('modal.interests')[1])}
                   className="h-10 px-8 text-[11px] uppercase tracking-widest font-bold shadow-xl shadow-lime/5 border border-lime/20 hover:border-lime/50 transition-all justify-center"
                 >
                   {isChurch ? t('nav.optimize') : t('nav.start')}

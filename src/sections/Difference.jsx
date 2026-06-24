@@ -5,6 +5,18 @@ import Pill from "../components/Pill.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { X, Check } from "lucide-react";
 
+const PlusIcon = () => (
+  <svg 
+    width="8" 
+    height="8" 
+    viewBox="0 0 8 8" 
+    fill="none" 
+    className="text-text-subtle/30 group-hover/row:text-lime transition-colors duration-300 pointer-events-none select-none"
+  >
+    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+  </svg>
+);
+
 const Difference = () => {
   const { t } = useLanguage();
 
@@ -29,7 +41,7 @@ const Difference = () => {
 
         {/* Comparison Header Labels (Desktop only) */}
         <div className="hidden md:grid grid-cols-12 gap-8 mb-6 px-6 font-mono text-[10px] uppercase tracking-widest text-text-muted">
-          <div className="col-span-4">// COMPARISON</div>
+          <div className="col-span-4">{t("difference.label")}</div>
           <div className="col-span-4">{t("difference.themLabel")}</div>
           <div className="col-span-4 text-lime">{t("difference.usLabel")}</div>
         </div>
@@ -38,9 +50,15 @@ const Difference = () => {
         <div className="space-y-4">
           {items.map((item, idx) => (
             <FadeIn key={idx} delay={idx * 0.05} fullWidth>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-2xl border border-text/[0.04] bg-text/[0.01] hover:border-text/[0.08] hover:bg-text/[0.02] transition-all duration-300 relative group overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-none border border-text/[0.04] bg-text/[0.01] hover:border-text/[0.08] hover:bg-text/[0.02] transition-all duration-300 relative group/row overflow-visible">
+                {/* Plus Corner Markers */}
+                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+
                 {/* Accent glow on hover for Redevise column */}
-                <div className="absolute right-0 top-0 bottom-0 w-[33%] bg-lime/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none hidden md:block" />
+                <div className="absolute right-0 top-0 bottom-0 w-[33%] bg-lime/[0.01] opacity-0 group-hover/row:opacity-100 transition-opacity duration-500 pointer-events-none hidden md:block" />
 
                 {/* Title */}
                 <div className="col-span-1 md:col-span-4 flex items-center">

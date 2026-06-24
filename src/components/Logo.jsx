@@ -1,6 +1,6 @@
 import { cn } from "../utils/cn";
 
-const Logo = ({ className, iconSize = "size-8", textSize = "text-lg", showText = true }) => {
+const Logo = ({ className, iconSize = "size-8", showText = true }) => {
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <img 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { scroller } from "react-scroll";
 import Hero from "../sections/Hero.jsx";
 import Pillars from "../sections/Pillars.jsx";
@@ -15,20 +15,23 @@ import { useSEO } from "../utils/useSEO.js";
 
 const HomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
+  const navigate = useNavigate();
   useSEO({ key: "home" });
 
   useEffect(() => {
     if (state?.scrollTo) {
       setTimeout(() => {
         scroller.scrollTo(state.scrollTo, {
-          duration: 800,
+          duration: 400,
           delay: 0,
-          smooth: "easeInOutQuart",
+          smooth: "easeOutCubic",
           offset: -80,
         });
+        // Clear scroll state from history so subsequent refreshes start at the top
+        navigate("/", { replace: true, state: {} });
       }, 100);
     }
-  }, [state]);
+  }, [state, navigate]);
 
   return (
     <>

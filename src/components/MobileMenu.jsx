@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Link as LinkScroll, scroller } from "react-scroll";
-import { Link as LinkRouter, useLocation, useNavigate } from "react-router-dom";
+import { scroller } from "react-scroll";
+import { useLocation, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import Button from "./Button.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
@@ -34,9 +34,9 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
       navigate("/", { state: { scrollTo: id } });
     } else {
       scroller.scrollTo(id, {
-        duration: 800,
+        duration: 400,
         delay: 0,
-        smooth: "easeInOutQuart",
+        smooth: "easeOutCubic",
         offset: -80,
       });
     }
@@ -65,7 +65,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            transition={{ type: "spring", damping: 32, stiffness: 400 }}
             className="fixed right-0 top-0 z-[70] h-full w-[80%] bg-dark-50/90 backdrop-blur-2xl p-8 border-l border-text/[0.08] md:hidden shadow-2xl"
           >
             <div className="flex flex-col h-full">
@@ -88,7 +88,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                     key={link.id}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.1 }}
+                    transition={{ delay: 0.04 + i * 0.03 }}
                   >
                     <button
                       onClick={() => handleNavClick(link.id)}
@@ -98,12 +98,28 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                     </button>
                   </motion.div>
                 ))}
+                
+                {/* Careers Link in Mobile Menu */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.04 + navLinks.length * 0.03 }}
+                >
+                  <button
+                    onClick={() => {
+                      onClose();
+                      navigate("/careers");
+                    }}
+                    className="text-3xl font-bold text-text-muted transition-colors hover:text-lime text-left w-full cursor-pointer"
+                  >
+                    {t("nav.careers")}
+                  </button>
+                </motion.div>
               </nav>
 
               <div className="mt-auto pt-8 border-t border-text/[0.08]">
                 <Button 
-                  to={isChurch ? undefined : "/estimate"}
-                  onClick={isChurch ? handleCtaClick : onClose} 
+                  onClick={handleCtaClick} 
                   fullWidth 
                   className="w-full justify-center text-sm uppercase tracking-widest font-bold py-5"
                 >

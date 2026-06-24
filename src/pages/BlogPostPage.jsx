@@ -62,9 +62,9 @@ const BlogPostPage = () => {
       <div className="container relative z-10">
         {/* Breadcrumb */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.25 }}
           className="mb-10"
         >
           <Link
@@ -81,9 +81,9 @@ const BlogPostPage = () => {
 
         {/* Post Header */}
         <motion.header
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
+          transition={{ delay: 0.05, duration: 0.35 }}
           className="max-w-3xl mx-auto mb-12"
         >
           {/* Tags */}
@@ -137,7 +137,7 @@ const BlogPostPage = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
             className="max-w-4xl mx-auto mb-14 rounded-2xl overflow-hidden border border-dark-400/30"
           >
             <img
@@ -153,9 +153,9 @@ const BlogPostPage = () => {
 
         {/* Post Content */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.15, duration: 0.35 }}
           className="max-w-3xl mx-auto"
         >
           <div className="blog-prose">
@@ -171,9 +171,9 @@ const BlogPostPage = () => {
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.35 }}
             className="max-w-4xl mx-auto"
           >
             <h2 className="font-sans text-xl font-bold text-text mb-8 tracking-tight">

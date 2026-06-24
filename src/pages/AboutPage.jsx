@@ -1,6 +1,5 @@
 import Section from "../components/Section.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
-import Pill from "../components/Pill.jsx";
 import { motion } from "framer-motion";
 import GridSpotlight from "../components/GridSpotlight.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
@@ -14,9 +13,9 @@ const AboutPage = () => {
     <Section name="about-page" className="pt-32">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.35 }}
         >
           <Heading level={1} className="mb-12 text-5xl md:text-7xl">
             {t('aboutPage.title')}

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { scroller } from "react-scroll";
 import ChurchHero from "../../sections/church/ChurchHero.jsx";
 import Pillars from "../../sections/Pillars.jsx";
@@ -11,20 +11,23 @@ import { useSEO } from "../../utils/useSEO.js";
 
 const ChurchHomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
+  const navigate = useNavigate();
   useSEO({ key: "church" });
 
   useEffect(() => {
     if (state?.scrollTo) {
       setTimeout(() => {
         scroller.scrollTo(state.scrollTo, {
-          duration: 800,
+          duration: 400,
           delay: 0,
-          smooth: "easeInOutQuart",
+          smooth: "easeOutCubic",
           offset: -80,
         });
+        // Clear scroll state from history so subsequent refreshes start at the top
+        navigate("/", { replace: true, state: {} });
       }, 100);
     }
-  }, [state]);
+  }, [state, navigate]);
 
   return (
     <>

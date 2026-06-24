@@ -111,7 +111,7 @@ export function getAllTags() {
  * Estimate reading time for a post.
  */
 export function getReadingTime(content) {
-  const words = content.replace(/[#*`>\-\[\]()]/g, '').split(/\s+/).length;
+  const words = content.replace(/[#*`>\-[\]()]/g, '').split(/\s+/).length;
   const minutes = Math.max(1, Math.round(words / 200));
   return `${minutes} min read`;
 }

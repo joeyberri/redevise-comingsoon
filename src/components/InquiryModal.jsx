@@ -15,6 +15,18 @@ import { cn } from "../utils/cn";
 import secretaryImg from "../assets/images/secretary.webp";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
+const PlusIcon = ({ className }) => (
+  <svg 
+    width="8" 
+    height="8" 
+    viewBox="0 0 8 8" 
+    fill="none" 
+    className={cn("text-text-subtle/30 group-hover:text-lime transition-colors duration-300 pointer-events-none select-none", className)}
+  >
+    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+  </svg>
+);
+
 // ── Component ────────────────────────────────────────────────────────────────
 const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
   const { t, locale } = useLanguage();
@@ -285,51 +297,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
     }
   };
 
-  // ── Left-panel copy per step ────────────────────────────────────────────
-  const getLeftPanelCopy = () => {
-    if (isSubmitted && choice === "book") {
-      return {
-        title: t('modal.panels.bookedTitle'),
-        sub: t('modal.panels.bookedSub'),
-      };
-    }
-    if (isSubmitted) {
-      return {
-        title: t('modal.panels.sentTitle'),
-        sub: t('modal.panels.sentSub'),
-      };
-    }
-    if (step === 4 && choice === "book") {
-      return {
-        title: t('modal.panels.pickTitle'),
-        sub: t('modal.panels.pickSub'),
-      };
-    }
-    if (step === 4 && choice === "message") {
-      return {
-        title: t('modal.panels.almostTitle'),
-        sub: t('modal.panels.almostSub'),
-      };
-    }
-    if (step === 2) {
-      return {
-        title: t('modal.panels.focusTitle'),
-        sub: t('modal.panels.focusSub'),
-      };
-    }
-    if (step === 3) {
-      return {
-        title: t('modal.panels.nextTitle'),
-        sub: t('modal.panels.nextSub'),
-      };
-    }
-    return {
-      title: t('modal.panels.touchTitle'),
-      sub: t('modal.panels.touchSub'),
-    };
-  };
 
-  const panelCopy = getLeftPanelCopy();
 
   return (
     <AnimatePresence>
@@ -357,7 +325,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.05, duration: 0.4, ease: "easeOut" }}
               className="absolute -left-12 md:-left-32 bottom-0 z-[210] pointer-events-none hidden lg:block"
             >
               <div className="relative group/secretary">
@@ -389,7 +357,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                 <motion.div
                   initial={{ scale: 0, x: 20 }}
                   animate={{ scale: 1, x: 0 }}
-                  transition={{ delay: 1, type: "spring", stiffness: 200 }}
+                  transition={{ delay: 0.4, type: "spring", stiffness: 350 }}
                   className="absolute top-[28%] right-[15%] bg-slate-900/90 backdrop-blur-xl border border-slate-700/50 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-3 z-20"
                 >
                   <div className="relative flex h-2.5 w-2.5">
@@ -410,25 +378,20 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.98, y: 20, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 350, mass: 0.5 }}
-              className="relative w-full rounded-[2.5rem] border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-visible"
+              className="group/modal relative w-full rounded-none border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-visible"
               style={{ maxHeight: "90vh" }}
             >
-              {/* Inner layout container */}
-              <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-[2.5rem]">
+              {/* Plus Corner Markers */}
+              <div className="absolute -top-[4px] -left-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
+              <div className="absolute -top-[4px] -right-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
+              <div className="absolute -bottom-[4px] -left-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
+              <div className="absolute -bottom-[4px] -right-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
 
-                {/* ── Left Panel (Spacer) ── */}
-                <div className="hidden md:flex w-full md:w-[320px] shrink-0 p-10 flex-col justify-between border-r border-text/[0.05] relative">
-                  <div className="flex flex-col h-full justify-between">
-                    <div>
-                      <Heading level={2} className="text-5xl leading-tight text-text mb-4 mt-12">
-                        {panelCopy.title}
-                      </Heading>
-                      <Text className="text-text-muted text-base leading-relaxed">
-                        {panelCopy.sub}
-                      </Text>
-                    </div>
-                  </div>
-                </div>
+              {/* Inner layout container */}
+              <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-none">
+
+                {/* ── Left Panel Spacer (for Secretary Image on Desktop) ── */}
+                <div className="hidden lg:flex w-full lg:w-[320px] shrink-0 border-r border-text/[0.05] relative" />
 
                 {/* ── Right Panel ── */}
                 <div className="flex-1 flex flex-col min-h-0 relative bg-gradient-to-br from-transparent to-text/[0.02]">
@@ -463,10 +426,10 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                     ) : (
                       <motion.div
                         key={step}
-                        initial={{ x: 20, opacity: 0, filter: "blur(10px)" }}
-                        animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-                        exit={{ x: -20, opacity: 0, filter: "blur(10px)" }}
-                        transition={{ duration: 0.4, ease: "circOut" }}
+                        initial={{ x: 8, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: -8, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
                         className="flex-1 flex flex-col min-h-0"
                       >
                         {/* ── STEP 1: Who are you ── */}
@@ -598,7 +561,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                                     key={interest}
                                     onClick={() => toggleInterest(interest)}
                                     className={cn(
-                                      "px-5 py-4 rounded-2xl border text-left transition-all duration-200 flex items-center gap-4 cursor-pointer",
+                                      "px-5 py-4 rounded-none border text-left transition-all duration-200 flex items-center gap-4 cursor-pointer",
                                       isSelected
                                         ? "border-lime/40 bg-lime/5"
                                         : "border-text/10 hover:border-text/20 bg-text/[0.02]"
@@ -679,8 +642,14 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
                             <div className="flex flex-col md:flex-row gap-5 justify-center">
                               <button
                                 onClick={() => handleChoice("book")}
-                                className="flex-1 group/btn p-8 rounded-[2rem] border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
+                                className="flex-1 group/btn p-8 rounded-none border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4 cursor-pointer relative overflow-visible"
                               >
+                                {/* Corner indicators */}
+                                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+                                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+                                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+                                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+
                                 <div className="size-16 rounded-2xl bg-lime text-dark-100 flex items-center justify-center shadow-[0_0_30px_rgba(190,255,80,0.2)] group-hover/btn:scale-110 transition-transform">
                                   <Calendar size={30} />
                                 </div>
@@ -696,8 +665,14 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
 
                               <button
                                 onClick={() => handleChoice("message")}
-                                className="flex-1 group/btn p-8 rounded-[2rem] border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
+                                className="flex-1 group/btn p-8 rounded-none border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4 cursor-pointer relative overflow-visible"
                               >
+                                {/* Corner indicators */}
+                                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+                                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+                                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+                                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
+
                                 <div className="size-16 rounded-2xl bg-text/10 text-text flex items-center justify-center group-hover/btn:scale-110 transition-transform">
                                   <MessageSquare size={30} />
                                 </div>

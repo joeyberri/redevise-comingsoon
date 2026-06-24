@@ -1,6 +1,3 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
-
 import js from '@eslint/js'
 import globals from 'globals'
 import react from 'eslint-plugin-react'
@@ -11,7 +8,10 @@ export default [{ ignores: ['dist'] }, {
   files: ['**/*.{js,jsx}'],
   languageOptions: {
     ecmaVersion: 2020,
-    globals: globals.browser,
+    globals: {
+      ...globals.browser,
+      ...globals.node,
+    },
     parserOptions: {
       ecmaVersion: 'latest',
       ecmaFeatures: { jsx: true },
@@ -37,4 +37,4 @@ export default [{ ignores: ['dist'] }, {
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
   },
-}, ...storybook.configs["flat/recommended"]];
+}];

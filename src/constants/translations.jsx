@@ -1,5 +1,3 @@
-import React from "react";
-
 export const translations = {
   en: {
     nav: {
@@ -10,7 +8,9 @@ export const translations = {
       about: "About",
       optimize: "Optimize Ministry",
       start: "Start Project",
-      startProject: "Start a project"
+      startProject: "Start a project",
+      careers: "Careers",
+      blog: "Blog"
     },
     common: {
       navigation: "Navigation",
@@ -208,23 +208,29 @@ export const translations = {
       ]
     },
     ctaFooter: {
-      heading: (
-        <>
-          The world runs on
-          <br />
-          <span className="italic text-text-subtle">broken processes.</span>
-          <br />
-          <span className="text-gradient">Let's fix yours.</span>
-        </>
-      ),
+      heading: "The world runs on broken processes. Let's fix yours.",
       desc: "Tell us what you're working on. We'll figure out the best way to help. No pressure, no jargon.",
       requestConsultation: "Request consultation",
-      exploreProducts: "Explore our products"
+      howWeWork: "How we work"
     },
     footer: {
       copyright: "© 2026 Redevise. All rights reserved.",
       privacyPolicy: "Privacy Policy",
-      termsOfUse: "Terms of Use"
+      termsOfUse: "Terms of Use",
+      quickLinks: "Quick Links",
+      services: "Services",
+      solutions: "Custom Solutions",
+      home: "Home",
+      about: "About",
+      process: "How we work",
+      blog: "Blog",
+      webDevelopment: "Websites & Landing Pages",
+      webApps: "Web Applications",
+      mobileApps: "Mobile Apps",
+      ecommerce: "E-commerce Stores",
+      customSoftware: "Custom Business Software",
+      automation: "Workflow Automation",
+      careers: "Careers"
     },
     errorBoundary: {
       title: "Something had a hiccup.",
@@ -493,41 +499,51 @@ export const translations = {
         title: "What we can build for you",
         sub: "Everything we offer, in plain English. Pick what matches your needs, or just browse around."
       },
-      dev: {
-        pill: "Development",
-        title: "What We Build",
-        sub: "Software, websites, and apps, designed and built from scratch for your business.",
-        items: [
-          { title: "Websites & Landing Pages", desc: "From single-page sites to full marketing websites. Clean design, fast loading, mobile-friendly." },
-          { title: "Web Applications", desc: "Custom web apps with dashboards, user accounts, and the features your business actually needs." },
-          { title: "Mobile Apps", desc: "Native and cross-platform apps for iOS and Android. From idea to App Store." },
-          { title: "E-commerce Stores", desc: "Online stores that look great and actually convert. Payment processing, inventory, the works." },
-          { title: "Custom Business Software", desc: "Internal tools, CRMs, booking systems, whatever your business runs on but can't find off the shelf." },
-          { title: "APIs & Integrations", desc: "Connect your existing tools together, or build custom APIs for your platform." }
+      core: {
+        pill: "Core Offerings",
+        title: "High-Demand Essentials",
+        sub: "The highest-demand services for growing businesses, grouped into simple, high-performance packages.",
+        packages: [
+          {
+            id: "launchpad",
+            title: "Digital Launchpad",
+            desc: "Establish a professional online presence that gets found by local customers.",
+            items: [
+              "Custom Website Design",
+              "Reliable Hosting Setup",
+              "Google Workspace Emails",
+              "Google Business Profile Setup",
+              "Local SEO Optimization"
+            ]
+          },
+          {
+            id: "automation",
+            title: "AI & Automation",
+            desc: "Eliminate repetitive tasks and engage customers 24/7 with custom automation.",
+            items: [
+              "WhatsApp Automation",
+              "AI Chatbot Development",
+              "Business Process Audits",
+              "Workflow Automations"
+            ]
+          },
+          {
+            id: "growth",
+            title: "Growth & Scale",
+            desc: "Convert more traffic into sales and measure your performance with data.",
+            items: [
+              "E-commerce Store Development",
+              "CRM Setup & Integration",
+              "Analytics & Reporting Dashboards",
+              "Conversion Optimization"
+            ]
+          }
         ]
       },
-      consulting: {
-        pill: "Consulting",
-        title: "What We Fix & Improve",
-        sub: "Already have systems in place? We help you make them faster, smarter, and easier to manage.",
-        items: [
-          { title: "Workflow Automation", desc: "We find the repetitive tasks your team does manually and automate them." },
-          { title: "Business Process Audits", desc: "We look at how your team works, find what's slowing you down, and map out a fix." },
-          { title: "Data & Analytics", desc: "Set up tracking, dashboards, and reports so you can make decisions based on real numbers." },
-          { title: "Digital Transformation", desc: "Modernize your operations with clear timelines and measurable results." },
-          { title: "Performance Optimization", desc: "Speed up slow websites, apps, and systems." },
-          { title: "Training & Capacity Building", desc: "Teach your team to use and maintain the tools we build." }
-        ]
-      },
-      specialized: {
-        pill: "Industry-Specific",
-        title: "Specialized",
-        sub: "Deep expertise in a few industries where we know the problems inside and out.",
-        items: [
-          { title: "Church & Ministry Tech", desc: "Live streaming, projection systems, church management software, and media team training.", linkLabel: "Visit church.redevise.com", href: "https://church.redevise.com" },
-          { title: "School Admin Systems", desc: "Attendance, communication, grading, and operations all in one place. Built for how schools actually work." },
-          { title: "Customer Support Platforms", desc: "AI-powered support tools that help your agents work faster and your customers get answers sooner." }
-        ]
+      directory: {
+        pill: "Capabilities Index",
+        title: "Explore Full Capabilities",
+        sub: "Browse our complete catalog of specialized domains, infrastructure, and custom engineering services."
       },
       cta: {
         title: "Not sure what you need?",
@@ -542,6 +558,7 @@ export const translations = {
         title: "How we work",
         sub: "From first conversation to finished product. Here's exactly what the process looks like, step by step."
       },
+      whatYouGet: "What you get",
       steps: [
         { title: "Discovery Call", duration: "Free, 15-30 minutes", desc: "We hop on a call to understand what you need. No sales pitch, just a conversation about your project, your goals, and whether we're the right fit.", outcome: "A custom Scope of Work document and a ballpark pricing range." },
         { title: "Proposal & Agreement", duration: "2-3 business days", desc: "We put together a detailed proposal with scope, timeline, milestones, and pricing. Everything spelled out so there are no surprises.", outcome: "A detailed project brief, milestone breakdowns, and a binding agreement." },
@@ -667,6 +684,7 @@ export const translations = {
     },
     difference: {
       pill: "The Difference",
+      label: "// COMPARISON",
       title: "Why work with Redevise?",
       subtitle: "How we compare to traditional agencies and software development houses.",
       themLabel: "Traditional Agencies",
@@ -727,9 +745,57 @@ export const translations = {
       ]
     },
     testimonial: {
+      label: "// CLIENT FEEDBACK",
       quote: "Redevise redesigned our entire delivery pipeline. We went from processing orders manually to complete automation in 14 days.",
       author: "K. Boateng",
       role: "Operations Director, Lunaris Coffee Co."
+    },
+    careers: {
+      heroTitle: "BUILD THE FUTURE WITH US",
+      heroSub: "We are a remote-first team of product builders, engineers, and designers. We build tools that make hard tasks simple.",
+      sectionTitle: "Open Application",
+      sectionSub: "Don't see a specific opening? We are always looking for smart engineers, designers, and operators.",
+      fields: {
+        name: "Full Name",
+        email: "Email Address",
+        role: "Role of Interest",
+        portfolio: "Portfolio / GitHub / LinkedIn Link",
+        resume: "Resume URL (Drive, Dropbox, Notion, etc.)",
+        message: "Tell us about what you've built and why you'd like to join"
+      },
+      roles: [
+        "Full-Stack Software Engineer",
+        "Frontend Developer",
+        "Mobile Developer (iOS & Android)",
+        "AI & Automation Engineer",
+        "UI/UX Product Designer",
+        "Product Manager",
+        "Business Development & Operations",
+        "General / Other Application"
+      ],
+      placeholders: {
+        name: "e.g., Jane Doe",
+        email: "e.g., jane@example.com",
+        portfolio: "e.g., github.com/janedoe",
+        resume: "e.g., drive.google.com/...",
+        message: "Briefly highlight some of your favorite projects..."
+      },
+      errors: {
+        validateName: "Please enter your name",
+        validateEmail: "Please enter a valid email address",
+        validateRole: "Please select a role of interest",
+        validateResume: "Please provide a link to your resume",
+        submitFail: "Something went wrong. Please try again.",
+        network: "Network error: check your connection."
+      },
+      success: {
+        title: "APPLICATION RECEIVED",
+        sub: "Thank you for applying. We review all applications and will get back to you if there's a match."
+      },
+      common: {
+        apply: "Submit Application",
+        backHome: "Back to Home"
+      }
     }
   },
   es: {
@@ -741,7 +807,9 @@ export const translations = {
       about: "Nosotros",
       optimize: "Optimizar Ministerio",
       start: "Comenzar Proyecto",
-      startProject: "Comenzar un proyecto"
+      startProject: "Comenzar un proyecto",
+      careers: "Careers",
+      blog: "Blog"
     },
     common: {
       navigation: "Navegación",
@@ -939,23 +1007,29 @@ export const translations = {
       ]
     },
     ctaFooter: {
-      heading: (
-        <>
-          El mundo funciona con
-          <br />
-          <span className="italic text-text-subtle">procesos rotos.</span>
-          <br />
-          <span className="text-gradient">Arreglemos los tuyos.</span>
-        </>
-      ),
-      desc: "Cuéntanos en qué estás trabajando. Encontraremos la mejor forma de ayudarte. Sin presión, sin jerga.",
-      requestConsultation: "Solicitar consulta",
-      exploreProducts: "Explorar nuestros productos"
+      heading: "The world runs on broken processes. Let's fix yours.",
+      desc: "Tell us what you're working on. We'll figure out the best way to help. No pressure, no jargon.",
+      requestConsultation: "Request consultation",
+      howWeWork: "How we work"
     },
     footer: {
-      copyright: "© 2026 Redevise. Todos los derechos reservados.",
-      privacyPolicy: "Política de Privacidad",
-      termsOfUse: "Términos de Uso"
+      copyright: "© 2026 Redevise. All rights reserved.",
+      privacyPolicy: "Privacy Policy",
+      termsOfUse: "Terms of Use",
+      quickLinks: "Quick Links",
+      services: "Services",
+      solutions: "Custom Solutions",
+      home: "Home",
+      about: "About",
+      process: "How we work",
+      blog: "Blog",
+      webDevelopment: "Websites & Landing Pages",
+      webApps: "Web Applications",
+      mobileApps: "Mobile Apps",
+      ecommerce: "E-commerce Stores",
+      customSoftware: "Custom Business Software",
+      automation: "Workflow Automation",
+      careers: "Careers"
     },
     errorBoundary: {
       title: "Algo tuvo un tropiezo.",
@@ -1223,41 +1297,51 @@ export const translations = {
         title: "Qué podemos construir para ti",
         sub: "Todo lo que ofrecemos, en español claro. Elige lo que se adapte a tus necesidades o simplemente echa un vistazo."
       },
-      dev: {
-        pill: "Desarrollo",
-        title: "Lo Que Construimos",
-        sub: "Software, sitios web y aplicaciones, diseñados y construidos desde cero para tu negocio.",
-        items: [
-          { title: "Sitios Web y Landing Pages", desc: "Desde sitios de una sola página hasta webs de marketing completas. Diseño limpio, carga rápida y adaptado a móviles." },
-          { title: "Aplicaciones Web", desc: "Apps web a medida con paneles de control, cuentas de usuario y las funciones que tu negocio realmente necesita." },
-          { title: "Aplicaciones Móviles", desc: "Apps nativas y multiplataforma para iOS y Android. Desde la idea hasta la App Store." },
-          { title: "Tiendas de Comercio Electrónico", desc: "Tiendas online atractivas que realmente convierten. Procesamiento de pagos, inventario y más." },
-          { title: "Software Empresarial a Medida", desc: "Herramientas internas, CRMs, sistemas de reservas y cualquier software que tu negocio necesite pero no encuentre prefabricado." },
-          { title: "APIs e Integraciones", desc: "Conecta tus herramientas actuales entre sí o construye APIs personalizadas para tu plataforma." }
+      core: {
+        pill: "Core Offerings",
+        title: "High-Demand Essentials",
+        sub: "The highest-demand services for growing businesses, grouped into simple, high-performance packages.",
+        packages: [
+          {
+            id: "launchpad",
+            title: "Digital Launchpad",
+            desc: "Establish a professional online presence that gets found by local customers.",
+            items: [
+              "Custom Website Design",
+              "Reliable Hosting Setup",
+              "Google Workspace Emails",
+              "Google Business Profile Setup",
+              "Local SEO Optimization"
+            ]
+          },
+          {
+            id: "automation",
+            title: "AI & Automation",
+            desc: "Eliminate repetitive tasks and engage customers 24/7 with custom automation.",
+            items: [
+              "WhatsApp Automation",
+              "AI Chatbot Development",
+              "Business Process Audits",
+              "Workflow Automations"
+            ]
+          },
+          {
+            id: "growth",
+            title: "Growth & Scale",
+            desc: "Convert more traffic into sales and measure your performance with data.",
+            items: [
+              "E-commerce Store Development",
+              "CRM Setup & Integration",
+              "Analytics & Reporting Dashboards",
+              "Conversion Optimization"
+            ]
+          }
         ]
       },
-      consulting: {
-        pill: "Consultoría",
-        title: "Lo Que Mejoramos y Corregimos",
-        sub: "¿Ya tienes sistemas funcionando? Te ayudamos a hacerlos más rápidos, inteligentes y fáciles de administrar.",
-        items: [
-          { title: "Automatización de Procesos", desc: "Encontramos las tareas repetitivas que tu equipo hace a mano y las automatizamos." },
-          { title: "Auditorías de Procesos de Negocio", desc: "Analizamos cómo trabaja tu equipo, encontramos qué los frena y diseñamos una solución." },
-          { title: "Datos y Analítica", desc: "Configuramos seguimiento, paneles y reportes para que tomes decisiones basadas en números reales." },
-          { title: "Transformación Digital", desc: "Moderniza tus operaciones con plazos claros y resultados medibles." },
-          { title: "Optimización de Rendimiento", desc: "Aceleramos sitios web, apps y sistemas lentos." },
-          { title: "Capacitación y Formación", desc: "Enseñamos a tu equipo a usar y mantener las herramientas que construimos." }
-        ]
-      },
-      specialized: {
-        pill: "Especializado",
-        title: "Especialidades",
-        sub: "Experiencia profunda en unas pocas industrias donde conocemos los problemas al derecho y al revés.",
-        items: [
-          { title: "Tecnología para Iglesias y Ministerios", desc: "Transmisiones en vivo, sistemas de proyección, software de gestión y capacitación para tu equipo de multimedia.", linkLabel: "Visita church.redevise.com", href: "https://church.redevise.com" },
-          { title: "Sistemas para Escuelas", desc: "Asistencia, comunicación, calificaciones y operaciones en un solo lugar. Diseñado para el ritmo real de los colegios." },
-          { title: "Plataformas de Soporte al Cliente", desc: "Herramientas de soporte impulsadas por IA que ayudan a tus agentes a trabajar más rápido y a tus clientes a obtener respuestas antes." }
-        ]
+      directory: {
+        pill: "Capabilities Index",
+        title: "Explore Full Capabilities",
+        sub: "Browse our complete catalog of specialized domains, infrastructure, and custom engineering services."
       },
       cta: {
         title: "¿No estás seguro de lo que necesitas?",
@@ -1272,6 +1356,7 @@ export const translations = {
         title: "Cómo trabajamos",
         sub: "Desde la primera conversación hasta el producto terminado. Así es exactamente como se ve el proceso, paso a paso."
       },
+      whatYouGet: "What you get",
       steps: [
         { title: "Llamada de Descubrimiento", duration: "Gratis, 15-30 minutos", desc: "Hablamos para entender lo que necesitas. Sin discursos de venta, solo una charla sobre tu proyecto, tus objetivos y si somos la opción adecuada.", outcome: "Un documento de alcance de trabajo personalizado y un presupuesto estimado." },
         { title: "Propuesta y Contrato", duration: "2-3 días hábiles", desc: "Preparamos una propuesta detallada con el alcance, plazos, hitos y precios. Todo detallado para que no haya sorpresas.", outcome: "Una descripción detallada del proyecto, desglose de hitos y un contrato vinculante." },
@@ -1397,6 +1482,7 @@ export const translations = {
     },
     difference: {
       pill: "La Diferencia",
+      label: "// COMPARISON",
       title: "¿Por qué trabajar con Redevise?",
       subtitle: "Cómo nos comparamos con las agencias tradicionales y los estudios de desarrollo de software.",
       themLabel: "Agencias Tradicionales",
@@ -1457,9 +1543,57 @@ export const translations = {
       ]
     },
     testimonial: {
+      label: "// CLIENT FEEDBACK",
       quote: "Redevise redesigned our entire delivery pipeline. We went from processing orders manually to complete automation in 14 days.",
       author: "K. Boateng",
       role: "Operations Director, Lunaris Coffee Co."
+    },
+    careers: {
+      heroTitle: "BUILD THE FUTURE WITH US",
+      heroSub: "We are a remote-first team of product builders, engineers, and designers. We build tools that make hard tasks simple.",
+      sectionTitle: "Open Application",
+      sectionSub: "Don't see a specific opening? We are always looking for smart engineers, designers, and operators.",
+      fields: {
+        name: "Full Name",
+        email: "Email Address",
+        role: "Role of Interest",
+        portfolio: "Portfolio / GitHub / LinkedIn Link",
+        resume: "Resume URL (Drive, Dropbox, Notion, etc.)",
+        message: "Tell us about what you've built and why you'd like to join"
+      },
+      roles: [
+        "Full-Stack Software Engineer",
+        "Frontend Developer",
+        "Mobile Developer (iOS & Android)",
+        "AI & Automation Engineer",
+        "UI/UX Product Designer",
+        "Product Manager",
+        "Business Development & Operations",
+        "General / Other Application"
+      ],
+      placeholders: {
+        name: "e.g., Jane Doe",
+        email: "e.g., jane@example.com",
+        portfolio: "e.g., github.com/janedoe",
+        resume: "e.g., drive.google.com/...",
+        message: "Briefly highlight some of your favorite projects..."
+      },
+      errors: {
+        validateName: "Please enter your name",
+        validateEmail: "Please enter a valid email address",
+        validateRole: "Please select a role of interest",
+        validateResume: "Please provide a link to your resume",
+        submitFail: "Something went wrong. Please try again.",
+        network: "Network error: check your connection."
+      },
+      success: {
+        title: "APPLICATION RECEIVED",
+        sub: "Thank you for applying. We review all applications and will get back to you if there's a match."
+      },
+      common: {
+        apply: "Submit Application",
+        backHome: "Back to Home"
+      }
     }
   }
 };

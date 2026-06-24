@@ -1,5 +1,3 @@
-import React from "react";
-
 /* ─── Three Pillars ─── */
 export const pillars = [
   {
@@ -157,6 +155,7 @@ export const navLinks = [
   { id: "services", label: "Services" },
   { id: "process", label: "How We Work" },
   { id: "about", label: "About" },
+  { id: "blog", label: "Blog" },
 ];
 
 /* ─── About Content ─── */

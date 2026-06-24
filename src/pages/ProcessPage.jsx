@@ -40,7 +40,7 @@ const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
         {step.outcome && (
           <div className="border-l-2 border-lime/40 pl-5 py-1 mt-6 bg-lime/[0.01]">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-lime mb-1.5">
-              // {whatYouGetLabel}
+              {"// "}{whatYouGetLabel}
             </p>
             <Text variant="small" className="text-text-muted/90">
               {step.outcome}
@@ -72,7 +72,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle }) => {
         <motion.span
           aria-hidden="true"
           animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 0.15, ease: "easeInOut" }}
           className="flex size-8 shrink-0 items-center justify-center rounded-full border border-dark-400/50 text-text-subtle text-xl leading-none select-none"
         >
           +
@@ -88,7 +88,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle }) => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
             <Text className="pb-6 pl-0 md:pl-2 max-w-2xl text-text-muted">
@@ -130,7 +130,7 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
     }));
   }, [rawFaqList, formatPrice]);
 
-  const whatYouGetLabel = t('processPage.steps.whatYouGetLabel') || t('processPage.steps.whatYouGet') || "What you get";
+  const whatYouGetLabel = t('processPage.whatYouGet') || "What you get";
 
   // Intersection Observer to track active step
   useEffect(() => {
@@ -194,7 +194,7 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
             <div className="hidden lg:block lg:col-span-5">
               <div className="sticky top-32 space-y-8 pr-4">
                 <div className="font-mono text-xs font-semibold uppercase tracking-widest text-lime">
-                  // Step {String(activeStep + 1).padStart(2, "0")} of {String(stepsList.length).padStart(2, "0")}
+                  {"// "}Step {String(activeStep + 1).padStart(2, "0")} of {String(stepsList.length).padStart(2, "0")}
                 </div>
                 
                 <div className="space-y-4">
@@ -226,12 +226,12 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
                         stepRefs.current[idx]?.scrollIntoView({ behavior: "smooth", block: "center" });
                       }}
                       className={cn(
-                        "flex items-center gap-4 text-left outline-none cursor-pointer group transition-all duration-300",
+                        "flex items-center gap-4 text-left outline-none cursor-pointer group transition-all duration-200",
                         idx === activeStep ? "text-text" : "text-text-muted hover:text-text-subtle"
                       )}
                     >
                       <div className={cn(
-                        "w-2.5 h-2.5 rounded-full -ml-[31px] relative z-10 transition-all duration-300 border border-dark bg-dark",
+                        "w-2.5 h-2.5 rounded-full -ml-[31px] relative z-10 transition-all duration-200 border border-dark bg-dark",
                         idx === activeStep 
                           ? "bg-lime scale-125 shadow-[0_0_12px_rgb(163,230,53)]" 
                           : idx < activeStep 

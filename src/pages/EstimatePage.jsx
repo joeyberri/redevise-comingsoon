@@ -2,7 +2,6 @@ import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Section from "../components/Section.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
-import Pill from "../components/Pill.jsx";
 import FadeIn from "../components/FadeIn.jsx";
 import GlassCard from "../components/GlassCard.jsx";
 import MagneticButton from "../components/MagneticButton.jsx";
@@ -41,6 +40,18 @@ const StepLabel = ({ number, title }) => (
   </div>
 );
 
+const PlusIcon = ({ className }) => (
+  <svg 
+    width="8" 
+    height="8" 
+    viewBox="0 0 8 8" 
+    fill="none" 
+    className={cn("text-text-subtle/30 group-hover:text-lime transition-colors duration-300 pointer-events-none select-none", className)}
+  >
+    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
+  </svg>
+);
+
 /* ─── Feature Toggle ─── */
 const FeatureToggle = ({ feature, isActive, onToggle }) => {
   const Icon = feature.icon;
@@ -49,16 +60,24 @@ const FeatureToggle = ({ feature, isActive, onToggle }) => {
       onClick={onToggle}
       whileTap={{ scale: 0.97 }}
       className={cn(
-        "group relative flex items-center gap-4 w-full rounded-2xl border p-4 md:p-5 transition-all duration-300 text-left cursor-pointer outline-none",
+        "group relative flex items-center gap-4 w-full rounded-none border p-4 md:p-5 transition-all duration-300 text-left cursor-pointer outline-none overflow-visible",
         isActive
           ? "border-lime/40 bg-lime/[0.06]"
           : "border-text/[0.08] bg-text/[0.02] hover:border-text/[0.15] hover:bg-text/[0.04]"
       )}
     >
+      {/* Corner indicators */}
+      <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+      <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+      <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+      <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+
       <div
         className={cn(
-          "flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 shrink-0",
-          isActive ? "bg-lime/15 text-lime" : "bg-text/5 text-text-subtle"
+          "flex items-center justify-center w-10 h-10 rounded-none border transition-all duration-300 shrink-0",
+          isActive 
+            ? "bg-lime/15 border-lime/30 text-lime" 
+            : "bg-text/5 border-text/10 text-text-subtle"
         )}
       >
         <Icon size={20} />
@@ -101,10 +120,10 @@ const AnimatedPrice = ({ value }) => {
     <AnimatePresence mode="popLayout">
       <motion.span
         key={formatted}
-        initial={{ y: 12, opacity: 0, filter: "blur(4px)" }}
-        animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-        exit={{ y: -12, opacity: 0, filter: "blur(4px)" }}
-        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        initial={{ y: 4, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -4, opacity: 0 }}
+        transition={{ duration: 0.18, ease: "easeInOut" }}
       >
         {formatted}
       </motion.span>
@@ -183,7 +202,6 @@ const EstimatePage = ({ onOpenInquiry }) => {
       if (next.has(id)) next.delete(id);
       else next.add(id);
       return next;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     });
   }, []);
 
@@ -275,10 +293,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                   <div className="flex items-start gap-4">
                     <div
                       className={cn(
-                        "flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 shrink-0",
+                        "flex items-center justify-center w-12 h-12 rounded-none border transition-all duration-300 shrink-0",
                         isSelected
-                          ? "bg-lime/15 text-lime"
-                          : "bg-text/5 text-text-subtle"
+                          ? "bg-lime/15 border-lime/30 text-lime"
+                          : "bg-text/5 border-text/10 text-text-subtle"
                       )}
                     >
                       <Icon size={24} />
@@ -368,7 +386,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                 animate={{
                   width: `${(scopeIndex / (scopeLevels.length - 1)) * 100}%`,
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "spring", stiffness: 500, damping: 25 }}
               />
 
               {/* Stop dots */}
@@ -401,7 +419,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                 animate={{
                   left: `${(scopeIndex / (scopeLevels.length - 1)) * 100}%`,
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "spring", stiffness: 500, damping: 25 }}
               >
                 <div className="w-7 h-7 rounded-full bg-lime shadow-lg shadow-lime/30 border-2 border-lime-400 flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-dark" />
@@ -426,12 +444,17 @@ const EstimatePage = ({ onOpenInquiry }) => {
               {scopeLevels[scopeIndex] && (
                 <motion.div
                   key={scopeIndex}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  className="mt-6 rounded-2xl border border-text/[0.08] bg-text/[0.02] p-5"
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.15 }}
+                  className="mt-6 rounded-none border border-text/[0.08] bg-text/[0.02] p-5 relative overflow-visible"
                 >
+                  {/* Corner indicators */}
+                  <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+                  <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+                  <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
+                  <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-lime font-sans font-bold text-lg">
                       {scopeLevels[scopeIndex].label}
@@ -454,9 +477,6 @@ const EstimatePage = ({ onOpenInquiry }) => {
       <Section name="estimate-features" spacing="default" showDivider>
         <FadeIn fullWidth>
           <StepLabel number={3} title={t('estimatePage.step3.title')} />
-          <Text variant="section-sub" className="mb-10 -mt-4">
-            {t('estimatePage.step3.sub')}
-          </Text>
         </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 max-w-3xl">
@@ -485,9 +505,9 @@ const EstimatePage = ({ onOpenInquiry }) => {
             return (
               <GlassCard
                 key={tl.id}
-                delay={i * 0.08}
+                delay={i * 0.04}
                 className={cn(
-                  "cursor-pointer transition-all duration-300 !p-6",
+                  "cursor-pointer transition-all duration-200 !p-6",
                   isSelected
                     ? "!border-lime/50 ring-1 ring-lime/20"
                     : "hover:!border-text/15"
@@ -499,10 +519,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                 >
                   <div
                     className={cn(
-                      "flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 mb-4",
+                      "flex items-center justify-center w-12 h-12 rounded-none border transition-all duration-300 mb-4",
                       isSelected
-                        ? "bg-lime/15 text-lime"
-                        : "bg-text/5 text-text-subtle"
+                        ? "bg-lime/15 border-lime/30 text-lime"
+                        : "bg-text/5 border-text/10 text-text-subtle"
                     )}
                   >
                     <Icon size={24} />
@@ -585,7 +605,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{ type: "spring", stiffness: 450, damping: 26 }}
             className="fixed bottom-0 inset-x-0 z-40"
           >
             {/* Top glow line */}
@@ -628,7 +648,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                               initial={{ opacity: 0, y: 4 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -4 }}
-                              transition={{ duration: 0.25 }}
+                              transition={{ duration: 0.15 }}
                             >
                               {estimate.weeksLow}-{estimate.weeksHigh}{t('estimatePage.summary.weeks')}
                             </motion.span>
@@ -647,7 +667,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
                               exit={{ opacity: 0, scale: 0.8 }}
-                              transition={{ duration: 0.2 }}
+                              transition={{ duration: 0.15 }}
                             >
                               {estimate.featuresCount}{t('estimatePage.summary.selected')}
                             </motion.span>

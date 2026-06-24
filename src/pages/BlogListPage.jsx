@@ -6,11 +6,11 @@ import { getAllPosts, getAllTags, getReadingTime } from "../utils/blog";
 import { useSEO } from "../utils/useSEO.js";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 12 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { delay: i * 0.04, duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
   }),
 };
 
@@ -47,9 +47,9 @@ const BlogListPage = () => {
       <div className="container relative z-10">
         {/* Page Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.35 }}
           className="mb-16 max-w-3xl"
         >
           <div className="pill mb-6">
@@ -67,9 +67,9 @@ const BlogListPage = () => {
 
         {/* Search & Filters */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.1, duration: 0.35 }}
           className="mb-12 flex flex-col gap-5 md:flex-row md:items-center md:justify-between"
         >
           {/* Search */}
@@ -138,9 +138,9 @@ const BlogListPage = () => {
         {/* Featured Post */}
         {featuredPost && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
             className="mb-16"
           >
             <Link

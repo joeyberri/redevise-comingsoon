@@ -8,7 +8,7 @@ import MarqueeBanner from "../components/MarqueeBanner";
 import GridSpotlight from "../components/GridSpotlight";
 import MagneticButton from "../components/MagneticButton";
 import ScrollParallax from "../components/ScrollParallax";
-import { Heading, Text } from "../components/Typography";
+import { Heading } from "../components/Typography";
 import Pill from "../components/Pill";
 import TextReveal from "../components/TextReveal";
 import robotWaving from "../assets/images/robot waving.svg";
@@ -63,7 +63,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
             className="hidden lg:block absolute right-0 xl:right-6 2xl:right-16 bottom-0 z-[1] pointer-events-none select-none
                        lg:w-[400px] xl:w-[460px] 2xl:w-[540px]
                        lg:opacity-25 xl:opacity-30"

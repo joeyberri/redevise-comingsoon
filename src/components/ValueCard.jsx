@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 const ValueCard = ({ title, text, className }) => {
   return (
     <div className={className}>

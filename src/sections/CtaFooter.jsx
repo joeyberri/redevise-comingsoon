@@ -1,7 +1,6 @@
 import { Element } from "react-scroll";
 import { motion } from "framer-motion";
 import MagneticButton from "../components/MagneticButton.jsx";
-import GridSpotlight from "../components/GridSpotlight.jsx";
 import { Heading } from "../components/Typography.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
@@ -10,19 +9,15 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
 
   return (
     <Element name="cta">
-      <GridSpotlight 
-        as="section" 
-        className="relative overflow-hidden bg-dark-50/50 py-24 md:py-40"
-        spotlightSize={800}
-      >
+      <section className="relative overflow-hidden bg-dark-50/50 py-24 md:py-40 border-t border-text/[0.06]">
         <div className="relative z-10 text-center container">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
           >
-            <Heading level={2} variant="hero-title" className="mb-8" serif>
+            <Heading level={2} variant="hero-title" className="mb-8">
               {t('ctaFooter.heading')}
             </Heading>
 
@@ -41,16 +36,16 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
               </MagneticButton>
               
               <MagneticButton 
-                to="products" 
+                to="/process" 
                 variant="secondary" 
                 strength={0.15}
               >
-                {t('ctaFooter.exploreProducts')}
+                {t('ctaFooter.howWeWork')}
               </MagneticButton>
             </div>
           </motion.div>
         </div>
-      </GridSpotlight>
+      </section>
     </Element>
   );
 };

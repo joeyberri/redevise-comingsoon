@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 import { translations } from "../constants/translations";
 import { detectCurrency, formatPrice } from "./currency";
 
@@ -21,7 +21,7 @@ export const LanguageProvider = ({ children }) => {
   }, []);
 
   const setCurrency = useCallback((newCurrency) => {
-    if (newCurrency === "USD" || newCurrency === "GHS") {
+    if (newCurrency === "USD" || newCurrency === "GHS" || newCurrency === "NGN") {
       setCurrencyState(newCurrency);
       localStorage.setItem("currency", newCurrency);
     }

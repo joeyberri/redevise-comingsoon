@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Header from "./sections/Header.jsx";
 import Footer from "./sections/Footer.jsx";
 import SmoothScroll from "./components/SmoothScroll.jsx";
@@ -25,6 +25,7 @@ const ServicesPage = lazyWithRetry(() => import("./pages/ServicesPage.jsx"));
 const KeystaticPage = lazyWithRetry(() => import("./pages/KeystaticPage.jsx"));
 const ProcessPage = lazyWithRetry(() => import("./pages/ProcessPage.jsx"));
 const EstimatePage = lazyWithRetry(() => import("./pages/EstimatePage.jsx"));
+const CareersPage = lazyWithRetry(() => import("./pages/CareersPage.jsx"));
 
 const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
@@ -108,12 +109,13 @@ const AppContent = () => {
                     <Route path="/estimate" element={<EstimatePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/terms" element={<TermsPage />} />
                     <Route path="/privacy" element={<PrivacyPage />} />
+                    <Route path="/careers" element={<CareersPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>
               </ErrorBoundary>
             </div>
-            <Footer />
+            <Footer onOpenInquiry={handleOpenInquiry} />
           </main>
         </div>
       </PageLoader>

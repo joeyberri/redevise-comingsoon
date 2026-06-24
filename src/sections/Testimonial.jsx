@@ -14,7 +14,7 @@ const Testimonial = () => {
         <FadeIn delay={0.05}>
           {/* Label */}
           <span className="block font-mono text-[9px] font-bold tracking-[0.2em] text-text-subtle uppercase mb-8">
-            // CLIENT FEEDBACK
+            {t("testimonial.label")}
           </span>
         </FadeIn>
         

@@ -1,37 +1,150 @@
 import { Link as LinkRouter } from "react-router-dom";
 import SocialLinks from "../components/SocialLinks.jsx";
+import Logo from "../components/Logo.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
-const Footer = () => {
+const Footer = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
 
-  return (
-    <footer className="border-t border-dark-400/30">
-      <div className="container py-8">
-        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-          {/* Copyright */}
-          <p className="font-sans text-xs text-text-subtle">
-            {t('footer.copyright')}
-          </p>
+  const handleServiceClick = (serviceType) => {
+    if (onOpenInquiry) {
+      onOpenInquiry(serviceType);
+    }
+  };
 
-          {/* Legal */}
-          <div className="flex items-center gap-6">
-            <LinkRouter
-              to="/privacy"
-              className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
-            >
-              {t('footer.privacyPolicy')}
+  return (
+    <footer className="border-t border-text/[0.06] bg-dark-100/10">
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+          
+          {/* Logo & Brand Info Column */}
+          <div className="col-span-12 md:col-span-5 flex flex-col items-start gap-6 md:pr-12">
+            <LinkRouter to="/" className="cursor-pointer">
+              <Logo showText={true} iconSize="size-8" />
             </LinkRouter>
-            <LinkRouter
-              to="/terms"
-              className="font-sans text-xs text-text-subtle transition-colors hover:text-text"
-            >
-              {t('footer.termsOfUse')}
-            </LinkRouter>
+            <p className="font-sans text-xs text-text-subtle leading-relaxed max-w-sm">
+              {t('footer.copyright')}
+            </p>
+            <div className="pt-2">
+              <SocialLinks />
+            </div>
           </div>
 
-          {/* Socials */}
-          <SocialLinks />
+          {/* Quick Links Column */}
+          <div className="col-span-6 sm:col-span-4 md:col-span-2">
+            <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
+              {t('footer.quickLinks')}
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <LinkRouter to="/" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.home')}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/about" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.about')}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/services" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.services')}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/process" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.process')}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/blog" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.blog')}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/careers" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.careers')}
+                </LinkRouter>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services / Custom Solutions Column */}
+          <div className="col-span-12 sm:col-span-5 md:col-span-3">
+            <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
+              {t('footer.solutions')}
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <button
+                  onClick={() => handleServiceClick(t('modal.interests')[0])}
+                  className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
+                >
+                  {t('footer.webDevelopment')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
+                >
+                  {t('footer.webApps')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
+                >
+                  {t('footer.mobileApps')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
+                >
+                  {t('footer.ecommerce')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
+                >
+                  {t('footer.customSoftware')}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleServiceClick(t('modal.interests')[2])}
+                  className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
+                >
+                  {t('footer.automation')}
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div className="col-span-6 sm:col-span-3 md:col-span-2">
+            <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
+              Legal
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <LinkRouter to="/privacy" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.privacyPolicy')}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/terms" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.termsOfUse')}
+                </LinkRouter>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </footer>

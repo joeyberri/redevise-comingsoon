@@ -1,6 +1,5 @@
 import Section from "../components/Section.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
-import Pill from "../components/Pill.jsx";
 import { motion } from "framer-motion";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
@@ -13,9 +12,9 @@ const TermsPage = () => {
     <Section name="terms" className="pt-32">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.35 }}
         >
           <Heading level={1} className="mb-8 text-gradient">{t('terms.title')}</Heading>
           <Text className="mb-12 text-lg text-text-muted">
