@@ -103,8 +103,8 @@ const AppContent = () => {
                     <Route path="/" element={<HomePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/services" element={<ServicesPage onOpenInquiry={handleOpenInquiry} />} />
-                    <Route path="/blog" element={<BlogListPage />} />
-                    <Route path="/blog/:slug" element={<BlogPostPage />} />
+                    <Route path="/blog" element={<BlogListPage onOpenInquiry={handleOpenInquiry} />} />
+                    <Route path="/blog/:slug" element={<BlogPostPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/process" element={<ProcessPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/estimate" element={<EstimatePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/terms" element={<TermsPage />} />

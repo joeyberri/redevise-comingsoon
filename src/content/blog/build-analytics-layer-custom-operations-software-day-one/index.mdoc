@@ -1,0 +1,31 @@
+---
+title: "How to Build an Analytics Layer Into Custom Operations Software From Day One"
+date: "2025-06-11"
+summary: "Build analytics into your operations software from the start. Retrofitting analytics is expensive and incomplete."
+coverImage: ""
+tags:
+  - "Analytics"
+author: "Redevise"
+---
+
+Your operations software works. It processes orders. It manages tickets. It does not produce analytics. You need a report. You cannot build it.
+
+An analytics layer is a set of data structures and interfaces that produce insights from the system's operational data. It is not a dashboard. It is the foundation that a dashboard sits on.
+
+Here is how to build it from day one.
+
+Define the events. Every meaningful action in the system is an event. A ticket was created. An order was shipped. A user logged in. Each event is recorded.
+
+Define the dimensions. The attributes of each event. Who performed it. When. On what record. With what outcome.
+
+Define the aggregations. The summaries you need. Events per day. Events per user. Events per category.
+
+Store the data. Not in the operational database. In a separate analytics store. The operational database is for processing. The analytics store is for querying.
+
+I built an analytics layer into a client's operations software in 2025. The layer added approximately 15 percent to the development cost. The alternative was retrofitting analytics later. The retrofit [estimate](/estimate) was 40 percent of the original build cost.
+
+The layer paid for itself in the first month. The team had access to analytics that would have taken weeks to build as a retrofit.
+
+The teams that skip the analytics layer are the ones that pay for retrofits. The teams that build it in are the ones that have insights from day one.
+
+Define the events. Define the dimensions. Define the aggregations. Store the data. The analytics layer is not optional.

@@ -6,6 +6,7 @@ import Button from "./Button.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
+import { DEFAULT_SCROLL_CONFIG } from "../constants/index.jsx";
 
 const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
   const isChurch = isChurchSubdomain();
@@ -33,12 +34,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
     if (!isHomePage) {
       navigate("/", { state: { scrollTo: id } });
     } else {
-      scroller.scrollTo(id, {
-        duration: 400,
-        delay: 0,
-        smooth: "easeOutCubic",
-        offset: -80,
-      });
+      scroller.scrollTo(id, DEFAULT_SCROLL_CONFIG);
     }
   };
 

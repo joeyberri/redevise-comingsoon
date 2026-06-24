@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Search, Calendar, Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
 import { getAllPosts, getAllTags, getReadingTime } from "../utils/blog";
 import { useSEO } from "../utils/useSEO.js";
+import CtaFooter from "../sections/CtaFooter.jsx";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -14,7 +15,7 @@ const fadeUp = {
   }),
 };
 
-const BlogListPage = () => {
+const BlogListPage = ({ onOpenInquiry = () => {} }) => {
   const allPosts = getAllPosts();
   const allTags = getAllTags();
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,7 +37,8 @@ const BlogListPage = () => {
   const remainingPosts = filteredPosts.slice(1);
 
   return (
-    <section className="relative min-h-screen pt-32 pb-24">
+    <>
+      <section className="relative min-h-screen pt-32 pb-24">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="glow-orb top-[10%] left-[20%] w-glow-lg h-glow-lg" />
@@ -277,6 +279,8 @@ const BlogListPage = () => {
         )}
       </div>
     </section>
+    <CtaFooter onOpenInquiry={onOpenInquiry} />
+  </>
   );
 };
 

@@ -1,0 +1,37 @@
+---
+title: "How to Evaluate New SaaS Additions Without Creating Integration Debt"
+date: "2024-03-25"
+summary: "Evaluate new SaaS tools before adoption to avoid integration debt. Use a framework that accounts for the long-term cost of every addition."
+coverImage: ""
+tags:
+  - "SaaS"
+author: "Redevise"
+---
+
+A new SaaS tool promises to solve a real problem. The demo is clean. The price is reasonable. Your team is ready to adopt it.
+
+Stop. Every SaaS addition creates integration debt. The cost of connecting the new tool to your existing stack. The cost of maintaining that connection. The cost of removing it when the tool no longer fits.
+
+Integration debt is the long-term cost of adding a tool. It is not on the invoice. It compounds over time. And it is the cost most teams ignore.
+
+Here is the evaluation framework.
+
+First, map the connections. How many existing tools does this new tool need to connect to. Each connection is a maintenance burden. A tool that connects to one existing tool is simple. A tool that connects to five existing tools is a commitment.
+
+Second, evaluate the data flow. Does the new tool produce data that other tools need. Does it consume data from other tools. Bidirectional data flow is the most expensive. It creates dependencies. When one tool changes its API, the other breaks.
+
+Third, assess the exit cost. If you cancel this tool in 18 months, what is the cost of removal. Exporting your data. Removing the integrations. Updating the [workflows](/process) that depended on it. If the exit cost is high, the tool is sticky. Sticky is not always bad. But it should be a conscious choice.
+
+Fourth, calculate the total first-year cost. Subscription. Integration setup. Staff time for adoption. Training. For a $500-a-month tool, the total first-year cost is often $12,000 to $18,000. The subscription is the minority of the cost.
+
+In our client engagements at Redevise, we regularly design and deploy these solutions. For example, when partnering with a fast-growing team in 2024, we evaluated a SaaS addition. The tool was $600 a month. It needed to connect to four existing tools. The integration setup was estimated at $8,000. Training and adoption were estimated at $4,000. The total first-year cost was $19,200. The subscription was $7,200. The integration and adoption were $12,000.
+
+We adopted the tool. But we went in with eyes open. We budgeted for the full cost. We set a review date for month 12 to evaluate whether the tool was delivering enough value to justify the integration burden.
+
+The teams that evaluate only the subscription fee are the ones that adopt tools and wonder why their budget is blown. The teams that evaluate the total cost are the tools that adopt tools and know exactly what they are paying for.
+
+Map the connections. Evaluate the data flow. Assess the exit cost. Calculate the total first-year cost. Then decide.
+
+The framework takes 30 minutes. The savings from avoiding one bad adoption pay for the framework a hundred times over.
+
+Your next SaaS addition is being demoed right now. Run the framework before you sign.

@@ -15,17 +15,7 @@ import { cn } from "../utils/cn";
 import secretaryImg from "../assets/images/secretary.webp";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
-const PlusIcon = ({ className }) => (
-  <svg 
-    width="8" 
-    height="8" 
-    viewBox="0 0 8 8" 
-    fill="none" 
-    className={cn("text-text-subtle/30 group-hover:text-lime transition-colors duration-300 pointer-events-none select-none", className)}
-  >
-    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-  </svg>
-);
+import PlusIcon from "./PlusIcon.jsx";
 
 // ── Component ────────────────────────────────────────────────────────────────
 const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {

@@ -1,0 +1,29 @@
+---
+title: "How to Track the Metrics That Signal System Failure Before It Happens"
+date: "2024-01-17"
+summary: "Track the metrics that predict system failure. Watch the leading indicators and act before the cascade."
+coverImage: ""
+tags:
+  - "Data Insights"
+author: "Redevise"
+---
+
+Your system failed. You look at the metrics. The metrics show the failure. The metrics did not predict it.
+
+Leading indicators are metrics that move before the failure. They give you time to act.
+
+Here are the indicators that predict failure.
+
+Response time trend. A system that responds in 200ms is fine. A system that responded in 100ms last month and 200ms this month is degrading. The trend predicts the failure.
+
+Error rate trend. A system that produces 2 errors a day is normal. A system that produced 2 errors a day last week and 3 errors a day this week is shifting. The shift predicts the failure.
+
+Database query performance. The queries that are getting slower. The index that is no longer used. The table that is growing faster than expected. The performance predicts the failure.
+
+Queue depth trend. A queue that sits at 10 items is normal. A queue that sat at 5 items last month and 10 items this month is backing up. The backup predicts the failure.
+
+I tracked these indicators for a client in 2024. The system appeared healthy. But the trends were all negative. We investigated. The database was missing an index. The fix took two hours. The failure was prevented.
+
+The teams that track absolute values are the ones that react to failures. The teams that track trends are the ones that prevent failures.
+
+Watch the response time trend. Watch the error rate trend. Watch the query performance. Watch the queue depth trend. The failure is predictable.

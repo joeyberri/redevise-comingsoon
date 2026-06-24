@@ -1,0 +1,25 @@
+---
+title: "The Architecture Decision That Prevents Automation From Hiding Critical Errors"
+date: "2024-04-03"
+summary: "Make the architecture decision that prevents automation from hiding errors. Design for visibility, not just execution."
+coverImage: ""
+tags:
+  - "System Architecture"
+author: "Redevise"
+---
+
+Your automation processed 10,000 items. 9,950 were correct. 50 were wrong. The automation reported success. The errors were hidden.
+
+The architecture decision is validation at the output level. Not at the input level. Input validation ensures the input is correct. Output validation ensures the result is correct. Most systems only do input validation.
+
+Here is why this matters. Input validation catches bad inputs. It does not catch bad outputs. An automation can receive a valid input, process it incorrectly, and produce an invalid output. The input was valid. The output is wrong. Input validation does not catch this.
+
+Output validation does. After the automation produces a result, a second process checks the result. Not the input. The result.
+
+In our client engagements at Redevise, we regularly design and deploy these solutions. For example, when partnering with a fast-growing team in 2024, we implemented output validation. The sync had been running for six months. Input validation was present. Output validation was not. The sync was producing incorrect results for 3 percent of records. Nobody noticed.
+
+We added output validation. The error rate dropped to 0.1 percent. The errors that remained were edge cases. The validation caught the systematic ones.
+
+The teams that only validate inputs are the ones with hidden errors. The teams that validate outputs are the ones with visible errors. Visible errors get fixed. Hidden errors compound.
+
+Validate the output. Not just the input. The architecture decision is simple. The impact is large.

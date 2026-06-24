@@ -1,0 +1,31 @@
+---
+title: "How to Identify the Silent Indicators of System Degradation Before They Cascade"
+date: "2024-08-14"
+summary: "Identify the silent indicators of system degradation before they cascade. Watch the trends, not the spikes."
+coverImage: ""
+tags:
+  - "System Architecture"
+author: "Redevise"
+---
+
+Your system is degrading. You do not know it. The degradation is slow. The metrics are drifting. The spikes have not happened yet.
+
+Silent indicators are the metrics that move before the failure. Not the failure itself. The warning.
+
+Here are the indicators to watch.
+
+Response time trend. Not the absolute value. The trend. A system that responds in 200ms is fine. A system that responded in 100ms six months ago and now responds in 200ms is degrading. The trend is the signal.
+
+Error rate trend. Not the spikes. The baseline. A system that produces 2 errors a day is normal. A system that produced 2 errors a day and now produces 3 errors a day is degrading. The baseline is shifting.
+
+Database query performance. The queries that used to be fast. The queries that are getting slower. The index that is no longer used. The table that is growing faster than expected.
+
+Queue depth trend. Not the absolute depth. The trend. A queue that sits at 10 items is normal. A queue that sat at 5 items six months ago and now sits at 10 items is growing. The growth is the signal.
+
+I monitored these indicators for a client in 2024. The system appeared healthy. The response time was acceptable. The error rate was low. But the trends were all negative. Response time was increasing 5 percent per month. Error rate was increasing 10 percent per month.
+
+We investigated. The database was missing an index. The index was dropped during a migration. The queries were scanning full tables. The fix took two hours. The degradation had been building for three months.
+
+The teams that watch absolute values are the ones that react to failures. The teams that watch trends are the ones that prevent failures.
+
+Watch the trends. Not the spikes. The cascade is preventable.

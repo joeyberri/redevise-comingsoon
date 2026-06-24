@@ -12,8 +12,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { getPostBySlug, getReadingTime, getAllPosts } from "../utils/blog";
+import CtaFooter from "../sections/CtaFooter.jsx";
 
-const BlogPostPage = () => {
+const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
 
@@ -52,7 +53,8 @@ const BlogPostPage = () => {
     .slice(0, 3);
 
   return (
-    <article className="relative min-h-screen pt-32 pb-24">
+    <>
+      <article className="relative min-h-screen pt-32 pb-24">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="glow-orb top-[5%] left-[50%] w-glow-lg h-glow-lg" />
@@ -213,6 +215,8 @@ const BlogPostPage = () => {
         )}
       </div>
     </article>
+    <CtaFooter onOpenInquiry={onOpenInquiry} />
+  </>
   );
 };
 

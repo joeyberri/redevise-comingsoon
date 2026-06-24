@@ -1,0 +1,29 @@
+---
+title: "How to Automate Operations Without Creating Blind Spots in Your Business"
+date: "2023-03-22"
+summary: "Automate operations while keeping visibility into what the automation misses. Build systems that report their own gaps."
+coverImage: ""
+tags:
+  - "Automation"
+author: "Redevise"
+---
+
+Your automation handles 80 percent of cases. The other 20 percent fall into a gap. Nobody notices until the gap produces a visible failure.
+
+Blind spots in automation are the cases the system was not designed to handle. The edge cases. The exceptions. The inputs that do not match the expected pattern. The automation processes what it recognizes. The rest disappears.
+
+Here is how to automate without creating blind spots.
+
+First, define the exceptions. Before you automate, list every type of input the system might receive. Not just the common ones. The rare ones too. For each type, define what should happen. If you cannot define what should happen for an exception, the automation should not handle that case. It should escalate to a human.
+
+Second, log the exceptions. Every time the automation encounters something it cannot handle, log it. The input. The reason it could not be handled. The action taken. The log is your visibility into the blind spots.
+
+Third, review the log weekly. Count the exceptions. If the exception rate is above 5 percent of total volume, the automation is missing too many cases. Expand the rules. Or add a human review step.
+
+I automated a client's invoice processing [workflow](/process) in 2024. The automation handled standard invoices. It could not handle invoices with non-standard line items. Those invoices were silently queued for manual review. Nobody checked the queue for three weeks. 140 invoices piled up.
+
+We added a daily exception report. Every morning, the team received a count of invoices that could not be processed. The queue never exceeded 10 items again.
+
+The automation was not the problem. The visibility was. The automation worked. The blind spot was that nobody could see what it was not doing.
+
+Define the exceptions. Log them. Review them. The blind spots shrink.

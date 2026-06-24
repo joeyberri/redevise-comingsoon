@@ -11,7 +11,7 @@ import Logo from "../components/Logo.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
-import { navLinks } from "../constants/index.jsx";
+import { navLinks, DEFAULT_SCROLL_CONFIG } from "../constants/index.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 
 const Header = ({ onOpenInquiry }) => {
@@ -49,12 +49,7 @@ const Header = ({ onOpenInquiry }) => {
     if (!isHomePage) {
       navigate("/", { state: { scrollTo: id } });
     } else {
-      scroller.scrollTo(id, {
-        duration: 400,
-        delay: 0,
-        smooth: "easeOutCubic",
-        offset: -80,
-      });
+      scroller.scrollTo(id, DEFAULT_SCROLL_CONFIG);
     }
     setIsMegaMenuOpen(false);
   };
@@ -70,7 +65,7 @@ const Header = ({ onOpenInquiry }) => {
         className={cn(
           "fixed top-0 left-0 z-50 w-full transition-all duration-200 ease-in-out",
           hasScrolled 
-            ? "bg-dark-100/70 backdrop-blur-md border-b border-text/10 translate-y-0" 
+            ? "bg-dark-100/95 border-b border-text/10 translate-y-0 shadow-lg" 
             : "bg-transparent py-2"
         )}
       >

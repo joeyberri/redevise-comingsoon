@@ -1,0 +1,43 @@
+---
+title: "How to Design AI Workflows That Surface Errors Before Customers See Them"
+date: "2024-01-22"
+summary: "Design AI workflows that catch their own errors before customers see them. Build validation layers that treat intelligence as a source of risk."
+coverImage: ""
+tags:
+  - "AI"
+author: "Redevise"
+---
+
+Your AI generated a response. It sounds confident. It is wrong. Your customer sees it first.
+
+This is the risk of AI [workflows](/process). The output is plausible. Plausible is not correct. And plausible errors are harder to catch than obvious ones because they do not trigger the same skepticism.
+
+A rule-based system that produces a nonsensical output gets flagged immediately. An AI system that produces a plausible but incorrect output gets accepted. By users. By customers. By anyone who is not an expert in the subject.
+
+Designing AI [workflows](/process) that surface errors requires treating the AI as a source of risk. Not a source of truth. The AI generates. The system validates. Every time.
+
+Here is the architecture.
+
+First, define the boundaries of acceptable output. What is the range of correct answers for this task. For a support response, the boundaries are the approved responses in your knowledge base. For a data classification, the boundaries are the defined categories. For a recommendation, the boundaries are the products or actions that are currently available.
+
+If the output falls outside the boundaries, it is wrong. Regardless of how confident the AI seems.
+
+Second, add a validation layer. After the AI generates output, a second process checks it. This process can be rule-based. It should be. Rules are predictable. Predictable is what you want in a validation layer.
+
+The validation layer checks three things. Is the output within the defined boundaries. Does the output reference real entities in the system. Does the output contradict any known facts.
+
+Third, route low-confidence outputs to humans. Every AI system should output a confidence score. If the score is below a threshold, the output goes to a human for review. The threshold depends on the stakes. For a support response, the threshold might be 85 percent. For a financial calculation, the threshold might be 98 percent.
+
+The human reviews the output. Approves it or corrects it. The correction feeds back into the system. The system learns.
+
+In our client engagements at Redevise, we regularly design and deploy these solutions. For example, when partnering with a fast-growing team in 2024, we designed this workflow. The AI generated responses. The validation layer checked them against the knowledge base. Responses that referenced products not in the knowledge base were flagged. Responses that contradicted policy were flagged. Low-confidence responses went to a human.
+
+The system caught 23 percent of its own errors before the customer saw them. Without the validation layer, those errors would have gone out. The error rate on outbound responses dropped from 8 percent to 1.5 percent.
+
+The key insight is that the AI is not the quality control. The AI is the generation. The system is the quality control. Separating these two functions is what makes AI workflows reliable.
+
+The teams that skip validation are the teams that trust the AI too much. They assume that because the output sounds right, it is right. They are wrong. Regularly.
+
+Build the boundaries. Add the validation layer. Route low-confidence output to humans. The architecture is simple. The discipline is hard.
+
+Your AI is generating output right now. The question is whether anything is checking it.

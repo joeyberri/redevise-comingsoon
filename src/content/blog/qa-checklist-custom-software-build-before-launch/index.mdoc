@@ -1,0 +1,43 @@
+---
+title: "The QA Checklist Every Custom Software Build Needs Before Launch"
+date: "2023-12-14"
+summary: "Run a structured QA checklist before launching custom software. Catch the failures that demos miss and protect your reputation on day one."
+coverImage: ""
+tags:
+  - "Engineering"
+author: "Redevise"
+---
+
+Your software works in the demo. The client is happy. You are ready to launch.
+
+You are not ready. Demos test the happy path. Launch tests every path. The paths you did not think about are the ones that break.
+
+A QA checklist is a structured verification of the conditions your software will face in production. Not the conditions you tested in development. The conditions your users will create.
+
+Here is the checklist.
+
+One. Functional verification. Every button does what its label says. Every form submits correctly. Every link goes to the right place. This sounds obvious. It is the step most teams rush through.
+
+Two. Edge case testing. What happens when a user enters a phone number with dashes. What happens when a user submits a form with no required fields filled. What happens when a user pastes text that is 10,000 characters long. Test the inputs you expect. Then test the inputs you do not expect.
+
+Three. Permission testing. Can a regular user access the admin panel. Can a read-only user edit records. Can a logged-out user view private pages. Test every role against every permission level. The mistakes here are not bugs. They are security issues.
+
+Four. Data integrity testing. Create a record. Edit it. Delete it. Restore it. Check that related records update correctly. Check that nothing orphaned. Check that nothing duplicated. Data corruption is the hardest bug to find and the most expensive to fix.
+
+Five. Performance testing. Load the page with one user. Load it with fifty. Load it with the expected peak count. Measure the response time. If it exceeds three seconds, you have a problem. Fix it before launch.
+
+Six. Cross-browser testing. Chrome. Firefox. Safari. Edge. Test on each. Test on mobile. The layout that looks perfect in Chrome may break in Safari. Find out before your users do.
+
+Seven. Error handling. Disconnect the network mid-request. Submit a form with a server error. Upload a file that is too large. Your software should show a clear error message. Not a blank screen. Not a console log. A message that tells the user what happened and what to do next.
+
+Eight. Backup and recovery. Take a backup. Restore it. Verify the data is intact. This is the test nobody wants to run. It is the test that saves you when something goes wrong on day three.
+
+The full checklist takes two to four days for a typical business application. That is less than the cost of a single emergency fix in production.
+
+I worked with a team that skipped QA to hit a launch date. They launched on a Monday. By Wednesday they had three critical bugs. One was a permission issue that let users see each other's data. The fix took two weeks. The client's trust took longer to recover.
+
+The checklist would have caught all three bugs in one afternoon.
+
+QA is not a phase. It is a discipline. The teams that treat it as a checkbox exercise are the ones that launch broken software. The teams that treat it as a practice are the ones that launch software they are proud of.
+
+Run the checklist. Fix what it finds. Then launch.

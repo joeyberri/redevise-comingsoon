@@ -1,0 +1,41 @@
+---
+title: "How to Detect System Degradation Before It Becomes a Crisis"
+date: "2024-08-20"
+summary: "Detect system degradation with leading indicators that surface problems weeks before they become outages. Set up monitoring that catches drift early."
+coverImage: ""
+tags:
+  - "Engineering"
+author: "Redevise"
+---
+
+Your system is slower than it was three months ago. You do not know it yet. Your users do not know it yet. The degradation is gradual enough that nobody notices until the day it is not.
+
+Then the page takes eight seconds to load. The database times out. The support tickets spike. Now it is a crisis.
+
+System degradation is the most expensive kind of failure because it hides in plain sight. The system works. It just works worse than it did. Every week it gets a little worse. The baseline shifts. The team adapts. The users adapt. Until they cannot.
+
+Detecting degradation requires leading indicators. Not alerts that fire when something breaks. Measurements that drift when something starts to break.
+
+Here are the indicators that matter.
+
+Response time trends. Measure the average response time for your top five endpoints every day. Plot the 7-day moving average. If it increases by more than 15 percent over a two-week period, investigate. Do not wait for a spike. The spike is the end. The trend is the beginning.
+
+Error rate trends. Count the number of 500 errors per day. A system that produces 2 errors a day is normal for most applications. A system that produces 2 errors a day and then produces 4 errors a day for a week is degrading. The absolute number is small. The direction is the signal.
+
+Database query performance. Track the average execution time of your ten most common queries. Database degradation is the most common cause of slowdowns in business systems. A query that took 50 milliseconds six months ago and takes 200 milliseconds today is telling you something. Listen.
+
+Queue depth. If your system uses a queue for background jobs, measure the average depth every hour. A queue that normally sits at 5 to 15 items and starts sitting at 40 to 60 items is backing up. The jobs are not processing fast enough. Find out why.
+
+Disk usage. Track the rate of storage growth. If your database grows by 2 percent per month and suddenly grows by 8 percent per month, something changed. A new query is writing more data than expected. A log file is not rotating. Find it before the disk fills.
+
+These five indicators catch 80 percent of degradation before it becomes a crisis. The other 20 percent are the failures nobody predicted. You handle those with good incident response. The 80 percent you handle with measurement.
+
+The setup takes one to two weeks. Instrument the endpoints. Set up the dashboard. Define the thresholds. Then review the dashboard every Monday. Thirty minutes. Same time. Same person.
+
+I implemented this pattern for a client running a custom operations platform. Their response time had increased 40 percent over four months. Nobody noticed. The dashboard caught it in the first week. The cause was a missing database index. The fix took two hours. The degradation had been building for months.
+
+The dashboard paid for itself in the first week.
+
+Degradation is not a failure. It is a consequence. Every system degrades. The question is whether you see it coming or whether it arrives as a surprise. Surprises are expensive. Detection is cheap.
+
+Build the indicators. Review the trends. Act on the drift. The crisis you prevent is the one nobody knows you prevented.

@@ -11,17 +11,7 @@ import { useSEO } from "../utils/useSEO.js";
 import { Check, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const PlusIcon = ({ className }) => (
-  <svg 
-    width="8" 
-    height="8" 
-    viewBox="0 0 8 8" 
-    fill="none" 
-    className={cn("text-text-subtle/30 group-hover:text-lime transition-colors duration-300 pointer-events-none select-none", className)}
-  >
-    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-  </svg>
-);
+import PlusIcon from "../components/PlusIcon.jsx";
 
 const CareersPage = () => {
   const { t } = useLanguage();

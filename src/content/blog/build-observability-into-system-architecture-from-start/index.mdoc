@@ -1,0 +1,29 @@
+---
+title: "How to Build Observability Into Your System Architecture from the Start"
+date: "2023-11-22"
+summary: "Build observability into your system from day one. Retrofitting observability is expensive and incomplete."
+coverImage: ""
+tags:
+  - "System Architecture"
+author: "Redevise"
+---
+
+Your system is running. You do not know what it is doing. You know it is running because the health check passes. You do not know if it is working correctly.
+
+Observability is the ability to understand the internal state of a system from its external outputs. Logs. Metrics. Traces. These are the outputs.
+
+Here is how to build it in from the start.
+
+Log everything. Every request. Every response. Every error. Every decision. The logs are structured. Not free text. JSON. Key-value pairs. Searchable.
+
+Measure everything. Every function. Every endpoint. Every query. The metrics are numeric. Response time. Error rate. Throughput. Trackable.
+
+Trace everything. Every request that crosses a service boundary. The trace shows the path. The latency at each step. The bottleneck.
+
+I built observability into a client's system in 2024. The cost was approximately 12 percent of the total development effort. The alternative was retrofitting observability after launch. The retrofit [estimate](/estimate) was 35 percent of the original build cost.
+
+The observability paid for itself in the first incident. The incident was diagnosed in 15 minutes. Without observability, the diagnosis would have taken hours.
+
+The teams that skip observability are the ones that debug in the dark. The teams that build it in are the ones that debug in the light.
+
+Log everything. Measure everything. Trace everything. The observability is not optional.

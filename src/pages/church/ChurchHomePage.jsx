@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { scroller } from "react-scroll";
+import { DEFAULT_SCROLL_CONFIG } from "../../constants/index.jsx";
 import ChurchHero from "../../sections/church/ChurchHero.jsx";
 import Pillars from "../../sections/Pillars.jsx";
 import Products from "../../sections/Products.jsx";
@@ -17,12 +18,7 @@ const ChurchHomePage = ({ onOpenInquiry }) => {
   useEffect(() => {
     if (state?.scrollTo) {
       setTimeout(() => {
-        scroller.scrollTo(state.scrollTo, {
-          duration: 400,
-          delay: 0,
-          smooth: "easeOutCubic",
-          offset: -80,
-        });
+        scroller.scrollTo(state.scrollTo, DEFAULT_SCROLL_CONFIG);
         // Clear scroll state from history so subsequent refreshes start at the top
         navigate("/", { replace: true, state: {} });
       }, 100);

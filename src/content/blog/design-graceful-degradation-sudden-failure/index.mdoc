@@ -1,0 +1,29 @@
+---
+title: "How to Design for Graceful Degradation Instead of Sudden Failure"
+date: "2025-06-25"
+summary: "Design systems that degrade gracefully instead of failing suddenly. Build fallbacks that keep the core working."
+coverImage: ""
+tags:
+  - "System Architecture"
+author: "Redevise"
+---
+
+Your system failed. Everything stopped. The users saw an error. The system was down.
+
+Graceful degradation means the system continues to work when parts of it fail. Not at full capacity. At reduced capacity. The core functions work. The non-core functions are disabled.
+
+To construct a resilient system that fails gracefully, follow this three-stage design pattern:
+
+Identify the core functions. What must work. For an e-commerce site, the core is browsing and purchasing. The non-core is recommendations. The recommendations can fail. The purchasing cannot.
+
+Identify the dependencies. What depends on what. The recommendations depend on the recommendation engine. The purchasing depends on the inventory system and the [payment gateway](/services#ecommerce). The dependencies are mapped.
+
+Build fallbacks. When a dependency fails, the system falls back. The recommendation engine fails. The system shows popular items instead. The [payment gateway](/services#ecommerce) fails. The system shows a message and retries.
+
+In our client engagements at Redevise, we regularly design and deploy these solutions. For example, when partnering with a fast-growing team in 2025, we designed graceful degradation. The platform had 12 services. We identified 4 core services and 8 non-core services. We built fallbacks for all 8 non-core services. When a non-core service failed, the fallback activated. The core services continued to work.
+
+The platform experienced three service failures in the following six months. All three were non-core. The users did not notice. The fallbacks worked.
+
+The teams that do not design for degradation are the ones with sudden failures. The teams that design for degradation are the ones with graceful failures.
+
+Identify the core. Map the dependencies. Build the fallbacks. The system degrades gracefully.

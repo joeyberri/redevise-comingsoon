@@ -1,0 +1,29 @@
+---
+title: "What Production Deployment on AWS and Cloudflare Actually Requires"
+date: "2026-03-10"
+summary: "Deploy to production on AWS and Cloudflare with the infrastructure your application actually needs. Skip the fluff and build the foundation."
+coverImage: ""
+tags:
+  - "Development"
+author: "Redevise"
+---
+
+Your application is ready for production. You need to deploy it. AWS and Cloudflare are the tools. Here is what the deployment actually requires.
+
+AWS is the backend. The compute. The database. The storage. The networking. You need to configure these.
+
+Cloudflare is the edge. The DNS. The CDN. The SSL. The DDoS protection. You need to configure these.
+
+Here is the minimum.
+
+On AWS. An EC2 instance or ECS cluster for compute. An RDS instance for the database. An S3 bucket for storage. A VPC for networking. A security group that allows only the necessary traffic. An IAM role that grants only the necessary permissions.
+
+On Cloudflare. A zone for your domain. A DNS record pointing to your AWS resource. A Caching configuration. An SSL certificate. A WAF rule set if you need it.
+
+The connection. Cloudflare proxies traffic to AWS. The AWS security group allows traffic only from Cloudflare. This prevents direct access to your AWS resources.
+
+I deployed a client's application on AWS and Cloudflare in 2026. The deployment took two days. The configuration was specific. No unnecessary services. No unnecessary permissions. The monthly cost was $180.
+
+The teams that over-deploy are the ones with high costs and unnecessary complexity. The teams that deploy the minimum are the ones with low costs and necessary complexity.
+
+Configure the minimum. Connect Cloudflare to AWS. Restrict access. Monitor the costs. The deployment is clean.

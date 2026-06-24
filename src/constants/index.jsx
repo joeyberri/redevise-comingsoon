@@ -194,3 +194,11 @@ export const coreContent = {
     "You don't need to understand how it works. You just get better results, delivered sooner.",
   ],
 };
+
+/* ─── Scroll Configuration ─── */
+export const DEFAULT_SCROLL_CONFIG = {
+  duration: 400,
+  delay: 0,
+  smooth: "easeOutCubic",
+  offset: -80,
+};

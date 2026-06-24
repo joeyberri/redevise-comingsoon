@@ -35,8 +35,6 @@ const GridSpotlight = ({
       {/* Spotlight — driven by motion values, zero re-renders */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
         style={{
           opacity,
           background: spotlightBg,

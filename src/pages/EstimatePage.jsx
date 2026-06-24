@@ -40,17 +40,7 @@ const StepLabel = ({ number, title }) => (
   </div>
 );
 
-const PlusIcon = ({ className }) => (
-  <svg 
-    width="8" 
-    height="8" 
-    viewBox="0 0 8 8" 
-    fill="none" 
-    className={cn("text-text-subtle/30 group-hover:text-lime transition-colors duration-300 pointer-events-none select-none", className)}
-  >
-    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-  </svg>
-);
+import PlusIcon from "../components/PlusIcon.jsx";
 
 /* ─── Feature Toggle ─── */
 const FeatureToggle = ({ feature, isActive, onToggle }) => {
@@ -612,7 +602,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
             <div className="h-px w-full bg-gradient-to-r from-transparent via-lime/30 to-transparent" />
 
             <div
-              className="backdrop-blur-xl border-t border-text/[0.08] bg-dark/85"
+              className="border-t border-text/[0.08] bg-dark/95 shadow-2xl"
             >
               <div className="container mx-auto max-w-container px-6 md:px-10 py-4 md:py-5">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">

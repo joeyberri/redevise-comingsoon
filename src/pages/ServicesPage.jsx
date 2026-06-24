@@ -11,17 +11,7 @@ import { useSEO } from "../utils/useSEO.js";
 import { cn } from "../utils/cn";
 import { ArrowRight, Check } from "lucide-react";
 
-const PlusIcon = ({ className }) => (
-  <svg 
-    width="8" 
-    height="8" 
-    viewBox="0 0 8 8" 
-    fill="none" 
-    className={cn("text-text-subtle/30 group-hover:text-lime transition-colors duration-300 pointer-events-none select-none", className)}
-  >
-    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-  </svg>
-);
+import PlusIcon from "../components/PlusIcon.jsx";
 
 const CAPABILITIES = [
   {
@@ -286,14 +276,21 @@ const ServicesPage = ({ onOpenInquiry }) => {
   const activeDomain = CAPABILITIES.find((d) => d.id === activeDomainId) || CAPABILITIES[0];
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const offsets = sections.map((sec) => {
-        const el = document.getElementById(sec.id);
-        if (!el) return { id: sec.id, top: Infinity };
-        return { id: sec.id, top: Math.abs(el.getBoundingClientRect().top - 200) };
-      });
-      const closest = offsets.reduce((a, b) => (a.top < b.top ? a : b));
-      setActiveSection(closest.id);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const offsets = sections.map((sec) => {
+            const el = document.getElementById(sec.id);
+            if (!el) return { id: sec.id, top: Infinity };
+            return { id: sec.id, top: Math.abs(el.getBoundingClientRect().top - 200) };
+          });
+          const closest = offsets.reduce((a, b) => (a.top < b.top ? a : b));
+          setActiveSection(closest.id);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

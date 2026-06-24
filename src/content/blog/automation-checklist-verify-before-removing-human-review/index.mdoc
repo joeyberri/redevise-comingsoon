@@ -1,0 +1,31 @@
+---
+title: "The Automation Checklist: What to Verify Before You Remove Human Review"
+date: "2023-07-30"
+summary: "Remove human review only after verifying these five conditions. Premature removal creates silent failures that compound undetected."
+coverImage: ""
+tags:
+  - "Automation"
+author: "Redevise"
+---
+
+You want to remove the human review step. The automation has been running for a month. It looks accurate. You are ready to remove the human.
+
+Do not remove the human yet. Human review is a safety net. Removing it before the automation is reliable creates silent failures. The automation processes everything. Some of it is wrong. Nobody checks.
+
+Here is the checklist. Verify all five before you remove the review.
+
+One. The automation has processed at least 1,000 items. Below 1,000, the sample is too small to trust the accuracy rate.
+
+Two. The accuracy rate is above 98 percent. Not 95 percent. Not 97 percent. 98 percent. Below that, the error volume is too high for comfort.
+
+Three. The errors are random. Not systematic. Random errors are acceptable. Systematic errors mean the automation has a structural problem. If the same error occurs more than three times, it is systematic. Fix the structure before removing the review.
+
+Four. The exceptions are handled. The automation has a defined path for items it cannot process. Those items are escalated. Not dropped. Not silently queued. Escalated.
+
+Five. The output is verified. Not by the automation itself. By a separate process. A spot check. A reconciliation. A comparison against a known source.
+
+I removed human review for a client's data sync in 2024. The automation had processed 1,400 items. Accuracy was 99.2 percent. Errors were random. Exceptions were escalated. Output was reconciled weekly. We removed the review. Six months later, accuracy was still above 99 percent.
+
+The checklist is not optional. Each item exists because of a failure I have seen. Remove the review too early and you create a blind spot. Wait until all five conditions are met.
+
+Count the items. Check the accuracy. Verify the error pattern. Confirm the exceptions. Validate the output. Then remove the review.

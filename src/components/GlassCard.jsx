@@ -1,17 +1,6 @@
 import { motion } from "framer-motion";
 import { cn } from "../utils/cn";
-
-const PlusIcon = () => (
-  <svg 
-    width="8" 
-    height="8" 
-    viewBox="0 0 8 8" 
-    fill="none" 
-    className="text-text-subtle/30 group-hover:text-lime group-focus:text-lime transition-colors duration-200 pointer-events-none select-none"
-  >
-    <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-  </svg>
-);
+import PlusIcon from "./PlusIcon.jsx";
 
 const GlassCard = ({ children, className, hover = true, delay = 0 }) => {
   return (
@@ -33,16 +22,16 @@ const GlassCard = ({ children, className, hover = true, delay = 0 }) => {
     >
       {/* Blueprint Corner Plus Indicators */}
       <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none">
-        <PlusIcon />
+        <PlusIcon className="group-hover:text-lime group-focus:text-lime" />
       </div>
       <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none">
-        <PlusIcon />
+        <PlusIcon className="group-hover:text-lime group-focus:text-lime" />
       </div>
       <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none">
-        <PlusIcon />
+        <PlusIcon className="group-hover:text-lime group-focus:text-lime" />
       </div>
       <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none">
-        <PlusIcon />
+        <PlusIcon className="group-hover:text-lime group-focus:text-lime" />
       </div>
 
       {/* Children content area */}
