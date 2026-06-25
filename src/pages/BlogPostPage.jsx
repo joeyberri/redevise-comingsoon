@@ -13,32 +13,69 @@ import {
 } from "lucide-react";
 import { getPostBySlug, getReadingTime, getAllPosts } from "../utils/blog";
 import CtaFooter from "../sections/CtaFooter.jsx";
+import { useSEO } from "../utils/useSEO.js";
 
 const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
 
-  // Update document title for SEO
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | Redevise Blog`;
+  useSEO({
+    title: post ? `${post.title} | Redevise Blog` : undefined,
+    description: post ? post.summary : undefined,
+    canonicalPath: post ? `/blog/${post.slug}` : undefined,
+  });
 
-      // Update meta description
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute("content", post.summary);
-
-      // Update OG tags
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute("content", post.title);
-
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute("content", post.summary);
-
-      return () => {
-        document.title = "Redevise | Optimization Infrastructure";
-      };
-    }
-  }, [post]);
+  const schemaJson = post ? {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `https://redevise.com/blog/${post.slug}#blogposting`,
+        "mainEntityOfPage": `https://redevise.com/blog/${post.slug}`,
+        "headline": post.title,
+        "description": post.summary,
+        "datePublished": post.date,
+        "author": {
+          "@type": "Organization",
+          "name": post.author || "Redevise",
+          "url": "https://redevise.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Redevise",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://redevise.com/redevise.png"
+          }
+        },
+        "image": post.coverImage || "https://redevise.com/redevise.png"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://redevise.com/blog/${post.slug}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://redevise.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://redevise.com/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": post.title,
+            "item": `https://redevise.com/blog/${post.slug}`
+          }
+        ]
+      }
+    ]
+  } : null;
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -62,6 +99,12 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
       </div>
 
       <div className="container relative z-10">
+        {schemaJson && (
+          <script type="application/ld+json">
+            {JSON.stringify(schemaJson)}
+          </script>
+        )}
+
         {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}
@@ -69,16 +112,35 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
           transition={{ duration: 0.25 }}
           className="mb-10"
         >
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 text-sm text-text-subtle hover:text-lime transition-colors duration-300 group"
-          >
-            <ArrowLeft
-              size={16}
-              className="group-hover:-translate-x-1 transition-transform duration-300"
-            />
-            Back to Blog
-          </Link>
+          <nav aria-label="Breadcrumb" className="flex items-center justify-between flex-wrap gap-4 border-b border-dark-400/20 pb-6 mb-6">
+            <ol className="flex flex-wrap items-center gap-2 text-xs font-mono tracking-wider uppercase text-text-subtle/70">
+              <li>
+                <Link to="/" className="hover:text-lime transition-colors duration-300">
+                  Home
+                </Link>
+              </li>
+              <li className="text-text-subtle/30">/</li>
+              <li>
+                <Link to="/blog" className="hover:text-lime transition-colors duration-300">
+                  Blog
+                </Link>
+              </li>
+              <li className="text-text-subtle/30">/</li>
+              <li className="text-text-subtle truncate max-w-[120px] sm:max-w-xs md:max-w-md normal-case font-sans font-medium" aria-current="page">
+                {post.title}
+              </li>
+            </ol>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-text-subtle hover:text-lime transition-colors duration-300 group"
+            >
+              <ArrowLeft
+                size={12}
+                className="group-hover:-translate-x-1 transition-transform duration-300"
+              />
+              Back to Blog
+            </Link>
+          </nav>
         </motion.div>
 
         {/* Post Header */}

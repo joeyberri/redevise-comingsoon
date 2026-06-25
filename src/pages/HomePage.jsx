@@ -29,8 +29,42 @@ const HomePage = ({ onOpenInquiry }) => {
     }
   }, [state, navigate]);
 
+  const professionalServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Redevise",
+    "image": "https://redevise.com/redevise.png",
+    "@id": "https://redevise.com/#service",
+    "url": "https://redevise.com",
+    "telephone": "+233207932004",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Accra",
+      "addressCountry": "GH"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "17:00"
+    },
+    "sameAs": [
+      "https://wa.me/233207932004"
+    ]
+  };
+
   return (
     <>
+      <script type="application/ld+json">
+        {JSON.stringify(professionalServiceSchema)}
+      </script>
       <Hero onOpenInquiry={onOpenInquiry} />
       <Pillars />
       <Statement />

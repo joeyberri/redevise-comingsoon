@@ -9,7 +9,7 @@ import GlassCard from "../components/GlassCard.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
 import { cn } from "../utils/cn";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Plus, Minus } from "lucide-react";
 
 import PlusIcon from "../components/PlusIcon.jsx";
 
@@ -266,10 +266,52 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
   const [activeSection, setActiveSection] = useState("core-offerings");
   const [activeDomainId, setActiveDomainId] = useState(CAPABILITIES[0].id);
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What is Optimization Infrastructure?",
+      answer: "Optimization Infrastructure is the set of custom software tools, workflow automations, and system architectures built to streamline operations and multiply team capacity without scaling headcount linearly."
+    },
+    {
+      question: "How does Redevise decide between building custom software vs subscribing to SaaS?",
+      answer: "We help clients audit their tool stack. If off-the-shelf SaaS creates integration debt or becomes a process bottleneck, we design custom integration layers or custom web applications that adapt exactly to your workflows."
+    },
+    {
+      question: "What payment gateways does Redevise integrate?",
+      answer: "We integrate payment gateways tailored to local and international markets, including Paystack, Hubtel, Stripe, and M-Pesa, complete with built-in inventory tracking."
+    },
+    {
+      question: "How long does a typical system design and automation project take?",
+      answer: "We operate on sprint-based development cycles, providing weekly staging links. A typical workflow automation or dashboard setup is completed in 3 to 6 weeks."
+    },
+    {
+      question: "Does Redevise build custom AI chatbots?",
+      answer: "Yes. We build intelligent, context-aware AI chatbots and knowledge base agents that integrate directly into your WhatsApp channels, CRM, or support desks to automate manual labor safely."
+    }
+  ];
+
+  const faqSchemaJson = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
 
   const sections = [
     { id: "core-offerings", label: t("servicesPage.core.pill") },
     { id: "capabilities-index", label: t("servicesPage.directory.pill") },
+    { id: "services-faq", label: "FAQ" }
   ];
 
   const packages = t("servicesPage.core.packages") || [];
@@ -468,6 +510,72 @@ const ServicesPage = ({ onOpenInquiry }) => {
                 </AnimatePresence>
               </div>
             </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── FAQ Section ── */}
+      <Section id="services-faq" name="services-faq" showDivider spacing="generous">
+        {faqSchemaJson && (
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchemaJson)}
+          </script>
+        )}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column */}
+          <div className="lg:col-span-4">
+            <div className="pill mb-6">
+              <span className="font-mono text-[9px] uppercase tracking-wider">FAQ</span>
+            </div>
+            <Heading level={2} className="text-3xl md:text-4xl font-bold font-sans tracking-tight mb-4 text-text">
+              Frequently Asked <span className="text-gradient">Questions</span>
+            </Heading>
+            <Text className="text-text-muted text-sm md:text-base leading-relaxed">
+              Find answers to common questions about our custom optimization services, development process, and business systems integrations.
+            </Text>
+          </div>
+
+          {/* Right Column */}
+          <div className="lg:col-span-8 space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div 
+                  key={index}
+                  className="border border-text/[0.06] bg-dark-100/20 transition-all duration-300 hover:border-text/[0.12] rounded-none overflow-hidden"
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-center justify-between p-6 text-left cursor-pointer outline-none bg-transparent border-0"
+                  >
+                    <span className="font-sans font-semibold text-sm md:text-base text-text hover:text-lime transition-colors duration-200 pr-4">
+                      {faq.question}
+                    </span>
+                    <span className="text-text-subtle shrink-0">
+                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 pt-0 border-t border-text/[0.04]">
+                          <p className="text-text-muted text-xs md:text-sm leading-relaxed font-sans mt-4">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Section>
