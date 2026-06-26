@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, Calendar, Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
@@ -6,6 +6,7 @@ import { getAllPosts, getAllTags, getReadingTime } from "../utils/blog";
 import { useSEO } from "../utils/useSEO.js";
 import CtaFooter from "../sections/CtaFooter.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
+import BlogPostCard from "../components/BlogPostCard.jsx";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -22,6 +23,9 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
   const allTags = getAllTags();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTag, setActiveTag] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 9;
+
   useSEO({ key: "blog" });
 
   const filteredPosts = useMemo(() => {
@@ -35,8 +39,71 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
     });
   }, [allPosts, searchQuery, activeTag]);
 
-  const featuredPost = filteredPosts[0];
-  const remainingPosts = filteredPosts.slice(1);
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, activeTag]);
+
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  const { featuredPost, remainingPosts, totalPages } = useMemo(() => {
+    if (filteredPosts.length === 0) {
+      return { featuredPost: null, remainingPosts: [], totalPages: 0 };
+    }
+
+    const featured = filteredPosts[0];
+    const totalGridItems = filteredPosts.length - 1;
+
+    let pages = 1;
+    if (totalGridItems > postsPerPage) {
+      pages = 1 + Math.ceil((totalGridItems - postsPerPage) / postsPerPage);
+    }
+
+    let startIdx = 1;
+    if (currentPage > 1) {
+      startIdx = 1 + (currentPage - 1) * postsPerPage;
+    }
+    const endIdx = startIdx + postsPerPage;
+    const grid = filteredPosts.slice(startIdx, endIdx);
+    return {
+      featuredPost: currentPage === 1 ? featured : null,
+      remainingPosts: grid,
+      totalPages: pages,
+    };
+  }, [filteredPosts, currentPage, postsPerPage]);
+
+  const getPageNumbers = () => {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+      return pages;
+    }
+
+    pages.push(1);
+
+    const start = Math.max(2, currentPage - 1);
+    const end = Math.min(totalPages - 1, currentPage + 1);
+
+    if (start > 2) {
+      pages.push("...");
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (end < totalPages - 1) {
+      pages.push("...");
+    }
+
+    pages.push(totalPages);
+    return pages;
+  };
 
   return (
     <>
@@ -219,63 +286,70 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                 animate="visible"
                 variants={fadeUp}
               >
-                <Link
-                  to={`/blog/${post.slug}`}
-                  className="group card flex flex-col h-full overflow-hidden"
-                >
-                  {/* Cover */}
-                  {post.coverImage && (
-                    <div className="h-48 overflow-hidden">
-                      <img
-                        src={post.coverImage}
-                        alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                  )}
-
-                  <div className="flex flex-col flex-1 p-6">
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded border border-text/10 bg-text/5 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="font-sans text-lg font-bold text-text mb-3 leading-snug tracking-tight group-hover:text-lime transition-colors duration-300">
-                      {post.title}
-                    </h3>
-
-                    {/* Summary */}
-                    <p className="text-text-muted text-sm leading-relaxed line-clamp-3 mb-auto">
-                      {post.summary}
-                    </p>
-
-                    {/* Meta */}
-                    <div className="mt-5 pt-4 border-t border-dark-400/20 flex items-center justify-between text-text-subtle text-xs">
-                      <span className="flex items-center gap-1.5">
-                        <Calendar size={11} />
-                        {new Date(post.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <Clock size={11} />
-                        {getReadingTime(post.content)}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+                <BlogPostCard post={post} />
               </motion.div>
             ))}
+          </div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-16 flex-wrap">
+            {/* Prev Button */}
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+              className={`flex items-center justify-center size-10 rounded border font-sans text-xs transition-all duration-300 ${
+                currentPage === 1
+                  ? "border-text/5 text-text-subtle/30 cursor-not-allowed bg-text/[0.01]"
+                  : "border-text/10 hover:border-lime/40 hover:text-lime cursor-pointer text-text hover:bg-lime/[0.02]"
+              }`}
+              aria-label="Previous Page"
+            >
+              &lt;
+            </button>
+
+            {/* Page numbers */}
+            {getPageNumbers().map((page, idx) => {
+              if (page === "...") {
+                return (
+                  <span
+                    key={`ellipsis-${idx}`}
+                    className="flex items-center justify-center size-10 font-mono text-xs text-text-subtle select-none"
+                  >
+                    ...
+                  </span>
+                );
+              }
+              const isSelected = currentPage === page;
+              return (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`flex items-center justify-center size-10 rounded border font-mono text-xs transition-all duration-300 cursor-pointer ${
+                    isSelected
+                      ? "border-lime/30 bg-lime/10 text-lime"
+                      : "border-text/10 bg-text/5 text-text-subtle hover:border-text/30 hover:text-text-muted hover:bg-text/[0.08]"
+                  }`}
+                >
+                  {page}
+                </button>
+              );
+            })}
+
+            {/* Next Button */}
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+              disabled={currentPage === totalPages}
+              className={`flex items-center justify-center size-10 rounded border font-sans text-xs transition-all duration-300 ${
+                currentPage === totalPages
+                  ? "border-text/5 text-text-subtle/30 cursor-not-allowed bg-text/[0.01]"
+                  : "border-text/10 hover:border-lime/40 hover:text-lime cursor-pointer text-text hover:bg-lime/[0.02]"
+              }`}
+              aria-label="Next Page"
+            >
+              &gt;
+            </button>
           </div>
         )}
       </div>

@@ -5,7 +5,7 @@ import Pill from "../components/Pill.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { X, Check } from "lucide-react";
 
-import PlusIcon from "../components/PlusIcon.jsx";
+import CorneredBox from "../components/CorneredBox.jsx";
 
 const Difference = () => {
   const { t } = useLanguage();
@@ -40,12 +40,10 @@ const Difference = () => {
         <div className="space-y-4">
           {items.map((item, idx) => (
             <FadeIn key={idx} delay={idx * 0.05} fullWidth>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-none border border-text/[0.04] bg-text/[0.01] hover:border-text/[0.08] hover:bg-text/[0.02] transition-all duration-300 relative group/row overflow-visible">
-                {/* Plus Corner Markers */}
-                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/row:text-lime" /></div>
-                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/row:text-lime" /></div>
-                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/row:text-lime" /></div>
-                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/row:text-lime" /></div>
+              <CorneredBox
+                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-none border border-text/[0.04] bg-text/[0.01] hover:border-text/[0.08] hover:bg-text/[0.02] transition-all duration-300 relative group/row overflow-visible"
+                plusClassName="group-hover/row:text-lime"
+              >
 
                 {/* Accent glow on hover for Redevise column */}
                 <div className="absolute right-0 top-0 bottom-0 w-[33%] bg-lime/[0.01] opacity-0 group-hover/row:opacity-100 transition-opacity duration-500 pointer-events-none hidden md:block" />
@@ -86,7 +84,7 @@ const Difference = () => {
                     </Text>
                   </div>
                 </div>
-              </div>
+              </CorneredBox>
             </FadeIn>
           ))}
         </div>

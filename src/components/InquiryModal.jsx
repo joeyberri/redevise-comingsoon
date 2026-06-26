@@ -15,7 +15,9 @@ import { cn } from "../utils/cn";
 import secretaryImg from "../assets/images/secretary.webp";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
-import PlusIcon from "./PlusIcon.jsx";
+import CorneredBox from "./CorneredBox.jsx";
+import FormInput from "./FormInput.jsx";
+import FormTextArea from "./FormTextArea.jsx";
 
 // ── Component ────────────────────────────────────────────────────────────────
 const InquiryModal = ({ isOpen, onClose, initialType = "", metadata = null }) => {
@@ -458,20 +460,16 @@ Project Details:
               </div>
             </motion.div>
 
-            {/* Modal Shell */}
-            <motion.div
+            <CorneredBox
+              as={motion.div}
               initial={{ scale: 0.98, y: 20, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.98, y: 20, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 350, mass: 0.5 }}
               className="group/modal relative w-full rounded-none border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-visible"
               style={{ maxHeight: "90vh" }}
+              plusClassName="group-hover/modal:text-lime"
             >
-              {/* Plus Corner Markers */}
-              <div className="absolute -top-[4px] -left-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
-              <div className="absolute -top-[4px] -right-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
-              <div className="absolute -bottom-[4px] -left-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
-              <div className="absolute -bottom-[4px] -right-[4px] z-[220] pointer-events-none"><PlusIcon className="group-hover/modal:text-lime" /></div>
 
               {/* Inner layout container */}
               <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-none">
@@ -537,58 +535,26 @@ Project Details:
                             </div>
 
                             <div className="space-y-6">
-                              <div>
-                                <input
-                                  type="text"
-                                  placeholder={t('modal.steps.placeholderName')}
-                                  className={cn(
-                                    "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10",
-                                    validationErrors.name 
-                                      ? "border-red-500/50 focus:border-red-500" 
-                                      : "border-text/10 focus:border-lime"
-                                  )}
-                                  autoFocus
-                                  value={formData.name}
-                                  onChange={(e) => handleNameChange(e.target.value)}
-                                  onKeyDown={(e) => e.key === "Enter" && handleNext()}
-                                />
-                                {validationErrors.name && (
-                                  <motion.p
-                                    initial={{ opacity: 0, y: -5 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="text-red-500 dark:text-red-400 text-xs mt-2 flex items-center gap-1.5"
-                                  >
-                                    <AlertCircle size={12} />
-                                    {validationErrors.name}
-                                  </motion.p>
-                                )}
-                              </div>
+                              <FormInput
+                                type="text"
+                                placeholder={t('modal.steps.placeholderName')}
+                                value={formData.name}
+                                onChange={(e) => handleNameChange(e.target.value)}
+                                onKeyDown={(e) => e.key === "Enter" && handleNext()}
+                                error={validationErrors.name}
+                                variant="bottom-border"
+                                autoFocus
+                              />
 
-                              <div>
-                                <input
-                                  type="email"
-                                  placeholder={t('modal.steps.placeholderEmail')}
-                                  className={cn(
-                                    "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10",
-                                    validationErrors.email 
-                                      ? "border-red-500/50 focus:border-red-500" 
-                                      : "border-text/10 focus:border-lime"
-                                  )}
-                                  value={formData.email}
-                                  onChange={(e) => handleEmailChange(e.target.value)}
-                                  onKeyDown={(e) => e.key === "Enter" && handleNext()}
-                                />
-                                {validationErrors.email && (
-                                  <motion.p
-                                    initial={{ opacity: 0, y: -5 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="text-red-500 dark:text-red-400 text-xs mt-2 flex items-center gap-1.5"
-                                  >
-                                    <AlertCircle size={12} />
-                                    {validationErrors.email}
-                                  </motion.p>
-                                )}
-                              </div>
+                              <FormInput
+                                type="email"
+                                placeholder={t('modal.steps.placeholderEmail')}
+                                value={formData.email}
+                                onChange={(e) => handleEmailChange(e.target.value)}
+                                onKeyDown={(e) => e.key === "Enter" && handleNext()}
+                                error={validationErrors.email}
+                                variant="bottom-border"
+                              />
                             </div>
 
                             <div className="flex justify-end items-center pt-8">
@@ -726,16 +692,12 @@ Project Details:
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-5 justify-center">
-                              <button
+                              <CorneredBox
+                                as="button"
                                 onClick={() => handleChoice("book")}
-                                className="flex-1 group/btn p-8 rounded-none border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4 cursor-pointer relative overflow-visible"
+                                className="flex-1 group/btn p-8 rounded-none border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
+                                plusClassName="group-hover/btn:text-lime"
                               >
-                                {/* Corner indicators */}
-                                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-                                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-                                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-                                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-
                                 <div className="size-16 rounded-2xl bg-lime text-dark-100 flex items-center justify-center shadow-[0_0_30px_rgba(190,255,80,0.2)] group-hover/btn:scale-110 transition-transform">
                                   <Calendar size={30} />
                                 </div>
@@ -747,17 +709,14 @@ Project Details:
                                     {t('modal.steps.bookCallSub')}
                                   </div>
                                 </div>
-                              </button>
+                              </CorneredBox>
 
-                              <button
+                              <CorneredBox
+                                as="button"
                                 onClick={() => handleChoice("message")}
-                                className="flex-1 group/btn p-8 rounded-none border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4 cursor-pointer relative overflow-visible"
+                                className="flex-1 group/btn p-8 rounded-none border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
+                                plusClassName="group-hover/btn:text-lime"
                               >
-                                {/* Corner indicators */}
-                                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-                                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-                                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
-                                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon className="group-hover/btn:text-lime" /></div>
 
                                 <div className="size-16 rounded-2xl bg-text/10 text-text flex items-center justify-center group-hover/btn:scale-110 transition-transform">
                                   <MessageSquare size={30} />
@@ -770,7 +729,7 @@ Project Details:
                                     {t('modal.steps.sendMessageSub')}
                                   </div>
                                 </div>
-                              </button>
+                              </CorneredBox>
                             </div>
                           </div>
                         )}
@@ -806,22 +765,14 @@ Project Details:
                             </div>
 
                             <div className="flex-1 flex flex-col min-h-0">
-                              <textarea
+                              <FormTextArea
                                 data-lenis-prevent
                                 placeholder={t('modal.steps.placeholderMsg')}
-                                className="w-full flex-1 bg-transparent border-b-2 border-text/10 py-4 text-lg outline-none focus:border-lime transition-colors resize-none placeholder:text-text/10 min-h-[140px]"
-                                autoFocus
                                 value={formData.message}
                                 onChange={(e) =>
                                   setFormData({ ...formData, message: e.target.value })
                                 }
                               />
-                              {submitError && (
-                                <div className="flex items-center gap-2 mt-4 text-red-500 dark:text-red-400 text-sm">
-                                  <AlertCircle size={14} />
-                                  <span>{submitError}</span>
-                                </div>
-                              )}
                               <div className="mt-auto pt-8 flex justify-end">
                                 <MagneticButton
                                   onClick={handleSubmitMessage}
@@ -925,7 +876,7 @@ Project Details:
                   </AnimatePresence>
                 </div>
               </div>
-            </motion.div>
+            </CorneredBox>
           </div>
         </motion.div>
       )}

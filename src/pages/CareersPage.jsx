@@ -11,7 +11,9 @@ import { useSEO } from "../utils/useSEO.js";
 import { Check, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import PlusIcon from "../components/PlusIcon.jsx";
+import CorneredBox from "../components/CorneredBox.jsx";
+import FormInput from "../components/FormInput.jsx";
+import FormTextArea from "../components/FormTextArea.jsx";
 
 const CareersPage = () => {
   const { t } = useLanguage();
@@ -119,18 +121,14 @@ const CareersPage = () => {
         <div className="max-w-2xl mx-auto">
           <AnimatePresence mode="wait">
             {isSubmitted ? (
-              <motion.div
+              <CorneredBox
+                as={motion.div}
                 key="success"
                 initial={{ opacity: 0, scale: 0.98, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="group relative border border-text/[0.08] bg-dark-100/60 p-12 text-center overflow-visible"
               >
-                {/* Plus Corner Markers */}
-                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
-                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
-                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
-                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
 
                 <div className="size-20 rounded-full bg-lime/10 border border-lime/20 flex items-center justify-center text-lime mx-auto mb-8 shadow-[0_0_30px_rgba(190,255,80,0.1)] animate-pulse">
                   <Check size={40} />
@@ -146,20 +144,16 @@ const CareersPage = () => {
                     {t("careers.common.backHome")}
                   </MagneticButton>
                 </Link>
-              </motion.div>
+                  </CorneredBox>
             ) : (
-              <motion.div
+              <CorneredBox
+                as={motion.div}
                 key="form"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 className="group relative border border-text/[0.08] bg-dark-100/60 p-8 md:p-12 overflow-visible"
               >
-                {/* Plus Corner Markers */}
-                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
-                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
-                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none"><PlusIcon /></div>
-                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none"><PlusIcon /></div>
 
                 <div className="mb-10">
                   <Heading level={2} variant="card-title" className="mb-2">
@@ -171,49 +165,24 @@ const CareersPage = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                  {/* Name */}
-                  <div className="space-y-2">
-                    <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
-                      {t("careers.fields.name")} <span className="text-lime">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      placeholder={t("careers.placeholders.name")}
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
-                      className={cn(
-                        "w-full bg-text/[0.02] border border-text/10 focus:border-lime py-4 px-5 text-base rounded-none outline-none transition-colors placeholder:text-text/10 text-text",
-                        validationErrors.name && "border-red-500/50 focus:border-red-500"
-                      )}
-                    />
-                    {validationErrors.name && (
-                      <p className="text-red-500 text-xs flex items-center gap-1.5 mt-1">
-                        <AlertCircle size={12} /> {validationErrors.name}
-                      </p>
-                    )}
-                  </div>
+                  <FormInput
+                    label={t("careers.fields.name")}
+                    placeholder={t("careers.placeholders.name")}
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    error={validationErrors.name}
+                    required
+                  />
 
-                  {/* Email */}
-                  <div className="space-y-2">
-                    <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
-                      {t("careers.fields.email")} <span className="text-lime">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      placeholder={t("careers.placeholders.email")}
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      className={cn(
-                        "w-full bg-text/[0.02] border border-text/10 focus:border-lime py-4 px-5 text-base rounded-none outline-none transition-colors placeholder:text-text/10 text-text",
-                        validationErrors.email && "border-red-500/50 focus:border-red-500"
-                      )}
-                    />
-                    {validationErrors.email && (
-                      <p className="text-red-500 text-xs flex items-center gap-1.5 mt-1">
-                        <AlertCircle size={12} /> {validationErrors.email}
-                      </p>
-                    )}
-                  </div>
+                  <FormInput
+                    label={t("careers.fields.email")}
+                    type="email"
+                    placeholder={t("careers.placeholders.email")}
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    error={validationErrors.email}
+                    required
+                  />
 
                   {/* Role Selector Grid */}
                   <div className="space-y-3">
@@ -250,63 +219,32 @@ const CareersPage = () => {
                     )}
                   </div>
 
-                  {/* Resume Link */}
-                  <div className="space-y-2">
-                    <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
-                      {t("careers.fields.resume")} <span className="text-lime">*</span>
-                    </label>
-                    <input
-                      type="url"
-                      placeholder={t("careers.placeholders.resume")}
-                      value={formData.resume}
-                      onChange={(e) => handleInputChange("resume", e.target.value)}
-                      className={cn(
-                        "w-full bg-text/[0.02] border border-text/10 focus:border-lime py-4 px-5 text-base rounded-none outline-none transition-colors placeholder:text-text/10 text-text",
-                        validationErrors.resume && "border-red-500/50 focus:border-red-500"
-                      )}
-                    />
-                    {validationErrors.resume && (
-                      <p className="text-red-500 text-xs flex items-center gap-1.5 mt-1">
-                        <AlertCircle size={12} /> {validationErrors.resume}
-                      </p>
-                    )}
-                  </div>
+                  <FormInput
+                    label={t("careers.fields.resume")}
+                    type="url"
+                    placeholder={t("careers.placeholders.resume")}
+                    value={formData.resume}
+                    onChange={(e) => handleInputChange("resume", e.target.value)}
+                    error={validationErrors.resume}
+                    required
+                  />
 
-                  {/* Portfolio Link */}
-                  <div className="space-y-2">
-                    <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
-                      {t("careers.fields.portfolio")}
-                    </label>
-                    <input
-                      type="url"
-                      placeholder={t("careers.placeholders.portfolio")}
-                      value={formData.portfolio}
-                      onChange={(e) => handleInputChange("portfolio", e.target.value)}
-                      className="w-full bg-text/[0.02] border border-text/10 focus:border-lime py-4 px-5 text-base rounded-none outline-none transition-colors placeholder:text-text/10 text-text"
-                    />
-                  </div>
+                  <FormInput
+                    label={t("careers.fields.portfolio")}
+                    type="url"
+                    placeholder={t("careers.placeholders.portfolio")}
+                    value={formData.portfolio}
+                    onChange={(e) => handleInputChange("portfolio", e.target.value)}
+                  />
 
-                  {/* Cover Letter Message */}
-                  <div className="space-y-2">
-                    <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
-                      {t("careers.fields.message")} <span className="text-lime">*</span>
-                    </label>
-                    <textarea
-                      placeholder={t("careers.placeholders.message")}
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => handleInputChange("message", e.target.value)}
-                      className={cn(
-                        "w-full bg-text/[0.02] border border-text/10 focus:border-lime py-4 px-5 text-base rounded-none outline-none transition-colors placeholder:text-text/10 resize-none text-text",
-                        validationErrors.message && "border-red-500/50 focus:border-red-500"
-                      )}
-                    />
-                    {validationErrors.message && (
-                      <p className="text-red-500 text-xs flex items-center gap-1.5 mt-1">
-                        <AlertCircle size={12} /> {validationErrors.message}
-                      </p>
-                    )}
-                  </div>
+                  <FormTextArea
+                    label={t("careers.fields.message")}
+                    placeholder={t("careers.placeholders.message")}
+                    value={formData.message}
+                    onChange={(e) => handleInputChange("message", e.target.value)}
+                    error={validationErrors.message}
+                    required
+                  />
 
                   {submitError && (
                     <div className="flex items-center gap-2 text-red-500 text-sm py-2">
@@ -331,7 +269,7 @@ const CareersPage = () => {
                     </MagneticButton>
                   </div>
                 </form>
-              </motion.div>
+                  </CorneredBox>
             )}
           </AnimatePresence>
         </div>

@@ -1,5 +1,5 @@
 import { useRef, useState, useMemo, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Section from "../components/Section.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
@@ -9,55 +9,17 @@ import { useLanguage } from "../utils/LanguageContext.jsx";
 import { cn } from "../utils/cn";
 import { useSEO } from "../utils/useSEO.js";
 import { Link } from "react-router-dom";
+import ProcessStepItem from "../components/process/ProcessStepItem.jsx";
+import FaqAccordion from "../components/FaqAccordion.jsx";
 
-/* ─── Process Step Item (Right Column / Mobile Scrolling) ─── */
-const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
-  return (
-    <div
-      ref={innerRef}
-      data-step-index={index}
-      className="scroll-mt-32 border-t border-text/[0.06] pt-12 lg:pt-0 lg:border-t-0 first:border-t-0 first:pt-0"
-    >
-      <FadeIn delay={0.05} direction="up" fullWidth>
-        {/* Mobile/Tablet Header (hidden on desktop) */}
-        <div className="lg:hidden flex items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3">
-            <span className="font-sans text-3xl font-extrabold text-lime">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <Heading level={3} variant="small-title">
-              {step.title}
-            </Heading>
-          </div>
-          <Pill className="text-[10px] bg-lime/10 border-lime/20 text-lime">{step.duration}</Pill>
-        </div>
-
-        {/* Step description */}
-        <Text className="text-text-muted leading-relaxed text-base md:text-lg">
-          {step.desc}
-        </Text>
-
-        {/* Outcome Callout */}
-        {step.outcome && (
-          <div className="border-l-2 border-lime/40 pl-5 py-1 mt-6 bg-lime/[0.01]">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-lime mb-1.5">
-              {"// "}{whatYouGetLabel}
-            </p>
-            <Text variant="small" className="text-text-muted/90">
-              {step.outcome}
-            </Text>
-          </div>
-        )}
-      </FadeIn>
-    </div>
-  );
-};
-
-/* ─── FAQ Item ─── */
-const FaqItem = ({ faq, index, isOpen, onToggle, onOpenInquiry }) => {
-  const contentId = `faq-content-${index}`;
-  const buttonId = `faq-button-${index}`;
-  const { locale } = useLanguage();
+/* ─── Main Page Component ─── */
+const ProcessPage = ({ onOpenInquiry = () => {} }) => {
+  const { t, formatPrice, locale } = useLanguage();
+  useSEO({ key: "process" });
+  const [activeStep, setActiveStep] = useState(0);
+  
+  const containerRef = useRef(null);
+  const stepRefs = useRef([]);
 
   const renderAnswer = (text) => {
     const targetEstimatorEn = "project estimator";
@@ -109,64 +71,6 @@ const FaqItem = ({ faq, index, isOpen, onToggle, onOpenInquiry }) => {
     }
 
     return text;
-  };
-
-  return (
-    <div className="border-b border-dark-400/30 last:border-0">
-      <button
-        id={buttonId}
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-controls={contentId}
-        className="flex w-full items-center justify-between gap-4 py-6 text-left transition-colors duration-200 hover:text-lime focus:outline-none focus-visible:ring-2 focus-visible:ring-lime/30 rounded"
-      >
-        <Heading level={4} variant="small-title" className="flex-1 pointer-events-none">
-          {faq.q}
-        </Heading>
-        <motion.span
-          aria-hidden="true"
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.15, ease: "easeInOut" }}
-          className="flex size-8 shrink-0 items-center justify-center rounded-full border border-dark-400/50 text-text-subtle text-xl leading-none select-none"
-        >
-          +
-        </motion.span>
-      </button>
-      
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={contentId}
-            role="region"
-            aria-labelledby={buttonId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="overflow-hidden"
-          >
-            <Text className="pb-6 pl-0 md:pl-2 max-w-2xl text-text-muted">
-              {renderAnswer(faq.a)}
-            </Text>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-/* ─── Main Page Component ─── */
-const ProcessPage = ({ onOpenInquiry = () => {} }) => {
-  const { t, formatPrice } = useLanguage();
-  useSEO({ key: "process" });
-  const [openFaq, setOpenFaq] = useState(null);
-  const [activeStep, setActiveStep] = useState(0);
-  
-  const containerRef = useRef(null);
-  const stepRefs = useRef([]);
-
-  const toggleFaq = (index) => {
-    setOpenFaq((prev) => (prev === index ? null : index));
   };
 
   const stepsList = useMemo(() => t('processPage.steps') || [], [t]);
@@ -333,17 +237,11 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
           </FadeIn>
           
           <div className="divide-y divide-dark-400/20">
-            {faqList.map((faq, i) => (
-              <FadeIn key={faq.id || `faq-${i}`} delay={i * 0.05}>
-                <FaqItem
-                  faq={faq}
-                  index={i}
-                  isOpen={openFaq === i}
-                  onToggle={() => toggleFaq(i)}
-                  onOpenInquiry={onOpenInquiry}
-                />
-              </FadeIn>
-            ))}
+            <FaqAccordion
+              items={faqList}
+              variant="bordered"
+              renderAnswer={renderAnswer}
+            />
           </div>
         </div>
       </Section>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import GridSpotlight from "../components/GridSpotlight.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
-import PlusIcon from "../components/PlusIcon.jsx";
+import CorneredBox from "../components/CorneredBox.jsx";
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -31,19 +31,10 @@ const AboutPage = () => {
               ))}
             </div>
             
-            <div className="relative group">
-              <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none">
-                <PlusIcon className="group-hover:text-lime" />
-              </div>
-              <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none">
-                <PlusIcon className="group-hover:text-lime" />
-              </div>
-              <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none">
-                <PlusIcon className="group-hover:text-lime" />
-              </div>
-              <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none">
-                <PlusIcon className="group-hover:text-lime" />
-              </div>
+            <CorneredBox
+              className="relative group p-0 md:p-0 bg-transparent border-0"
+              plusClassName="group-hover:text-lime"
+            >
 
               <GridSpotlight className="rounded-none border border-dark-400/30 aspect-square flex items-center justify-center overflow-hidden">
                 <div className="text-center p-8">
@@ -51,7 +42,7 @@ const AboutPage = () => {
                   <Text className="uppercase tracking-widest font-semibold text-xs">{t('aboutPage.stats.caption')}</Text>
                 </div>
               </GridSpotlight>
-            </div>
+            </CorneredBox>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-8 py-16 border-t border-dark-400/20">

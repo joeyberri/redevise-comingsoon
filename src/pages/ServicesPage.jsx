@@ -9,10 +9,12 @@ import GlassCard from "../components/GlassCard.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
 import { cn } from "../utils/cn";
-import { ArrowRight, Check, Plus, Minus } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import PlusIcon from "../components/PlusIcon.jsx";
+import CorneredBox from "../components/CorneredBox.jsx";
+import CategoryNav from "../components/CategoryNav.jsx";
+import FaqAccordion from "../components/FaqAccordion.jsx";
 
 const CAPABILITIES = [
   {
@@ -228,38 +230,7 @@ const CAPABILITIES = [
   }
 ];
 
-const CategoryNav = ({ activeSection, sections }) => (
-  <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-4">
-    {sections.map((sec) => (
-      <button
-        key={sec.id}
-        onClick={() => {
-          const el = document.getElementById(sec.id);
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }}
-        className="group relative flex items-center justify-end gap-3"
-        aria-label={`Scroll to ${sec.label}`}
-      >
-        <span
-          className={`text-xs font-medium tracking-wide transition-all duration-150 ${
-            activeSection === sec.id
-              ? "text-lime opacity-100 translate-x-0"
-              : "text-text-subtle opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
-          }`}
-        >
-          {sec.label}
-        </span>
-        <span
-          className={`block rounded-full transition-all duration-150 ${
-            activeSection === sec.id
-              ? "h-3 w-3 bg-lime shadow-lg shadow-lime/30"
-              : "h-2 w-2 bg-text-subtle/40 group-hover:bg-text-subtle"
-          }`}
-        />
-      </button>
-    ))}
-  </div>
-);
+
 
 const ServicesPage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
@@ -268,11 +239,7 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
   const [activeSection, setActiveSection] = useState("core-offerings");
   const [activeDomainId, setActiveDomainId] = useState(CAPABILITIES[0].id);
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
-  const toggleFaq = (index) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
 
   const faqs = [
     {
@@ -476,20 +443,10 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
             {/* Right Side (Content Panel with corner plus blueprint style) */}
             <div className="lg:col-span-8">
-              <div className="group/panel relative border border-text/[0.08] bg-dark-100/60 p-8 md:p-12 overflow-visible">
-                {/* Plus Corner Markers */}
-                <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none">
-                  <PlusIcon className="group-hover/panel:text-lime" />
-                </div>
-                <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none">
-                  <PlusIcon className="group-hover/panel:text-lime" />
-                </div>
-                <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none">
-                  <PlusIcon className="group-hover/panel:text-lime" />
-                </div>
-                <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none">
-                  <PlusIcon className="group-hover/panel:text-lime" />
-                </div>
+              <CorneredBox
+                className="group/panel"
+                plusClassName="group-hover/panel:text-lime"
+              >
 
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -525,7 +482,7 @@ const ServicesPage = ({ onOpenInquiry }) => {
                     </div>
                   </motion.div>
                 </AnimatePresence>
-              </div>
+              </CorneredBox>
             </div>
           </div>
         </div>
@@ -554,45 +511,7 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
           {/* Right Column */}
           <div className="lg:col-span-8 space-y-4">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaqIndex === index;
-              return (
-                <div 
-                  key={index}
-                  className="border border-text/[0.06] bg-dark-100/20 transition-all duration-300 hover:border-text/[0.12] rounded-none overflow-hidden"
-                >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-6 text-left cursor-pointer outline-none bg-transparent border-0"
-                  >
-                    <span className="font-sans font-semibold text-sm md:text-base text-text hover:text-lime transition-colors duration-200 pr-4">
-                      {faq.question}
-                    </span>
-                    <span className="text-text-subtle shrink-0">
-                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
-                    </span>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6 pt-0 border-t border-text/[0.04]">
-                          <p className="text-text-muted text-xs md:text-sm leading-relaxed font-sans mt-4">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
+            <FaqAccordion items={faqs} variant="boxed" />
           </div>
         </div>
       </Section>

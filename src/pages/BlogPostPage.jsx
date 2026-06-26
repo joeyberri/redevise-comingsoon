@@ -8,12 +8,12 @@ import {
   Tag,
   ArrowLeft,
   User,
-  ChevronRight,
 } from "lucide-react";
 import { getPostBySlug, getReadingTime, getAllPosts } from "../utils/blog";
 import CtaFooter from "../sections/CtaFooter.jsx";
 import { useSEO } from "../utils/useSEO.js";
 import { useLanguage } from "../utils/LanguageContext.jsx";
+import BlogPostCard from "../components/BlogPostCard.jsx";
 
 const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
   const { t, locale } = useLanguage();
@@ -246,32 +246,11 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
             </h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map((related) => (
-                <Link
+                <BlogPostCard
                   key={related.slug}
-                  to={`/blog/${related.slug}`}
-                  className="group card p-5 flex flex-col"
-                >
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {related.tags.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded border border-text/10 bg-text/5 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="font-sans text-sm font-bold text-text mb-2 leading-snug group-hover:text-lime transition-colors duration-300">
-                    {related.title}
-                  </h3>
-                  <p className="text-text-subtle text-xs leading-relaxed line-clamp-2 mb-3">
-                    {related.summary}
-                  </p>
-                  <span className="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-lime opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {t('blog.read')}
-                    <ChevronRight size={12} />
-                  </span>
-                </Link>
+                  post={related}
+                  variant="compact"
+                />
               ))}
             </div>
           </motion.div>
