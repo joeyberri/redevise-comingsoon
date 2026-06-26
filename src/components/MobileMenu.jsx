@@ -1,41 +1,19 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { scroller } from "react-scroll";
-import { useLocation, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import Button from "./Button.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
-import { DEFAULT_SCROLL_CONFIG } from "../constants/index.jsx";
+import { useNavigateAndScroll } from "../utils/useNavigateAndScroll.js";
 
 const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
   const isChurch = isChurchSubdomain();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigateAndScroll();
   const { t } = useLanguage();
-
-  const isHomePage = location.pathname === "/";
 
   const handleNavClick = (id) => {
     onClose();
-    if (id === "about") {
-      navigate("/about");
-      return;
-    }
-    if (id === "services") {
-      navigate("/services");
-      return;
-    }
-    if (id === "process") {
-      navigate("/process");
-      return;
-    }
-
-    if (!isHomePage) {
-      navigate("/", { state: { scrollTo: id } });
-    } else {
-      scroller.scrollTo(id, DEFAULT_SCROLL_CONFIG);
-    }
+    navigate(id);
   };
 
   const handleCtaClick = () => {
@@ -102,10 +80,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                   transition={{ delay: 0.04 + navLinks.length * 0.03 }}
                 >
                   <button
-                    onClick={() => {
-                      onClose();
-                      navigate("/careers");
-                    }}
+                    onClick={() => handleNavClick("careers")}
                     className="text-3xl font-bold text-text-muted transition-colors hover:text-lime text-left w-full cursor-pointer"
                   >
                     {t("nav.careers")}

@@ -5,6 +5,7 @@ import { Search, Calendar, Clock, Tag, ArrowRight, BookOpen } from "lucide-react
 import { getAllPosts, getAllTags, getReadingTime } from "../utils/blog";
 import { useSEO } from "../utils/useSEO.js";
 import CtaFooter from "../sections/CtaFooter.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -16,6 +17,7 @@ const fadeUp = {
 };
 
 const BlogListPage = ({ onOpenInquiry = () => {} }) => {
+  const { t, locale } = useLanguage();
   const allPosts = getAllPosts();
   const allTags = getAllTags();
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,14 +58,13 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
         >
           <div className="pill mb-6">
             <BookOpen size={12} className="inline mr-2 -mt-px" />
-            Insights & Engineering
+            {t('blog.pill')}
           </div>
           <h1 className="section-title mb-4">
-            The Redevise <span className="text-gradient">Blog</span>
+            {t('blog.title')}
           </h1>
           <p className="section-sub">
-            Deep dives into optimization infrastructure, intelligent systems,
-            and the future of how organizations operate.
+            {t('blog.subtitle')}
           </p>
         </motion.div>
 
@@ -83,7 +84,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
             <input
               id="blog-search"
               type="text"
-              placeholder="Search articles..."
+              placeholder={t('blog.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full rounded-xl border border-dark-400/50 bg-dark-50/50 py-3 pl-11 pr-4 font-sans text-sm text-text placeholder:text-text-subtle/60 outline-none transition-all duration-300 focus:border-lime/30 focus:ring-1 focus:ring-lime/20"
@@ -100,7 +101,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                   : "border-text/10 bg-text/5 text-text-subtle hover:border-text/30 hover:text-text-muted"
               }`}
             >
-              All
+              {t('blog.allTags')}
             </button>
             {allTags.map((tag) => (
               <button
@@ -129,10 +130,10 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
           >
             <Search size={48} className="text-dark-400 mb-4" />
             <p className="text-lg font-medium text-text-muted mb-2">
-              No articles found
+              {t('blog.noArticles')}
             </p>
             <p className="text-sm text-text-subtle">
-              Try adjusting your search or filter criteria.
+              {t('blog.noArticlesSub')}
             </p>
           </motion.div>
         )}
@@ -165,7 +166,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                 <div className={`p-8 md:p-10 flex flex-col justify-center ${featuredPost.coverImage ? 'lg:w-1/2' : 'w-full'}`}>
                   <div className="flex flex-wrap items-center gap-3 mb-5">
                     <span className="inline-flex items-center gap-1.5 rounded border border-lime/30 bg-lime/10 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-lime">
-                      Featured
+                      {t('blog.featured')}
                     </span>
                     {featuredPost.tags.slice(0, 2).map((tag) => (
                       <span
@@ -186,7 +187,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                   <div className="flex items-center gap-4 text-text-subtle text-xs">
                     <span className="flex items-center gap-1.5">
                       <Calendar size={12} />
-                      {new Date(featuredPost.date).toLocaleDateString("en-US", {
+                      {new Date(featuredPost.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
@@ -198,7 +199,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                     </span>
                   </div>
                   <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-lime group-hover:gap-3 transition-all duration-300">
-                    Read article
+                    {t('blog.readArticle')}
                     <ArrowRight size={16} />
                   </div>
                 </div>
@@ -260,7 +261,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                     <div className="mt-5 pt-4 border-t border-dark-400/20 flex items-center justify-between text-text-subtle text-xs">
                       <span className="flex items-center gap-1.5">
                         <Calendar size={11} />
-                        {new Date(post.date).toLocaleDateString("en-US", {
+                        {new Date(post.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                           month: "short",
                           day: "numeric",
                           year: "numeric",

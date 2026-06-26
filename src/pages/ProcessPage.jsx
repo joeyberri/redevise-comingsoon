@@ -8,6 +8,7 @@ import MagneticButton from "../components/MagneticButton.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { cn } from "../utils/cn";
 import { useSEO } from "../utils/useSEO.js";
+import { Link } from "react-router-dom";
 
 /* ─── Process Step Item (Right Column / Mobile Scrolling) ─── */
 const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
@@ -53,9 +54,62 @@ const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
 };
 
 /* ─── FAQ Item ─── */
-const FaqItem = ({ faq, index, isOpen, onToggle }) => {
+const FaqItem = ({ faq, index, isOpen, onToggle, onOpenInquiry }) => {
   const contentId = `faq-content-${index}`;
   const buttonId = `faq-button-${index}`;
+  const { locale } = useLanguage();
+
+  const renderAnswer = (text) => {
+    const targetEstimatorEn = "project estimator";
+    const targetEstimatorEs = "estimador de proyectos";
+    const targetCallEn = "discovery call";
+    const targetCallEs = "llamada de descubrimiento";
+
+    const lowerText = text.toLowerCase();
+    const estIndex = lowerText.indexOf(locale === "es" ? targetEstimatorEs : targetEstimatorEn);
+    const callIndex = lowerText.indexOf(locale === "es" ? targetCallEs : targetCallEn);
+
+    if (estIndex === -1 && callIndex === -1) {
+      return text;
+    }
+
+    if (estIndex !== -1) {
+      const targetLength = (locale === "es" ? targetEstimatorEs : targetEstimatorEn).length;
+      const before = text.substring(0, estIndex);
+      const match = text.substring(estIndex, estIndex + targetLength);
+      const after = text.substring(estIndex + targetLength);
+      return (
+        <>
+          {before}
+          <Link to="/estimate" className="text-lime hover:underline font-semibold cursor-pointer">
+            {match}
+          </Link>
+          {after}
+        </>
+      );
+    }
+
+    if (callIndex !== -1) {
+      const targetLength = (locale === "es" ? targetCallEs : targetCallEn).length;
+      const before = text.substring(0, callIndex);
+      const match = text.substring(callIndex, callIndex + targetLength);
+      const after = text.substring(callIndex + targetLength);
+      return (
+        <>
+          {before}
+          <button
+            onClick={() => onOpenInquiry?.("Discovery Call")}
+            className="text-lime hover:underline font-semibold cursor-pointer bg-transparent border-0 p-0 inline font-sans text-xs md:text-sm"
+          >
+            {match}
+          </button>
+          {after}
+        </>
+      );
+    }
+
+    return text;
+  };
 
   return (
     <div className="border-b border-dark-400/30 last:border-0">
@@ -92,7 +146,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle }) => {
             className="overflow-hidden"
           >
             <Text className="pb-6 pl-0 md:pl-2 max-w-2xl text-text-muted">
-              {faq.a}
+              {renderAnswer(faq.a)}
             </Text>
           </motion.div>
         )}
@@ -286,6 +340,7 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
                   index={i}
                   isOpen={openFaq === i}
                   onToggle={() => toggleFaq(i)}
+                  onOpenInquiry={onOpenInquiry}
                 />
               </FadeIn>
             ))}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { scroller } from "react-scroll";
-import { Link as LinkRouter, useLocation, useNavigate } from "react-router-dom";
+import { Link as LinkRouter, useLocation } from "react-router-dom";
 import { Menu, ChevronDown, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "../utils/cn";
@@ -11,7 +11,8 @@ import Logo from "../components/Logo.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
-import { navLinks, DEFAULT_SCROLL_CONFIG } from "../constants/index.jsx";
+import { navLinks } from "../constants/index.jsx";
+import { useNavigateAndScroll } from "../utils/useNavigateAndScroll.js";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 
 const Header = ({ onOpenInquiry }) => {
@@ -23,34 +24,14 @@ const Header = ({ onOpenInquiry }) => {
   const isChurch = isChurchSubdomain();
   const { scrollY } = useScroll();
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigateAndScroll();
   const { t } = useLanguage();
 
   const isHomePage = location.pathname === "/";
 
   const handleNavClick = (id) => {
-    if (id === "about") {
-      navigate("/about");
-      return;
-    }
-    if (id === "services") {
-      navigate("/services");
-      return;
-    }
-    if (id === "process") {
-      navigate("/process");
-      return;
-    }
-    if (id === "blog") {
-      navigate("/blog");
-      return;
-    }
-
-    if (!isHomePage) {
-      navigate("/", { state: { scrollTo: id } });
-    } else {
-      scroller.scrollTo(id, DEFAULT_SCROLL_CONFIG);
-    }
+    setIsMobileMenuOpen(false);
+    navigate(id);
     setIsMegaMenuOpen(false);
   };
 

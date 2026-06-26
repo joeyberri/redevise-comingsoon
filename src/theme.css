@@ -67,10 +67,10 @@
   --radius-3xl: 24px;
   --radius-4xl: 32px;
 }
-
-/* ─── Light Mode Override ─── */
+/* ─── Light Mode Override (High-Energy / Risky Variant) ─── */
 
 .light {
+  /* Backgrounds */
   --color-dark: 250 252 255;
   --color-dark-50: 240 244 255;
   --color-dark-100: 226 232 248;
@@ -79,19 +79,25 @@
   --color-dark-400: 180 195 230;
   --color-dark-500: 150 170 220;
 
+  /* Text (Pushed to the absolute edge of readable gray) */
   --color-text: 15 23 42;
   --color-text-muted: 71 85 105;
-  --color-text-subtle: 100 116 139;
+  --color-text-subtle: 110 125 145; /* Soft, airy, Framer-style secondary text */
 
+  /* Surface Colors */
   --color-surface-border: 15 23 42 / 0.12;
   --color-surface-bg: 15 23 42 / 0.03;
   --color-grid: var(--color-text) / 0.09;
 
-  /* Tweak lime for light mode contrast */
-  --color-lime: 154 210 0;
-  --color-lime-400: 170 225 10;
-  --color-lime-500: 135 185 0;
-  --color-lime-600: 105 145 0;
+  /* Brand Lime (Electric & Risky) 
+     Pushed back into bright neon territory. 
+     *Rule of thumb for this set:* Use dark text (`--color-text`) over these backgrounds.
+  */
+  --color-lime: 145 205 0;       /* Vibrant, punchy asset color */
+  --color-lime-400: 165 225 5;   /* Pure electric highlight/border */
+  --color-lime-500: 125 180 0;   /* Minimum depth for thick/large text */
+  --color-lime-600: 95 145 0;    /* Darker anchor for interactive hover states */
 
+  /* Primary Accent Blue */
   --color-primary: 25 89 173;
 }

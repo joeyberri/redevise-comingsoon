@@ -150,10 +150,10 @@ export const taglines = [
 
 /* ─── Nav Links ─── */
 export const navLinks = [
-  { id: "pillars", label: "What We Do" },
+  { id: "services", label: "What We Do" },
   { id: "products", label: "Products" },
-  { id: "services", label: "Services" },
   { id: "process", label: "How We Work" },
+  { id: "estimate", label: "Pricing" },
   { id: "about", label: "About" },
   { id: "blog", label: "Blog" },
 ];

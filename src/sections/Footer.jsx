@@ -57,6 +57,11 @@ const Footer = ({ onOpenInquiry }) => {
                 </LinkRouter>
               </li>
               <li>
+                <LinkRouter to="/estimate" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t('footer.estimate')}
+                </LinkRouter>
+              </li>
+              <li>
                 <LinkRouter to="/blog" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
                   {t('footer.blog')}
                 </LinkRouter>
@@ -129,7 +134,7 @@ const Footer = ({ onOpenInquiry }) => {
           {/* Legal Column */}
           <div className="col-span-6 sm:col-span-3 md:col-span-2">
             <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
-              Legal
+              {t('common.legal')}
             </h4>
             <ul className="space-y-3">
               <li>

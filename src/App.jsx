@@ -42,15 +42,15 @@ const PageSuspenseFallback = () => (
 );
 
 const AppContent = () => {
-  const [modalContext, setModalContext] = useState({ isOpen: false, initialType: "" });
+  const [modalContext, setModalContext] = useState({ isOpen: false, initialType: "", metadata: null });
 
   useEffect(() => {
     // Reset chunk load refreshed state on successful boot
     window.sessionStorage.setItem("chunk-load-refreshed", "false");
   }, []);
 
-  const handleOpenInquiry = (type = "") => {
-    setModalContext({ isOpen: true, initialType: type });
+  const handleOpenInquiry = (type = "", metadata = null) => {
+    setModalContext({ isOpen: true, initialType: type, metadata });
   };
 
   const handleCloseInquiry = () => {
@@ -90,6 +90,7 @@ const AppContent = () => {
             isOpen={modalContext.isOpen} 
             onClose={handleCloseInquiry} 
             initialType={modalContext.initialType}
+            metadata={modalContext.metadata}
           />
         </Suspense>
 

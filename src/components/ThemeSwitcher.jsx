@@ -1,10 +1,12 @@
 import { useTheme } from "../utils/ThemeContext";
+import { useLanguage } from "../utils/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../utils/cn";
 import { Sun, Moon } from "lucide-react";
 
 const ThemeSwitcher = ({ className }) => {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useLanguage();
 
   return (
     <motion.button
@@ -14,7 +16,7 @@ const ThemeSwitcher = ({ className }) => {
         "flex size-10 items-center justify-center rounded-full border border-text/10 bg-text/5 text-text-muted transition-all duration-500 hover:text-text hover:bg-text/10",
         className
       )}
-      title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      title={theme === "dark" ? t("theme.switchToLight") : t("theme.switchToDark")}
     >
       <AnimatePresence mode="wait" initial={false}>
         {theme === "dark" ? (

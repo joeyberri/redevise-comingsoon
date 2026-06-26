@@ -8,6 +8,7 @@ import MagneticButton from "../components/MagneticButton.jsx";
 import { cn } from "../utils/cn";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import { useLocation } from "react-router-dom";
 import {
   Globe,
   AppWindow,
@@ -125,7 +126,13 @@ const AnimatedPrice = ({ value }) => {
 const EstimatePage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
   useSEO({ key: "estimate" });
-  const [selectedType, setSelectedType] = useState(null);
+  const location = useLocation();
+  const [selectedType, setSelectedType] = useState(() => {
+    if (location.state?.projectType) {
+      return location.state.projectType;
+    }
+    return null;
+  });
   const [scopeIndex, setScopeIndex] = useState(1);
   const [activeFeatures, setActiveFeatures] = useState(new Set());
   const [selectedTimeline, setSelectedTimeline] = useState("standard");
@@ -232,6 +239,27 @@ const EstimatePage = ({ onOpenInquiry }) => {
       featuresCount: activeFeatures.size,
     };
   }, [selectedType, scopeIndex, activeFeatures, selectedTimeline, projectTypes, scopeLevels, timelines, features]);
+
+  const handleCtaClick = () => {
+    if (!onOpenInquiry) return;
+    const currentType = projectTypes.find((t) => t.id === selectedType);
+    const currentScope = scopeLevels[scopeIndex];
+    const currentTimeline = timelines.find((t) => t.id === selectedTimeline);
+    const selectedFeats = features.filter((f) => activeFeatures.has(f.id)).map((f) => f.label);
+
+    onOpenInquiry("Estimate Request", {
+      estimate: {
+        type: currentType ? currentType.title : null,
+        scope: currentScope ? currentScope.label : null,
+        timeline: currentTimeline ? currentTimeline.title : null,
+        features: selectedFeats,
+        priceLow: estimate?.low,
+        priceHigh: estimate?.high,
+        weeksLow: estimate?.weeksLow,
+        weeksHigh: estimate?.weeksHigh,
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-dark">
@@ -673,7 +701,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                       variant="primary"
                       withBeam
                       className="!py-4 !px-8 !text-sm w-full sm:w-auto"
-                      onClick={() => onOpenInquiry?.()}
+                      onClick={handleCtaClick}
                     >
                       {t('estimatePage.summary.cta')}
                     </MagneticButton>
@@ -695,7 +723,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
             <Text variant="section-sub" className="mx-auto mb-8">
               {t('estimatePage.bottomCta.sub')}
             </Text>
-            <MagneticButton variant="primary" withBeam onClick={() => onOpenInquiry?.()}>
+            <MagneticButton variant="primary" withBeam onClick={handleCtaClick}>
               {t('estimatePage.bottomCta.cta')}
             </MagneticButton>
           </div>

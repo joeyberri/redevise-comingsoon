@@ -1,5 +1,4 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -14,8 +13,10 @@ import {
 import { getPostBySlug, getReadingTime, getAllPosts } from "../utils/blog";
 import CtaFooter from "../sections/CtaFooter.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
+  const { t, locale } = useLanguage();
   const { slug } = useParams();
   const post = getPostBySlug(slug);
 
@@ -116,13 +117,13 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
             <ol className="flex flex-wrap items-center gap-2 text-xs font-mono tracking-wider uppercase text-text-subtle/70">
               <li>
                 <Link to="/" className="hover:text-lime transition-colors duration-300">
-                  Home
+                  {t('footer.home')}
                 </Link>
               </li>
               <li className="text-text-subtle/30">/</li>
               <li>
                 <Link to="/blog" className="hover:text-lime transition-colors duration-300">
-                  Blog
+                  {t('nav.blog')}
                 </Link>
               </li>
               <li className="text-text-subtle/30">/</li>
@@ -138,7 +139,7 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
                 size={12}
                 className="group-hover:-translate-x-1 transition-transform duration-300"
               />
-              Back to Blog
+              {t('blog.backToBlog')}
             </Link>
           </nav>
         </motion.div>
@@ -182,7 +183,7 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
             <span className="w-px h-4 bg-dark-400/50" />
             <span className="flex items-center gap-2">
               <Calendar size={14} />
-              {new Date(post.date).toLocaleDateString("en-US", {
+              {new Date(post.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -241,7 +242,7 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
             className="max-w-4xl mx-auto"
           >
             <h2 className="font-sans text-xl font-bold text-text mb-8 tracking-tight">
-              Related Articles
+              {t('blog.relatedArticles')}
             </h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map((related) => (
@@ -267,7 +268,7 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
                     {related.summary}
                   </p>
                   <span className="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-lime opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Read
+                    {t('blog.read')}
                     <ChevronRight size={12} />
                   </span>
                 </Link>

@@ -18,7 +18,7 @@ import { useLanguage } from "../utils/LanguageContext.jsx";
 import PlusIcon from "./PlusIcon.jsx";
 
 // ── Component ────────────────────────────────────────────────────────────────
-const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
+const InquiryModal = ({ isOpen, onClose, initialType = "", metadata = null }) => {
   const { t, locale } = useLanguage();
   const [step, setStep] = useState(1);
   const [choice, setChoice] = useState(null); // 'book' | 'message'
@@ -114,15 +114,111 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       setIsBooking(false);
       setIsSubmitting(false);
 
-      if (initialType) {
-        const mappedType = getLocalizedInitialType(initialType);
-        setFormData((prev) => ({
-          ...prev,
-          interests: prev.interests.includes(mappedType)
-            ? prev.interests
-            : [...prev.interests, mappedType],
-        }));
+      let initialMessage = "";
+      let initialInterests = [];
+
+      if (metadata?.estimate) {
+        const est = metadata.estimate;
+        const priceLowStr = typeof est.priceLow === 'number' ? est.priceLow.toLocaleString() : '';
+        const priceHighStr = typeof est.priceHigh === 'number' ? est.priceHigh.toLocaleString() : '';
+        const hasBudget = priceLowStr && priceHighStr;
+
+        if (locale === "es") {
+          initialMessage = `He configurado una estimación en su sitio web y me gustaría recibir un presupuesto personalizado.
+
+Detalles del Proyecto:
+- Tipo: ${est.type || "No especificado"}
+- Alcance: ${est.scope || "No especificado"}
+- Plazo: ${est.timeline || "No especificado"}${est.weeksLow && est.weeksHigh ? ` (${est.weeksLow}-${est.weeksHigh} semanas)` : ""}
+- Presupuesto Estimado: ${hasBudget ? `$${priceLowStr} - $${priceHighStr}` : "No especificado"}
+`;
+          if (est.features && est.features.length > 0) {
+            initialMessage += `- Características Seleccionadas:\n  * ${est.features.join("\n  * ")}\n`;
+          }
+        } else {
+          initialMessage = `I've configured an estimate on your website and would like a custom quote.
+
+Project Details:
+- Type: ${est.type || "Not specified"}
+- Scope: ${est.scope || "Not specified"}
+- Timeline: ${est.timeline || "Not specified"}${est.weeksLow && est.weeksHigh ? ` (${est.weeksLow}-${est.weeksHigh} weeks)` : ""}
+- Estimated Budget Range: ${hasBudget ? `$${priceLowStr} - $${priceHighStr}` : "Not specified"}
+`;
+          if (est.features && est.features.length > 0) {
+            initialMessage += `- Selected Features:\n  * ${est.features.join("\n  * ")}\n`;
+          }
+        }
+
+        const typeStr = est.type || "";
+        let targetInterest = "";
+        
+        if (typeStr.includes("Website") || typeStr.includes("Landing") || typeStr.includes("E-commerce") || typeStr.includes("Tienda")) {
+          targetInterest = t('modal.interests')[0];
+        } else if (typeStr.includes("Application") || typeStr.includes("Aplicación") || typeStr.includes("Mobile") || typeStr.includes("Móvil") || typeStr.includes("Custom") || typeStr.includes("Software")) {
+          targetInterest = t('modal.interests')[1];
+        } else {
+          targetInterest = t('modal.interests')[5];
+        }
+
+        if (targetInterest) {
+          initialInterests = [targetInterest];
+        }
+      } else if (initialType) {
+        let mappedType = "";
+        if (initialType === "Digital Launchpad") {
+          mappedType = t('modal.interests')[0];
+          initialMessage = locale === "es" 
+            ? "Hola, me gustaría comenzar un proyecto para el paquete Digital Launchpad." 
+            : "Hi, I'm interested in starting a project for the Digital Launchpad package.";
+        } else if (initialType === "Growth & Scale") {
+          mappedType = t('modal.interests')[0];
+          initialMessage = locale === "es" 
+            ? "Hola, me gustaría comenzar un proyecto para el paquete Crecimiento y Escala (Growth & Scale)." 
+            : "Hi, I'm interested in starting a project for the Growth & Scale package.";
+        } else if (initialType === "AI & Automation") {
+          mappedType = t('modal.interests')[2];
+          initialMessage = locale === "es" 
+            ? "Hola, me gustaría comenzar un proyecto para el paquete de IA y Automatización." 
+            : "Hi, I'm interested in starting a project for the AI & Automation package.";
+        } else if (initialType === "Discovery Call") {
+          mappedType = t('modal.interests')[5];
+          initialMessage = locale === "es"
+            ? "Hola, me gustaría programar una llamada de descubrimiento gratuita para hablar sobre mi proyecto."
+            : "Hi, I would like to schedule a free discovery call to discuss my project.";
+        } else if (initialType === "General Inquiry") {
+          mappedType = t('modal.interests')[5];
+        } else {
+          const lowerType = initialType.toLowerCase();
+          if (lowerType.includes("automation") || lowerType.includes("automatización") || lowerType.includes("workflow") || lowerType.includes("flujo")) {
+            mappedType = t('modal.interests')[2];
+          } else if (lowerType.includes("analytics") || lowerType.includes("dashboard") || lowerType.includes("informe") || lowerType.includes("panel") || lowerType.includes("inteligencia")) {
+            mappedType = t('modal.interests')[3];
+          } else if (lowerType.includes("church") || lowerType.includes("iglesia") || lowerType.includes("ministry") || lowerType.includes("ministerio") || lowerType.includes("ascribe")) {
+            mappedType = t('modal.interests')[4];
+          } else if (lowerType.includes("app") || lowerType.includes("saas") || lowerType.includes("software")) {
+            mappedType = t('modal.interests')[1];
+          } else {
+            mappedType = t('modal.interests')[0];
+          }
+          
+          initialMessage = locale === "es"
+            ? `Hola, estoy interesado en el servicio de "${initialType}".`
+            : `Hi, I'm interested in the "${initialType}" service.`;
+        }
+
+        if (mappedType) {
+          initialInterests = [mappedType];
+        } else {
+          initialInterests = [getLocalizedInitialType(initialType)];
+        }
       }
+
+      setFormData({
+        name: "",
+        email: "",
+        interests: initialInterests,
+        message: initialMessage,
+      });
 
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
@@ -136,7 +232,7 @@ const InquiryModal = ({ isOpen, onClose, initialType = "" }) => {
       document.documentElement.style.overflow = "unset";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, initialType, locale]);
+  }, [isOpen, initialType, locale, metadata]);
 
   const [validationErrors, setValidationErrors] = useState({ name: "", email: "" });
 

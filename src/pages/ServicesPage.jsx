@@ -10,6 +10,7 @@ import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
 import { cn } from "../utils/cn";
 import { ArrowRight, Check, Plus, Minus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import PlusIcon from "../components/PlusIcon.jsx";
 
@@ -263,6 +264,7 @@ const CategoryNav = ({ activeSection, sections }) => (
 const ServicesPage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
   useSEO({ key: "services" });
+  const navigate = useNavigate();
 
   const [activeSection, setActiveSection] = useState("core-offerings");
   const [activeDomainId, setActiveDomainId] = useState(CAPABILITIES[0].id);
@@ -408,13 +410,28 @@ const ServicesPage = ({ onOpenInquiry }) => {
                   </ul>
                 </div>
 
-                <div className="overflow-hidden pt-4 border-t border-text/[0.06]">
+                <div className="flex items-center justify-between flex-wrap gap-2 pt-4 border-t border-text/[0.06] overflow-hidden">
                   <button
                     onClick={() => onOpenInquiry?.(pkg.title)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider font-mono text-lime opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer outline-none"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider font-mono text-lime opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
                   >
                     Start a project
                     <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      const typeMap = {
+                        "Digital Launchpad": "website",
+                        "AI & Automation": "custom",
+                        "Growth & Scale": "ecommerce"
+                      };
+                      const mappedType = typeMap[pkg.title] || "website";
+                      navigate("/estimate", { state: { projectType: mappedType } });
+                    }}
+                    className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider font-mono text-text-subtle hover:text-lime transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
+                  >
+                    Get Estimate
                   </button>
                 </div>
               </GlassCard>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import GridSpotlight from "../components/GridSpotlight.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import PlusIcon from "../components/PlusIcon.jsx";
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -31,26 +32,17 @@ const AboutPage = () => {
             </div>
             
             <div className="relative group">
-              {/* Corner indicators */}
               <div className="absolute -top-[4px] -left-[4px] z-20 pointer-events-none">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
-                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-                </svg>
+                <PlusIcon className="group-hover:text-lime" />
               </div>
               <div className="absolute -top-[4px] -right-[4px] z-20 pointer-events-none">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
-                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-                </svg>
+                <PlusIcon className="group-hover:text-lime" />
               </div>
               <div className="absolute -bottom-[4px] -left-[4px] z-20 pointer-events-none">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
-                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-                </svg>
+                <PlusIcon className="group-hover:text-lime" />
               </div>
               <div className="absolute -bottom-[4px] -right-[4px] z-20 pointer-events-none">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="text-text-subtle/30 group-hover:text-lime transition-colors duration-300">
-                  <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1" />
-                </svg>
+                <PlusIcon className="group-hover:text-lime" />
               </div>
 
               <GridSpotlight className="rounded-none border border-dark-400/30 aspect-square flex items-center justify-center overflow-hidden">
