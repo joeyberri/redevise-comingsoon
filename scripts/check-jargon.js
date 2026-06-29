@@ -14,7 +14,9 @@ const FORBIDDEN_WORDS = [
   "holistic",
   "paradigm",
   "catalyst",
-  "compounding engineering expertise"
+  "compounding engineering expertise",
+  "optimization infrastructure",
+  "infraestructura de optimización"
 ];
 
 // Helper to recursively list files in a directory

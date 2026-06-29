@@ -2,11 +2,25 @@
 title: "How to Engineer a Product From Figma Prototype to AWS Production"
 date: "2023-08-02"
 summary: "Move from a Figma prototype to production on AWS with a clear engineering path. Learn the stages that separate working software from a working system."
-coverImage: ""
+coverImage: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80"
 tags:
   - "Engineering"
 author: "Redevise"
 ---
+## The Operational Challenge
+
+
+
+High-quality engineering is a balancing act between shipping speed and long-term codebase maintainability. When teams rush features without proper architecture planning, they accumulate technical debt that slows future development to a crawl. A disciplined software delivery process relies on automated testing, clean code boundaries, and staging previews.
+
+## Core Pillars
+
+* **Stage one is architecture**: You take the prototype and define the system. Frontend framework. Backend language. Database choice. API structure. Authentication model. Hosting layout on AWS. This stage takes one to two weeks. The output is a technical specification that another engineer can read and understand without seeing the Figma file.
+* **Do not skip architecture**: Teams that skip architecture spend months untangling decisions they made in week one without thinking through the implications.
+* **Stage two is core development**: You build the primary user flows. The screens from the prototype become real pages. The buttons connect to real endpoints. The data persists in a real database. This stage takes four to ten weeks depending on complexity. The output is a working application that handles the main use cases.
+* **Stage three is hardening**: You handle the edge cases. What happens when the user submits a form with no data. What happens when the database connection drops. What happens when two people edit the same record at the same time. This stage takes two to four weeks. The output is a system that fails gracefully instead of failing silently.
+
+## Real-World Impact & Metrics
 
 You have a Figma prototype. It looks right. The interactions feel right. The client approved it. Now you need to turn it into production software on AWS.
 
@@ -14,28 +28,15 @@ The gap between prototype and production is larger than most teams expect. A pro
 
 Here is the engineering path. Four stages. Each stage has a clear output. Skip none of them.
 
-Stage one is architecture. You take the prototype and define the system. Frontend framework. Backend language. Database choice. API structure. Authentication model. Hosting layout on AWS. This stage takes one to two weeks. The output is a technical specification that another engineer can read and understand without seeing the Figma file.
-
-Do not skip architecture. Teams that skip architecture spend months untangling decisions they made in week one without thinking through the implications.
-
-Stage two is core development. You build the primary user flows. The screens from the prototype become real pages. The buttons connect to real endpoints. The data persists in a real database. This stage takes four to ten weeks depending on complexity. The output is a working application that handles the main use cases.
-
-Stage three is hardening. You handle the edge cases. What happens when the user submits a form with no data. What happens when the database connection drops. What happens when two people edit the same record at the same time. This stage takes two to four weeks. The output is a system that fails gracefully instead of failing silently.
-
-Stage four is production deployment. You set up the AWS environment. Load balancer. Auto-scaling. SSL. Monitoring. Backup. CI/CD pipeline. This stage takes one to two weeks. The output is a live system that real users can access.
-
-The total timeline for a typical business application is 8 to 18 weeks. Not 4. Not 6. The teams that promise 6 weeks are either building something simpler than you think or skipping stages three and four.
-
-Skipping stage three produces software that works in demos and breaks in production. Skipping stage four produces a deployment that requires manual intervention every time you push a change.
-
 Both are expensive. The first costs you client trust. The second costs you engineering time.
 
-AWS specifically requires decisions that prototypes do not. Which service handles your compute. Which handles your storage. Which handles your queue. These decisions affect cost, performance, and maintenance burden for the life of the product.
+> **Strategic Takeaway:** Stage four is production deployment. You set up the AWS environment. Load balancer. Auto-scaling. SSL. Monitoring. Backup. CI/CD pipeline. This stage takes one to two weeks. The output is a live system that real users can access. The total timeline for a typical business application is 8 to 18 weeks. Not 4. Not 6. The teams that promise 6 weeks are either building something simpler than you think or skipping stages three and four. Skipping stage three produces software that works in demos and breaks in production. Skipping stage four produces a deployment that requires manual intervention every time you push a change. AWS specifically requires decisions that prototypes do not. Which service handles your compute. Which handles your storage. Which handles your queue. These decisions affect cost, performance, and maintenance burden for the life of the product. A common mistake is over-provisioning. Teams that are new to AWS often choose the largest instance size "to be safe." That costs $200 to $500 a month more than necessary. Start with a smaller instance. Monitor it. Scale when the metrics tell you to. Another mistake is ignoring the database. Prototypes do not have data. Production does. The database is where performance problems live. Index your columns. Set up connection pooling. Monitor slow queries. These are not optional. They are the difference between a system that works and one that crawls. The Figma prototype gave you the what. The engineering path gives you the how. The how is where projects succeed or fail. Invest in it. Build the architecture. Develop the core. Harden the edges. Deploy to production. In that order. With that discipline.
 
-A common mistake is over-provisioning. Teams that are new to AWS often choose the largest instance size "to be safe." That costs $200 to $500 a month more than necessary. Start with a smaller instance. Monitor it. Scale when the metrics tell you to.
+---
 
-Another mistake is ignoring the database. Prototypes do not have data. Production does. The database is where performance problems live. Index your columns. Set up connection pooling. Monitor slow queries. These are not optional. They are the difference between a system that works and one that crawls.
+### Optimizing Your Operations
+Redevise designs and deploys custom business software, workflow automation, and technical SEO strategies that help operations teams scale without growing headcount. 
 
-The Figma prototype gave you the what. The engineering path gives you the how. The how is where projects succeed or fail. Invest in it.
-
-Build the architecture. Develop the core. Harden the edges. Deploy to production. In that order. With that discipline.
+* **Ready to see what's possible?** Use our interactive [Project Cost Estimator](/estimate) to plan your next build.
+* **Want to see how we work?** Learn about our systematic [Operational Process](/process) and how we guarantee delivery.
+* **Get in touch:** Contact the Redevise team today to discuss your system challenges.

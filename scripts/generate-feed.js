@@ -119,7 +119,7 @@ function buildFeed() {
   xml += `  <channel>\n`;
   xml += `    <title>Redevise Blog</title>\n`;
   xml += `    <link>${SITE_URL}/blog</link>\n`;
-  xml += `    <description>Deep dives into optimization infrastructure, intelligent systems, and operations.</description>\n`;
+  xml += `    <description>Deep dives into custom software engineering, workflow automation, and operations.</description>\n`;
   xml += `    <language>en-us</language>\n`;
   xml += `    <lastBuildDate>${lastBuildDate}</lastBuildDate>\n`;
   xml += `    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />\n`;

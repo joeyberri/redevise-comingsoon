@@ -389,7 +389,7 @@ export const es = {
       {
         id: 2,
         title: "2. Prestación de Servicios y Garantías",
-        text: "Redevise proporciona aplicaciones de software, consultoría de ingeniería personalizada e infraestructura de optimización (incluyendo los sistemas Core). Nuestros servicios se proporcionan 'tal cual' y 'según disponibilidad'. Salvo lo establecido expresamente en un acuerdo por escrito separado firmado por ambas partes, Redevise no ofrece garantías, expresas o implícitas, incluidas, entre otras, las de comerciabilidad, idoneidad para un propósito particular o no infracción."
+        text: "Redevise proporciona aplicaciones de software, consultoría de ingeniería personalizada y sistemas de automatización de flujos de trabajo (incluyendo las herramientas Core). Nuestros servicios se proporcionan 'tal cual' y 'según disponibilidad'. Salvo lo establecido expresamente en un acuerdo por escrito separado firmado por ambas partes, Redevise no ofrece garantías, expresas o implícitas, incluidas, entre otras, las de comerciabilidad, idoneidad para un propósito particular o no infracción."
       },
       {
         id: 3,
@@ -646,16 +646,16 @@ export const es = {
   },
   seo: {
     home: {
-      title: "Redevise | Infraestructura de Optimización",
-      desc: "Redevise es una empresa de Infraestructura de Optimización. Construimos software a medida, apps web y móviles y plataformas de automatización empresarial impulsadas por Core."
+      title: "Redevise | Construimos Software a Medida y Automatizamos Procesos",
+      desc: "Construimos software a medida y automatizamos procesos de negocio. Desarrollamos aplicaciones web, móviles e integraciones de sistemas impulsadas por Core."
     },
     about: {
       title: "Sobre Redevise | Nuestra Filosofía de Optimización",
       desc: "Conozca el estilo Redevise: parte laboratorio de productos, parte estudio de software a medida, parte consultoría de operaciones. Ofrecemos mejoras de eficiencia de 10x."
     },
     services: {
-      title: "Servicios de Redevise | Software a Medida y Automatización de Negocios",
-      desc: "Explore los servicios de Redevise. Diseñamos apps web y móviles, páginas de aterrizaje, APIs a medida y realizamos auditorías de flujo de trabajo y consultoría de automatización."
+      title: "Servicios de Redevise | Construimos Software a Medida y Automatizamos Procesos",
+      desc: "Explore los servicios de Redevise. Diseñamos apps web y móviles, construimos APIs, auditamos flujos de trabajo y automatizamos procesos de negocio."
     },
     process: {
       title: "Nuestro Proceso | Cómo Trabaja Redevise",
@@ -800,7 +800,7 @@ export const es = {
   blog: {
     pill: "Ideas e Ingeniería",
     title: <>El <span className="text-gradient">Blog</span> de Redevise</>,
-    subtitle: "Análisis profundos sobre infraestructura de optimización, sistemas inteligentes y el futuro del funcionamiento de las organizaciones.",
+    subtitle: "Artículos y guías sobre desarrollo de software a medida, automatización de procesos y optimización de flujos de trabajo.",
     searchPlaceholder: "Buscar artículos...",
     allTags: "Todo",
     noArticles: "No se encontraron artículos",

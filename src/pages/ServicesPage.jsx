@@ -243,8 +243,8 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
   const faqs = [
     {
-      question: "What is Optimization Infrastructure?",
-      answer: "Optimization Infrastructure is the set of custom software tools, workflow automations, and system architectures built to streamline operations and multiply team capacity without scaling headcount linearly."
+      question: "What does workflow automation and custom dev involve?",
+      answer: "We design and build custom software applications, web tools, and automated workflows that integrate your existing systems, eliminate manual data entry, and help your team scale without adding operational overhead."
     },
     {
       question: "How does Redevise decide between building custom software vs subscribing to SaaS?",
@@ -505,7 +505,7 @@ const ServicesPage = ({ onOpenInquiry }) => {
               Frequently Asked <span className="text-gradient">Questions</span>
             </Heading>
             <Text className="text-text-muted text-sm md:text-base leading-relaxed">
-              Find answers to common questions about our custom optimization services, development process, and business systems integrations.
+              Find answers to common questions about our custom software development, workflow automation process, and business systems integrations.
             </Text>
           </div>
 

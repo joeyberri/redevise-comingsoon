@@ -514,7 +514,7 @@ export const en = {
       {
         id: 2,
         title: "2. Service Provision & Warranties",
-        text: "Redevise provides software applications, custom engineering consulting, and optimization infrastructure (including the Core systems). Our services are provided on an \"as is\" and \"as available\" basis. Except as expressly set forth in a separate written agreement signed by both parties, Redevise makes no warranties, express or implied, including but not limited to merchantability, fitness for a particular purpose, or non-infringement."
+        text: "Redevise provides software applications, custom engineering consulting, and workflow automation systems (including the Core tools). Our services are provided on an \"as is\" and \"as available\" basis. Except as expressly set forth in a separate written agreement signed by both parties, Redevise makes no warranties, express or implied, including but not limited to merchantability, fitness for a particular purpose, or non-infringement."
       },
       {
         id: 3,
@@ -824,7 +824,7 @@ export const en = {
 
   seo: {
     home: {
-      title: "Redevise | Optimization Infrastructure",
+      title: "Redevise | Build Custom Software & Automate Workflows",
       // [CHANGED] Named the actual audience and the real pain point.
       desc: "Redevise builds custom software, automation systems, and operations tools for founders and operators who need their tech to actually work."
     },
@@ -835,9 +835,9 @@ export const en = {
       desc: "Part product company, part engineering studio, part consulting firm. Built around one rule: if the improvement isn't dramatic, we don't build it."
     },
     services: {
-      title: "Redevise Services | Custom Software & Business Automation",
+      title: "Redevise Services | Build Custom Software & Automate Workflows",
       // [CHANGED] Last sentence now names what Redevise is NOT (pitch-driven).
-      desc: "Custom software, workflow automation, and business consulting. We build what your business actually needs — not what sounds good in a pitch."
+      desc: "We build custom software, automate workflows, and optimize operations. We build what your business actually needs — not what sounds good in a pitch."
     },
     process: {
       title: "How Redevise Works | Our Process",
