@@ -28,6 +28,7 @@ const KeystaticPage = lazyWithRetry(() => import("./pages/KeystaticPage.jsx"));
 const ProcessPage = lazyWithRetry(() => import("./pages/ProcessPage.jsx"));
 const EstimatePage = lazyWithRetry(() => import("./pages/EstimatePage.jsx"));
 const CareersPage = lazyWithRetry(() => import("./pages/CareersPage.jsx"));
+const GhanaPage = lazyWithRetry(() => import("./pages/regional/GhanaPage.jsx"));
 
 const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
@@ -115,6 +116,7 @@ const AppContent = () => {
                     <Route path="/terms" element={<TermsPage />} />
                     <Route path="/privacy" element={<PrivacyPage />} />
                     <Route path="/careers" element={<CareersPage />} />
+                    <Route path="/gh" element={<GhanaPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>

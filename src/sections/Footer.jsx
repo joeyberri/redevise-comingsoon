@@ -71,6 +71,11 @@ const Footer = ({ onOpenInquiry }) => {
                   {t('footer.careers')}
                 </LinkRouter>
               </li>
+              <li>
+                <LinkRouter to="/gh" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  Ghana & West Africa
+                </LinkRouter>
+              </li>
             </ul>
           </div>
 

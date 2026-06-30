@@ -3,7 +3,6 @@ import { X } from "lucide-react";
 import Button from "./Button.jsx";
 import { isChurchSubdomain } from "../utils/subdomain.js";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
-import ThemeSwitcher from "./ThemeSwitcher.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useNavigateAndScroll } from "../utils/useNavigateAndScroll.js";
 
@@ -48,11 +47,9 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                 <span className="font-sans text-xs font-bold tracking-[0.2em] uppercase text-text/40">{t('common.navigation')}</span>
                 <div className="flex items-center gap-3">
                   <LanguageSwitcher />
-                  <ThemeSwitcher />
                   <button 
                     onClick={onClose}
                     className="size-10 flex items-center justify-center rounded-full border border-text/[0.1] text-text cursor-pointer"
-                    aria-label="Close menu"
                   >
                     <X size={20} />
                   </button>

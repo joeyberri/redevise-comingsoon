@@ -33,6 +33,32 @@ export const LanguageProvider = ({ children }) => {
 
   const t = useCallback((key, params = {}) => {
     const keys = key.split(".");
+    
+    // Check if we are on the /gh route and have a GH override
+    if (typeof window !== "undefined" && window.location.pathname.startsWith('/gh')) {
+      let value = translations[locale];
+      const ghKeys = ["gh", ...keys];
+      let found = true;
+      for (const k of ghKeys) {
+        if (value && value[k] !== undefined) {
+          value = value[k];
+        } else {
+          found = false;
+          break;
+        }
+      }
+      if (found) {
+        if (typeof value === "string") {
+          let result = value;
+          for (const [paramKey, paramVal] of Object.entries(params)) {
+            result = result.replace(new RegExp(`{{${paramKey}}}`, "g"), String(paramVal));
+          }
+          return result;
+        }
+        return value;
+      }
+    }
+
     let value = translations[locale];
 
     for (const k of keys) {

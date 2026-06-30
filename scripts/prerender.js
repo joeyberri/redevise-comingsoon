@@ -47,6 +47,11 @@ const staticRoutes = [
     path: 'careers',
     title: 'Careers | Work with Redevise',
     description: 'Join our team of high-performance developers, designers, and systems architects building the future of operations.'
+  },
+  {
+    path: 'gh',
+    title: 'Software Development in Ghana & West Africa | Redevise Accra',
+    description: 'Custom software development, Mobile Money integrations, Paystack & Flutterwave setup, and workflow automation for businesses in Ghana and West Africa. Based in Accra.'
   }
 ];
 

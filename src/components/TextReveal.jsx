@@ -31,9 +31,8 @@ const TextReveal = ({ text, className, delay = 0, once = true, keepTogether = fa
         variants={singleVariant}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className={cn("inline-block", className)}
+        className={cn("inline-block whitespace-nowrap max-sm:whitespace-normal", className)}
         style={{ 
-          whiteSpace: "nowrap",
           paddingRight: className?.includes("italic") ? "0.15em" : undefined 
         }}
       >

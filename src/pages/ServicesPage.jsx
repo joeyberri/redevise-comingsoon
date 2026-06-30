@@ -311,8 +311,10 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
   return (
     <div className="relative">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-lime/[0.03] blur-[120px]" />
+      {/* Background glow container to prevent overflow */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden h-[600px] w-full">
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-lime/[0.03] blur-[120px]" />
+      </div>
 
       <CategoryNav activeSection={activeSection} sections={sections} />
 

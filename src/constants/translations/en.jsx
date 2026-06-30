@@ -1097,5 +1097,36 @@ export const en = {
       { question: "Do we need to pay for automation platforms like Zapier?", answer: "Not necessarily. While we use Zapier or Make for simple triggers, we write custom serverless node scripts for complex integrations to save you monthly platform costs." },
       { question: "How do we measure the success of an automation?", answer: "We track the hours of manual work saved per week and the reduction of data entry errors. Most clients see a complete return on investment within 2 to 3 months of launch." }
     ]
+  },
+
+  gh: {
+    pillars: {
+      list: [
+        {
+          id: "0",
+          num: "01 - OUR SOFTWARE",
+          title: "We build software",
+          text: "Ready-made tools built for specific jobs — support analytics, school administration, habit tracking, and more. Localized payment support built-in.",
+          tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe"
+        },
+        {
+          id: "1",
+          num: "02 - CUSTOM DEV",
+          title: "We build for you",
+          text: "Need an app, website, or portal built from scratch? We handle everything from discovery to launch, integrated with local payment (MTN MoMo, Telecel, Paystack) and SMS APIs.",
+          tag: "Web Apps · Mobile Apps · MVPs · Mobile Money · APIs"
+        },
+        {
+          id: "2",
+          num: "03 - CONSULTING",
+          title: "We optimize you",
+          text: "Not sure what you need? We audit your workflows to find bottlenecks, digitize manual processes, and build a plan to fix them.",
+          tag: "Process Audits · Automation · Analytics · Digital Transformation"
+        }
+      ]
+    },
+    ctaFooter: {
+      desc: "We build custom software, automate collections, and optimize operations for growing teams. Let's discuss your project."
+    }
   }
 };
