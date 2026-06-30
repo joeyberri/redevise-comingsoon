@@ -680,6 +680,14 @@ export const es = {
     church: {
       title: "Infraestructura de Ministerio | Redevise Church Tech",
       desc: "Sistemas de medios de alto rendimiento, proyección, transmisión en vivo y herramientas administrativas (Ascribe) diseñadas para iglesias modernas."
+    },
+    customSoftware: {
+      title: "Desarrollo de Software a Medida | Redevise",
+      desc: "Desarrollamos aplicaciones web personalizadas, apps móviles, bases de datos seguras e integraciones de API adaptadas a tus procesos. Precios cerrados."
+    },
+    workflowAutomation: {
+      title: "Automatización de Flujos de Trabajo e Integración de Sistemas | Redevise",
+      desc: "Automatiza tareas manuales, conecta tu CRM, facturación y bases de datos, y despliega bots de WhatsApp. Conectamos sistemas para ahorrar tiempo a tu equipo."
     }
   },
   difference: {
@@ -810,5 +818,57 @@ export const es = {
     backToBlog: "Volver al Blog",
     relatedArticles: "Artículos Relacionados",
     read: "Leer"
+  },
+
+  customSoftwarePage: {
+    hero: {
+      title: "Construimos software a medida que funciona como tú lo haces",
+      sub: "Deja de adaptar tus procesos a herramientas SaaS genéricas. Diseñamos, programamos y desplegamos aplicaciones web, apps móviles y APIs personalizadas adaptadas exactamente a tus flujos de trabajo."
+    },
+    capabilities: {
+      title: "Capacidades y Ofertas",
+      list: [
+        { title: "Aplicaciones Web Full-Stack", desc: "Paneles interactivos, portales de clientes y plataformas SaaS a medida construidas con React y arquitecturas backend modernas." },
+        { title: "Desarrollo de Apps Móviles", desc: "Aplicaciones multiplataforma para iOS y Android diseñadas para ofrecer rendimiento, sensación nativa y disponibilidad offline." },
+        { title: "Integraciones de API a Medida", desc: "Conexión segura de tus bases de datos, herramientas de facturación, CRM y servicios externos para que los datos fluyan automáticamente." },
+        { title: "Arquitectura de Bases de Datos", desc: "Diseño de bases de datos seguras y de alto rendimiento (PostgreSQL, MySQL o Redis) preparadas para escalar y con aislamiento de datos." }
+      ]
+    },
+    techStack: {
+      title: "Nuestra Pila Tecnológica",
+      desc: "Construimos sobre tecnología limpia, mantenible y estándar de la industria que escala sin dependencia de proveedores:",
+      items: [
+        { name: "Frontend", tech: "React / Next.js / Tailwind CSS" },
+        { name: "Backend y APIs", tech: "Node.js / Express / Go" },
+        { name: "Bases de Datos y Caché", tech: "PostgreSQL / Redis / MongoDB" },
+        { name: "Infraestructura", tech: "AWS / Cloudflare Edge / Vercel" }
+      ]
+    },
+    faqs: [
+      { question: "¿Somos dueños del código fuente?", answer: "Sí. Una vez que el proyecto se entrega y se paga por completo, recibes la propiedad total del repositorio, el código fuente y todos los activos personalizados. No hay tarifas de licencia continuas." },
+      { question: "¿Cuánto tiempo toma construir software a medida?", answer: "Típicamente entre 4 y 12 semanas. Construimos en sprints y proporcionamos enlaces de pruebas semanales, por lo que ves evolucionar el software funcional en tiempo real." },
+      { question: "¿Cómo manejan el hosting y el mantenimiento?", answer: "Configuramos el alojamiento directamente en tus cuentas (AWS, Vercel o Cloudflare) para que mantengas la custodia total. También ofrecemos opciones mensuales de soporte SLA para actualizaciones y optimizaciones." }
+    ]
+  },
+
+  workflowAutomationPage: {
+    hero: {
+      title: "Automatizamos tareas manuales y conectamos tus sistemas",
+      sub: "Elimina la copia repetitiva de datos, la conciliación manual y los cuellos de botella operativos. Mapeamos tus flujos de trabajo, conectamos tus herramientas y construimos las automatizaciones personalizadas que permiten a tu equipo enfocarse en el trabajo real."
+    },
+    capabilities: {
+      title: "Qué Automatizamos",
+      list: [
+        { title: "Automatización de WhatsApp y Chats", desc: "Despliega flujos de notificaciones inteligentes, enrutamiento de atención al cliente y asistentes de reserva automáticos directamente en WhatsApp." },
+        { title: "Integraciones entre Sistemas", desc: "Sincroniza datos automáticamente entre tu CRM, software de contabilidad, marketing por correo electrónico y pasarelas de pago." },
+        { title: "Paneles de Control Operativo", desc: "Detecta cuellos de botella, monitorea sistemas en tiempo real y obtén informes automáticos en Slack, WhatsApp o correo electrónico." },
+        { title: "Bots de Respaldo a Medida", desc: "Automatiza la generación de informes, la creación de facturas en PDF, el seguimiento de correos electrónicos y la carga de archivos de manera sistemática." }
+      ]
+    },
+    faqs: [
+      { question: "¿Pueden automatizar software heredado o comercial?", answer: "Sí. Siempre que el software ofrezca una API o interfaz de webhook, podemos conectarlo. Si no existe una API, podemos construir herramientas personalizadas de extracción o importación para sincronizar los datos." },
+      { question: "¿Necesitamos pagar por plataformas de automatización como Zapier?", answer: "No necesariamente. Aunque usamos Zapier o Make para activadores simples, escribimos scripts personalizados de Node.js serverless para integraciones complejas para ahorrarte costos de plataforma." },
+      { question: "¿Cómo medimos el éxito de una automatización?", answer: "Medimos las horas de trabajo manual ahorradas a la semana y la reducción de errores de entrada de datos. La mayoría de los clientes ven un retorno total de la inversión en 2 o 3 meses tras el lanzamiento." }
+    ]
   }
 };

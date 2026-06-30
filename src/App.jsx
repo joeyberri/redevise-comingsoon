@@ -22,6 +22,8 @@ const PrivacyPage = lazyWithRetry(() => import("./pages/PrivacyPage.jsx"));
 const BlogListPage = lazyWithRetry(() => import("./pages/BlogListPage.jsx"));
 const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage.jsx"));
 const ServicesPage = lazyWithRetry(() => import("./pages/ServicesPage.jsx"));
+const CustomSoftwarePage = lazyWithRetry(() => import("./pages/services/CustomSoftwarePage.jsx"));
+const WorkflowAutomationPage = lazyWithRetry(() => import("./pages/services/WorkflowAutomationPage.jsx"));
 const KeystaticPage = lazyWithRetry(() => import("./pages/KeystaticPage.jsx"));
 const ProcessPage = lazyWithRetry(() => import("./pages/ProcessPage.jsx"));
 const EstimatePage = lazyWithRetry(() => import("./pages/EstimatePage.jsx"));
@@ -104,6 +106,8 @@ const AppContent = () => {
                     <Route path="/" element={<HomePage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/services" element={<ServicesPage onOpenInquiry={handleOpenInquiry} />} />
+                    <Route path="/services/custom-software-development" element={<CustomSoftwarePage onOpenInquiry={handleOpenInquiry} />} />
+                    <Route path="/services/workflow-automation" element={<WorkflowAutomationPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/blog" element={<BlogListPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/blog/:slug" element={<BlogPostPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/process" element={<ProcessPage onOpenInquiry={handleOpenInquiry} />} />

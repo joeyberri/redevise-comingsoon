@@ -8,6 +8,7 @@
     "lint:jargon": "node scripts/check-jargon.js",
     "prebuild": "npm run lint:jargon && node scripts/generate-sitemap.js && node scripts/generate-feed.js",
     "build": "vite build",
+    "postbuild": "node scripts/prerender.js",
     "build:sitemap": "node scripts/generate-sitemap.js",
     "import:blogs": "node scripts/import-blogs.js",
     "lint": "eslint . && npm run lint:jargon",

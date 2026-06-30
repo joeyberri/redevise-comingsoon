@@ -377,7 +377,7 @@ const ServicesPage = ({ onOpenInquiry }) => {
                   </ul>
                 </div>
 
-                <div className="flex items-center justify-between flex-wrap gap-2 pt-4 border-t border-text/[0.06] overflow-hidden">
+                <div className="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-text/[0.06] overflow-hidden">
                   <button
                     onClick={() => onOpenInquiry?.(pkg.title)}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider font-mono text-lime opacity-80 hover:opacity-100 transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
@@ -386,20 +386,39 @@ const ServicesPage = ({ onOpenInquiry }) => {
                     <ArrowRight className="h-3.5 w-3.5" />
                   </button>
 
-                  <button
-                    onClick={() => {
-                      const typeMap = {
-                        "Digital Launchpad": "website",
-                        "AI & Automation": "custom",
-                        "Growth & Scale": "ecommerce"
-                      };
-                      const mappedType = typeMap[pkg.title] || "website";
-                      navigate("/estimate", { state: { projectType: mappedType } });
-                    }}
-                    className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider font-mono text-text-subtle hover:text-lime transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
-                  >
-                    Get Estimate
-                  </button>
+                  <div className="flex items-center gap-4">
+                    {pkg.title === "AI & Automation" && (
+                      <button
+                        onClick={() => navigate("/services/workflow-automation")}
+                        className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider font-mono text-text-subtle hover:text-lime transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
+                      >
+                        Learn More
+                      </button>
+                    )}
+                    {pkg.title === "Growth & Scale" && (
+                      <button
+                        onClick={() => navigate("/services/custom-software-development")}
+                        className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider font-mono text-text-subtle hover:text-lime transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
+                      >
+                        Learn More
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => {
+                        const typeMap = {
+                          "Digital Launchpad": "website",
+                          "AI & Automation": "custom",
+                          "Growth & Scale": "ecommerce"
+                        };
+                        const mappedType = typeMap[pkg.title] || "website";
+                        navigate("/estimate", { state: { projectType: mappedType } });
+                      }}
+                      className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider font-mono text-text-subtle hover:text-lime transition-all duration-300 cursor-pointer outline-none bg-transparent border-0"
+                    >
+                      Get Estimate
+                    </button>
+                  </div>
                 </div>
               </GlassCard>
             ))}

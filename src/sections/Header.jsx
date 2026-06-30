@@ -136,12 +136,11 @@ const Header = ({ onOpenInquiry }) => {
             </nav>
 
             <div className="flex items-center gap-3 md:hidden">
-              <LanguageSwitcher />
-              <ThemeSwitcher />
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 className="flex size-10 items-center justify-center rounded-full border border-text/10 bg-text/5 text-text"
                 onClick={() => setIsMobileMenuOpen(true)}
+                aria-label="Open menu"
               >
                 <Menu size={20} />
               </motion.button>

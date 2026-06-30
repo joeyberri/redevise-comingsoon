@@ -869,6 +869,14 @@ export const en = {
       // [CHANGED] "high-performance" sounds like a spec sheet. "modern worship environments"
       // is generic. New version names the actual outcome.
       desc: "Media systems, projection setups, live streaming, and church management tools built for worship teams who need tech that just works."
+    },
+    customSoftware: {
+      title: "Custom Software Development Studio | Redevise",
+      desc: "We build high-performance custom web applications, mobile apps, secure databases, and API integrations that match your workflows exactly. Fixed pricing."
+    },
+    workflowAutomation: {
+      title: "Workflow Automation & System Integration Services | Redevise",
+      desc: "Automate manual tasks, connect your CRM, billing, and databases, and deploy WhatsApp bots. We integrate systems to save your team hours of work."
     }
   },
 
@@ -1037,5 +1045,57 @@ export const en = {
     backToBlog: "Back to Blog",
     relatedArticles: "Related Articles",
     read: "Read"
+  },
+
+  customSoftwarePage: {
+    hero: {
+      title: "We build custom software that works the way you do",
+      sub: "Stop wrapping your business processes around generic SaaS tools. We design, engineer, and deploy high-performance web applications, mobile apps, and custom APIs tailored exactly to your workflows."
+    },
+    capabilities: {
+      title: "Capabilities & Offerings",
+      list: [
+        { title: "Full-Stack Web Apps", desc: "Interactive dashboards, client portals, and custom SaaS platforms built with React and modern backend architectures." },
+        { title: "Mobile App Development", desc: "Cross-platform iOS and Android applications engineered for performance, native feel, and offline availability." },
+        { title: "Custom API Integrations", desc: "Securely connecting your databases, billing tools, CRMs, and third-party services so data flows automatically." },
+        { title: "Database Architecture", desc: "Designing secure, high-performance PostgreSQL, MySQL, or Redis databases designed for speed, scaling, and data isolation." }
+      ]
+    },
+    techStack: {
+      title: "Our Technology Stack",
+      desc: "We build on clean, maintainable, industry-standard technology that scales without vendor lock-in:",
+      items: [
+        { name: "Frontend", tech: "React / Next.js / Tailwind CSS" },
+        { name: "Backend & APIs", tech: "Node.js / Express / Go" },
+        { name: "Databases & Cache", tech: "PostgreSQL / Redis / MongoDB" },
+        { name: "Infrastructure", tech: "AWS / Cloudflare Edge / Vercel" }
+      ]
+    },
+    faqs: [
+      { question: "Do we own the source code?", answer: "Yes. Once the project is fully delivered and paid for, you receive complete ownership of the repository, source code, and all custom assets. There are no ongoing licensing fees." },
+      { question: "How long does a custom software build take?", answer: "Typically between 4 to 12 weeks. We build in sprints and provide weekly staging updates, so you see the working software evolve in real-time." },
+      { question: "How do you handle hosting and maintenance?", answer: "We set up hosting directly on your own accounts (AWS, Vercel, or Cloudflare) so you maintain custody. We also offer monthly support SLA options to handle updates and optimizations." }
+    ]
+  },
+
+  workflowAutomationPage: {
+    hero: {
+      title: "We automate manual tasks and connect your systems",
+      sub: "Eliminate repetitive copying, manual data entry, and operational bottlenecks. We map your workflows, connect your tools, and build the custom automations that let your team focus on the actual work."
+    },
+    capabilities: {
+      title: "What We Automate",
+      list: [
+        { title: "WhatsApp & Chat Automation", desc: "Deploy intelligent notification flows, customer support routing, and automatic booking assistants directly inside WhatsApp." },
+        { title: "Cross-System Integrations", desc: "Synchronize data automatically between your CRM, accounting software, email marketing, and payment gateways." },
+        { title: "Operational Dashboards", desc: "Surface bottlenecks, monitor systems in real-time, and get automated reports directly in Slack, WhatsApp, or email." },
+        { title: "Custom Back-Office Bots", desc: "Automate report generation, PDF invoices creation, email tracking, and file uploads systematically." }
+      ]
+    },
+    faqs: [
+      { question: "Can you automate legacy or off-the-shelf software?", answer: "Yes. As long as the software provides an API or webhook interface, we can connect it. If no API exists, we can build custom scraping or import tools to sync the data." },
+      { question: "Do we need to pay for automation platforms like Zapier?", answer: "Not necessarily. While we use Zapier or Make for simple triggers, we write custom serverless node scripts for complex integrations to save you monthly platform costs." },
+      { question: "How do we measure the success of an automation?", answer: "We track the hours of manual work saved per week and the reduction of data entry errors. Most clients see a complete return on investment within 2 to 3 months of launch." }
+    ]
   }
 };
