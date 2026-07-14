@@ -1,0 +1,196 @@
+---
+title: "The Ultimate MVP Tech Stacks of 2026: Speed to Market Rated"
+summary: "A head-to-head architectural evaluation of modern backend/frontend combinations. We rate each stack on rapid prototyping, initial deployment speed, and code debt."
+coverImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200"
+date: "2026-03-01"
+status: "published"
+tags:
+  - "MVP"
+  - "Tech Stack"
+  - "Architecture"
+  - "Startup Engineering"
+author: "Redevise"
+---
+
+"Move fast and break things" is dead. The new mantra: "Move fast and don't leave a mess the next engineer has to rewrite."
+
+We built 12 MVPs this year. 8 shipped. 3 pivoted. 1 died. The stack was rarely the cause of death -- but it was often the cause of the rewrite at month 6.
+
+We rate stacks on three axes:
+
+| Axis | What It Means |
+| :--- | :--- |
+| Prototype Velocity | Idea → working feature in local dev. Hours, not days. |
+| Deploy Speed | Local → production URL with CI/CD, custom domain, SSL, env vars. Minutes. |
+| Debt Trajectory | At 6 months, 5 features, 2 developers: how much "we need to rewrite this" pain? |
+
+## The Contenders
+
+### 1. Next.js + Supabase (Postgres + Auth + Realtime + Edge) — 9.5/10
+
+**Prototype: 2 hours.** npx create-next-app --typescript --tailwind --eslint → npx supabase init → supabase start → local Postgres, Auth, Realtime, Storage, Edge Functions. supabase gen types → end-to-end types. First query: supabase.from('profiles').select().
+
+**Deploy: 5 minutes.** vercel deploy → live. supabase link → supabase db push → production DB migrated. Env vars sync automatically.
+
+**Debt: Low.** Postgres is boring. Row Level Security replaces backend auth logic. Edge Functions for webhooks/cron. Types flow from DB → API → UI. No ORM tax. No migration drift (Supabase manages).
+
+Where it hurts:
+- Supabase Realtime = Postgres logical replication. Not for high-frequency (gaming, collab editing). Use PartyKit or Ably.
+- Edge Functions = Deno. Not Node. npm: specifiers work but cold start ~1.5s.
+- Complex SQL? You write SQL. Good. But debug in psql, not console.log.
+
+Verdict: The default for 2026. We used it for 7/8 shipped MVPs.
+
+---
+
+### 2. Remix + Cloudflare D1 + Workers — 8.5/10
+
+**Prototype: 3 hours.** npx create-remix → wrangler init → wrangler d1 create → local SQLite (D1) + Workers. File-based routing. Loaders/actions = server logic. No API layer.
+
+**Deploy: 3 minutes.** wrangler deploy → global edge. D1 replicates globally. Custom domain: wrangler custom-domain add.
+
+**Debt: Medium.** SQLite ≠ Postgres. ALTER TABLE limited. No foreign key enforcement in D1 yet. Migration tooling basic. Workers = V8 isolates, not Node. No fs, no crypto (use Web Crypto), no long-running. 10ms CPU limit (50ms paid).
+
+Where it shines: Global latency < 50ms. Zero cold start (mostly). Cheap: free tier generous. Great for read-heavy, geo-distributed.
+
+Where it hurts: Complex transactions? No. Background jobs? Use Queue (beta). WebSockets? Durable Objects (different paradigm). Team knowledge: Remix + Workers is niche.
+
+Verdict: Best for global, read-heavy, simple-write MVPs. Not for complex domain logic.
+
+---
+
+### 3. Rails 8 + PostgreSQL + Kamal — 8.0/10
+
+**Prototype: 4 hours.** rails new --css=tailwind --javascript=esbuild --database=postgresql → rails generate scaffold → rails db:migrate → working CRUD with tests. Hotwire (Turbo + Stimulus) = SPA feel, server-rendered HTML.
+
+**Deploy: 10 minutes.** kamal setup → provisions VPS (Hetzner/DigitalOcean), installs Docker, deploys container, configures Traefik (SSL), sets up Kamal proxy. kamal deploy → zero-downtime rolling deploy.
+
+**Debt: Lowest long-term.** Rails conventions prevent architecture bikeshedding. 18 years of the Rails way. Upgrades are bundle update rails. Gems for everything. Testing culture = safety net.
+
+Where it shines: Team knows Rails. Complex domain logic. Admin panels (ActiveAdmin/Avo). Background jobs (Solid Queue). ActionCable for real-time. You own the server. No vendor lock-in.
+
+Where it hurts: Single-region (unless you run multiple). Scaling = bigger VPS or more VPS + load balancer. No global edge. Ruby hiring harder than JS.
+
+Verdict: The "boring but profitable" choice. If you know Rails, it is faster than anything for business logic heavy MVPs.
+
+---
+
+### 4. TanStack Start + TanStack Query + Hono + Cloudflare D1 — 7.5/10
+
+**Prototype: 5 hours.** npx create-tanstack-start → file-based routing + server functions. npm i hono → API routes in same repo. wrangler d1 for DB. TanStack Query for client cache.
+
+**Deploy: 5 minutes.** wrangler deploy (or Vercel). Edge by default.
+
+**Debt: Medium-High.** Bleeding edge. TanStack Start v1.0 released 2025. APIs shift. Docs lag. Hono is stable but ecosystem young. Type-safety end-to-end is manual (no supabase gen types).
+
+Where it shines: Full type control. No framework opinions. Tiny bundles. Great for "I want React but hate Next.js bloat."
+
+Where it hurts: No auth built-in (roll your own or Clerk). No storage. No realtime. No admin. You build everything. Prototype fast, infrastructure slow.
+
+Verdict: For senior teams who want control and accept infrastructure tax.
+
+---
+
+### 5. Django + HTMX + PostgreSQL + Fly.io — 7.5/10
+
+**Prototype: 4 hours.** django-admin startproject → pip install django-htmx → python manage.py startapp → function-based views return HTML fragments. django-allauth for auth. django-tailwind for CSS.
+
+**Deploy: 8 minutes.** fly launch → fly deploy → global VMs, private networking, Postgres, Redis, volumes. fly ssh console → python manage.py migrate.
+
+**Debt: Low.** Django ORM = gold standard. Migrations rock-solid. Admin auto-generated. HTMX = zero JS complexity. Python hiring easy.
+
+Where it hurts: Async is half-baked (ASGI yes, but ecosystem sync). Celery for background jobs = extra infra. Real-time = Django Channels + Redis = complexity. Single-threaded Gunicorn workers = scaling = more VMs.
+
+Verdict: Best for content-heavy, admin-heavy, team-knows-Python MVPs.
+
+---
+
+### 6. Next.js + Prisma + PostgreSQL (Vercel/Neon/Railway) — 7.0/10
+
+**Prototype: 3 hours.** create-next-app → npm i prisma → prisma init → schema.prisma → prisma migrate dev → type-safe client.
+
+**Deploy: 5 minutes.** Push to GitHub → Vercel auto-deploys. Neon/Railway for Postgres. prisma migrate deploy in build step.
+
+**Debt: High.** Prisma is great until it isn't. Connection pooling required (PgBouncer) → prisma:pgbouncer in connection string. Edge runtime = no Prisma (use @prisma/client/edge + Data Proxy = deprecated → Accelerate = paid). Middleware + Server Actions + API Routes = three ways to do backend. Confusion.
+
+Where it shines: Team knows Next.js. Prisma DX is genuinely good for schema iteration. Neon branching = preview DB per PR.
+
+Where it hurts: Vercel cold starts + Prisma cold start = 2-3s first request. prisma migrate deploy in build = 30-60s deploy time. Relation queries = N+1 unless you include. Bundle size.
+
+Verdict: The "default Next.js" stack. Works. But Supabase replaces Prisma + Neon + Auth + Realtime + Storage with less code.
+
+---
+
+### 7. Astro + Cloudflare Workers + D1 + Lucia Auth — 6.5/10
+
+**Prototype: 6 hours.** npm create astro@latest → islands architecture. npm i lucia → auth. wrangler d1 → DB. No SSR by default (static first).
+
+**Deploy: 4 minutes.** wrangler deploy or Cloudflare Pages.
+
+**Debt: Medium.** Lucia is great but you build auth flows. D1 limitations (see above). Astro islands = decide per component: static, server, client. Mental overhead.
+
+Where it shines: Content-heavy (marketing + dashboard). Best-in-class performance. Partial hydration = tiny JS.
+
+Where it hurts: Dashboard/interactive = "use client" everywhere. You fight the framework. No real-time. No background jobs.
+
+Verdict: Marketing site + light dashboard. Not SaaS MVP.
+
+---
+
+### 8. Go + Templ + HTMX + SQLite (sqlc) — 6.0/10
+
+**Prototype: 8 hours.** go mod init → go get github.com/a-h/templ → go get github.com/stephenafamo/sqlc → write SQL → sqlc generate → type-safe Go. templ generate → type-safe HTML. go run main.go → server.
+
+**Deploy: 10 minutes.** fly launch or docker build + any VPS. Single binary. 10MB. 5MB RAM.
+
+**Debt: Lowest runtime.** Go compiles to binary. sqlc = SQL is source of truth. Templ = HTML is Go. No ORM. No JS framework. Debugging = dlv or fmt.Println.
+
+Where it shines: Performance. Simplicity. Deploy anywhere. Team knows Go.
+
+Where it hurts: No ecosystem for auth, admin, background jobs, realtime, storage, email. You build or integrate everything. HTML in Go = verbose. Frontend hiring = none.
+
+Verdict: For Go teams building API-first. Not full-stack MVP speed.
+
+---
+
+## The Decision Matrix
+
+| If... | Use... |
+| :--- | :--- |
+| You want the fastest path to a working, scalable, typed full-stack app | Next.js + Supabase |
+| You need global <50ms latency, read-heavy, simple writes | Remix + Cloudflare D1 |
+| Your team knows Rails, domain logic is complex, you want to own infra | Rails 8 + Kamal |
+| You want React, hate Next.js bloat, have senior engineers, accept infra work | TanStack Start + Hono + D1 |
+| Your team knows Python, content/admin heavy, need real-time later | Django + HTMX + Fly.io |
+| You are already on Next.js, want Prisma, accept Vercel lock-in | Next.js + Prisma + Neon |
+| Content site + light dashboard, performance obsessed | Astro + Cloudflare |
+| Go team, API-first, long-term ownership, no frontend hiring | Go + Templ + sqlc |
+
+## The Anti-Patterns We Saw
+
+"We'll use microservices for the MVP." → 3 services, distributed tracing, saga pattern for signup. Month 2: merge to monolith.
+
+"We'll use GraphQL for flexibility." → Schema design meetings. N+1 in resolvers. DataLoader. Month 3: REST endpoints for mobile.
+
+"We'll use Kubernetes for scale." → YAML hell. ArgoCD. Cert-manager. ExternalDNS. Month 1: move to Fly.io/Kamal.
+
+"We'll use the latest beta framework." → Breaking changes weekly. Docs wrong. Month 4: rewrite on stable.
+
+## The Only Metric That Matters
+
+Time to "Customer Pays Us."
+
+Not "time to Hello World." Not "time to deploy." Time to: a real human uses it, pays money, and does not churn because the thing broke.
+
+Every stack above can get you there. The difference is what happens at month 6.
+
+Supabase/Rails/Django: you add features.
+Prisma/Next.js: you optimize queries.
+TanStack/Astro/Go: you build infrastructure.
+Microservices/K8s/GraphQL: you rewrite.
+
+Choose the stack that lets you say "yes" to the customer at month 6.
+
+---
+
+*Shipping an MVP? [We help pick the stack that survives →](/estimate)*

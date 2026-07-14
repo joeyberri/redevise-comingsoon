@@ -1,0 +1,180 @@
+---
+title: "No-Code vs. Custom Automation: Rating Enterprise Pipelines on Setup vs. Maintenance"
+summary: "Evaluating third-party automation nodes against custom code scripts. We rate them on setup velocity, maintenance overhead, and multi-step fail-safes."
+coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200"
+date: "2026-03-05"
+status: "published"
+tags:
+  - "Automation"
+  - "No-Code"
+  - "Custom Development"
+  - "Operations"
+author: "Redevise"
+---
+
+The sales pitch: Automate in minutes. No developers needed. Drag. Drop. Done.
+
+The reality six months later: Why does this Zap fail every Tuesday? Who owns the Make scenario? Why did the webhook timeout? Where is the retry logic? Why are we paying $2,400/month for 50 workflows?
+
+We have built, inherited, and replaced 47 automation pipelines across 12 clients. Zapier. Make (Integromat). n8n. Power Automate. Temporal. Custom Python/Go/TypeScript. AWS Step Functions. GitHub Actions.
+
+We rated each on three axes that actually matter:
+
+| Axis | What We Measured |
+| :--- | :--- |
+| Setup Velocity | Time from "we need this" to "it runs in production with real data" |
+| Maintenance Overhead | Hours/month spent debugging, updating, monitoring, explaining |
+| Fail-Safe Depth | What happens when step 3 of 7 fails? Retry? Compensate? Alert? Replay? |
+
+## The Contenders
+
+### Category 1: iPaaS (Zapier, Make, Power Automate, Workato)
+
+**Setup Velocity: 9/10**
+- Zapier: 15 min for "Typeform → Google Sheets → Slack." Pre-built triggers/actions. Auth handled. Test data in UI.
+- Make: 30 min. Visual scenario builder. More powerful (iterators, routers, error handlers). Steeper learning.
+- Power Automate: 45 min. Dataverse integration great. Connector config verbose. Desktop flows for legacy = gold.
+- Workato: 60 min. Enterprise-grade. Recipe logic powerful. But: no free tier. Sales cycle required.
+
+**Maintenance Overhead: 3/10**
+- Silent failures. Zapier: 5 retries over 3 hours. Then "Error" in dashboard. No webhook to your monitoring. You check manually.
+- Version control = none. "Who changed the filter on Step 4?" Audit log: "User X updated Zap." What changed? Good luck.
+- Shared connections. Marketing owns HubSpot conn. Sales owns Salesforce conn. Automation breaks. Blame game.
+- Pricing scales per task. 100K tasks/mo = $735 (Zapier Team). 1M = $2,400. You optimize logic to save tasks. That is perverse.
+- Vendor lock-in. Export = JSON. Import = manual rebuild. No CI/CD. No testing. No staging.
+
+**Fail-Safe Depth: 2/10**
+- Retry: fixed policy (exponential backoff, max 5). No custom logic.
+- Compensating transaction: none. "Rollback" = manual.
+- Dead letter: UI only. No API to replay.
+- Idempotency: your problem. Most actions not idempotent.
+- Timeout: 30s (Zapier), 40s (Make), 120s (Workato). Long-running = broken.
+
+### Category 2: Self-Hosted Workflow Engines (n8n, Windmill, Prefect, Airflow)
+
+**Setup Velocity: 5/10**
+- n8n: Docker up. UI similar to Make. Self-hosted = data stays. Custom nodes = TypeScript. 2 hours for first real pipeline.
+- Windmill: Scripts (Python/TypeScript/Go/SQL) + flows. IDE in browser. Git sync. 3 hours.
+- Prefect/Airflow: DAGs as code. Python. 4 hours. But: you get real engineering.
+
+**Maintenance Overhead: 6/10**
+- You own the infra. Server patches. DB backups. Scaling. SSL. Monitoring.
+- But: Git history. PR reviews. Unit tests. CI/CD. Staging env. Rollback = git revert.
+- n8n: workflow JSON in Git. But: credentials encrypted per instance. Sync = manual.
+- Windmill: scripts in Git. Flows in Git. Secrets in Vault. windmill deploy = CI/CD native.
+
+**Fail-Safe Depth: 7/10**
+- Retry: configurable per step. Custom backoff. Max attempts. Timeout.
+- Compensate: define undo step. Windmill: on_failure hook. Prefect: on_failure task.
+- Replay: from failed step. With same inputs. Or modified.
+- Idempotency: your code. Your keys. Your responsibility.
+- Observability: logs, metrics, traces. OpenTelemetry. Datadog. Grafana.
+
+### Category 3: Custom Code (Python/TypeScript/Go + Temporal/Step Functions/Queues)
+
+**Setup Velocity: 3/10**
+- Scaffold: 1 day. temporal init or cdk deploy or poetry new.
+- Write activity: 30 min. Write workflow: 30 min. Test: 1 hour. Deploy: 30 min.
+- First pipeline: 4-6 hours. But: you build exactly what you need.
+
+**Maintenance Overhead: 8/10**
+- Code is code. Tests pass. Types check. Lint passes. Deploy succeeds.
+- Debugging: console.log / loguru / zap. Stack traces. Breakpoints.
+- Dependencies: requirements.txt / package.json / go.mod. Renovate updates. Security scans.
+- Scaling: Temporal = horizontal workers. Step Functions = managed. Queue = RabbitMQ/Redis/SQS.
+- Bus factor: documented. Onboarding: standard language. Not "Zapier expert."
+
+**Fail-Safe Depth: 10/10**
+- Temporal: Durable execution. Workflow state persisted. Worker crashes? Workflow resumes on another. Activity retries: exponential, jitter, max attempts, non-retriable errors. Saga: compensation workflow. Visibility: Web UI, CLI, SDK. Replay: from any event. Time-travel debugging.
+- Step Functions: Visual workflow. Retry/catch per state. WaitForTaskToken for human-in-loop. Map state for parallel. Express (sync) vs Standard (async). CloudWatch logs. X-Ray tracing.
+- Custom + Queue: You build it. You own it. Infinite flexibility. Infinite responsibility.
+
+## The Real Comparison: A Concrete Scenario
+
+Pipeline: New Order (Shopify) → Validate Inventory (ERP) → Reserve Stock → Create Fulfillment → Send Confirmation (Email + SMS) → Update Analytics (BigQuery) → Notify Slack (Ops channel)
+
+Failure modes we have seen:
+1. ERP API 500 (transient)
+2. ERP API 409 (stock changed)
+3. Email provider rate limit
+4. BigQuery quota exceeded
+5. Slack webhook URL rotated
+6. Network partition (worker loses DB)
+
+### Zapier Implementation
+- 7 Zaps (or 1 with 7 steps — but 7 steps = brittle)
+- Step 2 (ERP): 5 retries. Then error. Manual replay.
+- Step 3 (Reserve): Not idempotent. Replay = double reserve.
+- Step 5 (BigQuery): No retry config. Fails silently.
+- Step 6 (Slack): No alert on failure.
+- Cost: ~$150/mo for task volume.
+- Maintenance: 4 hrs/mo checking dashboards, replaying, explaining to Ops.
+
+### n8n Implementation
+- 1 Workflow. 7 Nodes. Error workflow attached.
+- ERP node: retryOnFail: true, maxTries: 3, waitBetweenTries: 30000.
+- Reserve: custom node with idempotency key (order_id).
+- BigQuery: batch node. Retry on quota.
+- Slack: error trigger → separate workflow → alert Ops.
+- Cost: $50/mo (VPS) + 2 hrs/mo infra.
+- Maintenance: 1 hr/mo updates, log review.
+
+### Temporal Implementation
+- Workflow: OrderFulfillmentWorkflow(orderId).
+- Activities: validateInventory, reserveStock, createFulfillment, sendConfirmation, updateAnalytics, notifySlack.
+- Each: retryPolicy: {initialInterval: 10s, backoff: 2.0, maxAttempts: 5, nonRetryableErrorTypes: ['InsufficientStock']}.
+- reserveStock: saga compensation releaseReservation(orderId).
+- updateAnalytics: idempotent (upsert on orderId).
+- Signal: cancelOrder → workflow cancels, runs compensations.
+- Query: getStatus() → real-time UI.
+- Cost: $200/mo (Temporal Cloud) or self-hosted.
+- Maintenance: 0.5 hr/mo. Code changes = PR. Deploy = CI/CD.
+
+## The Decision Matrix
+
+| If... | Choose... |
+| :--- | :--- |
+| Marketing needs "Typeform → Sheet → Slack" today. Non-technical owner. Low volume. | Zapier/Make |
+| Ops needs 50+ workflows. Some complex. Team has one engineer. Budget tight. | n8n (self-hosted) |
+| Engineering team exists. Workflows are core business logic. Durability > speed. | Temporal / Step Functions |
+| Data team. Python-native. Batch/ML pipelines. Scheduled. | Prefect / Airflow |
+| Microsoft shop. Dataverse. Power Apps. Legacy desktop automation. | Power Automate |
+| Enterprise. Governance. Audit. Multiple teams. Complex recipes. | Workato |
+
+## The Trap: We'll Start No-Code, Rewrite Later
+
+You will not rewrite.
+
+The no-code workflow becomes the spec. The business depends on it. The engineer who rewrites must replicate every quirk: the 30s timeout workaround, the custom date format, the "if field X empty use Y" logic buried in step 4.
+
+The rewrite takes 3x longer than building correctly first. Because you are reverse-engineering behavior, not implementing requirements.
+
+Exception: Use no-code for prototyping. "Here is the flow. Does this solve the problem?" Validate in 2 days. Then throw away. Build the real thing.
+
+But be honest: you are prototyping. Do not put production data through it. Do not give customers the link. Do not call it the system.
+
+## The Hybrid We Actually Ship
+
+Temporal for core. n8n for periphery.
+
+- Order → Payment → Fulfillment → Revenue Recognition = Temporal. Money moves. Duration non-negotiable.
+- Lead → CRM → Email Sequence → Slack Alert = n8n. Marketing owns. Changes weekly. Low risk.
+- File Upload → Virus Scan → OCR → Extract → Store = Temporal Activity (called from n8n via HTTP).
+- Report Generation (daily/weekly) = n8n Schedule → HTTP trigger Temporal workflow.
+
+The boundary: does failure cost money or trust? Temporal. Does failure cost annoyance? n8n.
+
+## The Bottom Line
+
+No-code is not easier. It is different constraints.
+
+- Constraint: Vendor's retry logic. Constraint: Vendor's pricing model. Constraint: No version control. Constraint: No testing. Constraint: Black box debugging.
+- Custom code constraints: You write the retry logic. You pay for compute. You write tests. You debug your code.
+
+One set of constraints scales with your team's engineering maturity. The other scales with your credit card.
+
+Choose the constraints you can engineer around.
+
+---
+
+*Building automation that survives production? [We engineer the durable layer →](/services/workflow-automation)*

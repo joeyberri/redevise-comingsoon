@@ -1,0 +1,264 @@
+---
+title: "Rating 5 Local Payment Gateways in West Africa: Developer Integration Edition"
+summary: "Evaluating the leading payment gateways across West Africa on API uptime, local mobile money integration simplicity, settlement speeds, and compliance."
+coverImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=1200"
+date: "2026-03-10"
+status: "published"
+tags:
+  - "Payments"
+  - "West Africa"
+  - "Fintech"
+  - "API Integration"
+  - "Mobile Money"
+author: "Redevise"
+---
+
+We have integrated Paystack, Flutterwave, Hubtel, ExpressPay, and Korapay into production systems this year. E-commerce. Marketplaces. SaaS. Lending. Remittances. B2B payments.
+
+The marketing pages say: Accept payments in minutes. One integration, all Africa. Best rates.
+
+The integration reality: Webhooks that fire 3 times. Sandbox that returns success for declined cards. Mobile money flows that require user to dial USSD on a different phone. Settlement reports that don't match dashboard. KYC requirements that change monthly.
+
+We rate on what matters to engineers:
+
+| Criterion | Weight | Why |
+| :--- | :---: | :--- |
+| API Design & Docs | 25% | Can you integrate without Slack support? |
+| Mobile Money UX | 25% | 60%+ of volume. If this breaks, you lose. |
+| Webhook Reliability | 20% | Your order system depends on it. |
+| Settlement & Reconciliation | 15% | Finance team needs to close books. |
+| Compliance & Stability | 15% | Regulator changes. Vendor survives. |
+
+## The Contenders
+
+### 1. Paystack (Nigeria, Ghana, South Africa, Kenya) — 9.0/10
+
+**API Design: 9.5/10**
+- RESTful. Predictable. POST /transaction/initialize → authorization_url. GET /transaction/verify/:reference.
+- Webhooks: charge.success, transfer.success, subscription.create. Signed with x-paystack-signature (HMAC SHA512). Retry: 3x over 24h with exponential backoff.
+- Docs: Interactive. Try-it console. Code samples: Node, Python, PHP, Go, .NET, Java. Best in class.
+- Idempotency: idempotency_key header on all mutating endpoints. Critical for retries.
+- Versioning: Paystack-Version header. Current: 2023-08-01. Changelog maintained.
+
+**Mobile Money: 8.5/10**
+- Ghana: MTN, Vodafone, AirtelTigo. Nigeria: MTN, Airtel, 9mobile, Glo.
+- Flow: User enters phone → Paystack sends USSD push → User enters PIN on phone → Callback.
+- Pain: USSD push fails silently on some networks. No resend push API. User must restart checkout.
+- Good: mobile_money object in verify response includes provider, phone, payer_name.
+
+**Webhooks: 9/10**
+- Reliable. Ordered (mostly). x-paystack-signature verification trivial.
+- Gap: No webhook replay API. Dashboard Resend button only. Build your own idempotency store.
+
+**Settlement: 8.5/10**
+- T+1 (Nigeria), T+2 (Ghana). Daily batch. CSV + API (/transaction/export).
+- Split payments: Native. Subaccounts. Auto-split on charge. Dashboard shows split breakdown.
+- Reconciliation: reference + transref (Paystack ID) + gateway_response. Matches bank statement.
+
+**Compliance: 9/10**
+- PCI DSS Level 1. BoG licensed (Ghana). CBN licensed (Nigeria).
+- KYC: Business docs + director ID + proof of address. 2-5 days.
+- Stability: Acquired by Stripe 2020. Deep pockets. Not going anywhere.
+
+Verdict: The Stripe of West Africa. Default choice. If you build one integration, build Paystack.
+
+---
+
+### 2. Flutterwave (Nigeria, Ghana, Kenya, Uganda, SA, 30+ countries) — 7.5/10
+
+**API Design: 7/10**
+- Inconsistent. /v3/charges (card), /v3/charges?type=mobile_money_ghana (MoMo), /v3/transfers (payouts).
+- Different response shapes per payment type. data.status vs data.chargeResponseCode vs data.meta.authorization.
+- Docs: Fragmented. Rave vs Flutterwave terminology mixed. Try-it console works but examples outdated.
+- Idempotency: tx_ref (your reference) but no server-side idempotency key. Duplicate tx_ref = error, not idempotent success.
+
+**Mobile Money: 7/10**
+- Covers more countries. Ghana: MTN, Vodafone, AirtelTigo. Kenya: M-Pesa (STK Push). Uganda: MTN, Airtel.
+- M-Pesa STK Push: Works well. User gets prompt on same phone. Better UX than USSD.
+- Ghana USSD: Same push issues as Paystack. Plus: voucher flow for offline (user dials code#). Complex.
+
+**Webhooks: 6/10**
+- Events: charge.completed, transfer.completed, refund.completed.
+- Signature: verif-hash (SHA256 of payload + secret). But: payload sometimes stringified JSON, sometimes not. Inconsistent.
+- Retry: Undocumented. Appears 3x. No backoff visibility.
+- Duplicate webhooks: Common. Must dedupe on tx_ref + flw_ref.
+
+**Settlement: 7/10**
+- T+1 to T+3 depending on country. "Instant settlement" for eligible merchants (higher fee).
+- Split payments: Supported. But: subaccount KYC separate. Payout schedule configurable.
+- Reconciliation: /v3/transactions filterable. But: amount in kobo/cents, charged_amount includes fee, app_fee separate. Math required.
+
+**Compliance: 6/10**
+- Licenses in key markets. But: regulatory noise. CBN froze accounts 2021/2022. Kenya CBK scrutiny. Ghana BoG queries.
+- KYC: More demanding. Physical office verification in some markets.
+- Risk: Higher regulatory surface = higher chance of disruption.
+
+Verdict: Choose for multi-country (especially East Africa). Accept API tax. Build abstraction layer.
+
+---
+
+### 3. Hubtel (Ghana) — 7.0/10
+
+**API Design: 6.5/10**
+- SOAP legacy + REST modern. HostedPay (redirect) vs DirectPay (server-to-server).
+- Docs: PDF-heavy. Postman collection exists but outdated. No interactive console.
+- Auth: ClientId + ClientSecret → JWT token (expires 1hr). Token refresh required.
+- Idempotency: None. OrderId (your ref) must be unique. Duplicate = error.
+
+**Mobile Money: 8/10**
+- Ghana specialist. MTN, Vodafone, AirtelTigo, G-Money, Zeepay.
+- USSD Push: More reliable than Paystack/Flutterwave. Direct MNO relationships.
+- QR Code: GHQR standard. Generate QR → user scans with banking app. Works offline.
+- Card: Visa/MC via partner. 3DS handled. But: lower success rate than Paystack.
+
+**Webhooks: 6/10**
+- PaymentNotification POST to your URL. XML or JSON (configurable).
+- No signature. Security = IP whitelist + ClientId in payload. Weak.
+- Retry: 3x immediate. Then stops. No exponential backoff. Missed = lost.
+- Order: Not guaranteed. Status: Success can arrive before Status: Processing.
+
+**Settlement: 7.5/10**
+- T+1 standard. T+0 for high-volume (negotiated).
+- Report: Daily CSV via SFTP or email. Detailed: fee, net, tax, per-transaction.
+- Reconciliation: OrderId + TransactionId + AuthCode. Clean.
+
+**Compliance: 8/10**
+- BoG licensed. PCI DSS. Ghana-only = simpler regulatory surface.
+- KYC: Standard Ghana business docs. 3-5 days.
+- Stability: 15+ years. Profitable. Not a startup. Not acquired.
+
+Verdict: Best for Ghana-only, high-volume MoMo. API feels 2015. Works if you wrap it.
+
+---
+
+### 4. ExpressPay (Ghana) — 6.0/10
+
+**API Design: 5/10**
+- Single POST /api/v1/payment/request with action parameter (charge, refund, status).
+- Response: {"status": "success", "data": {...}} always HTTP 200. Errors in data.response_code.
+- Docs: Minimal. PDF. No code samples. Support via WhatsApp/Email.
+- Auth: merchant_id + api_key in header. No rotation. No scopes.
+
+**Mobile Money: 7/10**
+- MTN, Vodafone, AirtelTigo. USSD push. **Callback URL** for async result.
+- Unique: express_checkout — embedded iframe for web. User stays on your site. MoMo prompt in iframe.
+- Pain: Iframe breaks on mobile Safari sometimes. CSP issues.
+
+**Webhooks: 4/10**
+- **Callback URL only.** No event types. Single endpoint for all.
+- No signature. No retry. No ordering. Fire and pray.
+- You must poll /status on callback receipt. Callback = check status, not payment succeeded.
+
+**Settlement: 6.5/10**
+- T+1. Weekly PDF statement. No API for settlement data. Manual download.
+- Split: Not supported. You request, they configure. Not programmatic.
+
+**Compliance: 7/10**
+- BoG licensed. PCI DSS. Ghana-only.
+- KYC: Standard. 3-5 days.
+- Stability: 10+ years. Subsidiary of ExpressPay Group. Stable but slow innovation.
+
+Verdict: Only if you need iframe checkout. Otherwise, Paystack/Hubtel better DX.
+
+---
+
+### 5. Korapay (Nigeria, Ghana, Kenya) — 6.5/10
+
+**API Design: 7.5/10**
+- Modern. /v1/charges, /v1/transfers, /v1/customers, /v1/webhooks.
+- Idempotency: Idempotency-Key header. Works.
+- Webhooks: charge.success, transfer.failed, etc. Signed (kora-signature). Retry with backoff.
+- Docs: Decent. OpenAPI spec. Postman. But: missing edge cases (partial refunds, dispute flow).
+
+**Mobile Money: 6/10**
+- Nigeria: USSD (MTN, Airtel). Ghana: MTN, Vodafone, AirtelTigo. Kenya: M-Pesa STK.
+- Ghana USSD: Same push issues. No QR.
+- Flow: charge with type: mobile_money → authorization.redirect_url (for card) or authorization.ussd (for MoMo). Inconsistent.
+
+**Webhooks: 7/10**
+- Reliable. Signed. Retry visible in dashboard.
+- Gap: No replay. No dead letter queue API.
+
+**Settlement: 6/10**
+- T+1 NG, T+2 GH. Dashboard shows Pending → Settled.
+- API: /v1/settlements filterable. But: no per-transaction fee breakdown in settlement object. Must correlate with /v1/charges.
+- Split: Basic. Sub-merchants. Manual payout trigger.
+
+**Compliance: 5/10**
+- Licenses: CBN (Nigeria), BoG (Ghana - pending?), CBK (Kenya - agent).
+- Risk: Newer (2021). Funding-dependent. Regulatory footprint expanding = uncertainty.
+- KYC: Fast (24-48h). But: document requirements change.
+
+Verdict: Promising DX. Watch for regulatory maturity. Good backup, not primary yet.
+
+---
+
+## Summary Matrix
+
+| Gateway | API/DX | MoMo UX | Webhooks | Settlement | Compliance | Best For |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| Paystack | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Default. Primary. |
+| Flutterwave | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | Multi-country (KE/UG/TZ) |
+| Hubtel | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | Ghana-only, high MoMo |
+| ExpressPay | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ | ⭐⭐⭐ | Iframe checkout needed |
+| Korapay | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | Backup / Nigeria focus |
+
+## Our Production Pattern
+
+**Primary:** Paystack. **Backup:** Hubtel (Ghana) / Flutterwave (Nigeria/KE).
+
+**Abstraction Layer:** We build a PaymentGateway interface.
+```
+interface PaymentGateway {
+  initialize(params: InitParams): Promise<{ url: string; reference: string }>;
+  verify(reference: string): Promise<VerifiedPayment>;
+  refund(params: RefundParams): Promise<RefundResult>;
+  createTransfer(params: TransferParams): Promise<TransferResult>;
+  verifyWebhook(payload: any, signature: string): boolean;
+}
+```
+
+Implementations: PaystackGateway, HubtelGateway, FlutterwaveGateway.
+
+**Routing Logic:**
+- Ghana + MoMo → Hubtel (higher success)
+- Ghana + Card → Paystack
+- Nigeria → Paystack
+- Kenya → Flutterwave (M-Pesa STK)
+- Split payouts → Paystack (native subaccounts)
+
+**Webhook Handler:**
+```python
+def handle_webhook(gateway: str, payload: dict, signature: str):
+    if not GATEWAYS[gateway].verify_webhook(payload, signature):
+        return 400
+    
+    event = normalize_event(gateway, payload)  # → Unified Event
+    if not idempotency_store.add(event.idempotency_key):
+        return 200  # Already processed
+    
+    process_event(event)  # Your business logic
+    return 200
+```
+
+**Reconciliation Job (daily 6AM):**
+1. Pull settled transactions from each gateway API.
+2. Match to internal Payment records by reference.
+3. Flag: amount mismatch, missing settlement, unexpected fee.
+4. Generate CSV for finance. Alert on discrepancies.
+
+## The Hard Truths
+
+1. No gateway is reliable enough to trust blindly. You must poll /verify on webhook receipt. You must reconcile daily. You must have a manual "retry failed" admin button.
+
+2. Mobile money is async. User closes browser. USSD times out. Network drops. Your system must handle "payment pending for 2 hours" → "success" or "failed." No synchronous API solves this.
+
+3. Regulatory risk is real. Flutterwave's CBN issues. Paystack's Stripe acquisition (data sovereignty questions). Hubtel's BoG dependence. Diversify.
+
+4. The best DX wins. Paystack wins because you integrate in hours, not days. When (not if) you hit an edge case, their support replies in minutes with technical depth. That compounds.
+
+5. Build the abstraction layer first. Before the first gateway. It forces you to define your payment model, not theirs. Swapping gateways becomes a config change, not a rewrite.
+
+---
+
+*Integrating payments in West Africa? [We build the abstraction layer →](/services/custom-software-development)*

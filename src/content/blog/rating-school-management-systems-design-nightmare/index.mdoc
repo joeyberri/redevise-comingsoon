@@ -1,0 +1,134 @@
+---
+title: "Rating the School Management Systems We Inherited: A Design Nightmare"
+date: "2026-03-01"
+summary: "Analyzing the clunky, legacy administrative systems holding back educational institutions — and grading them on UX friction, integration capabilities, and data security."
+coverImage: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=1200"
+tags:
+  - "EdTech"
+  - "School Systems"
+  - "Legacy Software"
+  - "UX"
+author: "Redevise"
+---
+
+We have inherited six school management systems in the last three years. Private K-12. International baccalaureate. University continuing education. Vocational training. Church school network. Montessori collective.
+
+Every. Single. One. was a disaster.
+
+Not "needs improvement." Disaster. Data integrity bugs. Security holes you could drive a truck through. Workflows designed for 1995 paper processes. Vendors who ghost after the contract.
+
+This is what we found. And what we built instead.
+
+## The Contenders (Profiles of Legacy Systems We Inherited)
+
+| System | Architecture / Platform | School Type & Scale | Our Role |
+| :--- | :--- | :---: | :--- |
+| **The Legacy Monolith** | On-prem Windows Server / MS SQL | Private Academy (2,400 students) | Full rewrite |
+| **The Enterprise Cloud** | Major Multi-Tenant Cloud SaaS | International School (8,700 students) | Integration layer |
+| **The FileMaker Legacy** | Desktop app (FileMaker Pro) | Montessori Collective (450 students) | Migration |
+| **The Custom Portal** | Custom PHP / MySQL | Vocational Institute (1,200 students) | Audit + rescue |
+| **The Niche Cloud** | Niche Specialized SaaS | Creative Arts Academy (3,100 students) | Replacement |
+| **The Spreadsheet Hack** | Google Sheets + Apps Script | Pre-School Startup (180 students) | Formalization |
+
+---
+
+## The Universal Failures
+
+### 1. The "Student" Is Not A Student
+
+* **The Legacy Monolith:** We found `tblStudent` (demographics), `tblEnrollment` (class links), `tblApplicant` (admissions), and `tblAlumni` (graduates) split across isolated schemas. One person had four different IDs, four UIs, and four active records.
+* **The Enterprise Cloud:** Standardized on a "Person" object, but split roles into separate data records. If a student graduated and became a teacher's assistant, the system duplicated the record. Parent records didn't share data with billing, leading to billing statements addressed to parent accounts that had drifted from the main student record.
+* **The FileMaker Legacy:** Kept everything on a single giant layout. A student record contained demographics, enrollment, grades, billing, medical data, discipline logs, and bus routes in 347 fields. The layout was so wide and unindexed that loading a single profile took 12 seconds over the local network.
+
+**The pattern:** The database models administrative silos, not people. The registrar owns demographics. Admissions owns applicants. Billing owns payers. Academics owns learners. The software reflects the organizational chart instead of the human user.
+
+---
+
+### 2. The Schedule Is A Lie
+
+Every system has a "Scheduler." Zero systems have a schedule that matches reality.
+
+* **The Legacy Monolith:** Master schedule was built by hand in Excel and imported via CSV. When room conflicts occurred or a teacher went on leave, the system could not handle dynamic changes. The school resolved teacher absences on paper.
+* **The Enterprise Cloud:** Visual drag-and-drop scheduler that looked beautiful in product demos. In practice, it lacked any support for part-time teacher contracts, shared classrooms, or alternating week A/B calendars. An International Baccalaureate curriculum running alongside a national curriculum broke the scheduler completely.
+* **The Custom Portal:** Ran a custom genetic scheduling algorithm written in PHP. It ran for 4 hours, produced a 94% optimal schedule, and left a 6% block of conflicts that had to be resolved manually. Every semester, the registrar spent 3 weeks fixing the schedule by hand.
+
+**The pattern:** Scheduling is NP-hard. Vendors sell auto-schedulers that make clean assumptions. When real-world constraints (like room capacities, prep periods, and teacher availability) interfere, the automation breaks, and schools revert to Excel.
+
+---
+
+### 3. Grades Are Not Numbers
+
+* **The Legacy Monolith:** Grade data was stored as a flat table of floats. The final report card was generated using a hardcoded Crystal Reports template. If the academic board changed a grading scale from letter grades to IB 1-7 scales, a developer had to modify the reporting templates.
+* **The Enterprise Cloud:** Calculated grades automatically in a custom gradebook module. However, it had no capacity to separate formative from summative assessments. Parents saw a raw percentage (e.g., 87%) without any contextual rubric or portfolio evidence.
+* **The Niche Cloud:** Supported standards-based grading, but forced teachers to tick up to 400 competency checkboxes per student every term. A class of 30 students meant 12,000 manual UI clicks per report card cycle. Teachers simply gave up and checked boxes at random.
+
+**The pattern:** Grading is pedagogical. Legacy software treats it like raw arithmetic. The report card is a legal document, while the gradebook is a learning indicator. Conflating the two creates administrative bloat.
+
+---
+
+### 4. Parents Are Second-Class Users
+
+* **The Legacy Monolith:** No parent portal. The school printed reports and mailed them.
+* **The Enterprise Cloud:** Offered a parent portal that showed basic attendance and bills, but lacked homework tracking, teacher messaging, medical consent forms, or bus routes.
+* **The FileMaker Legacy:** Rendered a desktop UI via FileMaker WebDirect. It was completely unusable on mobile devices, forcing parents to zoom and pan across complex desktop tables.
+* **The Custom Portal:** A native parent app built in 2019. It wasn't maintained, and newer iOS versions broke its push notification system. The vendor quoted $50,000 for an upgrade.
+* **The Spreadsheet Hack:** Relied entirely on WhatsApp groups for official communication, exposing parent contact info and creating moderation challenges.
+
+---
+
+### 5. Data Security Is Theater
+
+* **The Legacy Monolith:** Hosted on an on-premise SQL Server with the `sa` administrator password written on a sticky note. No encryption, no access logging, and backups stored on the same server partition. Any administrative assistant could drop a table without an audit trail.
+* **The Enterprise Cloud:** Deployed in the cloud and marked "SOC 2 Compliant." However, we discovered they exposed private API keys in the client-side JavaScript. Any student with Basic DevTools knowledge could read raw PII by extracting the Bearer tokens from localStorage.
+* **The FileMaker Legacy:** File-level access meant copying the FileMaker database file copied the entire database history. VPN access granted full read/write access to the database with no row-level security.
+* **The Custom Portal:** Vulnerable to SQL injection across 14 public endpoints. User passwords were encrypted using weak MD5 hashing, and there was no Multi-Factor Authentication (MFA).
+* **The Spreadsheet Hack:** Data sat in a shared Google Sheet. Anyone with the link could edit grades.
+
+---
+
+## The Grading Rubric
+
+We scored each system on 8 dimensions (1-10 scale):
+
+| Dimension | Weight | Legacy Monolith | Enterprise Cloud | FileMaker | Custom Portal | Niche Cloud | Spreadsheet |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Data Model Coherence | 20% | 2 | 3 | 1 | 4 | 5 | 2 |
+| Schedule Reality | 15% | 1 | 2 | 1 | 2 | 3 | 1 |
+| Gradebook Pedagogy | 15% | 2 | 3 | 1 | 3 | 4 | 1 |
+| Parent Experience | 15% | 1 | 4 | 1 | 2 | 3 | 3 |
+| Staff Workflow Fit | 10% | 2 | 3 | 2 | 3 | 4 | 2 |
+| Integration API | 10% | 1 | 5 | 1 | 4 | 3 | 4 |
+| Security/Compliance | 10% | 1 | 4 | 1 | 1 | 5 | 1 |
+| Performance/Reliability | 5% | 3 | 6 | 2 | 4 | 5 | 2 |
+| **Total (Weighted)** | **100%** | **1.6** | **3.4** | **1.2** | **2.8** | **3.9** | **1.9** |
+
+---
+
+## What We Built Instead
+
+We did not build another filing cabinet. We built a School Operating System.
+
+### Core Principle: One Person, One Record
+We mapped identity to a single `Person` table. Roles (Student, Parent, Teacher, Alumnus) are defined in a junction table with start and end dates. Guardianship is mapped through a explicit relationship table (Student + Parent + Rights, e.g., pickup, billing, academic view). If a parent becomes a teacher, they retain their single record, and their permissions adjust dynamically.
+
+### Core Principle: Constraint-Based Scheduling
+Instead of a simple calendar grid, we built a constraint engine. It accepts teacher contracted hours, room equipment constraints, student curriculum options, and pedagogical rules (e.g., no back-to-back science labs) and compiles schedules programmatically. It flags conflicts transparently rather than silently failing.
+
+### Core Principle: Rubric & Evidence-Based Assessments
+We separated standard mastery from raw scoring. The system records qualitative evidence (rubric matches, portfolios, teacher observation notes) and maps them to learning outcomes. Instead of an arbitrary "87%", parents see "Proficient in algebraic reasoning" backed by linked portfolio items.
+
+### Core Principle: Enterprise-Grade Data Security
+We enforced Row-Level Security (RLS) at the database layer. Teachers can only query data for students in their assigned classes. Parents can only fetch records linked to their specific guardianship ID. All exports and administrative data views are logged to an immutable audit trail.
+
+## The Migration Playbook (The Strangle Pattern)
+
+We do not run high-risk migration weekends. We phase legacy systems out over time:
+
+1. **Identity Integration:** Sync student and staff demographics from the legacy database. The new system becomes the source of truth for identity, pushing updates back to legacy systems via webhook.
+2. **Communications and Portals:** Move parent communications and notifications to the new platform, deprecating the legacy parent portal.
+3. **Academics & Gradebooks:** Onboard teachers to the new gradebook module in a single department or cohort to test the workflow before a full school rollout.
+4. **Scheduling & Rollout:** Run the constraint scheduler in parallel with legacy planners for one term, resolving discrepancies, and switch over completely for the next academic year.
+
+---
+
+*Inheriting a legacy school system? [Let us strangle it responsibly →](/estimate)*

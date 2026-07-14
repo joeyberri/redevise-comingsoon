@@ -3,55 +3,55 @@
   <!-- Main Site -->
   <url>
     <loc>https://redevise.com/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://redevise.com/about</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://redevise.com/services</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://redevise.com/process</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://redevise.com/estimate</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://redevise.com/blog</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://redevise.com/gh</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://redevise.com/terms</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://redevise.com/privacy</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -102,6 +102,12 @@
   <url>
     <loc>https://redevise.com/blog/align-operations-stack-long-term-business-model</loc>
     <lastmod>2024-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/api-developer-experience-dx-rated</loc>
+    <lastmod>2026-02-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -364,6 +370,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://redevise.com/blog/build-vs-buy-dilemma-custom-software-2026</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://redevise.com/blog/business-automation-west-africa</loc>
     <lastmod>2025-06-30</lastmod>
     <changefreq>monthly</changefreq>
@@ -432,6 +444,12 @@
   <url>
     <loc>https://redevise.com/blog/crisis-response-tied-to-audit-log</loc>
     <lastmod>2024-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/crm-vs-erp-smes-scale-operations</loc>
+    <lastmod>2026-02-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -576,6 +594,12 @@
   <url>
     <loc>https://redevise.com/blog/design-training-system-productive-employees-before-week-two</loc>
     <lastmod>2023-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/designing-for-decisions-enterprise-dashboards-2026</loc>
+    <lastmod>2026-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -862,6 +886,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://redevise.com/blog/nocode-vs-custom-automation-enterprise-pipelines</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://redevise.com/blog/onboarding-friction-week-one-wrong-pace-months</loc>
     <lastmod>2024-04-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -1032,6 +1062,36 @@
   <url>
     <loc>https://redevise.com/blog/quiet-cost-disconnected-patched-systems</loc>
     <lastmod>2025-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/rated-4-church-presentation-tools-crash-sunday</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/rated-5-customer-support-tools-actionable-insight</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/rating-5-local-payment-gateways-west-africa</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/rating-school-management-systems-design-nightmare</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/rating-ux-popular-habit-loops-wellness-apps-retention</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1276,6 +1336,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://redevise.com/blog/the-hidden-tax-disconnected-software-systems</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://redevise.com/blog/the-quiet-cost-of-patched-systems</loc>
     <lastmod>2025-03-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -1306,6 +1372,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://redevise.com/blog/top-ai-companies-ghana-2026</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/top-software-development-companies-ghana-2026</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://redevise.com/blog/track-metrics-signal-system-failure-before-happens</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -1332,6 +1410,12 @@
   <url>
     <loc>https://redevise.com/blog/turn-support-ticket-data-operational-improvements</loc>
     <lastmod>2023-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://redevise.com/blog/ultimate-mvp-tech-stacks-2026</loc>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1417,25 +1501,25 @@
   <!-- Church Vertical -->
   <url>
     <loc>https://church.redevise.com/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://church.redevise.com/about</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://church.redevise.com/terms</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://church.redevise.com/privacy</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

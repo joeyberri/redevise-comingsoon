@@ -1,0 +1,199 @@
+---
+title: "API Developer Experience (DX) Rated: The Best and Worst We Built With This Year"
+summary: "We score the web's major APIs on integration speed, sandbox reliability, and error-handling clarity to crown the ultimate developer experiences."
+coverImage: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1200"
+date: "2026-02-25"
+status: "published"
+tags:
+  - "API"
+  - "Developer Experience"
+  - "Integration"
+  - "DX"
+author: "Redevise"
+---
+
+We integrated 23 APIs this year. Payment gateways. Communication. Identity. Logistics. Banking. AI. Maps. Webhooks. Webhooks that never fire. Webhooks that fire three times. Sandboxes that return 200 OK with error codes in the body. Production endpoints that differ from sandbox in undocumented ways.
+
+Developer Experience is not "great docs." It is: how fast does a competent engineer go from "I need this" to "it works in production and I can debug it when it breaks at 2 AM?"
+
+We rated on four axes:
+
+| Axis | Weight | What We Measured |
+| :--- | :---: | :--- |
+| Time to First Working Call | 30% | Signup → API key → curl → 200 OK with real-ish data |
+| Sandbox Fidelity | 25% | Does sandbox mirror production? Webhooks? Rate limits? Error codes? Edge cases? |
+| Error Clarity | 25% | When it fails, does the response tell you what, where, why, and how to fix? |
+| Operational Visibility | 20% | Logs. Metrics. Replay. Idempotency. Versioning. Deprecation notices. |
+
+## The Rankings
+
+### Tier 1: Respect The Developer
+
+#### 1. Stripe - Still The Gold Standard (9.5/10)
+
+TTFWC: 3 minutes. Dashboard → Developers → API keys → curl https://api.stripe.com/v1/customers -u sk_test_... → works.
+
+Sandbox: Identical to production. Same rate limits. Same webhook signatures. Same error codes. Test card numbers cover every scenario: decline, 3DS, insufficient funds, expired, processing error. You can simulate radar risk scores.
+
+Errors: Machine-readable (code: "card_declined", decline_code: "insufficient_funds") + human message + documentation URL + request ID. The request ID correlates to dashboard logs instantly.
+
+Ops: Dashboard logs show every request. Full request/response body. Filter by date, endpoint, status, customer. Webhook delivery logs with retry timeline. Idempotency keys built-in. Versioning via Stripe-Version header - you upgrade when ready.
+
+The flex: stripe listen --forward-to localhost:3000/webhook tunnels webhooks to your laptop. You debug production webhooks in your IDE. No ngrok. No public URL. It just works.
+
+Deduction: Pricing API is separate. Webhook retry logic is opaque (exponential backoff but no visibility into next retry time).
+
+#### 2. Twilio - Communication DX Done Right (9.0/10)
+
+TTFWC: 5 minutes. Console → Phone Numbers → Buy → Messaging Service → curl -X POST https://api.twilio.com/2010-04-01/Accounts/.../Messages.json → SMS arrives.
+
+Sandbox: Trial account = real phone numbers. Real carriers. Real delivery receipts. Only limitation: verified numbers only. Upgrade removes limit. No "fake" sandbox.
+
+Errors: 21211 (invalid to), 21614 (not a valid phone), 30003 (unreachable). Each has a docs page. Request ID in header. Debugger in console shows every API call with latency.
+
+Ops: Message logs searchable by to/from/date/status. Webhook delivery status per message. Rate limits per number and per account documented. Messaging Service handles scaling, pooling, compliance.
+
+The flex: twilio phone-numbers:update "+15551234567" --sms-url=https://yourapp.com/webhook from CLI. No dashboard clicks.
+
+Deduction: Voice API is a different beast. TwiML is powerful but verbose. Video API deprecated (moved to LiveKit partnership - messy transition).
+
+#### 3. Supabase - Postgres With DX (8.5/10)
+
+TTFWC: 2 minutes. npx supabase init → npx supabase start → local Postgres + Auth + Realtime + Storage + Edge Functions. supabase gen types → TypeScript types from your schema.
+
+Sandbox: Is local dev. No cloud sandbox needed. CI runs supabase start in GitHub Actions. Identical to production.
+
+Errors: Postgres errors. Real ones. 23505 (unique violation). 42501 (RLS policy). You debug with psql, not vendor docs.
+
+Ops: Dashboard logs: Postgres, Auth, Realtime, Edge Functions, Storage. Query performance insights. Point-in-time recovery. Branching (preview deployments per PR).
+
+The flex: supabase db diff --schema public generates migration from local schema changes. You write SQL. It generates the migration file. No ORM tax.
+
+Deduction: Edge Functions cold start ~1.5s. Realtime presence scaling limits. Storage CDN config limited.
+
+### Tier 2: Good But Friction Exists
+
+#### 4. GitHub API (8.0/10)
+
+TTFWC: 4 minutes. Fine-grained PAT → gh api user → works.
+
+Sandbox: No sandbox. You test against production. GITHUB_TOKEN in Actions has repo scope. Good enough.
+
+Errors: GraphQL returns errors array with path, locations, extensions.code. REST returns message, documentation_url. Rate limit headers: x-ratelimit-remaining, x-ratelimit-reset. Clear.
+
+Ops: Audit log (enterprise). Webhook deliveries viewable per repo/org. Retry-After header respected.
+
+Deduction: GraphQL schema is massive. Rate limits are strict (5000/hr). Pagination is cursor-based but inconsistent across endpoints. App installation flow is 7 steps.
+
+#### 5. Vercel (7.5/10)
+
+TTFWC: 3 minutes. vercel login → vercel deploy → live.
+
+Sandbox: Preview deployments are the sandbox. Every git push = unique URL. Identical infrastructure.
+
+Errors: Build logs. Function logs. Edge runtime logs. All in dashboard. vercel logs CLI streams real-time.
+
+Ops: Observability tab: invocations, duration, errors, cold starts. Webhooks for deployment events. Cron jobs visible.
+
+Deduction: API is mostly "deploy and configure." No granular resource API (cannot create KV namespace via API easily). Token scopes coarse.
+
+#### 6. Paystack (7.5/10) - West Africa's Stripe
+
+TTFWC: 8 minutes. Dashboard → Settings → API Keys → test key → curl with Authorization: Bearer sk_test_... → works.
+
+Sandbox: Separate test environment. Test card numbers documented. Webhook simulator in dashboard (send test event). But: some error codes differ from production. 3DS flow not fully testable.
+
+Errors: code, message, data (validation errors). Request ID in x-paystack-request-id. Dashboard logs show request/response.
+
+Ops: Webhook logs with retry count. Settlement reports via API. Subaccount management for marketplaces.
+
+Deduction: Rate limit undocumented (hit it at ~200 req/min). No idempotency keys. Recurring billing API separate from transactions. Dashboard logs only 30 days.
+
+#### 7. Flutterwave (6.5/10)
+
+TTFWC: 12 minutes. Dashboard → Settings → API → copy keys → realize you need to whitelist IP → wait for approval → test.
+
+Sandbox: Separate environment. But: webhook URL must be HTTPS and publicly accessible in sandbox. No localhost tunnel support. You need ngrok/Cloudflare tunnel just to test.
+
+Errors: Inconsistent. Sometimes status: "error", message: "...". Sometimes HTTP 400 with HTML body. Sometimes 200 OK with {"status":"failed"}. Request ID not always present.
+
+Ops: Dashboard logs basic. No webhook retry visibility. No replay. Settlement API exists but documentation lags.
+
+Deduction: IP whitelisting required even for test. Breaks CI/CD. Mobile money flows differ per country (UG vs GH vs KE vs NG) - separate integrations.
+
+### Tier 3: Painful But Necessary
+
+#### 8. WhatsApp Business Cloud API (Meta) (5.0/10)
+
+TTFWC: 45 minutes. Meta Business Manager → App → WhatsApp → Business Account → Phone Number → Verify → Template → Approve (24-48 hrs) → Test.
+
+Sandbox: No sandbox. You test with your verified number on your phone. Template approval required for every outbound message type. "Hello World" takes 24 hrs.
+
+Errors: error.code: 131026 (template not found). 131047 (rate limit). 131051 (message undeliverable). Docs map codes to reasons but not to fixes. Webhook statuses array: sent, delivered, read, failed - but failed has no reason code.
+
+Ops: Message analytics in Business Manager (delayed 4-6 hrs). No request logs. No webhook delivery logs. No replay. Rate limits: 1000 msg/day (tier 1), 10k (tier 2), 100k (tier 3), 1M (tier 4). Tier upgrades manual review.
+
+The pain: Template language review by humans. "Your template contains promotional content" - rejected. No appeal. You guess. Resubmit. Wait.
+
+Why we use it: 2B users. No alternative.
+
+#### 9. HubSpot (4.5/10)
+
+TTFWC: 20 minutes. Create app → OAuth scopes → install in portal → refresh token flow → curl with access token → 403 because scope missing → add scope → reinstall → works.
+
+Sandbox: Developer account = free CRM portal. But: marketing contacts, sequences, custom objects limited. Not production parity.
+
+Errors: status: "error", message: "INVALID_ARGUMENT", correlationId: "...". Correlation ID useless without support ticket. Rate limit: 100 req/10s (burst), 400/day (daily) - per portal. Low.
+
+Ops: Audit log (enterprise only). Webhook delivery logs: none. No replay. No request/response body logging.
+
+Deduction: CRM API designed for "integrators build once," not "developers iterate." Versioning: v1, v2, v3 coexist. v4 (GraphQL) beta for 3 years.
+
+#### 10. Salesforce (3.0/10)
+
+TTFWC: 2 hours. Connected App → OAuth → Refresh Token → instance_url differs per org → SOQL → INVALID_SESSION_ID → refresh → invalid_grant → check IP relaxation → works.
+
+Sandbox: Separate org. Refresh tokens don't share. Metadata differs. API limits: 15,000/24hr (enterprise). Hit it running tests.
+
+Errors: [{ "errorCode": "INVALID_FIELD", "message": "No such column 'CustomField__c' on entity 'Account'" }]. Helpful if you know the API name. INVALID_SESSION_ID = could be expired, revoked, IP blocked, user deactivated. Good luck.
+
+Ops: Event Monitoring (paid add-on). Debug logs (verbose, 20MB limit, expire fast). No webhook retry visibility. Bulk API v2 job logs separate from REST logs.
+
+The tax: Every integration needs a "Salesforce Admin" on the client side to grant permissions, create fields, approve scopes. You cannot self-serve.
+
+### Tier 4: Avoid If You Can
+
+#### 11. LinkedIn Marketing API (2.0/10)
+
+OAuth 2.0 but scopes change without notice. Rate limits undocumented. Sandbox = production with "test" ad account (still spends money). Error: {"message":"Access denied","status":403} - no code, no reason. Support: community forum. No SLA.
+
+#### 12. Apple App Store Connect API (1.5/10)
+
+JWT auth with private key (PKCS8, not PKCS1 - they reject PKCS1). Key ID, Issuer ID, 20-min token expiry. No sandbox - TestFlight is production. Rate limit: unknown. Errors: {"errors":[{"id":"...","status":"409","code":"ENTITY_ERROR.ATTRIBUTE.INVALID","title":"Invalid attribute","detail":"..."}]}. Documentation: auto-generated from OpenAPI, missing half the enums. No webhook for review status.
+
+## The DX Checklist We Use Now
+
+Before we commit to an API, we ask:
+
+1. Can I run curl and get a 200 in < 5 min without reading docs?
+2. Is there a local/dev environment that mirrors production behavior (webhooks, errors, rate limits)?
+3. When it fails, does the response body contain a machine-readable code, a human message, a doc link, and a request ID?
+4. Can I see every request I made, with request/response bodies, in a dashboard or CLI?
+5. Are webhooks idempotent? Can I replay them? Can I see delivery attempts?
+6. Is versioning explicit? Can I upgrade on my timeline?
+7. Are rate limits documented with headers? Is there a Retry-After?
+8. Can I test error scenarios (decline, timeout, 3DS, rate limit) without real money/phones?
+
+Stripe: 8/8. Twilio: 7/8 (no local webhook test). Supabase: 8/8. Paystack: 5/8. Flutterwave: 3/8. WhatsApp: 2/8. HubSpot: 3/8. Salesforce: 2/8.
+
+## The Pattern
+
+Companies that sell to developers (Stripe, Twilio, Supabase, Vercel) invest in DX. It is their product.
+
+Companies that sell to enterprises (Salesforce, HubSpot, Linkedin, Apple) invest in sales. DX is a cost center.
+
+Companies in emerging markets (Paystack, Flutterwave) are transitioning. Paystack chose developer-first. Flutterwave chose enterprise-first. The retention numbers show.
+
+---
+
+*Building integrations that don't break at 2 AM? [We design for operability →](/services/custom-software-development)*
