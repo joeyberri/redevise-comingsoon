@@ -36,10 +36,11 @@ function parseFrontmatter(raw) {
     }
 
     // Save previous array if we're moving to a new key
-    currentArray = null;
-
     const colonIdx = trimmed.indexOf(':');
     if (colonIdx === -1) continue;
+
+    // Save previous array when starting a new key
+    currentArray = null;
 
     const key = trimmed.slice(0, colonIdx).trim();
     let value = trimmed.slice(colonIdx + 1).trim();
