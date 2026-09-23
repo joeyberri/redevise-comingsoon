@@ -6,10 +6,12 @@ import { useLanguage } from "../utils/LanguageContext.jsx";
 const Products = () => {
   const { t } = useLanguage();
 
-  // Zigzag pattern: index 0 = wide, 1 = narrow, 2 = narrow, 3 = wide, 4 = full
-  const getSpanClass = (i) => {
-    if (i === 0 || i === 3) return "lg:col-span-2";
-    if (i === 4) return "lg:col-span-3";
+  const productsList = t('products.list') || [];
+
+  // Zigzag pattern: alternating 2+1 and 1+2 rows, with the final card taking full width (3 cols)
+  const getSpanClass = (i, total) => {
+    if (i === total - 1) return "lg:col-span-3";
+    if (i % 4 === 0 || i % 4 === 3) return "lg:col-span-2";
     return "";
   };
 
@@ -21,12 +23,12 @@ const Products = () => {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {t('products.list').map((product, i) => (
+        {productsList.map((product, i) => (
           <ProductCard 
             key={product.id} 
             {...product} 
             index={i} 
-            className={getSpanClass(i)}
+            className={getSpanClass(i, productsList.length)}
           />
         ))}
       </div>

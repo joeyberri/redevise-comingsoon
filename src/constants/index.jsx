@@ -67,6 +67,22 @@ export const products = [
     cta: "Explore Church Ecosystem",
     href: "https://church.redevise.com",
   },
+  {
+    id: "skulsys",
+    label: "B2B · Education",
+    name: "SkulSys",
+    text: "The complete school operating system. Quick morning roll call, tamper-proof terminal reports with QR verification, and automated Mobile Money fee collections.",
+    cta: "Visit SkulSys",
+    href: "https://www.skulsys.com",
+  },
+  {
+    id: "conversa",
+    label: "B2B · AI Sales",
+    name: "Conversa",
+    text: "Autonomous AI sales agents and customer support chat. Intelligent multi-tier routing that handles customer inquiries, accepts Mobile Money, and closes sales 24/7.",
+    cta: "Visit Conversa",
+    href: "https://www.askconversa.com",
+  },
 ];
 
 /* ─── Services ─── */

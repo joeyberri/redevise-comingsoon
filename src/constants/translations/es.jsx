@@ -136,6 +136,22 @@ export const es = {
         text: "Software de presentación diseñado específicamente para iglesias. Intuitivo, enfocado y hecho para equipos de adoración.",
         cta: "Explorar Ecosistema de la Iglesia",
         href: "https://church.redevise.com",
+      },
+      {
+        id: "skulsys",
+        label: "B2B · Educación",
+        name: "SkulSys",
+        text: "El sistema operativo escolar completo. Pase de lista matutino en segundos, boletas con verificación QR y cobro automatizado de colegiaturas con Mobile Money.",
+        cta: "Visitar SkulSys",
+        href: "https://www.skulsys.com",
+      },
+      {
+        id: "conversa",
+        label: "B2B · Ventas con IA",
+        name: "Conversa",
+        text: "Agente autónomo de ventas y soporte al cliente con IA. Enrutamiento inteligente multinivel que atiende consultas, acepta Mobile Money y concreta ventas 24/7.",
+        cta: "Visitar Conversa",
+        href: "https://www.askconversa.com",
       }
     ]
   },

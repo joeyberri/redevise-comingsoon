@@ -53,19 +53,19 @@ const EstimatePage = ({ onOpenInquiry }) => {
   const projectTypes = useMemo(() => {
     const list = t('estimatePage.types') || [];
     const icons = [Globe, AppWindow, Smartphone, ShoppingCart, Blocks, HelpCircle];
-    const bases = [2000, 5000, 8000, 4000, 10000, 3000];
+    const bases = [1000, 2500, 4000, 2000, 5000, 1500];
     return list.map((item, idx) => ({
       id: item.id,
       icon: icons[idx] || HelpCircle,
       title: item.title,
       desc: item.desc,
-      base: bases[idx] || 3000
+      base: bases[idx] || 1500
     }));
   }, [t]);
 
   const scopeLevels = useMemo(() => {
     const list = t('estimatePage.scopes') || [];
-    const multipliers = [1, 1.5, 2.5, 4];
+    const multipliers = [1, 1.4, 2.2, 3.2];
     const weeksList = [[2, 3], [4, 6], [8, 12], [12, 20]];
     return list.map((item, idx) => ({
       id: idx,

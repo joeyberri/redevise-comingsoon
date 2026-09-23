@@ -78,8 +78,8 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
 
   // Interpolate dynamic pricing into FAQ questions/answers
   const faqList = useMemo(() => {
-    const priceFloor = formatPrice(2000);
-    const priceCeiling = formatPrice(25000);
+    const priceFloor = formatPrice(1000);
+    const priceCeiling = formatPrice(12000);
     return rawFaqList.map((faq) => ({
       ...faq,
       a: typeof faq.a === "string"

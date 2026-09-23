@@ -99,21 +99,47 @@ const Header = ({ onOpenInquiry }) => {
                         >
                           <div className="bg-dark-100/90 backdrop-blur-lg border border-text/10 rounded-[2rem] p-8 shadow-2xl overflow-hidden relative">
                             <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none" />
-                            <div className="grid grid-cols-2 gap-6 relative z-10">
-                              {t('products.list').map((product) => (
-                                <button
-                                  key={product.id}
-                                  onClick={() => handleNavClick("products")}
-                                  className="p-4 rounded-xl hover:bg-text/5 transition-all group/prod border border-transparent hover:border-text/10 text-left"
-                                >
-                                  <div className="flex items-center justify-between mb-2">
-                                    <span className="text-[10px] font-bold tracking-widest text-lime uppercase">{product.label.split(' · ')[1]}</span>
-                                    <ArrowUpRight size={14} className="opacity-0 group-hover/prod:opacity-100 transition-opacity text-lime" />
-                                  </div>
-                                  <div className="font-bold text-text mb-1">{product.name}</div>
-                                  <div className="text-[11px] text-text-muted leading-relaxed line-clamp-2">{product.text}</div>
-                                </button>
-                              ))}
+                            <div className="grid grid-cols-2 gap-4 relative z-10 max-h-[460px] overflow-y-auto pr-1">
+                              {t('products.list').map((product) => {
+                                const category = product.label?.includes(' · ')
+                                  ? product.label.split(' · ')[1]
+                                  : product.label;
+                                const cardInner = (
+                                  <>
+                                    <div className="flex items-center justify-between mb-2">
+                                      <span className="text-[10px] font-bold tracking-widest text-lime uppercase">{category}</span>
+                                      <ArrowUpRight size={14} className="opacity-0 group-hover/prod:opacity-100 transition-opacity text-lime" />
+                                    </div>
+                                    <div className="font-bold text-text mb-1">{product.name}</div>
+                                    <div className="text-[11px] text-text-muted leading-relaxed line-clamp-2">{product.text}</div>
+                                  </>
+                                );
+
+                                if (product.href) {
+                                  return (
+                                    <a
+                                      key={product.id}
+                                      href={product.href}
+                                      target={product.href.startsWith("http") ? "_blank" : undefined}
+                                      rel={product.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                      onClick={() => setIsMegaMenuOpen(false)}
+                                      className="p-4 rounded-xl hover:bg-text/5 transition-all group/prod border border-transparent hover:border-text/10 text-left block"
+                                    >
+                                      {cardInner}
+                                    </a>
+                                  );
+                                }
+
+                                return (
+                                  <button
+                                    key={product.id}
+                                    onClick={() => handleNavClick("products")}
+                                    className="p-4 rounded-xl hover:bg-text/5 transition-all group/prod border border-transparent hover:border-text/10 text-left"
+                                  >
+                                    {cardInner}
+                                  </button>
+                                );
+                              })}
                             </div>
                           </div>
                         </motion.div>
