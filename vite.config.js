@@ -5,7 +5,7 @@ const localApiMockPlugin = () => ({
   name: 'local-api-mock',
   configureServer(server) {
     server.middlewares.use((req, res, next) => {
-      if ((req.url === '/api/send-career' || req.url === '/api/send-email') && req.method === 'POST') {
+      if ((req.url === '/api/send-career' || req.url === '/api/send-email' || req.url === '/api/promo-request') && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => {
           body += chunk;

@@ -10,7 +10,6 @@ import {
   Mail, 
   Smartphone, 
   Sparkles, 
-  MessageSquare, 
   ShieldCheck, 
   X,
   ExternalLink,
@@ -238,35 +237,35 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
     setIsSubmitting(true);
     setErrorMessage("");
 
+    const payload = {
+      fullName: formData.fullName.trim(),
+      businessName: formData.businessName.trim(),
+      phoneNumber: formData.phoneNumber.trim(),
+      email: formData.email.trim() || "",
+      promoPackage: "Redevise October Growth Package",
+      promoPrice: "GH₵ 3,000",
+      channel: "#october-growth",
+      notes: "50% deposit to begin | GH₵600 early bird savings | Balance upon launch",
+    };
+
     try {
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/api/promo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.fullName,
-          email: formData.email || "no-email-provided@redevise.com",
-          interests: ["October Growth Package", "Business Website", "Google Search Setup"],
-          problem: `[OCTOBER GROWTH PACKAGE RESERVATION]\nBusiness Name: ${formData.businessName}\nPhone/WhatsApp: ${formData.phoneNumber}\nPackage: October Growth Package (GH₵ 3,000 • Save GH₵ 600)\nTerms: 50% deposit to begin, remaining balance upon launch.`,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error("Could not send email. Please use WhatsApp directly.");
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error("Failed to submit");
       }
-
-      setIsSubmitted(true);
-    } catch (err) {
-      console.warn("Direct form submit notice:", err);
-      // Even if API route is not running in local preview, fall back to WhatsApp or success with WhatsApp button
-      setIsSubmitted(true);
+    } catch (_err) {
+      setErrorMessage("Unable to submit registration directly. Please email us at team@redevise.com or try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const whatsappMessage = encodeURIComponent(
-    `Hello Redevise! I want to register for the October Growth Package (GH₵ 3,000). My business name is "${formData.businessName || ''}" and my contact is "${formData.fullName || ''}".`
-  );
 
   return (
     <>
@@ -586,15 +585,13 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                     <span>Register Interest Now</span>
                     <ArrowRight className="size-4" />
                   </button>
-                  <a
-                    href={`https://wa.me/233207932004?text=${whatsappMessage}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-text/20 bg-dark-100/60 px-6 py-3.5 font-sans text-sm font-medium text-text hover:border-lime/40 hover:text-lime transition-all"
+                  <button
+                    type="button"
+                    onClick={() => goToSlide(1)}
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-text/20 bg-dark-100/60 px-6 py-3.5 font-sans text-sm font-medium text-text hover:border-lime/40 hover:text-lime transition-all cursor-pointer"
                   >
-                    <MessageSquare className="size-4 text-lime" />
-                    <span>Chat on WhatsApp</span>
-                  </a>
+                    <span>Explore All 3 Deliverables</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -726,7 +723,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                       />
                     </div>
 
-                    <div className="pt-2 space-y-2">
+                    <div className="pt-2">
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -735,16 +732,6 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         <span>{isSubmitting ? "Submitting..." : "Lock in Discount Slot"}</span>
                         <ArrowRight className="size-4" />
                       </button>
-
-                      <a
-                        href={`https://wa.me/233207932004?text=${whatsappMessage}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-text/15 bg-dark-200/60 py-2.5 font-sans text-xs font-medium text-text-muted hover:text-lime hover:border-lime/30 transition-all"
-                      >
-                        <MessageSquare className="size-3.5 text-lime" />
-                        <span>Or message directly on WhatsApp</span>
-                      </a>
                     </div>
                   </form>
                 </div>
@@ -757,24 +744,15 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                     We received your details
                   </h4>
                   <p className="mt-2 font-sans text-sm text-text-muted leading-relaxed max-w-sm mx-auto">
-                    Thank you, {formData.fullName}! Your discount slot is reserved. Our team will contact you via phone or WhatsApp within 24 hours to get started.
+                    Thank you, {formData.fullName}! Your discount slot is reserved. Our team will contact you via phone or email within 24 hours to get started.
                   </p>
-                  <div className="mt-6 flex flex-col gap-2.5">
-                    <a
-                      href={`https://wa.me/233207932004?text=${whatsappMessage}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-lime py-3 font-sans text-sm font-bold text-dark shadow-lg shadow-lime/20 hover:bg-lime/90 transition-all"
-                    >
-                      <MessageSquare className="size-4 text-dark" />
-                      <span>Continue on WhatsApp Now</span>
-                    </a>
+                  <div className="mt-6">
                     <button
                       type="button"
                       onClick={closeClaimModal}
-                      className="inline-flex w-full items-center justify-center rounded-xl border border-text/15 bg-dark-200 py-2.5 font-sans text-xs font-semibold text-text-muted hover:text-text transition-all cursor-pointer"
+                      className="inline-flex w-full items-center justify-center rounded-xl bg-lime py-3 font-sans text-sm font-bold text-dark shadow-lg shadow-lime/20 hover:bg-lime/90 transition-all cursor-pointer"
                     >
-                      Close
+                      Done
                     </button>
                   </div>
                 </div>
