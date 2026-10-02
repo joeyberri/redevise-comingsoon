@@ -67,6 +67,12 @@ const Footer = ({ onOpenInquiry }) => {
                 </LinkRouter>
               </li>
               <li>
+                <LinkRouter to="/promos/october-growth" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime inline-flex items-center gap-1.5">
+                  <span>October Growth</span>
+                  <span className="rounded bg-lime/15 border border-lime/30 text-[9px] font-mono text-lime px-1.5 py-0.5 font-bold">OFFER</span>
+                </LinkRouter>
+              </li>
+              <li>
                 <LinkRouter to="/careers" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
                   {t('footer.careers')}
                 </LinkRouter>

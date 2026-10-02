@@ -52,6 +52,11 @@ const staticRoutes = [
     path: 'gh',
     title: 'Software Development in Ghana & West Africa | Redevise Accra',
     description: 'Custom software development, Mobile Money integrations, Paystack & Flutterwave setup, and workflow automation for businesses in Ghana and West Africa. Based in Accra.'
+  },
+  {
+    path: 'promos/october-growth',
+    title: 'October Growth Package | Business Website, Google Setup & Email | Redevise',
+    description: 'Get found, look credible, and give people a clear way to contact you. Complete business website, Google Search setup, custom domain, and professional email for GH₵ 3,000.'
   }
 ];
 

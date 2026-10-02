@@ -25,6 +25,7 @@ const staticPages = [
   { loc: '/estimate', changefreq: 'monthly', priority: '0.8' },
   { loc: '/blog', changefreq: 'weekly', priority: '0.9' },
   { loc: '/gh', changefreq: 'monthly', priority: '0.9' },
+  { loc: '/promos/october-growth', changefreq: 'weekly', priority: '0.9' },
   { loc: '/terms', changefreq: 'monthly', priority: '0.3' },
   { loc: '/privacy', changefreq: 'monthly', priority: '0.3' },
 ];

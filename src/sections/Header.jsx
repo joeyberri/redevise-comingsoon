@@ -50,6 +50,23 @@ const Header = ({ onOpenInquiry }) => {
             : "bg-transparent py-2"
         )}
       >
+        {/* Top Seasonal Promo Announcement Bar */}
+        {!isChurch && (
+          <div className="bg-lime/10 border-b border-lime/20 px-4 py-1.5 text-center text-xs font-mono text-lime transition-colors">
+            <div className="container flex items-center justify-center gap-2 flex-wrap text-center">
+              <span className="rounded-full bg-lime text-dark px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                October Offer
+              </span>
+              <span className="font-sans text-xs text-text">
+                October Growth Package: Website, Google Search Setup & Email for <strong className="text-lime">GH₵ 3,000</strong>.
+              </span>
+              <LinkRouter to="/promos/october-growth" className="font-sans font-bold underline text-lime hover:text-lime-400 transition-colors ml-1">
+                View offer &rarr;
+              </LinkRouter>
+            </div>
+          </div>
+        )}
+
         <div className="relative z-10">
           <div className={cn(
             "container flex items-center justify-between transition-all duration-200",
