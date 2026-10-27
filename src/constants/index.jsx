@@ -2,24 +2,24 @@
 export const pillars = [
   {
     id: "0",
-    num: "01 - OUR SOFTWARE",
-    title: "We build software",
-    text: "Ready-made tools for customer support teams, schools, researchers, and churches. Built to be simple, powerful, and actually pleasant to use.",
-    tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe",
+    num: "01 - READY SOFTWARE",
+    title: "Software we've built",
+    text: "Focused, ready-to-use software for customer support, school administration, and daily business tasks. Straightforward setup and no unnecessary features.",
+    tag: "SupporTribe · Eduplugg · SkulSys · Conversa · Ascribe",
   },
   {
     id: "1",
-    num: "02 - CUSTOM DEV",
-    title: "We build for you",
-    text: "Need an app, website, or platform built from scratch? We handle everything from the first wireframe to launch day and beyond.",
-    tag: "Web Apps · Mobile Apps · MVPs · Enterprise Software · APIs",
+    num: "02 - CUSTOM DEVELOPMENT",
+    title: "Custom software",
+    text: "Need a web app, mobile application, or customer portal built from scratch? We handle everything from discovery and design to launch and ongoing maintenance.",
+    tag: "Web Apps · Mobile Apps · Internal Portals · APIs",
   },
   {
     id: "2",
-    num: "03 - CONSULTING",
-    title: "We optimize you",
-    text: "Not sure what you need yet? We'll audit your workflows, find what's costing you time and money, and build a plan to fix it.",
-    tag: "Process Audits · Automation · Analytics · Digital Transformation",
+    num: "03 - AUTOMATION & CONSULTING",
+    title: "Workflow automation",
+    text: "Tired of manual data entry, messy spreadsheets, and disconnected tools? We audit your operations and build automations that save your team hours every week.",
+    tag: "Process Audits · System Integrations · WhatsApp Bots · Payment Gateways",
   },
 ];
 

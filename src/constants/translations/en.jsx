@@ -1,10 +1,3 @@
-// ============================================================
-// REDEVISE — IMPROVED COPY (en.js)
-// Voice: Sharp consultant. Problem-first. No slop.
-// Changelog notes are inline as comments marked [CHANGED]
-// Lines marked [KEEP] were already strong — left untouched.
-// ============================================================
-
 export const en = {
   nav: {
     services: "What We Do",
@@ -50,52 +43,38 @@ export const en = {
 
   hero: {
     pill: "Software Studio & Consulting",
-
-    // [CHANGED] "make things work better" said nothing specific.
-    // "your business actually runs on" is a confident, implied contrast:
-    // the current tools don't actually do that job.
-    buildSystems: "We build the systems",
-    that: "your business ",
+    buildSystems: "We build custom software",
+    that: "and automations your business ",
     makeThingsWork: "actually",
     better: "runs on.",
-
-    // [CHANGED] Named the audience (founders, operators) and named the pain
-    // (working around tools). "design, build, and optimize" was a job listing.
-    sub: "Custom software, automation, and consulting for founders and operators who are tired of working around their own tools.",
-
+    sub: "We design and build high-performance web applications, mobile apps, and custom workflow automations. Fast, dependable, and built to solve real business problems.",
     workWithUs: "Work with us",
     exploreProducts: "Explore Products"
   },
 
   pillars: {
-    title: "3 ways to work with us:",
+    title: "How we help your business:",
     list: [
       {
         id: "0",
-        num: "01 - OUR SOFTWARE",
-        title: "We build software",
-
-        // [CHANGED] "pleasant to use" was weak. "simple, powerful" is a cliché.
-        // Replaced with specifics on what the tools are for, and a line
-        // that says what they avoid (bloat, setup friction) not just what they do.
-        text: "Ready-made tools built for specific jobs — support analytics, school administration, habit tracking, and more. No setup hell, no feature bloat.",
-        tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe",
+        num: "01 - READY SOFTWARE",
+        title: "Software we've built",
+        text: "Focused, ready-to-use software for customer support, school administration, and daily business tasks. Straightforward setup and no unnecessary features.",
+        tag: "SupporTribe · Eduplugg · SkulSys · Conversa · Ascribe",
       },
       {
         id: "1",
-        num: "02 - CUSTOM DEV",
-        title: "We build for you",
-        // [KEEP] Direct and specific. No changes.
-        text: "Need an app, website, or platform built from scratch? We handle everything from the first wireframe to launch day and beyond.",
-        tag: "Web Apps · Mobile Apps · MVPs · Enterprise Software · APIs",
+        num: "02 - CUSTOM DEVELOPMENT",
+        title: "Custom software",
+        text: "Need a web app, mobile application, or customer portal built from scratch? We handle everything from discovery and design to launch and ongoing maintenance.",
+        tag: "Web Apps · Mobile Apps · Internal Portals · APIs",
       },
       {
         id: "2",
-        num: "03 - CONSULTING",
-        title: "We optimize you",
-        // [KEEP] Problem-first, specific. No changes.
-        text: "Not sure what you need yet? We audit your workflows, find what's costing you time and money, and build a plan to fix it.",
-        tag: "Process Audits · Automation · Analytics · Digital Transformation",
+        num: "03 - AUTOMATION & CONSULTING",
+        title: "Workflow automation",
+        text: "Tired of manual data entry, messy spreadsheets, and disconnected tools? We audit your operations and build automations that save your team hours every week.",
+        tag: "Process Audits · System Integrations · WhatsApp Bots · Payment Gateways",
       }
     ]
   },
@@ -104,29 +83,20 @@ export const en = {
     pill: "Behind the Scenes",
     title: (
       <>
-        We work faster because of <span className="text-gradient">Core</span>
+        How we deliver <span className="text-gradient">faster.</span>
       </>
     ),
     paragraphs: [
-      // [CHANGED] "generate solutions" is AI slop. "move through projects faster
-      // than traditional agencies" is a vague comparison. New version names
-      // what Core actually does and why it matters to the client.
-      "Core is the AI engine we built for ourselves. It handles the groundwork — mapping problems, flagging bottlenecks, automating the repetitive parts — so our team spends time on what actually needs a human.",
-
-      // [CHANGED] "better results, delivered sooner" is vague.
-      // "Fewer surprises" is more honest and more specific.
-      "You don't need to know how it works. You get faster delivery and fewer surprises."
+      "We combine modern component frameworks, automated testing, and structured agile sprints so your project moves smoothly from day one.",
+      "You get clear progress updates, working prototypes early, and reliable software delivered on schedule."
     ],
     capabilities: [
-      // [CHANGED] All 6 rewritten. Original versions were either vague
-      // ("generate smart recommendations") or used passive constructions.
-      // Each new line names a specific action with a specific payoff.
-      "Cuts scoping time by mapping project architecture before the first meeting",
-      "Flags the bottlenecks your team is working around without realizing it",
-      "Surfaces the right questions at the right point in every project",
-      "Handles the repetitive engineering tasks so our team focuses on the hard parts",
-      "Carries what we learn on one project into the next build",
-      "Lets us ship in half the time without skipping the work that matters"
+      "Clear project architecture and requirements before coding starts",
+      "Spots operational bottlenecks in your current workflow and designs practical fixes",
+      "Delivers weekly staging links so you can test working software as it's built",
+      "Automates repetitive engineering steps to focus on your core business logic",
+      "Clean, maintainable code on modern stacks that you completely own",
+      "Fast delivery cycles without cutting corners on security or quality"
     ]
   },
 
@@ -138,51 +108,37 @@ export const en = {
         <span className="text-gradient">built.</span>
       </>
     ),
-
-    // [CHANGED] "operational bottlenecks" is corporate jargon.
-    // New version names the problem (generic software falls short)
-    // and the positioning (focused, specific).
-    subtitle: "Focused tools built for the specific jobs where generic software always falls short.",
-
+    subtitle: "Practical, focused tools designed to solve specific operational bottlenecks.",
     list: [
       {
         id: "0",
         label: "B2B · Support",
         name: "SupporTribe",
-        // [KEEP] Specific and direct. No changes.
-        text: "AI-powered customer support analytics. See what's working, coach your agents, and improve every conversation.",
+        text: "Customer support analytics. Monitor response quality, coach your support team, and improve conversation outcomes.",
       },
       {
         id: "1",
         label: "B2B · Education",
         name: "Eduplugg",
-        // [KEEP] Specific. "built for how schools actually work" is strong. No changes.
-        text: "School administration in one place. Attendance, communication, grading, and operations built for how schools actually work.",
+        text: "School administration in one place. Attendance tracking, parent communication, grading, and operational workflows.",
       },
       {
         id: "2",
         label: "B2C · Habits",
         name: "StreakMonkey",
-        // [KEEP] "actually stick to your routines" is real-voice. No changes.
-        text: "Build better habits with streaks, reminders, and progress tracking. Simple tools that help you actually stick to your routines.",
+        text: "Build better habits with streaks, reminders, and progress tracking. Simple tools that help you stick to your routines.",
       },
       {
         id: "3",
         label: "B2C · Research",
         name: "CitationPro",
-        // [KEEP] Clean value prop. No changes.
-        text: "A browser extension that handles citations and formatting so you can focus on the actual research.",
+        text: "A browser extension that formats citations and references automatically so you can focus on research.",
       },
       {
         id: "4",
         label: "Ministry",
         name: "Ascribe",
-
-        // [CHANGED] "Intuitive" is overused. "designed specifically for churches"
-        // and "built for worship teams" said the same thing twice.
-        // "Not the IT department" adds contrast and specificity.
-        text: "Presentation software built specifically for churches. Clean, focused, and made for the people running the service — not the IT department.",
-
+        text: "Presentation software built specifically for churches. Clean, reliable, and designed for worship teams running the service.",
         cta: "Explore Church Ecosystem",
         href: "https://church.redevise.com",
       },
@@ -198,7 +154,7 @@ export const en = {
         id: "conversa",
         label: "B2B · AI Sales",
         name: "Conversa",
-        text: "Autonomous AI sales agents and customer support chat. Intelligent multi-tier routing that handles customer inquiries, accepts Mobile Money, and closes sales 24/7.",
+        text: "Automated sales and customer support chat. Intelligent routing that handles customer inquiries, accepts Mobile Money, and closes sales 24/7.",
         cta: "Visit Conversa",
         href: "https://www.askconversa.com",
       }
@@ -206,55 +162,37 @@ export const en = {
   },
 
   services: {
-    pill: "Services",
+    pill: "Our Services",
     title: (
       <>
-        Quick ways we can{" "}
+        Practical ways we can{" "}
         <span className="text-gradient">help.</span>
       </>
     ),
-
-    // [CHANGED] "we've got you" is generic. New version signals they start
-    // with the problem, not a pre-packaged answer.
-    subtitle: "Need something built or something fixed? Either way, we start with your problem — not a package.",
-
-    // [CHANGED] "automated workflows" after "automation engine" was redundant.
-    // Tightened to one clear claim.
-    coreNote: "Everything we ship runs through Core, our internal automation engine. It's how we deliver clean work in half the time.",
-
+    subtitle: "Whether you need custom software built from scratch or manual workflows automated, we start with your business goals.",
     labs: {
-      title: "Redevise Labs",
-      // [KEEP] Direct. No changes.
-      tagline: "We build apps, websites, and platforms. From first idea to finished product.",
+      title: "Custom Software Development",
+      tagline: "We build custom web apps, mobile apps, and dedicated client portals.",
       cta: "Start your project →",
       features: [
-        "Full project development from concept to launch",
-        // [CHANGED] "validate" is startup jargon. "Test" is cleaner.
-        "MVPs that test your idea fast and scale when you're ready",
-        // [CHANGED] "technologies that last" → "tech that lasts" (tighter)
-        "Clean, maintainable code on tech that lasts",
-        // [CHANGED] Named the problem solved (being in the dark) not just the feature.
-        "Regular check-ins so you're never in the dark",
-        // [KEEP]
-        "Weekly staging releases so you see working progress in real-time"
+        "Full project development from initial design to production launch",
+        "Interactive prototypes so you can test your idea with real users early",
+        "Clean, maintainable code built with React, Node, and secure databases",
+        "Weekly demos and staging releases so you always see working progress",
+        "Complete source code ownership with zero ongoing licensing fees"
       ]
     },
     consulting: {
-      title: "Redevise Consulting",
-      // [KEEP] This is one of the best lines on the site. Do not touch.
-      tagline: "We help businesses figure out what's slowing them down and fix it.",
-      cta: "Get an efficiency audit →",
+      title: "Workflow Automation & Consulting",
+      tagline: "We connect your business tools and eliminate repetitive manual tasks.",
+      cta: "Book a discovery call →",
       exploreMinistry: "Explore Ministry Infrastructure",
       features: [
-        // [CHANGED] Added "not just the obvious ones" — signals depth of audit.
-        "Workflow audits that find your real bottlenecks — not just the obvious ones",
-        // [CHANGED] "setup, not just recommendations" → more direct active phrasing.
-        "Automation we actually set up, not just recommend",
-        // [CHANGED] "help you make better decisions" is vague.
-        // "Give you something to act on" is specific.
-        "Data and analytics that give you something to act on",
-        "Clear timelines and measurable results",
-        "Specialized consulting for churches and ministry teams"
+        "Workflow audits to identify where hours and revenue are leaking",
+        "Custom automations that connect your CRM, billing, and databases",
+        "WhatsApp bots, automated PDF invoices, and Mobile Money collections",
+        "Clear project milestones, transparent pricing, and zero hidden fees",
+        "Ongoing support SLA options to keep your systems running reliably"
       ]
     }
   },
@@ -337,52 +275,42 @@ export const en = {
   },
 
   aboutPage: {
-    pill: "About",
+    pill: "About Us",
     title: (
       <>
         The Redevise <span className="text-gradient">Way.</span>
       </>
     ),
     paragraphs: [
-      // [KEEP] Strong opener. Problem-first, contrarian, specific. No changes.
-      "Redevise started with a simple observation: most software makes things more complicated, not less. Most consultants hand you a slide deck instead of actual results. And most companies accept this as normal because everyone else does too.",
-
-      // [KEEP] The bold rule is the strongest line in the About page. No changes.
+      "Redevise started with a simple observation: most business software makes things more complicated, not less. Companies invest in expensive platforms only to find their teams still working around them with manual spreadsheets and repetitive tasks.",
       (
         <>
-          We didn't. We built Redevise around one rule:{" "}
+          We take a practical approach:{" "}
           <strong className="font-semibold text-text">
-            if the improvement isn't dramatic, we don't build it.
+            if software doesn't make your team visibly faster, more organized, and more profitable, we don't build it.
           </strong>{" "}
-          Not for ourselves. Not for our clients. If switching to our tool doesn't
-          make your life significantly easier, we haven't earned the switch.
+          Not for ourselves, and not for our clients.
         </>
       ),
-
-      // [CHANGED] "a shared belief that things should just work better" is the
-      // weakest line in this paragraph — vague, and undercuts the boldness of
-      // the paragraph above it. Replaced with language that ties back to the rule.
-      "We're part product company, part engineering studio, part consulting firm. Tied together by Core, our internal AI engine, and one shared standard: if it doesn't work dramatically better, we don't ship it.",
-
-      // [KEEP] Last two sentences are excellent. "We compete on results." is strong.
-      "Every product we build and every project we deliver teaches us something new. That's how we get faster and better over time. We don't compete on features or hourly rates. We compete on results."
+      "We are part product company, part custom software studio. We design and build tools that solve the specific bottlenecks slowing businesses down—from specialized school portals to real-time e-commerce integrations.",
+      "We don't deliver slide decks or abstract theories. We build clean, dependable software that runs your everyday operations."
     ],
     stats: {
-      num: "10x",
-      caption: "Simpler than the alternative"
+      num: "100%",
+      caption: "Focused on Practical Results"
     },
     pillars: [
       {
-        title: "Smart Tools",
-        desc: "Products that help you make better decisions."
+        title: "Practical Software",
+        desc: "Tools built to solve real operational bottlenecks."
       },
       {
         title: "Fast Delivery",
-        desc: "From idea to launched product, quickly."
+        desc: "Working prototypes in days, not months."
       },
       {
-        title: "Real Impact",
-        desc: "If it doesn't make a real difference, we don't build it."
+        title: "Direct Support",
+        desc: "Direct access to the engineers building your system."
       }
     ]
   },
@@ -897,104 +825,79 @@ export const en = {
   },
 
   difference: {
-    pill: "The Difference",
-    label: "// COMPARISON",
-
-    // [CHANGED] "Why work with Redevise?" is a weak opener — every company asks this.
-    // "The honest comparison" is confident without being boastful.
-    title: "The honest comparison.",
-
-    // [CHANGED] Tightened. Removed "software development houses" — redundant.
-    subtitle: "How we work vs. how most agencies work.",
-
+    pill: "Why Redevise",
+    label: "Comparison",
+    title: "An honest comparison.",
+    subtitle: "How we partner with you vs. what typical agencies deliver.",
     themLabel: "Traditional Agencies",
     usLabel: "Redevise Studio",
     items: [
       {
-        // [CHANGED] "Core Foundation" → "Foundation" (simpler)
-        title: "Foundation",
-        // [KEEP] Strong.
-        them: "Generic templates, copy-paste builders, or tech stacks from five years ago.",
-        // [CHANGED] Original vague: "custom-built software optimization engine" says nothing.
-        // New version names what Core does.
-        us: "Powered by Core — our internal AI engine built to speed up how we scope, design, and ship."
+        title: "Technical Architecture",
+        them: "Generic templates, outdated CMS plugins, or rigid website builders.",
+        us: "Modern, production-grade architectures built specifically for your business, with fast load times and zero vendor lock-in."
       },
       {
-        title: "Speed & Iteration",
-        // [KEEP] Strong.
+        title: "Speed & Visibility",
         them: "Weeks of radio silence, manual handoffs, and feedback that arrives too late.",
-        // [CHANGED] "git-backed transparency" is developer jargon. Replaced with
-        // what the client actually experiences.
-        us: "Weekly staging links, live code access, and check-ins that actually tell you something."
+        us: "Weekly staging links, live code access, and direct communication with the engineers building your tool."
       },
       {
         title: "Process Integration",
-        // [KEEP]
         them: "Apps built as isolated tools with no thought given to how your team actually works.",
-        // [CHANGED] "Deep business-process analysis" is corporate-speak.
         us: "We map how your business actually runs before writing a line of code. Then we build around that."
       },
       {
         title: "Pricing",
-        // [KEEP] Both sides are strong here.
         them: "Opaque hourly billing that rewards slow work and scope creep.",
-        us: "Fixed, transparent project ranges. Adapted to your local currency. No surprises."
+        us: "Fixed, transparent project ranges in your local currency. No surprises."
       },
       {
         title: "After Launch",
-        // [KEEP]
         them: "A folder of files and a handshake. No monitoring, no ongoing support.",
-        // [CHANGED] Made more specific.
-        us: "Weekly maintenance logs, security patches, and a live queue for updates when you need them."
+        us: "Structured documentation, security updates, and dependable ongoing maintenance options."
       }
     ]
   },
 
   statement: {
-    // [CHANGED] "reduce overhead" is corporate. "help your team work faster" is generic.
-    // New version is more specific: names what gets removed (manual steps, workarounds)
-    // and what the team gets back (real work, not the admin around it).
-    title: "We engineer custom tools that remove the manual steps, cut the workarounds, and let your team focus on actual work."
+    title: "We build custom software that removes manual steps, connects your tools, and gives your team time to focus on actual work."
   },
 
   results: {
-    // [KEEP] Metric-driven. Specific. No changes needed.
     items: [
       {
         metric: "14 Days",
-        label: "Prototype Speed",
-        description: "Average time to a fully functional prototype you can test."
+        label: "Prototype Turnaround",
+        description: "Average time to test an interactive, fully functional prototype."
       },
       {
-        metric: "60%",
-        label: "Task Reduction",
-        description: "Average reduction in manual steps and repetitive work."
+        metric: "20+ Hrs",
+        label: "Saved Weekly",
+        description: "Typical time reclaimed after automating manual spreadsheet workflows."
       },
       {
-        metric: "2.4s",
-        label: "Page Speed",
-        description: "Average load time for pages, keeping visitors engaged."
+        metric: "<1.5s",
+        label: "Target Load Speed",
+        description: "High-performance architectures that keep your customers engaged."
       },
       {
-        metric: "2x",
-        label: "Output Speed",
-        description: "Twice the speed of traditional agency development cycles."
+        metric: "100%",
+        label: "Code Ownership",
+        description: "Complete custody of your source code, database, and custom assets."
       }
     ]
   },
 
   testimonial: {
-    // [KEEP] Real quote. Never touch a real quote.
-    label: "// CLIENT FEEDBACK",
+    label: "Client Feedback",
     quote: "Redevise redesigned our entire delivery pipeline. We went from processing orders manually to complete automation in 14 days.",
     author: "K. Boateng",
     role: "Operations Director, Lunaris Coffee Co."
   },
 
   careers: {
-    // [CHANGED] "BUILD THE FUTURE WITH US" — every company says this.
-    // New version names what the work actually is.
-    heroTitle: "BUILD TOOLS PEOPLE ACTUALLY RELY ON",
+    heroTitle: "Build tools people actually rely on",
 
     // [CHANGED] "We are a remote-first team" is a bland opener.
     // "make hard tasks simple" is close but vague.

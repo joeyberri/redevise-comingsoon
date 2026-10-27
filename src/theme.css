@@ -1,7 +1,7 @@
 :root {
   /* ─── Colors (RGB for Tailwind Opacity Support) ─── */
 
-  /* Brand Lime */
+  /* Brand Lime (High-energy neon for dark mode) */
   --color-lime: 200 255 0;
   --color-lime-400: 215 241 13;
   --color-lime-500: 163 215 12;
@@ -13,7 +13,7 @@
   --color-green-500: 20 146 8;
   --color-green-600: 0 134 9;
 
-  /* Dark Backgrounds (Neutral Dark Mode - Framer Inspired) */
+  /* Dark Backgrounds */
   --color-dark: 3 7 18;
   --color-dark-50: 9 9 11;
   --color-dark-100: 24 24 27;
@@ -22,81 +22,69 @@
   --color-dark-400: 82 82 91;
   --color-dark-500: 113 113 122;
 
-  /* Text (Neutral Zinc Tones) */
+  /* Text (Accessible Zinc Tones - WCAG AA compliant on #030712) */
   --color-text: 244 244 245;
-  --color-text-muted: 161 161 170;
-  --color-text-subtle: 113 113 122;
+  --color-text-muted: 180 180 190;
+  --color-text-subtle: 150 150 160;
 
   /* Accents */
   --color-accent: 46 242 255;
   --color-accent-dim: 60 82 217;
   --color-primary: 46 242 255;
 
-  /* Surface Colors (for Glass cards) */
-  --color-surface-border: 255 255 255 / 0.08;
-  --color-surface-bg: 255 255 255 / 0.02;
-  --color-grid: var(--color-lime) / 0.09;
+  /* Surface Colors */
+  --color-surface-border: 255 255 255 / 0.12;
+  --color-surface-bg: 255 255 255 / 0.03;
+  --color-grid: 255 255 255 / 0.04;
 
   /* ─── Typography ─── */
   --font-serif: "DM Serif Display", Georgia, serif;
-  --font-sans: "DM Sans", "Inter", "Outfit", system-ui, sans-serif;
-  --font-space: "Space Grotesk", "DM Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-space: "Space Grotesk", "DM Sans", sans-serif;
 
   --ls-tightest: -0.03em;
   --ls-tighter: -0.02em;
-  --ls-widest: 0.12em;
-  --ls-widestest: 0.2em;
+  --ls-widest: 0.1em;
+  --ls-widestest: 0.15em;
 
-  --lh-tightest: 1.05;
+  --lh-tightest: 1.1;
 
-  --fs-tiny: 10px;
+  --fs-tiny: 12px;
 
   /* ─── Spacing / Sizes ─── */
   --max-w-container: 1200px;
-
-  --size-glow: 400px;
-  --size-glow-md: 600px;
-  --size-glow-lg: 800px;
-
-  /* ─── Effects ─── */
-  --blur-4xl: 60px;
-  --blur-5xl: 80px;
-  --blur-6xl: 100px;
 
   --radius-2xl: 16px;
   --radius-3xl: 24px;
   --radius-4xl: 32px;
 }
-/* ─── Light Mode Override (High-Energy / Risky Variant) ─── */
 
+/* ─── Light Mode Override (Accessible, High-Contrast & Crisp) ─── */
 .light {
   /* Backgrounds */
   --color-dark: 250 252 255;
-  --color-dark-50: 240 244 255;
-  --color-dark-100: 226 232 248;
-  --color-dark-200: 210 218 240;
-  --color-dark-300: 190 200 230;
-  --color-dark-400: 180 195 230;
-  --color-dark-500: 150 170 220;
+  --color-dark-50: 241 245 249;
+  --color-dark-100: 226 232 240;
+  --color-dark-200: 203 213 225;
+  --color-dark-300: 148 163 184;
+  --color-dark-400: 100 116 139;
+  --color-dark-500: 71 85 105;
 
-  /* Text (Pushed to the absolute edge of readable gray) */
+  /* Text (WCAG AAA/AA Compliant against #FAFCFF) */
   --color-text: 15 23 42;
-  --color-text-muted: 71 85 105;
-  --color-text-subtle: 110 125 145; /* Soft, airy, Framer-style secondary text */
+  --color-text-muted: 51 65 85;
+  --color-text-subtle: 71 85 105;
 
   /* Surface Colors */
   --color-surface-border: 15 23 42 / 0.12;
-  --color-surface-bg: 15 23 42 / 0.03;
-  --color-grid: var(--color-text) / 0.09;
+  --color-surface-bg: 255 255 255 / 0.85;
+  --color-grid: 15 23 42 / 0.05;
 
-  /* Brand Lime (Electric & Risky) 
-     Pushed back into bright neon territory. 
-     *Rule of thumb for this set:* Use dark text (`--color-text`) over these backgrounds.
-  */
-  --color-lime: 145 205 0;       /* Vibrant, punchy asset color */
-  --color-lime-400: 165 225 5;   /* Pure electric highlight/border */
-  --color-lime-500: 125 180 0;   /* Minimum depth for thick/large text */
-  --color-lime-600: 95 145 0;    /* Darker anchor for interactive hover states */
+  /* Brand Green in Light Mode (Deep Emerald, >5:1 contrast against white) */
+  --color-lime: 21 128 61;
+  --color-lime-400: 22 101 52;
+  --color-lime-500: 18 85 44;
+  --color-lime-600: 15 70 36;
 
   /* Primary Accent Blue */
   --color-primary: 25 89 173;

@@ -23,13 +23,6 @@ const Core = () => {
           {/* Subtle grid inside the block */}
           <div className="absolute inset-0 bg-grid opacity-20" />
           
-          {/* Inner Glows with parallax */}
-          <ScrollParallax speed={0.3}>
-            <div className="absolute -left-20 -top-20 size-80 rounded-full bg-lime/10 blur-[100px]" />
-          </ScrollParallax>
-          <ScrollParallax speed={-0.2}>
-            <div className="absolute -right-20 -bottom-20 size-80 rounded-full bg-green-500/5 blur-[100px]" />
-          </ScrollParallax>
 
           <Grid cols={2} gap={12} className="relative z-10 p-8 md:gap-16 md:p-16 lg:p-20">
             {/* Left: Copy */}

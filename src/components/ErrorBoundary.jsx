@@ -31,9 +31,6 @@ class ErrorBoundary extends React.Component {
 
       return (
         <div className="min-h-screen bg-dark text-text flex items-center justify-center p-6 select-none font-sans">
-          {/* Ambient glow backgrounds */}
-          <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-lime/5 blur-[120px] rounded-full -z-10" />
-          <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-lime/5 blur-[120px] rounded-full -z-10" />
 
           <div className="max-w-md w-full border border-text/[0.08] bg-dark-200/50 backdrop-blur-md rounded-2xl p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
             {/* Minimal warning icon */}

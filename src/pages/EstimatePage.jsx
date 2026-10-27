@@ -257,7 +257,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                         className="absolute top-4 right-4 w-6 h-6 rounded-full bg-lime flex items-center justify-center"
                       >
                         <svg
-                          className="w-3.5 h-3.5 text-dark"
+                          className="w-3.5 h-3.5 text-zinc-950"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={3}
@@ -501,7 +501,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                         className="absolute top-4 right-4 w-6 h-6 rounded-full bg-lime flex items-center justify-center"
                       >
                         <svg
-                          className="w-3.5 h-3.5 text-dark"
+                          className="w-3.5 h-3.5 text-zinc-950"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={3}

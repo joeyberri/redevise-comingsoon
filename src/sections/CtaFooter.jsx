@@ -9,7 +9,7 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
 
   return (
     <Element name="cta">
-      <section className="relative overflow-hidden bg-dark-50/50 py-24 md:py-40 border-t border-text/[0.06]">
+      <section className="relative overflow-hidden bg-dark-50/50 py-24 md:py-36 border-t border-dark-400/20">
         <div className="relative z-10 text-center container">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -17,20 +17,19 @@ const CtaFooter = ({ onOpenInquiry = () => {} }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <Heading level={2} variant="hero-title" className="mb-8">
+            <Heading level={2} variant="section-title" className="mb-6 max-w-3xl mx-auto !text-3xl sm:!text-4xl md:!text-5xl">
               {t('ctaFooter.heading')}
             </Heading>
 
-            <p className="mx-auto mb-12 max-w-xl text-base text-text-muted/70 md:text-xl leading-relaxed">
+            <p className="mx-auto mb-10 max-w-2xl text-base text-text-muted md:text-lg leading-relaxed">
               {t('ctaFooter.desc')}
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
               <MagneticButton 
                 onClick={() => onOpenInquiry(t('modal.interests')[5])} 
                 variant="primary" 
-                strength={0.2} 
-                withBeam
+                strength={0.15} 
               >
                 {t('ctaFooter.requestConsultation')}
               </MagneticButton>

@@ -152,7 +152,7 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
             <div className="hidden lg:block lg:col-span-5">
               <div className="sticky top-32 space-y-8 pr-4">
                 <div className="font-mono text-xs font-semibold uppercase tracking-widest text-lime">
-                  {"// "}Step {String(activeStep + 1).padStart(2, "0")} of {String(stepsList.length).padStart(2, "0")}
+                  Step {String(activeStep + 1).padStart(2, "0")} of {String(stepsList.length).padStart(2, "0")}
                 </div>
                 
                 <div className="space-y-4">

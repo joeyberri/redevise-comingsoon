@@ -11,10 +11,10 @@ export const Heading = ({
   const Tag = `h${level}`;
   
   const variants = {
-    "hero-title": "font-space uppercase tracking-[-0.03em] text-[2.75rem] leading-[1.05] text-text sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
-    "section-title": "font-space uppercase text-3xl font-extrabold leading-[1.1] text-text md:text-4xl lg:text-5xl tracking-[-0.02em]",
-    "card-title": "font-space uppercase text-xl font-bold text-text leading-[1.2] md:text-2xl tracking-[-0.01em]",
-    "small-title": "font-space uppercase text-lg font-bold text-text leading-[1.2] tracking-[-0.01em]",
+    "hero-title": "font-sans font-extrabold tracking-tight text-[2.5rem] leading-[1.1] text-text sm:text-5xl md:text-6xl lg:text-7xl",
+    "section-title": "font-sans text-3xl font-bold leading-[1.2] text-text md:text-4xl lg:text-5xl tracking-tight",
+    "card-title": "font-sans text-xl font-bold text-text leading-[1.3] md:text-2xl tracking-tight",
+    "small-title": "font-sans text-lg font-semibold text-text leading-[1.3] tracking-tight",
   };
 
   const fontClass = variant === "hero-title"
@@ -42,11 +42,11 @@ export const Text = ({
   ...props 
 }) => {
   const variants = {
-    "hero-sub": "max-w-xl text-lg leading-relaxed text-text/60 md:text-xl",
-    "section-sub": "max-w-xl text-base leading-relaxed text-text-muted md:text-lg",
+    "hero-sub": "max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl font-normal",
+    "section-sub": "max-w-2xl text-base leading-relaxed text-text-muted md:text-lg",
     "body": "text-base leading-relaxed text-text-muted md:text-lg",
-    "small": "text-sm leading-relaxed text-text-muted/80",
-    "tiny": "font-space text-[10px] font-bold tracking-[0.2em] text-text-subtle uppercase",
+    "small": "text-sm leading-relaxed text-text-muted",
+    "tiny": "font-sans text-xs font-semibold tracking-wider text-text-muted uppercase",
   };
 
   return (

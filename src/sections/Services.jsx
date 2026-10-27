@@ -2,6 +2,7 @@ import Section from "../components/Section.jsx";
 import ServiceCard from "../components/ServiceCard.jsx";
 import Grid from "../components/Grid.jsx";
 import FadeIn from "../components/FadeIn.jsx";
+import Pill from "../components/Pill.jsx";
 import { Heading } from "../components/Typography.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
@@ -10,15 +11,17 @@ const Services = ({ onOpenInquiry = () => {} }) => {
 
   return (
     <Section name="services" spacing="generous" className="relative">
-      {/* Dot-grid background with radial fade */}
-      <div className="absolute inset-0 bg-dots pointer-events-none" />
-
-      {/* Centered heading — no pill, no subtitle (contrast with other sections) */}
       <FadeIn>
         <div className="text-center mb-16">
-          <Heading level={2} variant="section-title" className="mx-auto max-w-3xl">
+          <Pill className="mb-4">
+            {t('services.pill')}
+          </Pill>
+          <Heading level={2} variant="section-title" className="mx-auto max-w-3xl mb-4">
             {t('services.title')}
           </Heading>
+          <p className="text-base md:text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
+            {t('services.subtitle')}
+          </p>
         </div>
       </FadeIn>
 
@@ -44,16 +47,6 @@ const Services = ({ onOpenInquiry = () => {} }) => {
           onOpenInquiry={onOpenInquiry}
         />
       </Grid>
-
-      {t('services.coreNote') && (
-        <FadeIn delay={0.3}>
-          <div className="mt-12 text-center max-w-2xl mx-auto">
-            <p className="text-xs font-sans text-text-muted leading-relaxed">
-              {t('services.coreNote')}
-            </p>
-          </div>
-        </FadeIn>
-      )}
     </Section>
   );
 };

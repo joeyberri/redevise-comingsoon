@@ -311,10 +311,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
   return (
     <div className="relative">
-      {/* Background glow container to prevent overflow */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden h-[600px] w-full">
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-lime/[0.03] blur-[120px]" />
-      </div>
 
       <CategoryNav activeSection={activeSection} sections={sections} />
 
@@ -354,11 +350,11 @@ const ServicesPage = ({ onOpenInquiry }) => {
                 className="flex flex-col justify-between h-full group !p-8"
               >
                 <div>
-                  <span className="block font-mono text-[9px] text-lime/50 uppercase tracking-widest mb-4">
-                    {"// "}{pkg.id}
+                  <span className="block font-sans text-xs font-semibold text-lime uppercase tracking-wider mb-3">
+                    {pkg.id}
                   </span>
 
-                  <Heading level={3} variant="card-title" className="mb-4 text-lime text-2xl font-space uppercase">
+                  <Heading level={3} variant="card-title" className="mb-4 text-lime text-xl md:text-2xl">
                     {pkg.title}
                   </Heading>
 

@@ -54,7 +54,7 @@ const Header = ({ onOpenInquiry }) => {
         {!isChurch && (
           <div className="bg-lime/10 border-b border-lime/20 px-4 py-1.5 text-center text-xs text-lime transition-colors">
             <div className="container flex items-center justify-center gap-2 flex-wrap text-center">
-              <span className="rounded-full bg-lime text-dark px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+              <span className="rounded-full bg-lime text-zinc-950 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider">
                 October Offer
               </span>
               <span className="font-sans text-xs text-text">

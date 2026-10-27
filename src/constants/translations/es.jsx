@@ -708,7 +708,7 @@ export const es = {
   },
   difference: {
     pill: "La Diferencia",
-    label: "// COMPARACIÓN",
+    label: "Comparación",
     title: "¿Por qué trabajar con Redevise?",
     subtitle: "Cómo nos comparamos con las agencias tradicionales y los estudios de desarrollo de software.",
     themLabel: "Agencias Tradicionales",
@@ -769,13 +769,13 @@ export const es = {
     ]
   },
   testimonial: {
-    label: "// OPINIÓN DEL CLIENTE",
+    label: "Opinión del Cliente",
     quote: "Redevise rediseñó todo nuestro canal de entregas. Pasamos de procesar pedidos manualmente a una automatización completa en 14 días.",
     author: "K. Boateng",
     role: "Director de Operaciones, Lunaris Coffee Co."
   },
   careers: {
-    heroTitle: "CONSTRUYE EL FUTURO CON NOSOTROS",
+    heroTitle: "Construye herramientas en las que la gente confía",
     heroSub: "Somos un equipo remoto de creadores de productos, ingenieros y diseñadores. Construimos herramientas que simplifican las tareas difíciles.",
     sectionTitle: "Candidatura Espontánea",
     sectionSub: "¿No ves una vacante específica? Siempre estamos buscando ingenieros, diseñadores y operadores inteligentes.",

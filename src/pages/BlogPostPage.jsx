@@ -95,7 +95,6 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
       <article className="relative min-h-screen pt-32 pb-24">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="glow-orb top-[5%] left-[50%] w-glow-lg h-glow-lg" />
         <div className="absolute inset-0 bg-dots" />
       </div>
 

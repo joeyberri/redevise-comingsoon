@@ -110,8 +110,6 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
       <section className="relative min-h-screen pt-32 pb-24">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="glow-orb top-[10%] left-[20%] w-glow-lg h-glow-lg" />
-        <div className="glow-orb top-[60%] right-[10%] w-glow h-glow" />
         <div className="absolute inset-0 bg-dots" />
       </div>
 
