@@ -4,7 +4,6 @@ import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { X, Check } from "lucide-react";
-
 import CorneredBox from "../components/CorneredBox.jsx";
 
 const Difference = () => {
@@ -13,7 +12,7 @@ const Difference = () => {
   const items = t("difference.items") || [];
 
   return (
-    <Section name="difference" showDivider spacing="default">
+    <Section name="difference" spacing="default" className="bg-dark-50">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
@@ -44,19 +43,18 @@ const Difference = () => {
           {items.map((item, idx) => (
             <FadeIn key={idx} delay={idx * 0.05} fullWidth>
               <CorneredBox
-                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-none border border-dark-400/30 bg-dark-50/50 hover:border-dark-400/60 hover:bg-dark-50/80 transition-all duration-200 relative group/row overflow-visible"
-                plusClassName="group-hover/row:text-lime"
+                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 transition-colors duration-200 border-0 relative group/row overflow-hidden"
               >
                 {/* Title */}
                 <div className="col-span-1 md:col-span-4 flex items-center">
-                  <h4 className="font-sans text-base font-semibold text-text tracking-tight">
+                  <h4 className="font-heading text-lg font-normal text-text tracking-tight">
                     {item.title}
                   </h4>
                 </div>
 
                 {/* Them (Traditional Agencies) */}
                 <div className="col-span-1 md:col-span-4 flex items-start gap-3">
-                  <div className="flex items-center justify-center size-5 rounded-full bg-dark-400/20 border border-dark-400/40 text-text-muted shrink-0 mt-0.5">
+                  <div className="flex items-center justify-center size-6 rounded-full bg-dark-200 text-text-muted shrink-0 mt-0.5">
                     <X size={12} strokeWidth={2.5} />
                   </div>
                   <div>
@@ -71,7 +69,7 @@ const Difference = () => {
 
                 {/* Us (Redevise Studio) */}
                 <div className="col-span-1 md:col-span-4 flex items-start gap-3">
-                  <div className="flex items-center justify-center size-5 rounded-full bg-lime/15 border border-lime/40 text-lime shrink-0 mt-0.5">
+                  <div className="flex items-center justify-center size-6 rounded-full bg-lime/15 text-lime shrink-0 mt-0.5">
                     <Check size={12} strokeWidth={3} />
                   </div>
                   <div>

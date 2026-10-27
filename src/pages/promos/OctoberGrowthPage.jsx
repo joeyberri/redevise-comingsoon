@@ -7,11 +7,9 @@ import {
   Check, 
   X 
 } from "lucide-react";
-import Section from "../../components/Section.jsx";
 import { Heading, Text } from "../../components/Typography.jsx";
 import Pill from "../../components/Pill.jsx";
 import FadeIn from "../../components/FadeIn.jsx";
-import CorneredBox from "../../components/CorneredBox.jsx";
 import { useSEO } from "../../utils/useSEO.js";
 import { useLanguage } from "../../utils/LanguageContext.jsx";
 import { cn } from "../../utils/cn.js";
@@ -126,7 +124,7 @@ const slides = [
   },
 ];
 
-const OctoberGrowthPage = ({ onOpenInquiry }) => {
+const OctoberGrowthPage = () => {
   const { setCurrency } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -265,7 +263,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
         <div className="container relative z-10 max-w-5xl">
           {/* Breadcrumb Navigation */}
           <FadeIn delay={0.05}>
-            <nav aria-label="Breadcrumb" className="flex items-center justify-between border-b border-dark-300 pb-5 mb-8">
+            <nav aria-label="Breadcrumb" className="flex items-center justify-between pb-5 mb-8 border-0">
               <ol className="flex items-center gap-2 text-xs uppercase tracking-wider text-text-subtle">
                 <li>
                   <Link to="/" className="hover:text-lime transition-colors duration-200">
@@ -320,10 +318,10 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                   type="button"
                   onClick={() => goToSlide(idx)}
                   className={cn(
-                    "whitespace-nowrap px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 cursor-pointer border",
+                    "whitespace-nowrap px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 cursor-pointer rounded-full border-0",
                     idx === currentSlide
-                      ? "bg-lime text-dark border-lime font-bold"
-                      : "bg-dark-100 text-text-subtle border-dark-300 hover:border-dark-400 hover:text-text"
+                      ? "bg-btn-bg text-btn-text font-bold shadow-sm"
+                      : "bg-dark-100 text-text-muted hover:bg-dark-200 hover:text-text"
                   )}
                 >
                   {s.tab}
@@ -338,7 +336,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
             onTouchEnd={handleTouchEnd}
             className="mt-4"
           >
-            <CorneredBox className="relative min-h-[520px] flex flex-col justify-between bg-dark-100 border border-dark-300 p-6 sm:p-10">
+            <div className="relative min-h-[520px] flex flex-col justify-between rounded-3xl bg-dark-100/80 p-6 sm:p-10 border-0 shadow-2xl shadow-black/40">
               <div className="w-full">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -351,7 +349,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                   >
                     {/* Badge & Deliverable Tag */}
                     <div className="flex flex-wrap items-center justify-between gap-2 pb-2">
-                      <span className="inline-flex items-center bg-dark-200 border border-dark-300 px-3 py-1 text-xs font-bold uppercase tracking-wider text-lime">
+                      <span className="inline-flex items-center rounded-full bg-dark-200 px-3 py-1 text-xs font-bold uppercase tracking-wider text-lime border-0">
                         {slides[currentSlide].badge}
                       </span>
                       <span className="text-xs font-medium uppercase tracking-wider text-text-subtle">
@@ -371,7 +369,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                     {slides[currentSlide].isOverview && (
                       <div className="mt-6">
                         {/* Pricing Highlight Card */}
-                        <div className="bg-dark-200 border border-dark-300 p-6 mb-6">
+                        <div className="rounded-2xl bg-dark-200/80 p-6 mb-6 border-0">
                           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
                             <div className="flex items-baseline text-text">
                               <span className="font-space text-xl font-bold text-lime mr-1.5 select-none">
@@ -391,12 +389,12 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                               </span>
                             </div>
 
-                            <span className="inline-flex items-center bg-dark-100 border border-dark-300 px-3 py-1 text-xs font-bold uppercase tracking-wider text-lime">
+                            <span className="inline-flex items-center rounded-full bg-dark-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-lime border-0">
                               Save GH₵ 600 (First 50 Businesses)
                             </span>
                           </div>
 
-                          <div className="mt-4 flex items-center gap-2 border-t border-dark-300 pt-3 text-xs text-text-subtle">
+                          <div className="mt-4 flex items-center gap-2 border-0 pt-3 text-xs text-text-subtle">
                             <Check className="size-4 text-lime shrink-0" />
                             <span>50% deposit to begin • Remaining balance paid upon successful launch</span>
                           </div>
@@ -449,10 +447,10 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         {slides[currentSlide].points.map((pt, i) => (
                           <div
                             key={i}
-                            className="bg-dark-200 border border-dark-300 p-6 transition-colors duration-200 hover:border-dark-400"
+                            className="rounded-2xl bg-dark-200/80 hover:bg-dark-200 p-6 transition-colors duration-200 border-0"
                           >
                             <h3 className="font-space text-base font-bold uppercase text-text mb-2 flex items-center gap-2">
-                              <span className="size-1.5 bg-lime" />
+                              <span className="size-1.5 rounded-full bg-lime" />
                               {pt.title}
                             </h3>
                             <p className="font-sans text-xs sm:text-sm leading-relaxed text-text-muted">
@@ -469,9 +467,9 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         {slides[currentSlide].steps.map((step) => (
                           <div
                             key={step.num}
-                            className="flex items-start gap-4 bg-dark-200 border border-dark-300 p-6 transition-colors duration-200 hover:border-dark-400"
+                            className="flex items-start gap-4 rounded-2xl bg-dark-200/80 hover:bg-dark-200 p-6 transition-colors duration-200 border-0"
                           >
-                            <span className="flex size-8 shrink-0 items-center justify-center bg-dark-100 border border-dark-300 font-space text-sm font-bold text-lime">
+                            <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-dark-100 font-space text-sm font-bold text-lime border-0">
                               {step.num}
                             </span>
                             <div>
@@ -491,7 +489,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
               </div>
 
               {/* Slide Controls Footer */}
-              <div className="mt-8 flex flex-col items-stretch gap-4 border-t border-dark-300 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-8 flex flex-col items-stretch gap-4 border-0 pt-6 sm:flex-row sm:items-center sm:justify-between">
                 {/* Navigation Buttons & Indicators */}
                 <div className="flex items-center justify-between sm:justify-start gap-3">
                   <button
@@ -499,7 +497,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                     onClick={handlePrev}
                     disabled={currentSlide === 0}
                     aria-label="Previous slide"
-                    className="flex size-10 shrink-0 items-center justify-center border border-dark-300 bg-dark-200 text-text transition-colors hover:border-lime hover:text-lime disabled:cursor-not-allowed disabled:opacity-30 cursor-pointer"
+                    className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-dark-200 hover:bg-dark-300 text-text transition-colors disabled:cursor-not-allowed disabled:opacity-30 cursor-pointer border-0"
                   >
                     <ArrowLeft className="size-4" />
                   </button>
@@ -514,7 +512,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                           onClick={() => goToSlide(i)}
                           aria-label={`Jump to slide ${i + 1}`}
                           className={cn(
-                            "h-2 transition-all duration-300 cursor-pointer",
+                            "h-2 transition-all duration-300 cursor-pointer rounded-full border-0",
                             i === currentSlide ? "w-6 bg-lime" : "w-2 bg-dark-300 hover:bg-dark-400"
                           )}
                         />
@@ -529,7 +527,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                     type="button"
                     onClick={handleNext}
                     aria-label="Next slide"
-                    className="flex size-10 shrink-0 items-center justify-center border border-dark-300 bg-dark-200 text-text transition-colors hover:border-lime hover:text-lime cursor-pointer"
+                    className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-dark-200 hover:bg-dark-300 text-text transition-colors cursor-pointer border-0"
                   >
                     <ArrowRight className="size-4" />
                   </button>
@@ -539,18 +537,18 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                 <button
                   type="button"
                   onClick={openClaimModal}
-                  className="inline-flex items-center justify-center gap-2 bg-lime hover:bg-lime-400 px-7 py-3 font-space text-sm font-bold uppercase tracking-wide text-dark transition-colors duration-200 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 bg-btn-bg hover:bg-btn-hover px-7 py-3 font-space text-sm font-bold uppercase tracking-wide text-btn-text transition-colors duration-200 cursor-pointer rounded-xl border-0 shadow-sm"
                 >
                   <span>Register Interest (GH₵ 600 Off)</span>
                   <ArrowRight className="size-4" />
                 </button>
               </div>
-            </CorneredBox>
+            </div>
           </div>
 
           {/* Bottom Callout Section */}
           <FadeIn delay={0.25}>
-            <div className="mt-14 bg-dark-100 border border-dark-300 p-8 sm:p-12 text-center">
+            <div className="mt-14 rounded-3xl bg-dark-100/80 p-8 sm:p-12 text-center border-0 shadow-xl shadow-black/30">
               <div className="max-w-2xl mx-auto space-y-4">
                 <Heading level={2} variant="section-title" className="text-2xl sm:text-3xl font-space uppercase">
                   Ready to establish a stronger online presence for your business?
@@ -562,7 +560,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                   <button
                     type="button"
                     onClick={openClaimModal}
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-lime hover:bg-lime-400 px-8 py-3.5 font-space text-sm font-bold uppercase tracking-wide text-dark transition-colors cursor-pointer"
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-btn-bg hover:bg-btn-hover px-8 py-3.5 font-space text-sm font-bold uppercase tracking-wide text-btn-text transition-colors cursor-pointer rounded-xl border-0 shadow-sm"
                   >
                     <span>Register Interest Now</span>
                     <ArrowRight className="size-4" />
@@ -570,7 +568,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                   <button
                     type="button"
                     onClick={() => goToSlide(1)}
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 border border-dark-300 hover:border-dark-400 bg-dark-200 px-6 py-3.5 font-space text-sm font-medium uppercase tracking-wide text-text hover:text-lime transition-colors cursor-pointer"
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-dark-200 hover:bg-dark-300 px-6 py-3.5 font-space text-sm font-medium uppercase tracking-wide text-text hover:text-lime transition-colors cursor-pointer rounded-xl border-0"
                   >
                     <span>Explore All 3 Deliverables</span>
                   </button>
@@ -591,7 +589,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeClaimModal}
-              className="fixed inset-0 bg-black/75"
+              className="fixed inset-0 bg-dark-100/80 backdrop-blur-md"
             />
 
             {/* Modal Dialog Card */}
@@ -600,13 +598,13 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-md bg-dark-100 border border-dark-300 p-6 sm:p-8 z-10"
+              className="relative w-full max-w-md rounded-3xl bg-dark-100 border-0 p-6 sm:p-8 z-10 shadow-2xl shadow-black/80"
             >
               {/* Close Button */}
               <button
                 type="button"
                 onClick={closeClaimModal}
-                className="absolute right-5 top-5 flex size-8 items-center justify-center text-text-subtle hover:text-text transition-colors cursor-pointer"
+                className="absolute right-5 top-5 flex size-8 items-center justify-center rounded-full bg-dark-200 text-text-subtle hover:text-text transition-colors cursor-pointer border-0"
                 aria-label="Close modal"
               >
                 <X className="size-4" />
@@ -626,7 +624,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                       Lock in your GH₵ 600 discount for the October Growth Package.
                     </p>
 
-                    <div className="mt-3 flex items-center gap-2 bg-dark-200 border border-dark-300 px-3.5 py-2 text-xs font-medium text-text">
+                    <div className="mt-3 flex items-center gap-2 rounded-xl bg-dark-200 px-3.5 py-2 text-xs font-medium text-text border-0">
                       <Check className="size-4 shrink-0 text-lime" />
                       <span>
                         Pay <strong className="text-lime">GH₵ 3,000</strong> (GH₵ 600 off) • 50% deposit to begin
@@ -635,7 +633,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                   </div>
 
                   {errorMessage && (
-                    <div className="mt-3 bg-red-500/10 border border-red-500/30 p-3 text-xs text-red-400">
+                    <div className="mt-3 rounded-xl bg-red-500/10 p-3 text-xs text-red-400 border-0">
                       {errorMessage}
                     </div>
                   )}
@@ -654,7 +652,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         value={formData.fullName}
                         onChange={handleFormChange}
                         placeholder="e.g. Kwame Mensah"
-                        className="w-full border border-dark-300 bg-dark-200 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:border-lime focus:outline-none transition-colors"
+                        className="w-full rounded-xl bg-dark-200 border-0 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:ring-2 focus:ring-lime/30 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -670,7 +668,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         value={formData.businessName}
                         onChange={handleFormChange}
                         placeholder="e.g. Mensah Logistics Ltd"
-                        className="w-full border border-dark-300 bg-dark-200 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:border-lime focus:outline-none transition-colors"
+                        className="w-full rounded-xl bg-dark-200 border-0 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:ring-2 focus:ring-lime/30 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -686,7 +684,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         value={formData.phoneNumber}
                         onChange={handleFormChange}
                         placeholder="e.g. 024 123 4567"
-                        className="w-full border border-dark-300 bg-dark-200 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:border-lime focus:outline-none transition-colors"
+                        className="w-full rounded-xl bg-dark-200 border-0 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:ring-2 focus:ring-lime/30 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -701,7 +699,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                         value={formData.email}
                         onChange={handleFormChange}
                         placeholder="e.g. kwame@gmail.com"
-                        className="w-full border border-dark-300 bg-dark-200 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:border-lime focus:outline-none transition-colors"
+                        className="w-full rounded-xl bg-dark-200 border-0 px-4 py-2.5 text-sm text-text placeholder-text-subtle/50 focus:ring-2 focus:ring-lime/30 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -709,7 +707,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-lime hover:bg-lime-400 py-3 font-space text-sm font-bold uppercase tracking-wide text-dark transition-colors disabled:opacity-60 cursor-pointer"
+                        className="w-full inline-flex items-center justify-center gap-2 bg-btn-bg hover:bg-btn-hover py-3 font-space text-sm font-bold uppercase tracking-wide text-btn-text transition-colors disabled:opacity-60 cursor-pointer rounded-xl border-0 shadow-sm"
                       >
                         <span>{isSubmitting ? "Submitting..." : "Lock in Discount Slot"}</span>
                         <ArrowRight className="size-4" />
@@ -719,7 +717,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                 </div>
               ) : (
                 <div className="py-6 text-center">
-                  <div className="mx-auto flex size-14 items-center justify-center bg-lime/15 text-lime mb-4 border border-lime/30">
+                  <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-lime/15 text-lime mb-4 border-0">
                     <Check className="size-7 stroke-[2.5]" />
                   </div>
                   <h4 className="font-space text-2xl font-bold uppercase text-text">
@@ -732,7 +730,7 @@ const OctoberGrowthPage = ({ onOpenInquiry }) => {
                     <button
                       type="button"
                       onClick={closeClaimModal}
-                      className="inline-flex w-full items-center justify-center bg-lime hover:bg-lime-400 py-3 font-space text-sm font-bold uppercase tracking-wide text-dark transition-colors cursor-pointer"
+                      className="inline-flex w-full items-center justify-center bg-btn-bg hover:bg-btn-hover py-3 font-space text-sm font-bold uppercase tracking-wide text-btn-text transition-colors cursor-pointer rounded-xl border-0 shadow-sm"
                     >
                       Done
                     </button>

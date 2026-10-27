@@ -126,7 +126,7 @@ const GhanaPage = ({ onOpenInquiry }) => {
       <About />
       
       {/* ════════════ REGIONAL INSIGHTS (Only on /gh) ════════════ */}
-      <Section name="gh-insights" spacing="generous" className="border-t border-text/[0.04]">
+      <Section name="gh-insights" spacing="generous" className="border-0">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12">
             <FadeIn>
@@ -142,17 +142,17 @@ const GhanaPage = ({ onOpenInquiry }) => {
               <FadeIn key={idx} delay={idx * 0.05} fullWidth>
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="group flex items-center justify-between p-6 border border-text/[0.04] bg-text/[0.01] hover:border-text/[0.08] hover:bg-text/[0.02] transition-all duration-300"
+                  className="group flex items-center justify-between p-6 rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 transition-colors duration-200 border-0"
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <span className="hidden sm:block font-mono text-[9px] font-bold tracking-[0.15em] text-lime uppercase whitespace-nowrap bg-lime/10 px-3 py-1.5 border border-lime/20 rounded-sm">
+                    <span className="hidden sm:inline-block font-sans text-xs font-semibold text-lime uppercase tracking-wider whitespace-nowrap bg-dark-200 px-3 py-1 rounded-full border-0">
                       {post.tag}
                     </span>
-                    <h3 className="font-sans text-sm md:text-base font-medium text-text group-hover:text-lime transition-colors duration-300 truncate">
+                    <h3 className="font-sans text-sm md:text-base font-medium text-text group-hover:text-lime transition-colors duration-200 truncate">
                       {post.title}
                     </h3>
                   </div>
-                  <ArrowRight className="size-4 text-text-subtle group-hover:text-lime group-hover:translate-x-1 transition-all duration-300 shrink-0 ml-4" />
+                  <ArrowRight className="size-4 text-text-muted group-hover:text-lime transition-colors duration-200 shrink-0 ml-4" />
                 </Link>
               </FadeIn>
             ))}

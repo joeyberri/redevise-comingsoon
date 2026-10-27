@@ -40,7 +40,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 32, stiffness: 400 }}
-            className="fixed right-0 top-0 z-[70] h-full w-[80%] bg-dark-50/90 backdrop-blur-2xl p-8 border-l border-text/[0.08] md:hidden shadow-2xl"
+            className="fixed right-0 top-0 z-[70] h-full w-[80%] bg-dark-100/95 backdrop-blur-2xl p-8 border-0 md:hidden shadow-2xl shadow-black/80"
           >
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between mb-12">
@@ -49,7 +49,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                   <LanguageSwitcher />
                   <button 
                     onClick={onClose}
-                    className="size-10 flex items-center justify-center rounded-full border border-text/[0.1] text-text cursor-pointer"
+                    className="size-10 flex items-center justify-center rounded-full bg-dark-200 text-text border-0 cursor-pointer"
                   >
                     <X size={20} />
                   </button>
@@ -88,7 +88,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
                 </motion.div>
               </nav>
 
-              <div className="mt-auto pt-8 border-t border-text/[0.08]">
+              <div className="mt-auto pt-8 border-0">
                 <Button 
                   onClick={handleCtaClick} 
                   fullWidth 

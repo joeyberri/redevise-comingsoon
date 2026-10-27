@@ -42,14 +42,12 @@ export const en = {
   },
 
   hero: {
-    pill: "Software Studio & Consulting",
-    buildSystems: "We build custom software",
-    that: "and automations your business ",
-    makeThingsWork: "actually",
-    better: "runs on.",
-    sub: "We design and build high-performance web applications, mobile apps, and custom workflow automations. Fast, dependable, and built to solve real business problems.",
-    workWithUs: "Work with us",
-    exploreProducts: "Explore Products"
+    pill: "Save Hours Every Week • Cut Operating Costs",
+      titleTop: "growth",
+      titleBottom: "enGineered",
+      sub: "Stop losing time and money to slow manual work. We build dependable digital tools that handle the repetitive tasks so your business runs faster with less overhead.",
+      workWithUs: "Save Time & Money",
+      exploreProducts: "See Ready-Made Tools",
   },
 
   pillars: {
@@ -60,7 +58,7 @@ export const en = {
         num: "01 - READY SOFTWARE",
         title: "Software we've built",
         text: "Focused, ready-to-use software for customer support, school administration, and daily business tasks. Straightforward setup and no unnecessary features.",
-        tag: "SupporTribe · Eduplugg · SkulSys · Conversa · Ascribe",
+        tag: "Conversa · SkulSys · Ascribe · SupporTribe",
       },
       {
         id: "1",
@@ -111,52 +109,39 @@ export const en = {
     subtitle: "Practical, focused tools designed to solve specific operational bottlenecks.",
     list: [
       {
-        id: "0",
-        label: "B2B · Support",
-        name: "SupporTribe",
-        text: "Customer support analytics. Monitor response quality, coach your support team, and improve conversation outcomes.",
+        id: "conversa",
+        label: "Flagship · AI Sales & Support",
+        name: "Conversa",
+        domain: "askconversa.com",
+        text: "Automated sales and customer support chat. Intelligent routing handles customer inquiries, accepts Mobile Money payments, and closes sales 24/7.",
+        cta: "Visit askconversa.com",
+        href: "https://www.askconversa.com",
+        featured: true,
       },
       {
-        id: "1",
-        label: "B2B · Education",
-        name: "Eduplugg",
-        text: "School administration in one place. Attendance tracking, parent communication, grading, and operational workflows.",
+        id: "skulsys",
+        label: "Flagship · School Operating System",
+        name: "SkulSys",
+        domain: "skulsys.com",
+        text: "The complete school operating system. Quick morning roll call, tamper-proof terminal reports with QR verification, and automated Mobile Money fee collections.",
+        cta: "Visit skulsys.com",
+        href: "https://www.skulsys.com",
+        featured: true,
       },
       {
-        id: "2",
-        label: "B2C · Habits",
-        name: "StreakMonkey",
-        text: "Build better habits with streaks, reminders, and progress tracking. Simple tools that help you stick to your routines.",
-      },
-      {
-        id: "3",
-        label: "B2C · Research",
-        name: "CitationPro",
-        text: "A browser extension that formats citations and references automatically so you can focus on research.",
-      },
-      {
-        id: "4",
-        label: "Ministry",
+        id: "ascribe",
+        label: "Ministry · Church Software",
         name: "Ascribe",
+        domain: "church.redevise.com",
         text: "Presentation software built specifically for churches. Clean, reliable, and designed for worship teams running the service.",
         cta: "Explore Church Ecosystem",
         href: "https://church.redevise.com",
       },
       {
-        id: "skulsys",
-        label: "B2B · Education",
-        name: "SkulSys",
-        text: "The complete school operating system. Quick morning roll call, tamper-proof terminal reports with QR verification, and automated Mobile Money fee collections.",
-        cta: "Visit SkulSys",
-        href: "https://www.skulsys.com",
-      },
-      {
-        id: "conversa",
-        label: "B2B · AI Sales",
-        name: "Conversa",
-        text: "Automated sales and customer support chat. Intelligent routing that handles customer inquiries, accepts Mobile Money, and closes sales 24/7.",
-        cta: "Visit Conversa",
-        href: "https://www.askconversa.com",
+        id: "supportribe",
+        label: "B2B · Support",
+        name: "SupporTribe",
+        text: "Customer support analytics. Monitor response quality, coach your support team, and improve conversation outcomes.",
       }
     ]
   },
@@ -241,7 +226,7 @@ export const en = {
 
     // [CHANGED] "no jargon" is a cliché. "no pitch deck" is specific to
     // Redevise's positioning (they explicitly avoid this) and more memorable.
-    desc: "Tell us what you're working on. We'll figure out the best way to help. No pitch deck, no pressure.",
+    desc: "Tell us what you're working on. We'll figure out the best way to help",
 
     requestConsultation: "Request consultation",
     howWeWork: "How we work"
@@ -629,7 +614,7 @@ export const en = {
       // [KEEP]
       title: "Not sure what you need?",
       // [CHANGED] "no pitch deck" is more specific than "no jargon."
-      sub: "Tell us what you're trying to do and we'll figure out the right approach together. No pressure, no pitch.",
+      sub: "Tell us what you're trying to do and we'll figure out the right approach together",
       estimate: "Get an estimate",
       talk: "Talk to us"
     }
@@ -661,7 +646,7 @@ export const en = {
         {
           q: "How much does a typical project cost?",
           // [CHANGED] "clear estimate" → "clear number" (more direct).
-          a: "It depends on scope, but most projects fall between {{priceFloor}} and {{priceCeiling}}. We'll give you a clear number before any work starts. Use the project estimator for a quick ballpark."
+          a: "It really depends on scope. We'll give you a clear number before any work starts. Use the project estimator for a quick ballpark."
         },
         {
           q: "How long does a project take?",
@@ -695,7 +680,7 @@ export const en = {
       title: "Ready to start?",
       // [CHANGED] "no obligations" sounds like a legal disclaimer.
       // "no pitch" is more consistent with the brand voice.
-      sub: "Let's talk about your project. No pressure, no pitch.",
+      sub: "Let's talk about your project",
       call: "Book a free call",
       estimate: "Get an estimate"
     }
@@ -1025,8 +1010,8 @@ export const en = {
           id: "0",
           num: "01 - OUR SOFTWARE",
           title: "We build software",
-          text: "Ready-made tools built for specific jobs — support analytics, school administration, habit tracking, and more. Localized payment support built-in.",
-          tag: "SupporTribe · Eduplugg · StreakMonkey · CitationPro · Ascribe"
+          text: "Ready-made software built for specific operations — support analytics, school operating systems, and conversational AI sales. Built-in Mobile Money payments.",
+          tag: "Conversa · SkulSys · Ascribe · SupporTribe"
         },
         {
           id: "1",

@@ -85,10 +85,10 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
               {t('workflowAutomationPage.capabilities.list').map((item, i) => (
                 <CorneredBox 
                   key={i} 
-                  className="p-8 bg-dark-100/50 border border-text/10 rounded-2xl relative overflow-hidden group hover:border-lime/30 transition-all duration-300"
+                  className="p-8 bg-dark-100/75 hover:bg-dark-200/90 rounded-2xl border-0 transition-colors duration-200"
                 >
                   <div className="flex gap-4 items-start">
-                    <div className="p-3 bg-text/5 rounded-lg border border-text/10">
+                    <div className="p-3 bg-dark-200 rounded-xl border-0">
                       {capabilityIcons[i] || <Zap className="size-5 text-lime" />}
                     </div>
                     <div>
@@ -106,7 +106,7 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
           </Section>
 
           {/* How We Integrate (System Diagram Visual Element) */}
-          <Section name="how-we-integrate" spacing="tight" className="py-16 border-y border-dark-400/20 mb-24">
+          <Section name="how-we-integrate" spacing="tight" className="py-16 bg-dark-50 rounded-3xl border-0 mb-24 px-8 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
               <div>
                 <Heading level={2} className="text-2xl font-bold font-sans mb-4 tracking-tight text-text">
@@ -120,7 +120,7 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
               </div>
 
               {/* Simple Textual Diagram representing workflow automation loops */}
-              <div className="flex flex-col justify-center gap-4 bg-dark-100/20 p-8 border border-text/5 rounded-2xl font-mono text-xs text-text-muted select-none">
+              <div className="flex flex-col justify-center gap-4 bg-dark-100/80 p-8 rounded-2xl border-0 font-mono text-xs text-text-muted select-none">
                 <div className="flex items-center gap-2">
                   <span className="text-lime">[TRIGGER]</span> User interaction or system event (WhatsApp request, Stripe billing Hook)
                 </div>

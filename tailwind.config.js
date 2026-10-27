@@ -37,8 +37,15 @@ export default {
         primary: {
           DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
         },
+        btn: {
+          bg: 'rgb(var(--color-btn-bg) / <alpha-value>)',
+          hover: 'rgb(var(--color-btn-hover) / <alpha-value>)',
+          text: 'rgb(var(--color-btn-text) / <alpha-value>)',
+        },
       },
       fontFamily: {
+        heading: 'var(--font-heading)',
+        coolvetica: 'var(--font-coolvetica)',
         serif: 'var(--font-serif)',
         sans: 'var(--font-sans)',
         space: 'var(--font-space)',

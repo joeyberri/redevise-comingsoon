@@ -243,7 +243,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
                       </span>
                     ))}
                   </div>
-                  <h2 className="font-sans text-2xl md:text-3xl font-bold text-text mb-4 leading-tight tracking-tight group-hover:text-lime transition-colors duration-300">
+                  <h2 className="font-heading text-2xl md:text-3xl font-normal text-text mb-4 leading-tight tracking-tight group-hover:text-lime transition-colors duration-300">
                     {featuredPost.title}
                   </h2>
                   <p className="text-text-muted text-sm md:text-base leading-relaxed mb-6 line-clamp-3">

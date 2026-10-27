@@ -17,7 +17,7 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
   const { t, formatPrice, locale } = useLanguage();
   useSEO({ key: "process" });
   const [activeStep, setActiveStep] = useState(0);
-  
+
   const containerRef = useRef(null);
   const stepRefs = useRef([]);
 
@@ -147,14 +147,11 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
       <Section name="process-steps" spacing="default">
         <div className="max-w-5xl mx-auto">
           <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-            
+
             {/* Left Column - Sticky Progress Panel (Visible only on Desktop) */}
             <div className="hidden lg:block lg:col-span-5">
               <div className="sticky top-32 space-y-8 pr-4">
-                <div className="font-mono text-xs font-semibold uppercase tracking-widest text-lime">
-                  Step {String(activeStep + 1).padStart(2, "0")} of {String(stepsList.length).padStart(2, "0")}
-                </div>
-                
+
                 <div className="space-y-4">
                   <div className="font-sans text-6xl font-extrabold text-lime tracking-tight">
                     {String(activeStep + 1).padStart(2, "0")}
@@ -168,13 +165,13 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
                 </div>
 
                 {/* Vertical dot-line navigator */}
-                <div className="relative pl-6 py-2 space-y-6">
+                <div className="relative pl-[1.6rem] py-2 space-y-6">
                   {/* Track line (static background) */}
                   <div className="absolute left-0 top-2 bottom-2 w-[1px] bg-text/[0.08]" />
                   {/* Active fill line (scroll-driven) */}
-                  <motion.div 
-                    className="absolute left-0 top-2 bottom-2 w-[1px] origin-top bg-gradient-to-b from-lime to-lime/40" 
-                    style={{ scaleY }} 
+                  <motion.div
+                    className="absolute left-0 top-2 bottom-2 w-[1px] origin-top bg-gradient-to-b from-lime to-lime/40"
+                    style={{ scaleY }}
                   />
 
                   {stepsList.map((step, idx) => (
@@ -189,11 +186,11 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
                       )}
                     >
                       <div className={cn(
-                        "w-2.5 h-2.5 rounded-full -ml-[31px] relative z-10 transition-all duration-200 border border-dark bg-dark",
-                        idx === activeStep 
-                          ? "bg-lime scale-125 shadow-[0_0_12px_rgb(163,230,53)]" 
-                          : idx < activeStep 
-                          ? "bg-lime/75" 
+                        "w-2.5 h-2.5 rounded-full -ml-[31px] relative z-10 transition-colors duration-200 border border-dark bg-dark",
+                        idx === activeStep
+                          ? "bg-lime"
+                          : idx < activeStep
+                          ? "bg-lime/75"
                           : "bg-text/20 group-hover:bg-text/40"
                       )} />
                       <span className="font-sans text-sm font-semibold tracking-tight">
@@ -235,11 +232,11 @@ const ProcessPage = ({ onOpenInquiry = () => {} }) => {
               {t('processPage.faq.title')}
             </Heading>
           </FadeIn>
-          
-          <div className="divide-y divide-dark-400/20">
+
+          <div className="space-y-4">
             <FaqAccordion
               items={faqList}
-              variant="bordered"
+              variant="boxed"
               renderAnswer={renderAnswer}
             />
           </div>

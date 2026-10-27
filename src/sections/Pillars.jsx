@@ -5,43 +5,42 @@ import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const Pillars = () => {
   const { t } = useLanguage();
+  const list = t("pillars.list") || [];
 
   return (
-    <Section name="pillars" spacing="tight">
-      <Heading 
-        level={2} 
-        variant="section-title" 
-        className="mb-12 text-left"
-      >
-        {t('pillars.title')}
-      </Heading>
+    <Section name="pillars" spacing="default">
+      <FadeIn delay={0}>
+        <Heading 
+          level={2} 
+          variant="section-title" 
+          className="mb-12 text-left"
+        >
+          {t("pillars.title")}
+        </Heading>
+      </FadeIn>
 
-      <div className="space-y-0">
-        {t('pillars.list').map((pillar, i) => (
-          <FadeIn key={pillar.id} delay={0.1 * i}>
-            <div 
-              className={`grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-12 py-10 md:py-12 lg:-mx-[calc(50vw-50%)] lg:px-[calc(50vw-50%)] ${
-                i < t('pillars.list').length - 1 ? 'border-b border-dark-400/20' : ''
-              }`}
-            >
-              {/* Number + label */}
-              <div className="md:w-48 flex-shrink-0">
-                <span className="block font-sans text-xs font-bold uppercase tracking-wider text-lime mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {list.map((pillar, i) => (
+          <FadeIn key={pillar.id} delay={0.1 * i} fullWidth>
+            <div className="h-full rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 p-8 transition-colors duration-200 flex flex-col border-0">
+              {/* Category Badge */}
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 rounded-full bg-dark-200 text-lime text-xs font-semibold tracking-wider uppercase">
                   {pillar.num}
                 </span>
               </div>
 
-              {/* Title + Description */}
-              <div>
-                <Heading level={3} variant="card-title" className="mb-3">
-                  {pillar.title}
-                </Heading>
-                <Text variant="small" className="max-w-2xl mb-3 text-text-muted">
-                  {pillar.text}
-                </Text>
-                <p className="font-sans text-xs font-medium text-text-muted/90">
-                  {pillar.tag}
-                </p>
+              {/* Title & Body */}
+              <Heading level={3} variant="card-title" className="mb-3 text-text">
+                {pillar.title}
+              </Heading>
+              <Text variant="small" className="text-text-muted leading-relaxed mb-6 flex-1">
+                {pillar.text}
+              </Text>
+
+              {/* Footer Tags */}
+              <div className="mt-auto pt-4 text-xs font-medium text-text-subtle">
+                {pillar.tag}
               </div>
             </div>
           </FadeIn>

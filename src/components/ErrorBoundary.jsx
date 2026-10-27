@@ -31,10 +31,9 @@ class ErrorBoundary extends React.Component {
 
       return (
         <div className="min-h-screen bg-dark text-text flex items-center justify-center p-6 select-none font-sans">
-
-          <div className="max-w-md w-full border border-text/[0.08] bg-dark-200/50 backdrop-blur-md rounded-2xl p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+          <div className="max-w-md w-full bg-dark-100 rounded-3xl p-8 text-center border-0 shadow-2xl shadow-black/60">
             {/* Minimal warning icon */}
-            <div className="mx-auto mb-6 size-12 rounded-xl bg-lime/10 border border-lime/20 flex items-center justify-center">
+            <div className="mx-auto mb-6 size-12 rounded-xl bg-lime/15 flex items-center justify-center border-0">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 24 24" 
@@ -43,7 +42,7 @@ class ErrorBoundary extends React.Component {
                 strokeWidth="2" 
                 strokeLinecap="round" 
                 strokeLinejoin="round" 
-                className="size-6 text-lime animate-pulse"
+                className="size-6 text-lime"
               >
                 <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
                 <line x1="12" y1="9" x2="12" y2="13" />
@@ -62,20 +61,20 @@ class ErrorBoundary extends React.Component {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={this.handleReload}
-                className="px-5 py-2.5 rounded-xl bg-lime hover:bg-lime/95 text-dark font-semibold text-sm transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(190,255,80,0.2)] hover:shadow-[0_0_20px_rgba(190,255,80,0.3)] active:scale-[0.98]"
+                className="px-5 py-2.5 rounded-xl bg-btn-bg hover:bg-btn-hover text-btn-text font-semibold text-sm transition-colors duration-200 cursor-pointer shadow-sm border-0"
               >
                 {t('common.reload')}
               </button>
               
               <button
                 onClick={this.handleGoHome}
-                className="px-5 py-2.5 rounded-xl border border-text/10 bg-text/[0.02] hover:bg-text/5 text-text-muted hover:text-text font-medium text-sm transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="px-5 py-2.5 rounded-xl bg-dark-200 hover:bg-dark-300 text-text-muted hover:text-text font-medium text-sm transition-colors duration-200 cursor-pointer border-0"
               >
                 {t('common.goHome')}
               </button>
             </div>
             
-            <div className="mt-8 pt-6 border-t border-text/[0.05] text-[10px] text-text-subtle uppercase tracking-widest">
+            <div className="mt-8 pt-6 border-0 text-[10px] text-text-subtle uppercase tracking-widest">
               {t('common.redeviseOps')}
             </div>
           </div>

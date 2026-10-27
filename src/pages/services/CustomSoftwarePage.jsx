@@ -85,10 +85,10 @@ const CustomSoftwarePage = ({ onOpenInquiry }) => {
               {t('customSoftwarePage.capabilities.list').map((item, i) => (
                 <CorneredBox 
                   key={i} 
-                  className="p-8 bg-dark-100/50 border border-text/10 rounded-2xl relative overflow-hidden group hover:border-lime/30 transition-all duration-300"
+                  className="p-8 bg-dark-100/75 hover:bg-dark-200/90 rounded-2xl border-0 transition-colors duration-200"
                 >
                   <div className="flex gap-4 items-start">
-                    <div className="p-3 bg-text/5 rounded-lg border border-text/10">
+                    <div className="p-3 bg-dark-200 rounded-xl border-0">
                       {capabilityIcons[i] || <Code className="size-5 text-lime" />}
                     </div>
                     <div>
@@ -106,7 +106,7 @@ const CustomSoftwarePage = ({ onOpenInquiry }) => {
           </Section>
 
           {/* Tech Stack Section */}
-          <Section name="tech-stack" spacing="tight" className="py-16 border-y border-dark-400/20 mb-24">
+          <Section name="tech-stack" spacing="tight" className="py-16 bg-dark-50 rounded-3xl border-0 mb-24 px-8 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
               <div>
                 <Heading level={2} className="text-2xl font-bold font-sans mb-4 tracking-tight text-text">
@@ -119,7 +119,7 @@ const CustomSoftwarePage = ({ onOpenInquiry }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {t('customSoftwarePage.techStack.items').map((item, i) => (
-                  <div key={i} className="p-6 bg-dark-100/20 border border-text/5 rounded-xl">
+                  <div key={i} className="p-6 bg-dark-100/80 rounded-xl border-0">
                     <div className="text-[10px] font-bold tracking-widest text-lime uppercase mb-2">
                       {item.name}
                     </div>

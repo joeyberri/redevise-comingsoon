@@ -1,5 +1,7 @@
 import FeatureCard from "./FeatureCard.jsx";
 import FeatureItem from "./FeatureItem.jsx";
+import { ArrowUpRight } from "lucide-react";
+
 const ServiceCard = ({ title, tagline, features, cta, footerNote, className, index = 0, onOpenInquiry = () => {} }) => {
   return (
     <FeatureCard
@@ -9,8 +11,6 @@ const ServiceCard = ({ title, tagline, features, cta, footerNote, className, ind
       description={tagline}
       className={className}
     >
-
-
       <div className="mb-8 space-y-3 flex-1">
         <ul className="space-y-3">
           {features.map((feat, i) => (
@@ -31,27 +31,12 @@ const ServiceCard = ({ title, tagline, features, cta, footerNote, className, ind
                 : "Automate repetitive workflows"
             );
           }}
-          className="group inline-flex items-center gap-2 border-b border-text-subtle pb-1 font-sans text-xs font-semibold uppercase tracking-wider text-text transition-all duration-300 hover:border-lime hover:text-lime w-fit text-left bg-transparent cursor-pointer outline-none"
+          className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-lime hover:text-lime-400 transition-colors w-fit text-left bg-transparent border-0 cursor-pointer outline-none"
         >
-          {cta}
+          <span>{cta}</span>
+          <ArrowUpRight size={14} />
         </button>
 
-        {footerNote && (
-          <div className="pt-4 border-t border-dark-400/30">
-            <p className="text-[10px] uppercase tracking-widest text-text-muted mb-2">
-              Specialized Vertical
-            </p>
-            <a 
-              href={footerNote.href}
-              target={footerNote.href?.startsWith("http") ? "_blank" : undefined}
-              rel={footerNote.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="text-xs font-medium text-text-subtle hover:text-lime transition-colors duration-300 flex items-center gap-1.5"
-            >
-              {footerNote.text}
-              <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-            </a>
-          </div>
-        )}
       </div>
     </FeatureCard>
   );

@@ -14,32 +14,21 @@ const Button = ({
   spy = true,
   smooth = true,
 }) => {
-  const baseStyles = "inline-flex items-center gap-2 rounded-lg px-6 py-3 font-sans text-sm tracking-wide transition-all duration-300 relative overflow-hidden group";
+  const baseStyles = "relative overflow-hidden";
   
   const variants = {
-    primary: "bg-lime font-semibold text-[#080D27] hover:shadow-lg hover:shadow-lime/20",
-    secondary: "border border-dark-400 bg-transparent font-medium text-text hover:border-lime/40 hover:text-lime",
-    ghost: "text-text-muted hover:text-text bg-transparent p-0",
+    primary: "btn-primary",
+    secondary: "btn-secondary",
+    ghost: "inline-flex items-center gap-2 text-text-muted hover:text-text bg-transparent p-0 font-sans text-sm tracking-wide transition-colors",
   };
 
   const combinedClasses = cn(baseStyles, variants[variant], className);
 
   const MotionContent = () => (
-    <>
-      <span className="relative z-10">{children}</span>
-      {variant === "primary" && (
-        <motion.span 
-          initial={{ x: "-100%" }}
-          whileHover={{ x: "100%" }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-lime/20 to-transparent"
-        />
-      )}
-    </>
+    <span className="relative z-10">{children}</span>
   );
 
   const motionProps = {
-    whileHover: { scale: 1.02 },
     whileTap: { scale: 0.98 },
   };
 

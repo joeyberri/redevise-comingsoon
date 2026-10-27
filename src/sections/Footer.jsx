@@ -13,7 +13,7 @@ const Footer = ({ onOpenInquiry }) => {
   };
 
   return (
-    <footer className="border-t border-text/[0.06] bg-dark-100/10">
+    <footer className="border-0 bg-dark py-4">
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           
@@ -23,7 +23,7 @@ const Footer = ({ onOpenInquiry }) => {
               <Logo showText={true} iconSize="size-8" />
             </LinkRouter>
             <p className="font-sans text-xs text-text-subtle leading-relaxed max-w-sm">
-              {t('footer.copyright')}
+              {t("footer.copyright")}
             </p>
             <div className="pt-2">
               <SocialLinks />
@@ -33,48 +33,48 @@ const Footer = ({ onOpenInquiry }) => {
           {/* Quick Links Column */}
           <div className="col-span-6 sm:col-span-4 md:col-span-2">
             <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
-              {t('footer.quickLinks')}
+              {t("footer.quickLinks")}
             </h4>
             <ul className="space-y-3">
               <li>
                 <LinkRouter to="/" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.home')}
+                  {t("footer.home")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/about" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.about')}
+                  {t("footer.about")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/services" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.services')}
+                  {t("footer.services")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/process" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.process')}
+                  {t("footer.process")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/estimate" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.estimate')}
+                  {t("footer.estimate")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/blog" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.blog')}
+                  {t("footer.blog")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/promos/october-growth" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime inline-flex items-center gap-1.5">
                   <span>October Growth</span>
-                  <span className="rounded bg-lime/15 border border-lime/30 text-[9px] font-mono text-lime px-1.5 py-0.5 font-bold">OFFER</span>
+                  <span className="rounded-full bg-lime/15 text-[9px] font-mono text-lime px-2 py-0.5 font-bold">OFFER</span>
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/careers" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.careers')}
+                  {t("footer.careers")}
                 </LinkRouter>
               </li>
               <li>
@@ -88,55 +88,55 @@ const Footer = ({ onOpenInquiry }) => {
           {/* Services / Custom Solutions Column */}
           <div className="col-span-12 sm:col-span-5 md:col-span-3">
             <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
-              {t('footer.solutions')}
+              {t("footer.solutions")}
             </h4>
             <ul className="space-y-3">
               <li>
                 <button
-                  onClick={() => handleServiceClick(t('modal.interests')[0])}
+                  onClick={() => handleServiceClick(t("modal.interests")[0])}
                   className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
                 >
-                  {t('footer.webDevelopment')}
+                  {t("footer.webDevelopment")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  onClick={() => handleServiceClick(t("modal.interests")[1])}
                   className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
                 >
-                  {t('footer.webApps')}
+                  {t("footer.webApps")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  onClick={() => handleServiceClick(t("modal.interests")[1])}
                   className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
                 >
-                  {t('footer.mobileApps')}
+                  {t("footer.mobileApps")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  onClick={() => handleServiceClick(t("modal.interests")[1])}
                   className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
                 >
-                  {t('footer.ecommerce')}
+                  {t("footer.ecommerce")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleServiceClick(t('modal.interests')[1])}
+                  onClick={() => handleServiceClick(t("modal.interests")[1])}
                   className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
                 >
-                  {t('footer.customSoftware')}
+                  {t("footer.customSoftware")}
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => handleServiceClick(t('modal.interests')[2])}
+                  onClick={() => handleServiceClick(t("modal.interests")[2])}
                   className="text-xs font-sans text-text-subtle transition-colors hover:text-lime text-left bg-transparent border-0 p-0 cursor-pointer outline-none"
                 >
-                  {t('footer.automation')}
+                  {t("footer.automation")}
                 </button>
               </li>
             </ul>
@@ -145,17 +145,17 @@ const Footer = ({ onOpenInquiry }) => {
           {/* Legal Column */}
           <div className="col-span-6 sm:col-span-3 md:col-span-2">
             <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
-              {t('common.legal')}
+              {t("common.legal")}
             </h4>
             <ul className="space-y-3">
               <li>
                 <LinkRouter to="/privacy" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.privacyPolicy')}
+                  {t("footer.privacyPolicy")}
                 </LinkRouter>
               </li>
               <li>
                 <LinkRouter to="/terms" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t('footer.termsOfUse')}
+                  {t("footer.termsOfUse")}
                 </LinkRouter>
               </li>
             </ul>

@@ -1,91 +1,71 @@
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/fonts/coolvetica-rg.woff') format('woff'),
+       url('/fonts/coolvetica.woff') format('woff'),
+       url('https://fonts.cdnfonts.com/s/27610/coolvetica%20rg.woff') format('woff');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /* ─── Colors (RGB for Tailwind Opacity Support) ─── */
-
-  /* Brand Lime (High-energy neon for dark mode) */
+  /* ─── 1. Brand Primitives (Constant Identity from Logo) ─── */
+  /* Top Leaf & Robot Eyes: Electric Chartreuse */
   --color-lime: 200 255 0;
-  --color-lime-400: 215 241 13;
-  --color-lime-500: 163 215 12;
-  --color-lime-600: 127 197 12;
+  --color-lime-400: 212 255 51;
+  --color-lime-500: 178 230 0;
+  --color-lime-600: 140 184 0;
 
-  /* Brand Green */
-  --color-green: 0 165 65;
-  --color-green-400: 56 186 53;
-  --color-green-500: 20 146 8;
-  --color-green-600: 0 134 9;
+  /* Bottom Leaf: Grounded Kelly/Forest Green */
+  --color-green: 0 168 67;
+  --color-green-400: 46 196 100;
+  --color-green-500: 0 140 56;
+  --color-green-600: 0 110 43;
 
-  /* Dark Backgrounds */
-  --color-dark: 3 7 18;
-  --color-dark-50: 9 9 11;
-  --color-dark-100: 24 24 27;
-  --color-dark-200: 39 39 42;
-  --color-dark-300: 63 63 70;
-  --color-dark-400: 82 82 91;
-  --color-dark-500: 113 113 122;
+  /* ─── 2. Semantic Surfaces (Carbon-Obsidian Dark Mode) ─── */
+  --color-dark: 6 9 8;          /* #060908 - Level 0: Deep obsidian base canvas */
+  --color-dark-50: 11 16 13;    /* #0B100D - Level 1: Subtle section band fill */
+  --color-dark-100: 18 25 21;   /* #121915 - Level 2: Borderless card container */
+  --color-dark-200: 26 36 31;   /* #1A241F - Level 3: Elevated surface / hover card */
+  --color-dark-300: 38 51 44;   /* #26332C - Interactive controls / badges */
+  --color-dark-400: 55 71 63;   /* #37473F - Subtle dividers (when required) */
+  --color-dark-500: 95 117 107; /* #5F756B - Muted icons */
 
-  /* Text (Accessible Zinc Tones - WCAG AA compliant on #030712) */
-  --color-text: 244 244 245;
-  --color-text-muted: 180 180 190;
-  --color-text-subtle: 150 150 160;
+  /* ─── 3. Typography Colors (WCAG AAA/AA on #060908) ─── */
+  --color-text: 243 246 244;       /* #F3F6F4 - Crisp off-white */
+  --color-text-muted: 163 179 171; /* #A3B3AB - Sage-tinted silver */
+  --color-text-subtle: 115 133 125;/* #73857D - Subtle captions */
 
-  /* Accents */
-  --color-accent: 46 242 255;
-  --color-accent-dim: 60 82 217;
-  --color-primary: 46 242 255;
+  /* ─── 4. Semantic Interactive Tokens ─── */
+  --color-primary: 200 255 0;      /* Active highlights, links, focus rings */
+  --color-btn-bg: 200 255 0;       /* Primary button background */
+  --color-btn-hover: 212 255 51;   /* Primary button hover */
+  --color-btn-text: 6 9 8;         /* Near-black text on neon lime */
+  --color-accent: 0 212 146;       /* Harmonized Emerald-Teal instead of jarring cyan */
+  --color-accent-dim: 0 140 95;
 
-  /* Surface Colors */
-  --color-surface-border: 255 255 255 / 0.12;
-  --color-surface-bg: 255 255 255 / 0.03;
-  --color-grid: 255 255 255 / 0.04;
+  /* ─── 5. Alpha Surface Tokens (Raw RGBA for direct CSS usage) ─── */
+  --surface-border: transparent;
+  --surface-border-hover: transparent;
+  --surface-bg: rgba(18, 25, 21, 0.75);
+  --grid-color: rgba(255, 255, 255, 0.02);
 
-  /* ─── Typography ─── */
+  /* ─── 6. Typography & Layout Scales ─── */
+  --font-heading: "Coolvetica", "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-coolvetica: "Coolvetica", "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: "DM Serif Display", Georgia, serif;
-  --font-sans: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-space: "Space Grotesk", "DM Sans", sans-serif;
+  --font-sans: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-space: "Coolvetica", "Space Grotesk", "DM Sans", sans-serif;
 
   --ls-tightest: -0.03em;
   --ls-tighter: -0.02em;
   --ls-widest: 0.1em;
   --ls-widestest: 0.15em;
-
-  --lh-tightest: 1.1;
-
+  --lh-tightest: 1.08;
   --fs-tiny: 12px;
 
-  /* ─── Spacing / Sizes ─── */
   --max-w-container: 1200px;
-
   --radius-2xl: 16px;
   --radius-3xl: 24px;
   --radius-4xl: 32px;
-}
-
-/* ─── Light Mode Override (Accessible, High-Contrast & Crisp) ─── */
-.light {
-  /* Backgrounds */
-  --color-dark: 250 252 255;
-  --color-dark-50: 241 245 249;
-  --color-dark-100: 226 232 240;
-  --color-dark-200: 203 213 225;
-  --color-dark-300: 148 163 184;
-  --color-dark-400: 100 116 139;
-  --color-dark-500: 71 85 105;
-
-  /* Text (WCAG AAA/AA Compliant against #FAFCFF) */
-  --color-text: 15 23 42;
-  --color-text-muted: 51 65 85;
-  --color-text-subtle: 71 85 105;
-
-  /* Surface Colors */
-  --color-surface-border: 15 23 42 / 0.12;
-  --color-surface-bg: 255 255 255 / 0.85;
-  --color-grid: 15 23 42 / 0.05;
-
-  /* Brand Green in Light Mode (Deep Emerald, >5:1 contrast against white) */
-  --color-lime: 21 128 61;
-  --color-lime-400: 22 101 52;
-  --color-lime-500: 18 85 44;
-  --color-lime-600: 15 70 36;
-
-  /* Primary Accent Blue */
-  --color-primary: 25 89 173;
 }

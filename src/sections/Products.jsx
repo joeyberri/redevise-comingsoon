@@ -8,13 +8,6 @@ const Products = () => {
 
   const productsList = t('products.list') || [];
 
-  // Zigzag pattern: alternating 2+1 and 1+2 rows, with the final card taking full width (3 cols)
-  const getSpanClass = (i, total) => {
-    if (i === total - 1) return "lg:col-span-3";
-    if (i % 4 === 0 || i % 4 === 3) return "lg:col-span-2";
-    return "";
-  };
-
   return (
     <Section name="products">
       <SectionHeader
@@ -22,13 +15,12 @@ const Products = () => {
         title={t('products.title')}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {productsList.map((product, i) => (
           <ProductCard 
-            key={product.id} 
+            key={product.id || i} 
             {...product} 
             index={i} 
-            className={getSpanClass(i, productsList.length)}
           />
         ))}
       </div>

@@ -6,9 +6,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-
 import MarqueeBanner from "../components/MarqueeBanner";
 import GridSpotlight from "../components/GridSpotlight";
 import MagneticButton from "../components/MagneticButton";
-import { Heading, Text } from "../components/Typography";
-import Pill from "../components/Pill";
-import TextReveal from "../components/TextReveal";
+import { Text } from "../components/Typography";
 import robotWaving from "../assets/images/robot waving.svg";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
@@ -16,7 +14,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
   },
 };
 
@@ -25,14 +23,14 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }
+    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
 const Hero = ({ onOpenInquiry = () => {} }) => {
   const [showHeroMarquee, setShowHeroMarquee] = useState(true);
   const { scrollY } = useScroll();
-  const { t, locale } = useLanguage();
+  const { t } = useLanguage();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const isBelowThreshold = latest <= 800;
@@ -41,88 +39,133 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
     }
   });
 
+  const titleTop = t("hero.titleTop") || "growth";
+  const titleBottom = t("hero.titleBottom") || "enGineered";
+
   return (
     <>
       <Element name="hero">
         <GridSpotlight
           as="section"
-          className="relative min-h-[85vh] flex items-center overflow-hidden pt-28 pb-12 md:pt-36 md:pb-20"
+          className="relative min-h-[85vh] flex items-center overflow-hidden pt-20 pb-12 md:pt-24 md:pb-16"
           spotlightSize={900}
         >
-          {/* Mascot Illustration — Retained cleanly without heavy blur filters */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-            className="hidden lg:block absolute right-0 xl:right-6 2xl:right-16 bottom-0 z-[1] pointer-events-none select-none
-                       lg:w-[400px] xl:w-[460px] 2xl:w-[540px]
-                       lg:opacity-30 xl:opacity-40"
-          >
-            <motion.img
-              src={robotWaving}
-              alt="Redevise Mascot"
-              aria-hidden="true"
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full h-auto object-contain"
-            />
-          </motion.div>
-
           {/* Main Hero Content Area */}
-          <div className="container relative z-10">
+          <div className="mx-auto w-full max-w-[1600px] px-6 md:px-12 lg:px-16 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 xl:gap-12">
+
+            {/* Left Column: Massive Headline, 3-Line Subtitle, and CTAs */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="max-w-4xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl"
+              className="w-full lg:w-auto flex-1"
             >
-              {/* Badge Element */}
-              <Pill animated delay={0.1} className="mb-6">
-                {t('hero.pill')}
-              </Pill>
+              {/* Massive 2-Line Display Title — Tightly Locked */}
+              <h1 className="font-heading font-normal tracking-[-0.03em] leading-[0.82] text-[4rem] sm:text-[5.5rem] md:text-[6.75rem] lg:text-[7.5rem] xl:text-[8.75rem] 2xl:text-[12rem] mb-8 md:mb-10 select-none">
+                <motion.span
+                  variants={itemVariants}
+                  className="block text-text"
+                >
+                  {titleTop}
+                </motion.span>
 
-              {/* Title */}
-              <Heading level={1} variant="hero-title" className="mb-6">
-                <span className="block">
-                  <TextReveal text={t('hero.buildSystems')} delay={0.1} />
-                </span>
-                <span className="block">
-                  <TextReveal text={t('hero.that')} delay={0.22} />
-                  <TextReveal
-                    text={t('hero.makeThingsWork')}
-                    delay={0.32}
-                    keepTogether={locale === "en"}
-                    className="text-lime italic font-serif"
-                  />
-                </span>
-                <span className="block">
-                  <TextReveal text={t('hero.better')} delay={0.42} />
-                </span>
-              </Heading>
+                <motion.span
+                  variants={itemVariants}
+                  className="block"
+                >
+                  {titleBottom.toLowerCase().includes("engineered") ? (
+                    <>
+                      <span className="text-text">en</span>
+                      <span
+                        className="bg-clip-text text-transparent"
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(135deg, rgb(var(--color-text)) 0%, rgb(var(--color-text)) 26%, rgb(var(--color-lime)) 56%, rgb(var(--color-lime)) 100%), linear-gradient(rgb(var(--color-text)), rgb(var(--color-text)))",
+                          backgroundSize: "72% 58%, 100% 100%",
+                          backgroundPosition: "right bottom, center",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      >
+                        G
+                      </span>
+                      <span className="text-lime">ineered</span>
+                    </>
+                  ) : (
+                    <span className="text-lime">{titleBottom}</span>
+                  )}
+                </motion.span>
+              </h1>
 
-              {/* Clear, approachable business subtitle */}
-              <motion.div variants={itemVariants} className="mb-8">
-                <Text variant="hero-sub" className="text-text-muted">
-                  {t('hero.sub')}
+              {/* 3-Line Balanced Subtitle */}
+              <motion.div variants={itemVariants} className="mb-8 md:mb-10">
+                <Text
+                  variant="hero-sub"
+                  className="text-text-muted max-w-[620px] text-base sm:text-lg md:text-[1.35rem] md:leading-[1.45] font-normal"
+                >
+                  {t("hero.sub")}
                 </Text>
               </motion.div>
 
-              {/* Interactive Call to Action Elements */}
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                <MagneticButton 
-                  onClick={() => onOpenInquiry(t('modal.interests')[1])} 
-                  variant="primary" 
-                  strength={0.15} 
+              {/* Call to Action Buttons */}
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5"
+              >
+                <MagneticButton
+                  onClick={() => onOpenInquiry(t("modal.interests")[1])}
+                  variant="primary"
+                  strength={0.15}
+                  className="rounded-xl px-8 py-4 text-sm sm:text-base font-bold"
                 >
-                  {t('hero.workWithUs')}
+                  {t("hero.workWithUs")}
                 </MagneticButton>
 
-                <MagneticButton to="products" variant="secondary" strength={0.1}>
-                  {t('hero.exploreProducts')}
+                <MagneticButton
+                  to="products"
+                  variant="secondary"
+                  strength={0.1}
+                  className="rounded-xl px-8 py-4 text-sm sm:text-base font-semibold"
+                >
+                  {t("hero.exploreProducts")}
                 </MagneticButton>
               </motion.div>
             </motion.div>
+
+            {/* Right Column: Mascot Illustration */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              className="hidden lg:flex items-center justify-end lg:w-[420px] xl:w-[490px] 2xl:w-[550px] shrink-0 select-none pointer-events-none"
+            >
+              <motion.img
+                src={robotWaving}
+                alt="Redevise Mascot"
+                aria-hidden="true"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="w-full h-auto object-contain"
+              />
+            </motion.div>
+
+            {/* Mobile / Tablet Mascot Illustration */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+              className="flex lg:hidden items-center justify-center w-full max-w-[280px] sm:max-w-[340px] mx-auto mt-4 select-none pointer-events-none"
+            >
+              <motion.img
+                src={robotWaving}
+                alt="Redevise Mascot"
+                aria-hidden="true"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="w-full h-auto object-contain"
+              />
+            </motion.div>
+
           </div>
         </GridSpotlight>
       </Element>
@@ -132,10 +175,10 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
         <AnimatePresence>
           {showHeroMarquee && (
             <MarqueeBanner
-              items={t('aboutSection.taglines')}
+              items={t("aboutSection.taglines")}
               visible
               animate
-              containerClassName="py-6"
+              containerClassName="py-4 md:py-5"
             />
           )}
         </AnimatePresence>

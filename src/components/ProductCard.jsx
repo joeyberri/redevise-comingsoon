@@ -1,9 +1,8 @@
 import FeatureCard from "./FeatureCard.jsx";
 import CardBadge from "./CardBadge.jsx";
 import { ArrowUpRight } from "lucide-react";
-import MagneticWrapper from "./MagneticWrapper.jsx";
 
-const ProductCard = ({ label, name, text, cta, href, className, index = 0 }) => {
+const ProductCard = ({ label, name, text, cta, href, domain, featured, className, index = 0 }) => {
   const badge = (
     <CardBadge groupName="card">
       {label}
@@ -15,9 +14,14 @@ const ProductCard = ({ label, name, text, cta, href, className, index = 0 }) => 
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="hover:text-lime transition-colors inline-flex items-center gap-1.5"
+      className="hover:text-lime transition-colors inline-flex flex-wrap items-baseline gap-2 group/title"
     >
-      {name}
+      <span>{name}</span>
+      {domain && (
+        <span className="text-xs font-normal text-text-muted/70 group-hover/title:text-lime/90 font-mono">
+          ({domain})
+        </span>
+      )}
     </a>
   ) : name;
 
@@ -30,21 +34,17 @@ const ProductCard = ({ label, name, text, cta, href, className, index = 0 }) => 
       badge={badge}
       className={className}
     >
-
-
       {href && (
-        <div className="pt-6 border-t border-text/[0.05]">
-          <MagneticWrapper strength={0.1}>
-            <a 
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-2 text-xs font-medium text-lime hover:text-lime-400 transition-colors group/link"
-            >
-              {cta || "Visit Website"}
-              <ArrowUpRight size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-            </a>
-          </MagneticWrapper>
+        <div className="pt-4 mt-auto border-0">
+          <a 
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="inline-flex items-center gap-2 text-xs font-bold text-lime hover:text-lime-400 transition-colors group/link"
+          >
+            <span>{cta || (domain ? `Visit ${domain}` : "Visit Website")}</span>
+            <ArrowUpRight size={14} />
+          </a>
         </div>
       )}
     </FeatureCard>

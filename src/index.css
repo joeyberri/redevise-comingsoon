@@ -7,67 +7,21 @@
 @layer base {
   html {
     @apply bg-dark transition-colors duration-300 ease-in-out;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  html::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   body {
     @apply font-sans text-base text-text antialiased transition-colors duration-300 ease-in-out;
     position: relative;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-
-  body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-}
-
-/* ─── Premium Custom Scrollbars (Global Override) ─── */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(190, 255, 80, 0.2) transparent;
-  scrollbar-gutter: stable;
-}
-
-/* Chrome, Edge, Safari */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(190, 255, 80, 0.1);
-  border-radius: 10px;
-  border: 1px solid transparent;
-  background-clip: padding-box;
-}
-
-.custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: rgba(190, 255, 80, 0.25);
-  border: 1px solid rgba(190, 255, 80, 0.1);
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(190, 255, 80, 0.5) !important;
-  box-shadow: 0 0 10px rgba(190, 255, 80, 0.3);
-}
-
-/* Prevent scroll chaining utility */
-.overscroll-contain {
-  overscroll-behavior: contain;
-}
-
-@layer base {
-
 
   a {
     @apply no-underline;
@@ -78,22 +32,57 @@
   }
 
   ::selection {
-    @apply bg-lime/30 text-text;
+    background-color: rgb(var(--color-lime) / 0.25);
+    color: rgb(var(--color-text));
   }
 
-  /* Prevent browser autofill from forcing native background colors */
   input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 1000px rgb(var(--color-dark)) inset !important;
     -webkit-text-fill-color: rgb(var(--color-text)) !important;
     transition: background-color 5000s ease-in-out 0s;
   }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+/* ─── Premium Custom Scrollbars ─── */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-lime) / 0.25) transparent;
+  scrollbar-gutter: stable;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-lime) / 0.15);
+  border-radius: 10px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-lime) / 0.3);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-lime) / 0.55) !important;
+}
+
+.overscroll-contain {
+  overscroll-behavior: contain;
 }
 
 @layer components {
-  /* ─── Layout ─── */
   .container {
     @apply mx-auto max-w-container px-6 md:px-10;
   }
@@ -101,75 +90,68 @@
   /* ─── Pill / Label ─── */
   .pill {
     @apply inline-flex items-center font-sans text-xs font-semibold tracking-wide
-           text-text-muted px-3 py-1 rounded-full border border-dark-400/30 bg-dark-50/70
+           text-text-muted px-3.5 py-1 rounded-full border-0 bg-dark-100
            transition-colors duration-200 ease-in-out;
   }
 
-  /* ─── Section Title ─── */
+  /* ─── Section Headings ─── */
   .section-title {
-    @apply font-sans text-3xl font-bold leading-tight text-text
+    @apply font-heading text-3xl font-normal leading-tight text-text
            md:text-4xl lg:text-5xl tracking-tight transition-colors duration-300 ease-in-out;
   }
 
-  /* ─── Section Subtitle ─── */
   .section-sub {
     @apply max-w-xl text-base leading-relaxed text-text-muted md:text-lg transition-colors duration-300 ease-in-out;
   }
 
-  /* ─── Buttons ─── */
+  /* ─── Harmonized Buttons (Driven by Semantic Tokens) ─── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-lg bg-lime px-6 py-3
-           font-sans text-sm font-bold tracking-wide text-zinc-950
-           transition-all duration-200 ease-in-out hover:bg-lime-400 hover:shadow-md;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3
+           font-sans text-sm font-bold tracking-wide transition-colors duration-200 ease-in-out shadow-sm border-0;
+    background-color: rgb(var(--color-btn-bg));
+    color: rgb(var(--color-btn-text));
   }
 
-  .light .btn-primary {
-    @apply bg-zinc-900 text-white hover:bg-zinc-800 shadow-sm;
+  .btn-primary:hover {
+    background-color: rgb(var(--color-btn-hover));
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-lg border border-dark-400/50
-           bg-transparent px-6 py-3 font-sans text-sm font-semibold tracking-wide
-           text-text transition-all duration-200 ease-in-out hover:border-text/60
-           hover:bg-text/[0.04];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border-0
+           bg-dark-100 px-6 py-3 font-sans text-sm font-semibold tracking-wide
+           text-text transition-colors duration-200 ease-in-out hover:bg-dark-200;
   }
 
-  /* ─── Card Base ─── */
-  /* Optimized: Removed backdrop-blur-sm as it causes significant paint lag on scroll */
+  /* ─── Card Base (Borderless Contrast-First) ─── */
   .card {
-    @apply rounded-2xl border transition-all duration-300 ease-in-out;
-    border-color: rgb(var(--color-surface-border));
-    background-color: rgb(var(--color-surface-bg));
+    @apply rounded-2xl border-0 transition-colors duration-200 ease-in-out;
+    background-color: rgb(var(--color-dark-100) / 0.75);
   }
 
   .card:hover {
-    @apply border-dark-400/70;
-    background-color: rgb(var(--color-surface-bg));
+    background-color: rgb(var(--color-dark-200) / 0.9);
   }
 
-  /* ─── Glow Orb (Disabled for Performance & Speed) ─── */
   .glow-orb {
     display: none !important;
   }
 
   /* ─── Marquee Container ─── */
   .marquee-container {
-    @apply relative overflow-hidden border-y border-dark-400/30 bg-dark-50/40;
+    @apply relative overflow-hidden border-0 bg-dark-50/60;
   }
 
   .marquee-content {
-    @apply flex animate-marquee gap-12 py-4 px-6 whitespace-nowrap;
+    @apply flex animate-marquee gap-12 py-3.5 px-6 whitespace-nowrap;
     width: max-content;
   }
 
-  /* ─── Gradient Accent Line ─── */
   .gradient-line {
     background: linear-gradient(90deg, rgb(var(--color-lime)), rgb(var(--color-green)));
   }
 }
 
 @layer utilities {
-  /* ─── Animations ─── */
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -179,50 +161,31 @@
     animation: marquee 30s linear infinite;
   }
 
-  /* ─── Logo Gradient Text ─── */
+  /* ─── Dual-Tone Logo Gradient Text ─── */
   .text-gradient {
     background: linear-gradient(
-      135deg, 
-      rgb(var(--color-lime)) 0%, 
-      rgb(var(--color-lime-600)) 40%, 
-      rgb(var(--color-green)) 100%
+      135deg,
+      rgb(200 255 0) 0%,
+      rgb(0 168 67) 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
-  .light .text-gradient {
-    background-image: linear-gradient(
-      135deg, 
-      rgb(var(--color-lime-600)) 0%, 
-      rgb(var(--color-green)) 50%, 
-      rgb(var(--color-green-600)) 100%
-    );
-  }
-
-  /* ─── Subtle bg patterns ─── */
+  /* ─── Subtle Background Grid & Dots ─── */
   .bg-grid {
     background-image:
-      linear-gradient(rgba(var(--color-grid)) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--color-grid)) 1px, transparent 1px);
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
-  /* ─── Divider ─── */
   .divider {
-    @apply h-px w-full border-0;
-    background: linear-gradient(
-      90deg, 
-      transparent, 
-      rgba(var(--color-lime), 0.15), 
-      transparent
-    );
+    display: none;
   }
 
-  /* ─── Dot Grid Background ─── */
   .bg-dots {
-    background-image: radial-gradient(rgba(var(--color-text), 0.07) 1px, transparent 1px);
+    background-image: radial-gradient(rgb(var(--color-text) / 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
     -webkit-mask-image: radial-gradient(ellipse at center, white, transparent 70%);
     mask-image: radial-gradient(ellipse at center, white, transparent 70%);
@@ -230,8 +193,7 @@
 
   /* ─── Blog Prose Typography ─── */
   .blog-prose {
-    @apply text-text-muted text-base md:text-lg leading-relaxed;
-    font-family: var(--font-sans);
+    @apply text-text-muted text-base md:text-lg leading-relaxed font-sans;
   }
 
   .blog-prose h1 {
@@ -255,11 +217,7 @@
   }
 
   .blog-prose a {
-    @apply text-lime font-medium underline underline-offset-4 decoration-lime/30 transition-all duration-300;
-  }
-
-  .blog-prose a:hover {
-    @apply decoration-lime/80;
+    @apply text-primary font-medium underline underline-offset-4 decoration-primary/30 transition-colors duration-200 hover:decoration-primary/80;
   }
 
   .blog-prose strong {
@@ -271,8 +229,7 @@
   }
 
   .blog-prose blockquote {
-    @apply border-l-2 border-lime/40 pl-6 py-2 my-8 text-text-muted italic;
-    background: linear-gradient(90deg, rgba(var(--color-lime), 0.03), transparent);
+    @apply border-l-2 border-primary/50 pl-6 py-2 my-8 text-text-muted italic bg-dark-100/50 rounded-r-xl;
   }
 
   .blog-prose ul {
@@ -285,7 +242,7 @@
 
   .blog-prose ul li::before {
     content: "";
-    @apply absolute left-0 top-[0.65em] w-1.5 h-1.5 rounded-full bg-lime/50;
+    @apply absolute left-0 top-[0.65em] w-1.5 h-1.5 rounded-full bg-primary/60;
   }
 
   .blog-prose ol {
@@ -297,17 +254,16 @@
   }
 
   .blog-prose ol li::marker {
-    @apply text-lime/70 font-bold;
+    @apply text-primary/80 font-bold;
   }
 
   .blog-prose code {
-    @apply font-mono text-sm px-1.5 py-0.5 rounded-md text-lime-600 dark:text-lime-400;
-    background-color: rgb(var(--color-dark-200) / 0.6);
+    @apply font-mono text-sm px-1.5 py-0.5 rounded-md text-primary;
+    background-color: rgb(var(--color-dark-100));
   }
 
   .blog-prose pre {
-    @apply rounded-xl p-5 mb-6 overflow-x-auto border border-dark-400/30;
-    background-color: rgb(var(--color-dark-50));
+    @apply rounded-xl p-5 mb-6 overflow-x-auto border-0 bg-dark-100;
   }
 
   .blog-prose pre code {
@@ -315,13 +271,11 @@
   }
 
   .blog-prose hr {
-    @apply my-10 border-0;
-    background: linear-gradient(90deg, transparent, rgba(var(--color-lime), 0.15), transparent);
-    height: 1px;
+    @apply my-10 border-0 h-px bg-dark-200;
   }
 
   .blog-prose img {
-    @apply rounded-xl my-8 border border-dark-400/30;
+    @apply rounded-xl my-8 border-0;
   }
 
   .blog-prose table {
@@ -329,11 +283,10 @@
   }
 
   .blog-prose th {
-    @apply text-left text-xs font-bold uppercase tracking-widest text-text-subtle py-3 px-4 border-b border-dark-400/40;
+    @apply text-left text-xs font-bold uppercase tracking-widest text-text-subtle py-3 px-4 border-b border-dark-200;
   }
 
   .blog-prose td {
-    @apply py-3 px-4 text-sm border-b border-dark-400/20;
+    @apply py-3 px-4 text-sm border-b border-dark-100;
   }
 }
-

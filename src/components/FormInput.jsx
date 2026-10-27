@@ -21,8 +21,8 @@ const FormInput = ({
 
   return (
     <div className={cn(isBoxed ? "space-y-2" : "", wrapperClassName)}>
-      {label && isBoxed && (
-        <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
+      {label && (
+        <label className="block text-xs uppercase tracking-wider font-sans font-semibold text-text-muted">
           {label} {required && <span className="text-lime">*</span>}
         </label>
       )}
@@ -35,33 +35,21 @@ const FormInput = ({
         onKeyDown={onKeyDown}
         autoFocus={autoFocus}
         className={cn(
-          isBoxed
-            ? "w-full bg-text/[0.02] border border-text/10 focus:border-lime py-4 px-5 text-base rounded-none outline-none transition-colors placeholder:text-text/10 text-text"
-            : "w-full bg-transparent border-b-2 py-5 text-xl md:text-2xl outline-none transition-colors placeholder:text-text/10 text-text",
-          error
-            ? "border-red-500/50 focus:border-red-500"
-            : isBoxed
-            ? "focus:border-lime"
-            : "border-text/10 focus:border-lime",
+          "w-full bg-dark-50/80 hover:bg-dark-200/50 focus:bg-dark-200 border-0 py-4 px-5 text-base md:text-lg rounded-xl outline-none transition-colors placeholder:text-text-muted/40 text-text focus:ring-2 focus:ring-lime/30",
+          error && "ring-2 ring-red-500/50",
           className
         )}
         {...props}
       />
 
       {error && (
-        isBoxed ? (
-          <p className="text-red-500 text-xs flex items-center gap-1.5 mt-1">
-            <AlertCircle size={12} /> {error}
-          </p>
-        ) : (
-          <motion.p
-            initial={{ opacity: 0, y: -5 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-red-500 dark:text-red-400 text-xs mt-2 flex items-center gap-1.5"
-          >
-            <AlertCircle size={12} /> {error}
-          </motion.p>
-        )
+        <motion.p
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-red-400 text-xs mt-1.5 flex items-center gap-1.5"
+        >
+          <AlertCircle size={12} /> {error}
+        </motion.p>
       )}
     </div>
   );

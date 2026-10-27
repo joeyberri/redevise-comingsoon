@@ -446,10 +446,10 @@ const ServicesPage = ({ onOpenInquiry }) => {
                     key={domain.id}
                     onClick={() => setActiveDomainId(domain.id)}
                     className={cn(
-                      "px-5 py-4 text-left border rounded-none font-mono text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer outline-none whitespace-nowrap shrink-0",
+                      "px-5 py-3.5 text-left rounded-xl font-sans text-xs font-semibold uppercase tracking-wider transition-colors duration-200 cursor-pointer outline-none whitespace-nowrap shrink-0 border-0",
                       isActive
-                        ? "border-lime/40 bg-lime/[0.04] text-lime"
-                        : "border-text/5 hover:border-text/10 bg-text/[0.01] text-text-subtle"
+                        ? "bg-dark-200 text-lime font-bold"
+                        : "bg-dark-100/60 hover:bg-dark-200/50 text-text-muted"
                     )}
                   >
                     {domain.name}
@@ -458,13 +458,11 @@ const ServicesPage = ({ onOpenInquiry }) => {
               })}
             </div>
 
-            {/* Right Side (Content Panel with corner plus blueprint style) */}
+            {/* Right Side (Content Panel) */}
             <div className="lg:col-span-8">
               <CorneredBox
-                className="group/panel"
-                plusClassName="group-hover/panel:text-lime"
+                className="group/panel rounded-3xl bg-dark-100/80 p-8 md:p-12 border-0 shadow-2xl shadow-black/40"
               >
-
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeDomain.id}
@@ -473,7 +471,7 @@ const ServicesPage = ({ onOpenInquiry }) => {
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                   >
-                    <Heading level={3} variant="card-title" className="mb-4 text-lime font-space uppercase text-2xl tracking-tight">
+                    <Heading level={3} variant="card-title" className="mb-4 text-lime font-heading uppercase text-2xl tracking-tight">
                       {activeDomain.name}
                     </Heading>
 
@@ -486,13 +484,13 @@ const ServicesPage = ({ onOpenInquiry }) => {
                         <button
                           key={index}
                           onClick={() => onOpenInquiry?.(service)}
-                          className="group/item flex items-center justify-between p-4 border border-text/5 hover:border-lime/30 bg-text/[0.01] hover:bg-lime/[0.02] transition-all rounded-none text-left cursor-pointer outline-none overflow-visible relative"
+                          className="group/item flex items-center justify-between p-4 rounded-xl bg-dark-200/70 hover:bg-dark-200 transition-colors text-left cursor-pointer outline-none border-0 relative"
                         >
-                          <span className="font-mono text-[11px] text-text-muted group-hover/item:text-text transition-colors leading-relaxed pr-4">
+                          <span className="font-sans text-xs font-medium text-text-muted group-hover/item:text-text transition-colors leading-relaxed pr-4">
                             {service}
                           </span>
-                          <span className="text-text-subtle/50 group-hover/item:text-lime text-[9px] transition-colors shrink-0 font-mono tracking-widest uppercase">
-                            + APPLY
+                          <span className="text-lime text-xs transition-colors shrink-0 font-sans font-bold uppercase tracking-wider flex items-center gap-1">
+                            Inquire →
                           </span>
                         </button>
                       ))}

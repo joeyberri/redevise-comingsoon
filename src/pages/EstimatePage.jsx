@@ -210,10 +210,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                 key={type.id}
                 delay={i * 0.05}
                 className={cn(
-                  "cursor-pointer transition-all duration-300 !p-6",
+                  "cursor-pointer transition-colors duration-200 !p-6 border-0",
                   isSelected
-                    ? "!border-lime/50 ring-1 ring-lime/20"
-                    : "hover:!border-text/15"
+                    ? "!bg-dark-200"
+                    : "hover:!bg-dark-200/60"
                 )}
               >
                 <button
@@ -223,10 +223,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                   <div className="flex items-start gap-4">
                     <div
                       className={cn(
-                        "flex items-center justify-center w-12 h-12 rounded-none border transition-all duration-300 shrink-0",
+                        "flex items-center justify-center size-12 rounded-xl transition-colors duration-200 shrink-0 border-0",
                         isSelected
-                          ? "bg-lime/15 border-lime/30 text-lime"
-                          : "bg-text/5 border-text/10 text-text-subtle"
+                          ? "bg-lime/15 text-lime"
+                          : "bg-dark-200 text-text-muted"
                       )}
                     >
                       <Icon size={24} />
@@ -254,10 +254,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
                         transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                        className="absolute top-4 right-4 w-6 h-6 rounded-full bg-lime flex items-center justify-center"
+                        className="absolute top-4 right-4 w-6 h-6 rounded-full bg-btn-bg flex items-center justify-center shadow-sm"
                       >
                         <svg
-                          className="w-3.5 h-3.5 text-zinc-950"
+                          className="w-3.5 h-3.5 text-btn-text"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={3}
@@ -336,7 +336,6 @@ const EstimatePage = ({ onOpenInquiry }) => {
                           ? "bg-lime border-lime"
                           : "bg-dark-100 border-text/20 group-hover/dot:border-text/40"
                       )}
-                      whileHover={{ scale: 1.3 }}
                       whileTap={{ scale: 0.9 }}
                     />
                   </button>
@@ -432,10 +431,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                 key={tl.id}
                 delay={i * 0.04}
                 className={cn(
-                  "cursor-pointer transition-all duration-200 !p-6",
+                  "cursor-pointer transition-colors duration-200 !p-6 border-0",
                   isSelected
-                    ? "!border-lime/50 ring-1 ring-lime/20"
-                    : "hover:!border-text/15"
+                    ? "!bg-dark-200"
+                    : "hover:!bg-dark-200/60"
                 )}
               >
                 <button
@@ -444,10 +443,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                 >
                   <div
                     className={cn(
-                      "flex items-center justify-center w-12 h-12 rounded-none border transition-all duration-300 mb-4",
+                      "flex items-center justify-center size-12 rounded-xl transition-colors duration-200 mb-4 border-0",
                       isSelected
-                        ? "bg-lime/15 border-lime/30 text-lime"
-                        : "bg-text/5 border-text/10 text-text-subtle"
+                        ? "bg-lime/15 text-lime"
+                        : "bg-dark-200 text-text-muted"
                     )}
                   >
                     <Icon size={24} />
@@ -471,7 +470,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                   </p>
 
                   {/* Price hint */}
-                  <div className="mt-4 pt-3 border-t border-text/[0.06]">
+                  <div className="mt-4 pt-3 border-0">
                     <span
                       className={cn(
                         "text-xs font-sans font-semibold tracking-wide uppercase",
@@ -498,10 +497,10 @@ const EstimatePage = ({ onOpenInquiry }) => {
                           stiffness: 400,
                           damping: 25,
                         }}
-                        className="absolute top-4 right-4 w-6 h-6 rounded-full bg-lime flex items-center justify-center"
+                        className="absolute top-4 right-4 w-6 h-6 rounded-full bg-btn-bg flex items-center justify-center shadow-sm"
                       >
                         <svg
-                          className="w-3.5 h-3.5 text-zinc-950"
+                          className="w-3.5 h-3.5 text-btn-text"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={3}
@@ -533,11 +532,8 @@ const EstimatePage = ({ onOpenInquiry }) => {
             transition={{ type: "spring", stiffness: 450, damping: 26 }}
             className="fixed bottom-0 inset-x-0 z-40"
           >
-            {/* Top glow line */}
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-lime/30 to-transparent" />
-
             <div
-              className="border-t border-text/[0.08] bg-dark/95 shadow-2xl"
+              className="border-0 bg-dark-100/95 backdrop-blur-xl shadow-2xl shadow-black/80"
             >
               <div className="container mx-auto max-w-container px-6 md:px-10 py-4 md:py-5">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
@@ -558,7 +554,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
                     </div>
 
                     {/* Divider */}
-                    <div className="hidden sm:block w-px h-12 bg-text/[0.08]" />
+                    <div className="hidden sm:block w-px h-12 bg-dark-200" />
 
                     {/* Timeline + features */}
                     <div className="flex items-center gap-6">

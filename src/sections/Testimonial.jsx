@@ -7,7 +7,7 @@ const Testimonial = () => {
   const { t } = useLanguage();
 
   return (
-    <Section name="testimonial" showDivider spacing="generous" className="overflow-hidden relative z-10">
+    <Section name="testimonial" spacing="generous" className="overflow-hidden relative z-10">
       <div className="max-w-4xl mx-auto px-4 relative z-10">
         <FadeIn delay={0.05}>
           <Pill className="mb-8">
@@ -23,7 +23,7 @@ const Testimonial = () => {
         
         <FadeIn delay={0.15}>
           <div className="flex items-center gap-4">
-            <div className="size-11 rounded-full bg-lime/10 border border-lime/30 flex items-center justify-center font-sans font-bold text-sm text-lime shrink-0">
+            <div className="size-12 rounded-full bg-lime/15 flex items-center justify-center font-sans font-bold text-sm text-lime shrink-0 border-0">
               KB
             </div>
             <div>

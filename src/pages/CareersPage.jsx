@@ -1,68 +1,80 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Check, AlertCircle } from "lucide-react";
 import Section from "../components/Section.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import FadeIn from "../components/FadeIn.jsx";
 import MagneticButton from "../components/MagneticButton.jsx";
-import { cn } from "../utils/cn";
-import { useLanguage } from "../utils/LanguageContext.jsx";
-import { useSEO } from "../utils/useSEO.js";
-import { Check, AlertCircle } from "lucide-react";
-import { Link } from "react-router-dom";
-
-import CorneredBox from "../components/CorneredBox.jsx";
 import FormInput from "../components/FormInput.jsx";
 import FormTextArea from "../components/FormTextArea.jsx";
+import { useLanguage } from "../utils/LanguageContext.jsx";
+import { useSEO } from "../utils/useSEO.js";
+import { cn } from "../utils/cn.js";
 
 const CareersPage = () => {
   const { t } = useLanguage();
-  useSEO({ key: "about" }); // Fallback SEO keys or generic
-
-  const roles = t("careers.roles") || [];
+  useSEO({ key: "careers" });
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     role: "",
-    portfolio: "",
     resume: "",
+    portfolio: "",
     message: "",
   });
 
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState("");
+  const [submitError, setSubmitError] = useState(null);
 
-  const validate = () => {
-    const errors = {};
-    if (!formData.name.trim()) errors.name = t("careers.errors.validateName");
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim() || !emailRegex.test(formData.email)) {
-      errors.email = t("careers.errors.validateEmail");
-    }
+  const roles = t("careers.roles") || [];
 
-    if (!formData.role) errors.role = t("careers.errors.validateRole");
-    
-    if (!formData.resume.trim() || !formData.resume.startsWith("http")) {
-      errors.resume = t("careers.errors.validateResume");
-    }
-
-    if (!formData.message.trim()) {
-      errors.message = "Please tell us about what you've built";
-    }
-
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleInputChange = (field, val) => {
-    setFormData((prev) => ({ ...prev, [field]: val }));
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (validationErrors[field]) {
       setValidationErrors((prev) => ({ ...prev, [field]: "" }));
     }
+  };
+
+  const validate = () => {
+    const errors = {};
+    if (!formData.name.trim()) errors.name = t("careers.errors.name");
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = t("careers.errors.email");
+    } else if (!emailRegex.test(formData.email.trim())) {
+      errors.email = t("careers.errors.emailInvalid");
+    }
+
+    if (!formData.role) errors.role = t("careers.errors.role");
+    
+    if (!formData.resume.trim()) {
+      errors.resume = t("careers.errors.resume");
+    } else {
+      try {
+        new URL(formData.resume.trim());
+      } catch {
+        errors.resume = t("careers.errors.resumeInvalid");
+      }
+    }
+
+    if (formData.portfolio.trim()) {
+      try {
+        new URL(formData.portfolio.trim());
+      } catch {
+        errors.portfolio = t("careers.errors.portfolioInvalid");
+      }
+    }
+
+    if (!formData.message.trim()) errors.message = t("careers.errors.message");
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
@@ -70,23 +82,21 @@ const CareersPage = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    setSubmitError("");
+    setSubmitError(null);
 
     try {
-      const response = await fetch("/api/send-career", {
+      const response = await fetch("/api/careers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        const err = await response.json().catch(() => ({}));
-        throw new Error(err.error || "Server error");
+        throw new Error("Failed to submit application");
       }
 
       setIsSubmitted(true);
-    } catch (err) {
-      console.error("Careers submission error:", err);
+    } catch (_err) {
       setSubmitError(t("careers.errors.submitFail"));
     } finally {
       setIsSubmitting(false);
@@ -94,23 +104,17 @@ const CareersPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark pt-32 pb-24">
-      {/* Hero */}
-      <Section name="careers-hero" className="pb-8" spacing="tight">
+    <div className="pt-24 pb-16 min-h-screen">
+      {/* Hero Section */}
+      <Section name="careers-hero" spacing="tight">
         <div className="max-w-3xl mx-auto text-center">
-          <FadeIn delay={0.1}>
-            <Pill animated className="mb-6">
-              CAREERS
-            </Pill>
-          </FadeIn>
-          <FadeIn delay={0.2}>
+          <FadeIn>
+            <Pill className="mb-6">{t("careers.pill")}</Pill>
             <Heading level={1} variant="hero-title" className="mb-6">
-              {t("careers.heroTitle")}
+              {t("careers.title")}
             </Heading>
-          </FadeIn>
-          <FadeIn delay={0.3}>
-            <Text variant="hero-sub" className="mx-auto max-w-2xl">
-              {t("careers.heroSub")}
+            <Text variant="hero-sub" className="mx-auto">
+              {t("careers.subtitle")}
             </Text>
           </FadeIn>
         </div>
@@ -121,22 +125,20 @@ const CareersPage = () => {
         <div className="max-w-2xl mx-auto">
           <AnimatePresence mode="wait">
             {isSubmitted ? (
-              <CorneredBox
-                as={motion.div}
+              <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.98, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="group relative border border-text/[0.08] bg-dark-100/60 p-12 text-center overflow-visible"
+                className="group relative rounded-3xl bg-dark-100/80 p-12 text-center border-0 shadow-2xl shadow-black/40"
               >
-
-                <div className="size-20 rounded-full bg-lime/10 border border-lime/20 flex items-center justify-center text-lime mx-auto mb-8 shadow-[0_0_30px_rgba(190,255,80,0.1)] animate-pulse">
+                <div className="size-20 rounded-full bg-lime/15 flex items-center justify-center text-lime mx-auto mb-8 border-0">
                   <Check size={40} />
                 </div>
-                <Heading level={2} className="text-3xl mb-4">
+                <Heading level={2} className="text-3xl mb-4 text-text">
                   {t("careers.success.title")}
                 </Heading>
-                <Text className="text-text-subtle max-w-md mx-auto mb-10">
+                <Text className="text-text-muted max-w-md mx-auto mb-10">
                   {t("careers.success.sub")}
                 </Text>
                 <Link to="/">
@@ -144,19 +146,17 @@ const CareersPage = () => {
                     {t("careers.common.backHome")}
                   </MagneticButton>
                 </Link>
-                  </CorneredBox>
+              </motion.div>
             ) : (
-              <CorneredBox
-                as={motion.div}
+              <motion.div
                 key="form"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="group relative border border-text/[0.08] bg-dark-100/60 p-8 md:p-12 overflow-visible"
+                className="group relative rounded-3xl bg-dark-100/80 p-8 md:p-12 border-0 shadow-2xl shadow-black/40"
               >
-
                 <div className="mb-10">
-                  <Heading level={2} variant="card-title" className="mb-2">
+                  <Heading level={2} variant="card-title" className="mb-2 text-text">
                     {t("careers.sectionTitle")}
                   </Heading>
                   <Text variant="small" className="text-text-muted">
@@ -186,7 +186,7 @@ const CareersPage = () => {
 
                   {/* Role Selector Grid */}
                   <div className="space-y-3">
-                    <label className="block text-xs uppercase tracking-widest font-mono text-text-subtle">
+                    <label className="block text-xs uppercase tracking-wider font-sans font-semibold text-text-muted">
                       {t("careers.fields.role")} <span className="text-lime">*</span>
                     </label>
                     
@@ -199,10 +199,10 @@ const CareersPage = () => {
                             type="button"
                             onClick={() => handleInputChange("role", role)}
                             className={cn(
-                              "px-5 py-4 border text-left rounded-none transition-all duration-200 text-xs uppercase tracking-wider font-mono flex items-center justify-between cursor-pointer",
+                              "px-5 py-4 text-left rounded-xl transition-colors duration-200 text-xs uppercase tracking-wider font-sans font-semibold flex items-center justify-between cursor-pointer border-0",
                               isSelected
-                                ? "border-lime/40 bg-lime/[0.04] text-text"
-                                : "border-text/10 hover:border-text/20 bg-text/[0.01] text-text-subtle"
+                                ? "bg-dark-200 text-lime"
+                                : "bg-dark-50/80 hover:bg-dark-200/50 text-text-muted"
                             )}
                           >
                             <span>{role}</span>
@@ -213,7 +213,7 @@ const CareersPage = () => {
                     </div>
 
                     {validationErrors.role && (
-                      <p className="text-red-500 text-xs flex items-center gap-1.5 mt-1">
+                      <p className="text-red-400 text-xs flex items-center gap-1.5 mt-1">
                         <AlertCircle size={12} /> {validationErrors.role}
                       </p>
                     )}
@@ -247,7 +247,7 @@ const CareersPage = () => {
                   />
 
                   {submitError && (
-                    <div className="flex items-center gap-2 text-red-500 text-sm py-2">
+                    <div className="flex items-center gap-2 text-red-400 text-sm py-2">
                       <AlertCircle size={16} />
                       <span>{submitError}</span>
                     </div>
@@ -263,13 +263,12 @@ const CareersPage = () => {
                         "px-10 py-4",
                         isSubmitting && "opacity-50 pointer-events-none"
                       )}
-                      withBeam
                     >
                       {isSubmitting ? t("common.sending") : t("careers.common.apply")}
                     </MagneticButton>
                   </div>
                 </form>
-                  </CorneredBox>
+              </motion.div>
             )}
           </AnimatePresence>
         </div>

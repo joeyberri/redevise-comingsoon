@@ -428,7 +428,7 @@ Project Details:
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="relative transition-transform duration-700 group-hover/secretary:scale-[1.02]"
+                  className="relative"
                 >
                   <img
                     src={secretaryImg}
@@ -446,12 +446,9 @@ Project Details:
                   initial={{ scale: 0, x: 20 }}
                   animate={{ scale: 1, x: 0 }}
                   transition={{ delay: 0.4, type: "spring", stiffness: 350 }}
-                  className="absolute top-[28%] right-[15%] bg-slate-900/90 backdrop-blur-xl border border-slate-700/50 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-3 z-20"
+                  className="absolute top-[28%] right-[15%] bg-dark-200/90 backdrop-blur-xl px-3.5 py-2 rounded-xl shadow-lg flex items-center gap-2.5 z-20 border-0"
                 >
-                  <div className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-lime shadow-[0_0_10px_rgba(190,255,80,0.8)]"></span>
-                  </div>
+                  <span className="size-2 rounded-full bg-lime shrink-0" />
                   <div className="flex flex-col">
                     <Text variant="tiny" className="text-white font-bold uppercase tracking-widest text-[10px] leading-none mb-1">{t('common.liveAssistant')}</Text>
                     <Text variant="tiny" className="text-slate-300 text-[9px] leading-none">{t('common.readyToHelp')}</Text>
@@ -460,22 +457,16 @@ Project Details:
               </div>
             </motion.div>
 
-            <CorneredBox
-              as={motion.div}
-              initial={{ scale: 0.98, y: 20, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.98, y: 20, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 350, mass: 0.5 }}
-              className="group/modal relative w-full rounded-none border border-text/[0.08] bg-dark-100/60 shadow-[0_0_100px_rgba(0,0,0,0.5)] backdrop-blur-md flex flex-col overflow-visible"
+            <div
+              className="group/modal relative w-full rounded-3xl border-0 bg-dark-100 shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
               style={{ maxHeight: "90vh" }}
-              plusClassName="group-hover/modal:text-lime"
             >
 
               {/* Inner layout container */}
-              <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-none">
+              <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-3xl">
 
                 {/* ── Left Panel Spacer (for Secretary Image on Desktop) ── */}
-                <div className="hidden lg:flex w-full lg:w-[320px] shrink-0 border-r border-text/[0.05] relative" />
+                <div className="hidden lg:flex w-full lg:w-[320px] shrink-0 relative" />
 
                 {/* ── Right Panel ── */}
                 <div className="flex-1 flex flex-col min-h-0 relative bg-gradient-to-br from-transparent to-text/[0.02]">
@@ -613,16 +604,16 @@ Project Details:
                                     key={interest}
                                     onClick={() => toggleInterest(interest)}
                                     className={cn(
-                                      "px-5 py-4 rounded-none border text-left transition-all duration-200 flex items-center gap-4 cursor-pointer",
+                                      "px-5 py-4 rounded-xl text-left transition-colors duration-200 flex items-center gap-4 cursor-pointer border-0",
                                       isSelected
-                                        ? "border-lime/40 bg-lime/5"
-                                        : "border-text/10 hover:border-text/20 bg-text/[0.02]"
+                                        ? "bg-dark-200 text-text font-semibold"
+                                        : "bg-dark-50/80 hover:bg-dark-200/50 text-text-muted"
                                     )}
                                   >
                                     <div
                                       className={cn(
-                                        "size-5 rounded-md border-2 flex items-center justify-center transition-all shrink-0",
-                                        isSelected ? "border-lime bg-lime" : "border-text/20"
+                                        "size-5 rounded-lg flex items-center justify-center transition-colors shrink-0",
+                                        isSelected ? "bg-lime text-dark" : "bg-dark-200"
                                       )}
                                     >
                                       {isSelected && (
@@ -636,7 +627,7 @@ Project Details:
                                     <span
                                       className={cn(
                                         "font-medium transition-colors",
-                                        isSelected ? "text-text" : "text-text/60"
+                                        isSelected ? "text-text" : "text-text-muted"
                                       )}
                                     >
                                       {interest}
@@ -646,7 +637,7 @@ Project Details:
                               })}
                             </div>
 
-                            <div className="flex items-center justify-between pt-6 border-t border-text/[0.05] mt-auto">
+                            <div className="flex items-center justify-between pt-6 border-0 mt-auto">
                               <button
                                 onClick={() => setStep(3)}
                                 className="text-text/30 hover:text-text transition-colors text-xs font-bold uppercase tracking-widest cursor-pointer"
@@ -692,13 +683,11 @@ Project Details:
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-5 justify-center">
-                              <CorneredBox
-                                as="button"
+                              <button
                                 onClick={() => handleChoice("book")}
-                                className="flex-1 group/btn p-8 rounded-none border border-lime/20 bg-lime/5 hover:bg-lime/10 transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
-                                plusClassName="group-hover/btn:text-lime"
+                                className="flex-1 p-8 rounded-2xl bg-dark-200 hover:bg-dark-300 transition-colors text-center flex flex-col items-center gap-4 cursor-pointer border-0"
                               >
-                                <div className="size-16 rounded-2xl bg-lime text-dark-100 flex items-center justify-center shadow-[0_0_30px_rgba(190,255,80,0.2)] group-hover/btn:scale-110 transition-transform">
+                                <div className="size-16 rounded-2xl bg-lime text-dark flex items-center justify-center shadow-sm">
                                   <Calendar size={30} />
                                 </div>
                                 <div>
@@ -709,16 +698,13 @@ Project Details:
                                     {t('modal.steps.bookCallSub')}
                                   </div>
                                 </div>
-                              </CorneredBox>
+                              </button>
 
-                              <CorneredBox
-                                as="button"
+                              <button
                                 onClick={() => handleChoice("message")}
-                                className="flex-1 group/btn p-8 rounded-none border border-text/10 bg-text/[0.02] hover:bg-text/[0.05] transition-all text-center flex flex-col items-center gap-4 cursor-pointer"
-                                plusClassName="group-hover/btn:text-lime"
+                                className="flex-1 p-8 rounded-2xl bg-dark-200/60 hover:bg-dark-200 transition-colors text-center flex flex-col items-center gap-4 cursor-pointer border-0"
                               >
-
-                                <div className="size-16 rounded-2xl bg-text/10 text-text flex items-center justify-center group-hover/btn:scale-110 transition-transform">
+                                <div className="size-16 rounded-2xl bg-dark-300 text-text flex items-center justify-center">
                                   <MessageSquare size={30} />
                                 </div>
                                 <div>
@@ -729,7 +715,7 @@ Project Details:
                                     {t('modal.steps.sendMessageSub')}
                                   </div>
                                 </div>
-                              </CorneredBox>
+                              </button>
                             </div>
                           </div>
                         )}
@@ -795,7 +781,7 @@ Project Details:
                         {/* ── STEP 4b: Book (Calendar) ── */}
                         {step === 4 && choice === "book" && (
                           <div className="flex-1 flex flex-col min-h-0">
-                            <div className="px-6 md:px-10 py-6 border-b border-text/10 flex items-center justify-start gap-8 bg-dark-100/30 backdrop-blur-md shrink-0">
+                            <div className="px-6 md:px-10 py-6 border-0 flex items-center justify-start gap-8 bg-dark-50/50 shrink-0">
                               <div className="flex items-center gap-6">
                                 <button
                                   onClick={() => {
@@ -833,7 +819,7 @@ Project Details:
                                   initial={{ y: 20, opacity: 0 }}
                                   animate={{ y: 0, opacity: 1 }}
                                   exit={{ y: 20, opacity: 0 }}
-                                  className="shrink-0 px-6 py-4 border-t border-text/10 bg-dark-100/80 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                                  className="shrink-0 px-6 py-4 border-0 bg-dark-200/90 backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                                 >
                                   <div className="min-w-0">
                                     <Text variant="tiny" className="text-lime mb-0.5">
@@ -876,7 +862,7 @@ Project Details:
                   </AnimatePresence>
                 </div>
               </div>
-            </CorneredBox>
+            </div>
           </div>
         </motion.div>
       )}

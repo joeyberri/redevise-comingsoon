@@ -7,7 +7,7 @@ const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
     <div
       ref={innerRef}
       data-step-index={index}
-      className="scroll-mt-32 border-t border-text/[0.06] pt-12 lg:pt-0 lg:border-t-0 first:border-t-0 first:pt-0"
+      className="scroll-mt-32 rounded-2xl bg-dark-100/75 p-8 transition-colors border-0 mb-6"
     >
       <FadeIn delay={0.05} direction="up" fullWidth>
         {/* Mobile/Tablet Header (hidden on desktop) */}
@@ -20,7 +20,7 @@ const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
               {step.title}
             </Heading>
           </div>
-          <Pill className="text-[10px] bg-lime/10 border-lime/20 text-lime">{step.duration}</Pill>
+          <Pill className="text-[10px] bg-dark-200 text-lime border-0">{step.duration}</Pill>
         </div>
 
         {/* Step description */}
@@ -30,11 +30,11 @@ const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
 
         {/* Outcome Callout */}
         {step.outcome && (
-          <div className="border-l-2 border-lime/40 pl-5 py-1 mt-6 bg-lime/[0.01]">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-widest text-lime mb-1.5">
-              {"// "}{whatYouGetLabel}
+          <div className="rounded-xl bg-dark-200 p-5 mt-6 border-0">
+            <p className="font-sans text-xs font-bold uppercase tracking-wider text-lime mb-1.5">
+              {whatYouGetLabel}
             </p>
-            <Text variant="small" className="text-text-muted/90">
+            <Text variant="small" className="text-text-muted">
               {step.outcome}
             </Text>
           </div>

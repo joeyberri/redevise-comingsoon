@@ -12,7 +12,7 @@ const BlogPostCard = ({ post, variant = "default" }) => {
     <Link
       to={`/blog/${post.slug}`}
       className={cn(
-        "group card flex flex-col h-full overflow-hidden",
+        "group card flex flex-col h-full overflow-hidden border-0 bg-dark-100/75 hover:bg-dark-200/90 transition-colors duration-200 rounded-2xl",
         isCompact && "p-5"
       )}
     >
@@ -22,7 +22,7 @@ const BlogPostCard = ({ post, variant = "default" }) => {
           <img
             src={post.coverImage}
             alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover"
           />
         </div>
       )}
@@ -33,7 +33,7 @@ const BlogPostCard = ({ post, variant = "default" }) => {
           {post.tags.slice(0, isCompact ? 2 : 3).map((tag) => (
             <span
               key={tag}
-              className="rounded border border-text/10 bg-text/5 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-text-subtle"
+              className="rounded-full bg-dark-200 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-text-muted border-0"
             >
               {tag}
             </span>
@@ -43,7 +43,7 @@ const BlogPostCard = ({ post, variant = "default" }) => {
         {/* Title */}
         <h3
           className={cn(
-            "font-sans font-bold text-text group-hover:text-lime transition-colors duration-300 leading-snug tracking-tight",
+            "font-heading font-normal text-text group-hover:text-lime transition-colors duration-200 leading-snug tracking-tight",
             isCompact ? "text-sm mb-2" : "text-lg mb-3"
           )}
         >
@@ -62,12 +62,12 @@ const BlogPostCard = ({ post, variant = "default" }) => {
 
         {/* Meta Row / Read Link */}
         {isCompact ? (
-          <span className="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-lime opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-lime">
             {t("blog.read")}
             <ChevronRight size={12} />
           </span>
         ) : (
-          <div className="mt-5 pt-4 border-t border-dark-400/20 flex items-center justify-between text-text-subtle text-xs">
+          <div className="mt-auto pt-4 border-0 flex items-center justify-between text-text-subtle text-xs">
             <span className="flex items-center gap-1.5">
               <Calendar size={11} />
               {new Date(post.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {

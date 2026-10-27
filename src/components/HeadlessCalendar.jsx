@@ -134,7 +134,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
               ? "opacity-15 cursor-not-allowed"
               : "hover:bg-lime/10 hover:text-lime cursor-pointer",
             isSelected
-              ? "bg-lime text-dark-100 shadow-[0_0_20px_rgba(190,255,80,0.3)]"
+              ? "bg-btn-bg text-btn-text font-bold shadow-sm"
               : "text-text/60"
           )}
         >
@@ -172,13 +172,13 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
         <div className="flex gap-2">
           <button
             onClick={prevMonth}
-            className="p-2 rounded-full border border-text/10 hover:bg-text/5 transition-colors cursor-pointer"
+            className="p-2 rounded-full bg-dark-200 hover:bg-dark-300 text-text transition-colors cursor-pointer border-0"
           >
             <ChevronLeft size={18} />
           </button>
           <button
             onClick={nextMonth}
-            className="p-2 rounded-full border border-text/10 hover:bg-text/5 transition-colors cursor-pointer"
+            className="p-2 rounded-full bg-dark-200 hover:bg-dark-300 text-text transition-colors cursor-pointer border-0"
           >
             <ChevronRight size={18} />
           </button>
@@ -190,7 +190,7 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
         {t('calendar.weekdays').map((day) => (
           <div
             key={day}
-            className="text-[10px] font-bold text-text/20 uppercase py-1.5"
+            className="text-[10px] font-bold text-text/30 uppercase py-1.5"
           >
             {day}
           </div>
@@ -207,13 +207,13 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="flex flex-col pt-5 border-t border-text/10"
+            className="flex flex-col pt-5 border-0"
           >
             <div className="flex items-center gap-2 mb-3">
               <Clock size={13} className="text-lime" />
               <Text
                 variant="tiny"
-                className="text-text/40 font-bold uppercase tracking-widest"
+                className="text-text-muted font-bold uppercase tracking-widest"
               >
                 {t('common.availableTimes')}
               </Text>
@@ -240,11 +240,11 @@ const HeadlessCalendar = ({ onSelectSlot, isBooking }) => {
                       })
                     }
                     className={cn(
-                      "p-3 rounded-xl border border-text/10 bg-text/[0.02] hover:border-lime/50 hover:bg-lime/5 transition-all text-center group cursor-pointer",
+                      "p-3 rounded-xl bg-dark-200/80 hover:bg-dark-200 text-text hover:text-lime transition-colors text-center group cursor-pointer border-0",
                       isBooking && "opacity-50 pointer-events-none"
                     )}
                   >
-                    <span className="font-bold text-sm group-hover:text-lime transition-colors">
+                    <span className="font-bold text-sm transition-colors">
                       {slot.time}
                     </span>
                   </button>

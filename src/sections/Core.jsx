@@ -5,7 +5,6 @@ import CoreOrb from "../components/CoreOrb.jsx";
 import { Heading, Text } from "../components/Typography.jsx";
 import Pill from "../components/Pill.jsx";
 import Grid from "../components/Grid.jsx";
-import ScrollParallax from "../components/ScrollParallax.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 
 const Core = () => {
@@ -13,29 +12,25 @@ const Core = () => {
 
   return (
     <Section name="core" className="relative" spacing="generous">
-      {/* Cinematic Intelligence Core */}
+      {/* Background Core Aura */}
       <div className="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none">
-        <CoreOrb className="opacity-40" />
+        <CoreOrb className="opacity-30" />
       </div>
 
       <FadeIn>
-        <div className="relative overflow-hidden rounded-[2rem] lg:rounded-r-none border border-text/[0.08] bg-text/[0.02] backdrop-blur-lg lg:mr-[calc(-50vw+50%)] lg:pr-[calc(50vw-50%+5rem)]">
-          {/* Subtle grid inside the block */}
-          <div className="absolute inset-0 bg-grid opacity-20" />
-          
-
-          <Grid cols={2} gap={12} className="relative z-10 p-8 md:gap-16 md:p-16 lg:p-20">
+        <div className="relative overflow-hidden rounded-3xl bg-dark-100/80 p-8 md:p-12 lg:p-16 border-0 shadow-2xl shadow-black/40">
+          <Grid cols={2} gap={12} className="relative z-10 md:gap-16">
             {/* Left: Copy */}
             <div>
-              <Pill className="mb-8 border-text/[0.1] text-text-subtle">
-                {t('core.pill')}
+              <Pill className="mb-8">
+                {t("core.pill")}
               </Pill>
-              <Heading level={2} className="mb-6 md:text-5xl lg:text-6xl">
-                {t('core.title')}
+              <Heading level={2} className="mb-6 md:text-5xl lg:text-6xl text-text">
+                {t("core.title")}
               </Heading>
               <div className="space-y-6">
-                {t('core.paragraphs').map((para, i) => (
-                  <Text key={i} className="text-lg">
+                {t("core.paragraphs").map((para, i) => (
+                  <Text key={i} className="text-lg text-text-muted leading-relaxed">
                     {para}
                   </Text>
                 ))}
@@ -44,10 +39,10 @@ const Core = () => {
 
             {/* Right: Capabilities */}
             <div className="flex items-center">
-              <ul className="space-y-6 w-full">
-                {t('core.capabilities').map((cap, i) => (
+              <ul className="space-y-4 w-full">
+                {t("core.capabilities").map((cap, i) => (
                   <FadeIn key={i} delay={0.2 + i * 0.1} direction="left">
-                    <FeatureItem className="text-base py-3 border-b border-text/[0.05] last:border-0">
+                    <FeatureItem className="text-base py-2.5">
                       {cap}
                     </FeatureItem>
                   </FadeIn>
