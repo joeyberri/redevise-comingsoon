@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Search, Calendar, Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
 import { getAllPosts, getAllTags, getReadingTime } from "../utils/blog";
 import { useSEO } from "../utils/useSEO.js";
+import { getBlogListSchema } from "../utils/schemas.js";
 import CtaFooter from "../sections/CtaFooter.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import BlogPostCard from "../components/BlogPostCard.jsx";
@@ -26,7 +27,7 @@ const BlogListPage = ({ onOpenInquiry = () => {} }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 9;
 
-  useSEO({ key: "blog" });
+  useSEO({ key: "blog", schema: getBlogListSchema() });
 
   const filteredPosts = useMemo(() => {
     return allPosts.filter((post) => {

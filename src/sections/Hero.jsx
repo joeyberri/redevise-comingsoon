@@ -51,9 +51,9 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
           spotlightSize={900}
         >
           {/* Main Hero Content Area */}
-          <div className="mx-auto w-full max-w-[1600px] px-6 md:px-12 lg:px-16 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 xl:gap-12">
+          <div className="mx-auto w-full max-w-[1520px] px-6 md:px-12 lg:px-16 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 xl:gap-16">
 
-            {/* Left Column: Massive Headline, 3-Line Subtitle, and CTAs */}
+            {/* Left Column: Headline, Subtitle, and CTAs */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -61,8 +61,8 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               viewport={{ once: true }}
               className="w-full lg:w-auto flex-1"
             >
-              {/* Massive 2-Line Display Title — Tightly Locked */}
-              <h1 className="font-heading font-normal tracking-[-0.03em] leading-[0.82] text-[4rem] sm:text-[5.5rem] md:text-[6.75rem] lg:text-[7.5rem] xl:text-[8.75rem] 2xl:text-[12rem] mb-8 md:mb-10 select-none">
+              {/* Slightly tightened xl/2xl scale so "enGineered" doesn't crowd the mascot */}
+              <h1 className="font-heading font-normal tracking-[-0.03em] leading-[0.84] text-[4rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7.25rem] xl:text-[8.25rem] 2xl:text-[10.25rem] mb-7 md:mb-9 select-none">
                 <motion.span
                   variants={itemVariants}
                   className="block text-text"
@@ -101,7 +101,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               <motion.div variants={itemVariants} className="mb-8 md:mb-10">
                 <Text
                   variant="hero-sub"
-                  className="text-text-muted max-w-[620px] text-base sm:text-lg md:text-[1.35rem] md:leading-[1.45] font-normal"
+                  className="text-text-muted max-w-[600px] text-base sm:text-lg md:text-[1.3rem] md:leading-[1.5] font-normal"
                 >
                   {t("hero.sub")}
                 </Text>
@@ -132,21 +132,45 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               </motion.div>
             </motion.div>
 
-            {/* Right Column: Mascot Illustration */}
+            {/* Right Column: Mascot Illustration with Centered, Balanced Anchor */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-              className="hidden lg:flex items-center justify-end lg:w-[420px] xl:w-[490px] 2xl:w-[550px] shrink-0 select-none pointer-events-none"
+              className="relative hidden lg:flex flex-col items-center justify-center lg:w-[400px] xl:w-[460px] 2xl:w-[510px] lg:-mt-4 shrink-0 select-none pointer-events-none"
             >
+              {/* Soft centered backlight behind the robot torso (replaces the lopsided right-0 blob) */}
+              <div
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] xl:w-[360px] h-[320px] xl:h-[360px] rounded-full bg-lime/[0.06] blur-[90px] pointer-events-none"
+                aria-hidden="true"
+              />
+
+              {/* Floating Robot (clipPath trims the bottom 9% to hide the baked-in grey SVG shadow) */}
               <motion.img
                 src={robotWaving}
                 alt="Redevise Mascot"
                 aria-hidden="true"
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="w-full h-auto object-contain"
+                style={{ clipPath: "inset(0 0 9% 0)" }}
+                className="w-full h-auto object-contain relative z-10"
               />
+
+              {/* Stationary, Centered Floor Shadow + Subtle Lime Rim Anchor */}
+              <div className="relative w-full flex justify-center -mt-6 z-0">
+                {/* Crisp dark-lime floor ellipse that pulses subtly in sync with the float */}
+                <motion.div
+                  animate={{ scaleX: [1, 0.88, 1], opacity: [0.55, 0.35, 0.55] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-[180px] xl:w-[210px] h-[24px] rounded-[100%] bg-lime/[0.18] blur-[10px]"
+                  aria-hidden="true"
+                />
+                {/* Soft wider ambient ground bleed */}
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] xl:w-[300px] h-[40px] rounded-[100%] bg-lime/[0.10] blur-[28px]"
+                  aria-hidden="true"
+                />
+              </div>
             </motion.div>
 
             {/* Mobile / Tablet Mascot Illustration */}
@@ -154,7 +178,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-              className="flex lg:hidden items-center justify-center w-full max-w-[280px] sm:max-w-[340px] mx-auto mt-4 select-none pointer-events-none"
+              className="relative flex lg:hidden flex-col items-center justify-center w-full max-w-[280px] sm:max-w-[340px] mx-auto mt-4 select-none pointer-events-none"
             >
               <motion.img
                 src={robotWaving}
@@ -162,7 +186,12 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
                 aria-hidden="true"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="w-full h-auto object-contain"
+                style={{ clipPath: "inset(0 0 9% 0)" }}
+                className="w-full h-auto object-contain relative z-10"
+              />
+              <div
+                className="-mt-4 w-[150px] h-[20px] rounded-[100%] bg-lime/[0.16] blur-[12px] pointer-events-none"
+                aria-hidden="true"
               />
             </motion.div>
 

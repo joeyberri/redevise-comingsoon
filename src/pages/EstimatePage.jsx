@@ -8,6 +8,7 @@ import MagneticButton from "../components/MagneticButton.jsx";
 import { cn } from "../utils/cn";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import { getEstimateSchema } from "../utils/schemas.js";
 import { useLocation } from "react-router-dom";
 import {
   Globe,
@@ -37,7 +38,7 @@ import AnimatedPrice from "../components/estimate/AnimatedPrice.jsx";
 /* ─── Main Page ─── */
 const EstimatePage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
-  useSEO({ key: "estimate" });
+  useSEO({ key: "estimate", schema: getEstimateSchema() });
   const location = useLocation();
   const [selectedType, setSelectedType] = useState(() => {
     if (location.state?.projectType) {

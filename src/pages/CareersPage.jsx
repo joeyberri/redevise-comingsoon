@@ -11,11 +11,12 @@ import FormInput from "../components/FormInput.jsx";
 import FormTextArea from "../components/FormTextArea.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import { getCareersSchema } from "../utils/schemas.js";
 import { cn } from "../utils/cn.js";
 
 const CareersPage = () => {
   const { t } = useLanguage();
-  useSEO({ key: "careers" });
+  useSEO({ key: "careers", schema: getCareersSchema() });
 
   const [formData, setFormData] = useState({
     name: "",

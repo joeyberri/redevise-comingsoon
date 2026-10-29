@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "./LanguageContext";
 
-export function useSEO({ key, title, description, canonicalPath } = {}) {
+export function useSEO({ key, title, description, canonicalPath, schema } = {}) {
   const { pathname } = useLocation();
   const { t } = useLanguage();
 
@@ -44,5 +44,21 @@ export function useSEO({ key, title, description, canonicalPath } = {}) {
     if (canonicalLink) {
       canonicalLink.setAttribute("href", pageUrl);
     }
-  }, [key, title, description, canonicalPath, pathname, t]);
+
+    // Dynamic schema injection for single-page client transitions
+    const scriptId = "redevise-dynamic-jsonld";
+    let dynamicScript = document.getElementById(scriptId);
+
+    if (schema) {
+      if (!dynamicScript) {
+        dynamicScript = document.createElement("script");
+        dynamicScript.id = scriptId;
+        dynamicScript.type = "application/ld+json";
+        document.head.appendChild(dynamicScript);
+      }
+      dynamicScript.textContent = JSON.stringify(schema);
+    } else if (dynamicScript) {
+      dynamicScript.remove();
+    }
+  }, [key, title, description, canonicalPath, pathname, t, schema]);
 }

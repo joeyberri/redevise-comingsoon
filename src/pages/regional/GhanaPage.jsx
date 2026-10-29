@@ -19,6 +19,7 @@ import Pill from "../../components/Pill.jsx";
 import FadeIn from "../../components/FadeIn.jsx";
 import { useSEO } from "../../utils/useSEO.js";
 import { useLanguage } from "../../utils/LanguageContext.jsx";
+import { getGhanaSchema } from "../../utils/schemas.js";
 
 const blogPosts = [
   {
@@ -56,7 +57,8 @@ const GhanaPage = ({ onOpenInquiry }) => {
   useSEO({
     title: "Software Development in Ghana & West Africa | Redevise Accra",
     description: "Custom software development, Mobile Money integrations, Paystack & Flutterwave setup, and workflow automation for businesses in Ghana and West Africa. Based in Accra.",
-    canonicalPath: "/gh"
+    canonicalPath: "/gh",
+    schema: getGhanaSchema()
   });
 
   // Default to local currency (GHS) when visiting the regional page

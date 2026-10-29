@@ -8,6 +8,7 @@ import MagneticButton from "../components/MagneticButton.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { cn } from "../utils/cn";
 import { useSEO } from "../utils/useSEO.js";
+import { getProcessSchema } from "../utils/schemas.js";
 import { Link } from "react-router-dom";
 import ProcessStepItem from "../components/process/ProcessStepItem.jsx";
 import FaqAccordion from "../components/FaqAccordion.jsx";
@@ -15,7 +16,7 @@ import FaqAccordion from "../components/FaqAccordion.jsx";
 /* ─── Main Page Component ─── */
 const ProcessPage = ({ onOpenInquiry = () => {} }) => {
   const { t, formatPrice, locale } = useLanguage();
-  useSEO({ key: "process" });
+  useSEO({ key: "process", schema: getProcessSchema() });
   const [activeStep, setActiveStep] = useState(0);
 
   const containerRef = useRef(null);

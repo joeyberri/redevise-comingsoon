@@ -10,10 +10,11 @@ import FaqAccordion from "../../components/FaqAccordion.jsx";
 import CtaFooter from "../../sections/CtaFooter.jsx";
 import { useLanguage } from "../../utils/LanguageContext.jsx";
 import { useSEO } from "../../utils/useSEO.js";
+import { getCustomSoftwareSchema } from "../../utils/schemas.js";
 
 const CustomSoftwarePage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
-  useSEO({ key: "customSoftware" });
+  useSEO({ key: "customSoftware", schema: getCustomSoftwareSchema() });
 
   const capabilityIcons = [
     <Code key="0" className="size-5 text-lime" />,

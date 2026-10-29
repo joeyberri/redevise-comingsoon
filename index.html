@@ -41,11 +41,101 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Redevise",
-    "url": "https://redevise.com",
-    "logo": "https://redevise.com/redevise.png",
-    "description": "We build custom software and automate workflows. High-performance web applications, mobile apps, and custom system integrations that actually work."
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://redevise.com/#website",
+        "url": "https://redevise.com/",
+        "name": "Redevise",
+        "description": "We build custom software and automate workflows. High-performance web applications, mobile apps, and custom system integrations that actually work.",
+        "publisher": {
+          "@id": "https://redevise.com/#organization"
+        },
+        "inLanguage": "en-US",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://redevise.com/blog?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://redevise.com/#organization",
+        "name": "Redevise",
+        "url": "https://redevise.com",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://redevise.com/#logo",
+          "url": "https://redevise.com/redevise.png",
+          "caption": "Redevise"
+        },
+        "image": "https://redevise.com/redevise.png",
+        "description": "We build custom software and automate workflows. High-performance web applications, mobile apps, and custom system integrations that actually work.",
+        "email": "hello@redevise.com",
+        "sameAs": [
+          "https://www.linkedin.com/company/redevise",
+          "https://x.com/redevise",
+          "https://github.com/redevise"
+        ],
+        "knowsAbout": [
+          "Custom Software Development",
+          "Workflow Automation",
+          "Mobile Money API Integrations",
+          "Enterprise System Integrations",
+          "AI Chatbot Development",
+          "Web Application Architecture"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Redevise Services & Software",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Software Development",
+                "url": "https://redevise.com/services/custom-software-development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Workflow Automation",
+                "url": "https://redevise.com/services/workflow-automation"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "SoftwareApplication",
+                "name": "Conversa",
+                "applicationCategory": "BusinessApplication",
+                "url": "https://www.askconversa.com"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "SoftwareApplication",
+                "name": "SkulSys",
+                "applicationCategory": "EducationalApplication",
+                "url": "https://www.skulsys.com"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "SoftwareApplication",
+                "name": "Ascribe",
+                "applicationCategory": "MultimediaApplication",
+                "url": "https://church.redevise.com"
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
   </script>
 </head>

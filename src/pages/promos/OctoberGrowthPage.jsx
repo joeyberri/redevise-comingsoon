@@ -12,6 +12,7 @@ import Pill from "../../components/Pill.jsx";
 import FadeIn from "../../components/FadeIn.jsx";
 import { useSEO } from "../../utils/useSEO.js";
 import { useLanguage } from "../../utils/LanguageContext.jsx";
+import { getOctoberGrowthSchema } from "../../utils/schemas.js";
 import { cn } from "../../utils/cn.js";
 
 const slides = [
@@ -143,7 +144,8 @@ const OctoberGrowthPage = () => {
   useSEO({
     title: "October Growth Package | Business Website, Google Setup & Email | Redevise",
     description: "Get found, look credible, and give people a clear way to contact you. Complete business website, Google Search setup, custom domain, and professional email for GH₵ 3,000.",
-    canonicalPath: "/promos/october-growth"
+    canonicalPath: "/promos/october-growth",
+    schema: getOctoberGrowthSchema()
   });
 
   useEffect(() => {

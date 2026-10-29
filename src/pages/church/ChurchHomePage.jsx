@@ -9,11 +9,12 @@ import ChurchServices from "../../sections/church/ChurchServices.jsx";
 import About from "../../sections/About.jsx";
 import CtaFooter from "../../sections/CtaFooter.jsx";
 import { useSEO } from "../../utils/useSEO.js";
+import { getChurchSchema } from "../../utils/schemas.js";
 
 const ChurchHomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  useSEO({ key: "church" });
+  useSEO({ key: "church", schema: getChurchSchema() });
 
   useEffect(() => {
     if (state?.scrollTo) {

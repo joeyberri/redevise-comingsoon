@@ -180,6 +180,155 @@
     background-size: 60px 60px;
   }
 
+  /* ─── Hero Circuit Traces (Option 1) ─── */
+  .circuit-traces-layer {
+    --anchor-x: 50%;
+    --anchor-y: 82%;
+  }
+
+  @media (min-width: 1024px) {
+    .circuit-traces-layer {
+      --anchor-x: 78%;
+      --anchor-y: 55%;
+    }
+  }
+
+  .circuit-trace {
+    position: absolute;
+    height: 1.5px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(200, 255, 0, 0.15) 20%,
+      rgba(200, 255, 0, 0.85) 75%,
+      #ffffff 96%,
+      transparent 100%
+    );
+    box-shadow: 0 0 8px rgba(200, 255, 0, 0.75), 0 0 16px rgba(200, 255, 0, 0.35);
+    border-radius: 9999px;
+    pointer-events: none;
+    will-change: transform, opacity;
+    opacity: 0;
+  }
+
+  /* Trace 1: Upper flow (aligned with grid row ~240px) */
+  .circuit-trace-1 {
+    top: 240px;
+    width: 130px;
+    animation: circuitFlow1 8.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Trace 2: CTA level flow (aligned with grid row ~420px) */
+  .circuit-trace-2 {
+    top: 420px;
+    width: 150px;
+    animation: circuitFlow2 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 3.2s;
+  }
+
+  /* Trace 3: Accent flow (aligned with grid row ~180px) */
+  .circuit-trace-3 {
+    top: 180px;
+    width: 110px;
+    animation: circuitFlow3 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation-delay: 5.8s;
+  }
+
+  @keyframes circuitFlow1 {
+    0% {
+      left: 10%;
+      opacity: 0;
+      transform: translateX(0);
+    }
+    15% {
+      opacity: 0.9;
+    }
+    75% {
+      opacity: 0.9;
+    }
+    100% {
+      left: 78%;
+      opacity: 0;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes circuitFlow2 {
+    0% {
+      left: 18%;
+      opacity: 0;
+      transform: translateX(0);
+    }
+    15% {
+      opacity: 0.85;
+    }
+    75% {
+      opacity: 0.85;
+    }
+    100% {
+      left: 82%;
+      opacity: 0;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes circuitFlow3 {
+    0% {
+      left: 22%;
+      opacity: 0;
+      transform: translateX(0);
+    }
+    18% {
+      opacity: 0.8;
+    }
+    70% {
+      opacity: 0.8;
+    }
+    100% {
+      left: 74%;
+      opacity: 0;
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .circuit-trace-1 {
+      top: 180px;
+      animation: circuitFlowMobile1 8.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .circuit-trace-2 {
+      top: 360px;
+      animation: circuitFlowMobile2 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation-delay: 3.2s;
+    }
+    .circuit-trace-3 {
+      top: 280px;
+      animation: circuitFlowMobile3 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation-delay: 5.8s;
+    }
+  }
+
+  @keyframes circuitFlowMobile1 {
+    0% { left: 4%; opacity: 0; }
+    15% { opacity: 0.85; }
+    75% { opacity: 0.85; }
+    100% { left: 75%; opacity: 0; }
+  }
+
+  @keyframes circuitFlowMobile2 {
+    0% { left: 12%; opacity: 0; }
+    15% { opacity: 0.8; }
+    75% { opacity: 0.8; }
+    100% { left: 80%; opacity: 0; }
+  }
+
+  @keyframes circuitFlowMobile3 {
+    0% { left: 8%; opacity: 0; }
+    18% { opacity: 0.75; }
+    70% { opacity: 0.75; }
+    100% { left: 72%; opacity: 0; }
+  }
+
   .divider {
     display: none;
   }

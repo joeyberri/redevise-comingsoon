@@ -10,10 +10,11 @@ import FaqAccordion from "../../components/FaqAccordion.jsx";
 import CtaFooter from "../../sections/CtaFooter.jsx";
 import { useLanguage } from "../../utils/LanguageContext.jsx";
 import { useSEO } from "../../utils/useSEO.js";
+import { getWorkflowAutomationSchema } from "../../utils/schemas.js";
 
 const WorkflowAutomationPage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
-  useSEO({ key: "workflowAutomation" });
+  useSEO({ key: "workflowAutomation", schema: getWorkflowAutomationSchema() });
 
   const capabilityIcons = [
     <MessageSquare key="0" className="size-5 text-lime" />,

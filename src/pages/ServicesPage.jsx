@@ -8,6 +8,7 @@ import MagneticButton from "../components/MagneticButton.jsx";
 import GlassCard from "../components/GlassCard.jsx";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import { getServicesSchema } from "../utils/schemas.js";
 import { cn } from "../utils/cn";
 import { ArrowRight, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -234,7 +235,7 @@ const CAPABILITIES = [
 
 const ServicesPage = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
-  useSEO({ key: "services" });
+  useSEO({ key: "services", schema: getServicesSchema() });
   const navigate = useNavigate();
 
   const [activeSection, setActiveSection] = useState("core-offerings");
@@ -263,19 +264,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
       answer: "Yes. We build intelligent, context-aware AI chatbots and knowledge base agents that integrate directly into your WhatsApp channels, CRM, or support desks to automate manual labor safely."
     }
   ];
-
-  const faqSchemaJson = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
 
   const sections = [
     { id: "core-offerings", label: t("servicesPage.core.pill") },
@@ -505,11 +493,6 @@ const ServicesPage = ({ onOpenInquiry }) => {
 
       {/* ── FAQ Section ── */}
       <Section id="services-faq" name="services-faq" showDivider spacing="generous">
-        {faqSchemaJson && (
-          <script type="application/ld+json">
-            {JSON.stringify(faqSchemaJson)}
-          </script>
-        )}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column */}
           <div className="lg:col-span-4">

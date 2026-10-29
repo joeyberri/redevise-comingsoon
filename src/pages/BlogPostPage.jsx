@@ -20,12 +20,6 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
 
-  useSEO({
-    title: post ? `${post.title} | Redevise Blog` : undefined,
-    description: post ? post.summary : undefined,
-    canonicalPath: post ? `/blog/${post.slug}` : undefined,
-  });
-
   const schemaJson = post ? {
     "@context": "https://schema.org",
     "@graph": [
@@ -35,7 +29,8 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
         "mainEntityOfPage": `https://redevise.com/blog/${post.slug}`,
         "headline": post.title,
         "description": post.summary,
-        "datePublished": post.date,
+        "datePublished": post.date ? `${post.date}T00:00:00+00:00` : undefined,
+        "dateModified": post.date ? `${post.date}T00:00:00+00:00` : undefined,
         "author": {
           "@type": "Organization",
           "name": post.author || "Redevise",
@@ -43,13 +38,15 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
         },
         "publisher": {
           "@type": "Organization",
+          "@id": "https://redevise.com/#organization",
           "name": "Redevise",
           "logo": {
             "@type": "ImageObject",
             "url": "https://redevise.com/redevise.png"
           }
         },
-        "image": post.coverImage || "https://redevise.com/redevise.png"
+        "image": post.coverImage || "https://redevise.com/redevise.png",
+        "keywords": post.tags || []
       },
       {
         "@type": "BreadcrumbList",
@@ -78,6 +75,13 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
     ]
   } : null;
 
+  useSEO({
+    title: post ? `${post.title} | Redevise Blog` : undefined,
+    description: post ? post.summary : undefined,
+    canonicalPath: post ? `/blog/${post.slug}` : undefined,
+    schema: schemaJson,
+  });
+
   if (!post) {
     return <Navigate to="/blog" replace />;
   }
@@ -99,12 +103,6 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
       </div>
 
       <div className="container relative z-10">
-        {schemaJson && (
-          <script type="application/ld+json">
-            {JSON.stringify(schemaJson)}
-          </script>
-        )}
-
         {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}

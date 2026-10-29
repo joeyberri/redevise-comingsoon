@@ -13,11 +13,12 @@ import Difference from "../sections/Difference.jsx";
 import About from "../sections/About.jsx";
 import CtaFooter from "../sections/CtaFooter.jsx";
 import { useSEO } from "../utils/useSEO.js";
+import { getHomeSchema } from "../utils/schemas.js";
 
 const HomePage = ({ onOpenInquiry }) => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  useSEO({ key: "home" });
+  useSEO({ key: "home", schema: getHomeSchema() });
 
   useEffect(() => {
     if (state?.scrollTo) {

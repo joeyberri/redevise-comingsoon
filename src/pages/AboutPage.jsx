@@ -4,11 +4,11 @@ import Pill from "../components/Pill.jsx";
 import { motion } from "framer-motion";
 import { useLanguage } from "../utils/LanguageContext.jsx";
 import { useSEO } from "../utils/useSEO.js";
-import GridSpotlight from "../components/GridSpotlight.jsx";
+import { getAboutSchema } from "../utils/schemas.js";
 
 const AboutPage = () => {
   const { t } = useLanguage();
-  useSEO({ key: "about" });
+  useSEO({ key: "about", schema: getAboutSchema() });
 
   return (
     <Section name="about-page" spacing="generous">
