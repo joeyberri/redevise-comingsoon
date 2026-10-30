@@ -70,7 +70,7 @@ const BlogPostCard = ({ post, variant = "default" }) => {
           <div className="mt-auto pt-4 border-0 flex items-center justify-between text-text-subtle text-xs">
             <span className="flex items-center gap-1.5">
               <Calendar size={11} />
-              {new Date(post.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+              {new Date(post.date ? `${post.date}T12:00:00` : Date.now()).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",

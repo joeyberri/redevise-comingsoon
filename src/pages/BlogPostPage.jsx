@@ -181,7 +181,7 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
             <span className="w-px h-4 bg-dark-400/50" />
             <span className="flex items-center gap-2">
               <Calendar size={14} />
-              {new Date(post.date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+              {new Date(post.date ? `${post.date}T12:00:00` : Date.now()).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

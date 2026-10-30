@@ -99,13 +99,33 @@ export function getPostBySlug(slug) {
   return getAllPosts().find((post) => post.slug === slug) || null;
 }
 
+export const TAG_ORDER = [
+  'Custom Software',
+  'Workflow Automation',
+  'Fintech & Payments',
+  'EdTech & Schools',
+  'Church Technology',
+  'AI & Intelligence',
+  'Customer Support',
+  'Operations & Strategy',
+  'Ghana Business',
+  'Industry Solutions',
+];
+
 /**
- * Get all unique tags across all posts.
+ * Get all unique tags across all posts, sorted by strategic priority.
  */
 export function getAllTags() {
   const tags = new Set();
   getAllPosts().forEach((post) => post.tags.forEach((tag) => tags.add(tag)));
-  return Array.from(tags).sort();
+  return Array.from(tags).sort((a, b) => {
+    const idxA = TAG_ORDER.indexOf(a);
+    const idxB = TAG_ORDER.indexOf(b);
+    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+    if (idxA !== -1) return -1;
+    if (idxB !== -1) return 1;
+    return a.localeCompare(b);
+  });
 }
 
 /**

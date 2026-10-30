@@ -18,6 +18,7 @@ import { useLanguage } from "../utils/LanguageContext.jsx";
 import CorneredBox from "./CorneredBox.jsx";
 import FormInput from "./FormInput.jsx";
 import FormTextArea from "./FormTextArea.jsx";
+import { trackEvent } from "../utils/analytics.js";
 
 // ── Component ────────────────────────────────────────────────────────────────
 const InquiryModal = ({ isOpen, onClose, initialType = "", metadata = null }) => {
@@ -327,6 +328,10 @@ Project Details:
       }
 
       setIsSubmitted(true);
+      trackEvent('generate_lead', {
+        method: 'message',
+        interests: formData.interests.join(', ') || 'general',
+      });
       setTimeout(() => onClose(), 4000);
     } catch (err) {
       console.error("Email send error:", err);
@@ -376,6 +381,11 @@ Project Details:
       }
 
       setIsSubmitted(true);
+      trackEvent('schedule_meeting', {
+        method: 'booking',
+        interests: formData.interests.join(', ') || 'general',
+        slot_time: selectedSlot.isoTime,
+      });
       setTimeout(() => onClose(), 4000);
     } catch (err) {
       console.error("Booking error:", err);
