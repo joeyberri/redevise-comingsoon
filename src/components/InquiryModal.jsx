@@ -458,12 +458,11 @@ Project Details:
             </motion.div>
 
             <div
-              className="group/modal relative w-full rounded-3xl border-0 bg-dark-100 shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
-              style={{ maxHeight: "90vh" }}
+              className="group/modal relative w-full rounded-3xl border-0 bg-dark-100 shadow-2xl shadow-black/80 flex flex-col overflow-hidden max-h-[92vh] md:max-h-[90vh]"
             >
 
               {/* Inner layout container */}
-              <div className="flex flex-col md:flex-row flex-1 min-h-[650px] overflow-hidden rounded-3xl">
+              <div className="flex flex-col md:flex-row flex-1 min-h-0 md:min-h-[580px] lg:min-h-[650px] overflow-y-auto md:overflow-hidden rounded-3xl">
 
                 {/* ── Left Panel Spacer (for Secretary Image on Desktop) ── */}
                 <div className="hidden lg:flex w-full lg:w-[320px] shrink-0 relative" />
@@ -509,7 +508,7 @@ Project Details:
                       >
                         {/* ── STEP 1: Who are you ── */}
                         {step === 1 && (
-                          <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
+                          <div className="p-6 sm:p-8 md:p-14 flex-1 flex flex-col justify-center space-y-6 sm:space-y-10">
                             <div>
                               <Text variant="tiny" className="text-lime mb-3">
                                 {t('common.step', { current: 1, total: 4 })}
@@ -570,7 +569,7 @@ Project Details:
                         {step === 2 && (
                           <div
                             data-lenis-prevent
-                            className="p-8 md:p-14 flex-1 flex flex-col overflow-y-auto custom-scrollbar overscroll-contain"
+                            className="p-6 sm:p-8 md:p-14 flex-1 flex flex-col overflow-y-auto custom-scrollbar overscroll-contain"
                           >
                             <div className="mb-8">
                               <button
@@ -657,7 +656,7 @@ Project Details:
 
                         {/* ── STEP 3: Choose Path ── */}
                         {step === 3 && (
-                          <div className="p-8 md:p-14 flex-1 flex flex-col justify-center space-y-10">
+                          <div className="p-6 sm:p-8 md:p-14 flex-1 flex flex-col justify-center space-y-6 sm:space-y-10">
                             <div className="text-center mb-2">
                               <button
                                 onClick={() => setStep(2)}
@@ -682,19 +681,19 @@ Project Details:
                               </Heading>
                             </div>
 
-                            <div className="flex flex-col md:flex-row gap-5 justify-center">
+                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
                               <button
                                 onClick={() => handleChoice("book")}
-                                className="flex-1 p-8 rounded-2xl bg-dark-200 hover:bg-dark-300 transition-colors text-center flex flex-col items-center gap-4 cursor-pointer border-0"
+                                className="flex-1 p-5 sm:p-8 rounded-2xl bg-dark-200 hover:bg-dark-300 transition-colors text-center flex flex-col items-center gap-4 cursor-pointer border-0"
                               >
-                                <div className="size-16 rounded-2xl bg-lime text-dark flex items-center justify-center shadow-sm">
-                                  <Calendar size={30} />
+                                <div className="size-14 sm:size-16 rounded-2xl bg-lime text-dark flex items-center justify-center shadow-sm">
+                                  <Calendar size={26} />
                                 </div>
                                 <div>
-                                  <div className="font-bold text-xl mb-1 text-text">
+                                  <div className="font-bold text-lg sm:text-xl mb-1 text-text">
                                     {t('modal.steps.bookCall')}
                                   </div>
-                                  <div className="text-sm text-text-muted">
+                                  <div className="text-xs sm:text-sm text-text-muted">
                                     {t('modal.steps.bookCallSub')}
                                   </div>
                                 </div>
@@ -702,16 +701,16 @@ Project Details:
 
                               <button
                                 onClick={() => handleChoice("message")}
-                                className="flex-1 p-8 rounded-2xl bg-dark-200/60 hover:bg-dark-200 transition-colors text-center flex flex-col items-center gap-4 cursor-pointer border-0"
+                                className="flex-1 p-5 sm:p-8 rounded-2xl bg-dark-200/60 hover:bg-dark-200 transition-colors text-center flex flex-col items-center gap-4 cursor-pointer border-0"
                               >
-                                <div className="size-16 rounded-2xl bg-dark-300 text-text flex items-center justify-center">
-                                  <MessageSquare size={30} />
+                                <div className="size-14 sm:size-16 rounded-2xl bg-dark-300 text-text flex items-center justify-center">
+                                  <MessageSquare size={26} />
                                 </div>
                                 <div>
-                                  <div className="font-bold text-xl mb-1 text-text">
+                                  <div className="font-bold text-lg sm:text-xl mb-1 text-text">
                                     {t('modal.steps.sendMessage')}
                                   </div>
-                                  <div className="text-sm text-text-muted">
+                                  <div className="text-xs sm:text-sm text-text-muted">
                                     {t('modal.steps.sendMessageSub')}
                                   </div>
                                 </div>
@@ -722,7 +721,7 @@ Project Details:
 
                         {/* ── STEP 4a: Message ── */}
                         {step === 4 && choice === "message" && (
-                          <div className="p-8 md:p-14 flex-1 flex flex-col">
+                          <div className="p-6 sm:p-8 md:p-14 flex-1 flex flex-col">
                             <div className="mb-6">
                               <button
                                 onClick={() => {

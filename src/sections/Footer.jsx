@@ -15,10 +15,10 @@ const Footer = ({ onOpenInquiry }) => {
   return (
     <footer className="border-0 bg-dark py-4">
       <div className="container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-10 md:gap-8">
           
           {/* Logo & Brand Info Column */}
-          <div className="col-span-12 md:col-span-5 flex flex-col items-start gap-6 md:pr-12">
+          <div className="col-span-2 md:col-span-4 lg:col-span-5 flex flex-col items-start gap-6 lg:pr-12">
             <LinkRouter to="/" className="cursor-pointer">
               <Logo showText={true} iconSize="size-8" />
             </LinkRouter>
@@ -31,7 +31,7 @@ const Footer = ({ onOpenInquiry }) => {
           </div>
 
           {/* Quick Links Column */}
-          <div className="col-span-6 sm:col-span-4 md:col-span-2">
+          <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
               {t("footer.quickLinks")}
             </h4>
@@ -85,8 +85,27 @@ const Footer = ({ onOpenInquiry }) => {
             </ul>
           </div>
 
+          {/* Legal Column */}
+          <div className="col-span-1 md:col-span-1 lg:col-span-2 order-2 md:order-3 lg:order-3">
+            <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
+              {t("common.legal")}
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <LinkRouter to="/privacy" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t("footer.privacyPolicy")}
+                </LinkRouter>
+              </li>
+              <li>
+                <LinkRouter to="/terms" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
+                  {t("footer.termsOfUse")}
+                </LinkRouter>
+              </li>
+            </ul>
+          </div>
+
           {/* Services / Custom Solutions Column */}
-          <div className="col-span-12 sm:col-span-5 md:col-span-3">
+          <div className="col-span-2 md:col-span-2 lg:col-span-3 order-3 md:order-2 lg:order-2">
             <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
               {t("footer.solutions")}
             </h4>
@@ -138,25 +157,6 @@ const Footer = ({ onOpenInquiry }) => {
                 >
                   {t("footer.automation")}
                 </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Legal Column */}
-          <div className="col-span-6 sm:col-span-3 md:col-span-2">
-            <h4 className="font-space uppercase text-xs font-bold tracking-widest text-text mb-6">
-              {t("common.legal")}
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <LinkRouter to="/privacy" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t("footer.privacyPolicy")}
-                </LinkRouter>
-              </li>
-              <li>
-                <LinkRouter to="/terms" className="text-xs font-sans text-text-subtle transition-colors hover:text-lime">
-                  {t("footer.termsOfUse")}
-                </LinkRouter>
               </li>
             </ul>
           </div>

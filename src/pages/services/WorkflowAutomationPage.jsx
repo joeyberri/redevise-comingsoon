@@ -77,7 +77,7 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
           </div>
 
           {/* Capabilities Grid */}
-          <Section name="workflow-automation-capabilities" spacing="tight" className="py-0 mb-24">
+          <Section name="workflow-automation-capabilities" spacing="tight" containerClassName="!px-0 !max-w-none" className="py-0 mb-24">
             <Heading level={2} className="text-2xl font-bold font-sans mb-10 tracking-tight text-text">
               {t('workflowAutomationPage.capabilities.title')}
             </Heading>
@@ -86,10 +86,10 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
               {t('workflowAutomationPage.capabilities.list').map((item, i) => (
                 <CorneredBox 
                   key={i} 
-                  className="p-8 bg-dark-100/75 hover:bg-dark-200/90 rounded-2xl border-0 transition-colors duration-200"
+                  className="p-6 sm:p-8 bg-dark-100/75 hover:bg-dark-200/90 rounded-2xl border-0 transition-colors duration-200"
                 >
                   <div className="flex gap-4 items-start">
-                    <div className="p-3 bg-dark-200 rounded-xl border-0">
+                    <div className="p-3 bg-dark-200 rounded-xl border-0 shrink-0">
                       {capabilityIcons[i] || <Zap className="size-5 text-lime" />}
                     </div>
                     <div>
@@ -107,8 +107,8 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
           </Section>
 
           {/* How We Integrate (System Diagram Visual Element) */}
-          <Section name="how-we-integrate" spacing="tight" className="py-16 bg-dark-50 rounded-3xl border-0 mb-24 px-8 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
+          <Section name="how-we-integrate" spacing="tight" containerClassName="!px-0 !max-w-none" className="py-12 sm:py-16 bg-dark-50 rounded-3xl border-0 mb-24 px-5 sm:px-8 md:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-12">
               <div>
                 <Heading level={2} className="text-2xl font-bold font-sans mb-4 tracking-tight text-text">
                   {t('nav.services') === "Servicios" ? "Integración de Sistemas" : "How We Integrate Systems"}
@@ -121,16 +121,16 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
               </div>
 
               {/* Simple Textual Diagram representing workflow automation loops */}
-              <div className="flex flex-col justify-center gap-4 bg-dark-100/80 p-8 rounded-2xl border-0 font-mono text-xs text-text-muted select-none">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-col justify-center gap-4 bg-dark-100/80 p-5 sm:p-8 rounded-2xl border-0 font-mono text-xs text-text-muted select-none overflow-x-auto">
+                <div className="flex items-center gap-2 min-w-[280px]">
                   <span className="text-lime">[TRIGGER]</span> User interaction or system event (WhatsApp request, Stripe billing Hook)
                 </div>
                 <div className="h-6 w-px bg-text/20 ml-6" />
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-[280px]">
                   <span className="text-accent">[ACTION]</span> Core API maps data structures dynamically and routes to active pipelines
                 </div>
                 <div className="h-6 w-px bg-text/20 ml-6" />
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-[280px]">
                   <span className="text-lime">[SYNC]</span> Update CRM database, create PDF invoices, and send Slack/WhatsApp confirmation
                 </div>
               </div>
@@ -138,7 +138,7 @@ const WorkflowAutomationPage = ({ onOpenInquiry }) => {
           </Section>
 
           {/* FAQs Accordion */}
-          <Section name="workflow-automation-faqs" spacing="tight" className="py-0 mb-12">
+          <Section name="workflow-automation-faqs" spacing="tight" containerClassName="!px-0 !max-w-none" className="py-0 mb-12">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
               <div>
                 <Pill className="mb-4">FAQ</Pill>

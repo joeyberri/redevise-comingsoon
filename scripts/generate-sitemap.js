@@ -45,9 +45,15 @@ function getDateStr() {
   return new Date().toISOString().split('T')[0];
 }
 
-function parseFrontmatterDate(content) {
-  const match = content.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
-  return match ? match[1] : getDateStr();
+function parseFrontmatter(content) {
+  const dateMatch = content.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
+  const titleMatch = content.match(/^title:\s*['"]?([\s\S]*?)['"]?\r?$/m);
+  const coverMatch = content.match(/^coverImage:\s*['"]?([\s\S]*?)['"]?\r?$/m);
+  return {
+    date: dateMatch ? dateMatch[1] : getDateStr(),
+    title: titleMatch ? titleMatch[1].trim() : '',
+    coverImage: coverMatch ? coverMatch[1].trim() : ''
+  };
 }
 
 function getSlugs() {
@@ -58,16 +64,16 @@ function getSlugs() {
         return statSync(fullPath).isDirectory();
       })
       .map((slug) => {
-        // Try to read the date from the post frontmatter
+        // Try to read metadata from the post frontmatter
         const postFile = join(BLOG_DIR, slug, 'index.mdoc');
-        let date = getDateStr();
+        let meta = { date: getDateStr(), title: '', coverImage: '' };
         try {
           const content = readFileSync(postFile, 'utf-8');
-          date = parseFrontmatterDate(content);
+          meta = parseFrontmatter(content);
         } catch {
           // Use today's date as fallback
         }
-        return { slug, date };
+        return { slug, ...meta };
       });
   } catch {
     console.log('⚠  No blog directory found. Creating sitemap without blog posts.');
@@ -80,7 +86,7 @@ function buildSitemap() {
   const slugs = getSlugs();
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
 
   // Static pages
   xml += `  <!-- Main Site -->\n`;
@@ -96,12 +102,22 @@ function buildSitemap() {
   // Blog posts
   if (slugs.length > 0) {
     xml += `\n  <!-- Blog Posts -->\n`;
-    for (const { slug, date } of slugs) {
+    for (const { slug, date, title, coverImage } of slugs) {
       xml += `  <url>\n`;
       xml += `    <loc>${SITE_URL}/blog/${slug}</loc>\n`;
       xml += `    <lastmod>${date}</lastmod>\n`;
       xml += `    <changefreq>monthly</changefreq>\n`;
       xml += `    <priority>0.7</priority>\n`;
+      if (coverImage) {
+        const cleanTitle = title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const cleanUrl = coverImage.replace(/&/g, '&amp;');
+        xml += `    <image:image>\n`;
+        xml += `      <image:loc>${cleanUrl}</image:loc>\n`;
+        if (cleanTitle) {
+          xml += `      <image:title>${cleanTitle}</image:title>\n`;
+        }
+        xml += `    </image:image>\n`;
+      }
       xml += `  </url>\n`;
     }
   }

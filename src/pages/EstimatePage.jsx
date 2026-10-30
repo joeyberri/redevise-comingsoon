@@ -634,7 +634,7 @@ const EstimatePage = ({ onOpenInquiry }) => {
         </FadeIn>
 
         {/* Spacer for sticky panel */}
-        {estimate && <div className="h-28 md:h-24" />}
+        {estimate && <div className="h-44 sm:h-36 md:h-28" />}
       </Section>
     </div>
   );

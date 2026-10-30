@@ -65,7 +65,7 @@ const Header = ({ onOpenInquiry }) => {
             </LinkRouter>
 
             {/* Desktop Nav */}
-            <nav className="hidden items-center gap-1 md:flex">
+            <nav className="hidden items-center gap-1 lg:flex">
               {navLinks.map((link) => (
                 <div
                   key={link.id}
@@ -76,7 +76,7 @@ const Header = ({ onOpenInquiry }) => {
                   <button
                     onClick={() => handleNavClick(link.id)}
                     className={cn(
-                      "relative cursor-pointer rounded-full px-5 py-2 font-sans text-[13px] font-medium tracking-wide text-text-muted transition-colors duration-200 hover:text-text flex items-center gap-1.5",
+                      "relative cursor-pointer rounded-full px-3.5 xl:px-5 py-2 font-sans text-[13px] font-medium tracking-wide text-text-muted transition-colors duration-200 hover:text-text flex items-center gap-1.5",
                       !isHomePage && link.id !== "about" ? "" : (isHomePage && link.id !== "about" ? "active-scroll" : "")
                     )}
                   >
@@ -154,18 +154,18 @@ const Header = ({ onOpenInquiry }) => {
                 </div>
               ))}
 
-              <div className="ml-4 flex items-center gap-4">
-                <LanguageSwitcher className="hidden lg:flex" />
+              <div className="ml-3 xl:ml-4 flex items-center gap-3 xl:gap-4">
+                <LanguageSwitcher className="flex" />
                 <Button
                   onClick={() => onOpenInquiry(isChurch ? "Church Infrastructure" : t('modal.interests')[1])}
-                  className="h-10 px-7 text-[11px] uppercase tracking-widest font-bold justify-center"
+                  className="h-10 px-5 xl:px-7 text-[11px] uppercase tracking-widest font-bold justify-center"
                 >
                   {isChurch ? t('nav.optimize') : t('nav.start')}
                 </Button>
               </div>
             </nav>
 
-            <div className="flex items-center gap-3 md:hidden">
+            <div className="flex items-center gap-3 lg:hidden">
               <LanguageSwitcher />
               <button
                 className="flex size-10 items-center justify-center rounded-full bg-dark-100 text-text border-0"

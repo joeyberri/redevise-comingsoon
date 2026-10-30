@@ -30,6 +30,7 @@ const EstimatePage = lazyWithRetry(() => import("./pages/EstimatePage.jsx"));
 const CareersPage = lazyWithRetry(() => import("./pages/CareersPage.jsx"));
 const GhanaPage = lazyWithRetry(() => import("./pages/regional/GhanaPage.jsx"));
 const OctoberGrowthPage = lazyWithRetry(() => import("./pages/promos/OctoberGrowthPage.jsx"));
+const NotFoundPage = lazyWithRetry(() => import("./pages/NotFoundPage.jsx"));
 
 const ScrollToTopOnNavigate = () => {
   const { pathname } = useLocation();
@@ -120,7 +121,7 @@ const AppContent = () => {
                     <Route path="/gh" element={<GhanaPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/promos/october-growth" element={<OctoberGrowthPage onOpenInquiry={handleOpenInquiry} />} />
                     <Route path="/october-growth" element={<Navigate to="/promos/october-growth" replace />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
+                    <Route path="*" element={<NotFoundPage onOpenInquiry={handleOpenInquiry} />} />
                   </Routes>
                 </Suspense>
               </ErrorBoundary>

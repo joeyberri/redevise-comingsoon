@@ -19,10 +19,10 @@ const Pillars = () => {
         </Heading>
       </FadeIn>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
         {list.map((pillar, i) => (
           <FadeIn key={pillar.id} delay={0.1 * i} fullWidth>
-            <div className="h-full rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 p-8 transition-colors duration-200 flex flex-col border-0">
+            <div className="h-full rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 p-6 sm:p-7 md:p-5 lg:p-8 transition-colors duration-200 flex flex-col border-0">
               {/* Category Badge */}
               <div className="mb-6">
                 <span className="inline-block px-3 py-1 rounded-full bg-dark-200 text-lime text-xs font-semibold tracking-wider uppercase">

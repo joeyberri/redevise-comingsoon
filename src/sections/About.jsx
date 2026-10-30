@@ -10,7 +10,7 @@ const About = () => {
 
   return (
     <Section name="about" spacing="tight">
-      <Grid variant="about" gap={12} className="md:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16">
         {/* Sidebar */}
         <div>
           <Pill className="mb-6">{t('aboutPage.pill')}</Pill>
@@ -26,13 +26,13 @@ const About = () => {
           </div>
 
           {/* Values */}
-          <Grid cols={4} gap={6} className="grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {t('aboutSection.values').map((value) => (
               <ValueCard key={value.id} {...value} />
             ))}
-          </Grid>
+          </div>
         </div>
-      </Grid>
+      </div>
     </Section>
   );
 };

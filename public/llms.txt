@@ -1,0 +1,33 @@
+# Redevise
+
+> Redevise builds custom software, automates business workflows, and develops specialized applications for organizations worldwide, with regional engineering headquarters in Accra, Ghana.
+
+## Overview
+Redevise is an engineering studio and systems company. We operate a dual model:
+1. **Client Services (Redevise Labs & Consulting):** We partner with companies to engineer custom full-stack web applications, cross-platform mobile apps, secure API integrations, and WhatsApp/business automations.
+2. **Product Ecosystem:** We build and operate focused software platforms including **Conversa** (conversational sales and support chat with Mobile Money settlement), **SkulSys** (modular school operating system), **SupporTribe** (customer support quality analytics), and **Ascribe** (church presentation and worship software).
+
+## Core Capabilities & Services
+- **Custom Web Applications:** React, modern JavaScript, Node.js, and serverless edge backends.
+- **Mobile Applications:** Cross-platform iOS and Android applications.
+- **Workflow Automation:** Cross-system sync, WhatsApp bot workflows, automated billing, and CRM pipelines.
+- **Fintech & Payment Gateways:** Direct API integration for MTN Mobile Money (MoMo), Telecel Cash, Paystack, Flutterwave, and Stripe.
+- **Technical Consulting & Audits:** Tool audits, database design, and architecture planning.
+
+## Key URLs & Documentation
+- [Homepage](https://redevise.com/): Overview of Redevise, services, and software products.
+- [Services Directory](https://redevise.com/services): Complete index of engineering, automation, and infrastructure offerings.
+- [Custom Software Development](https://redevise.com/services/custom-software-development): Details on web apps, mobile apps, databases, and APIs.
+- [Workflow Automation](https://redevise.com/services/workflow-automation): WhatsApp automation, CRM integration, and automated back-office pipelines.
+- [Ghana & West Africa Regional Hub](https://redevise.com/gh): Localized engineering services, Mobile Money integrations, and Accra contact information.
+- [Interactive Project Estimator](https://redevise.com/estimate): Self-service cost estimator for custom web apps, mobile apps, websites, and business systems.
+- [Our Process](https://redevise.com/process): Sprint structure, weekly staging updates, fixed pricing, and intellectual property ownership.
+- [About Redevise](https://redevise.com/about): Mission, company structure, and core engineering philosophy.
+- [Blog & Engineering Insights](https://redevise.com/blog): Over 340 technical articles, guides on payments, systems design, and operational efficiency.
+- [Church Tech Ecosystem](https://church.redevise.com): Ascribe presentation software and media engineering for worship teams.
+
+## Contact & Location
+- **Website:** https://redevise.com
+- **Regional Hub:** Accra, Greater Accra, Ghana
+- **Email:** hello@redevise.com / ghana@redevise.com
+- **Pricing Model:** Transparent, fixed-scope project agreements and sprint rates. Clients retain 100% ownership of source code.

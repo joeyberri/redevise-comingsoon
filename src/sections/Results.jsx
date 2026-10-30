@@ -15,7 +15,7 @@ const Results = () => {
           {items.map((item, idx) => (
             <FadeIn key={idx} delay={idx * 0.05} fullWidth>
               <div
-                className="h-full rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 p-8 flex flex-col justify-between transition-colors duration-200 border-0"
+                className="h-full rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 p-6 sm:p-7 lg:p-8 flex flex-col justify-between transition-colors duration-200 border-0"
               >
                 <div>
                   {/* Big metric text */}

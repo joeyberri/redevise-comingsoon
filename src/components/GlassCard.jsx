@@ -10,7 +10,7 @@ const GlassCard = ({ children, className, hover = true, delay = 0 }) => {
       transition={{ duration: 0.4, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
       tabIndex={0}
       className={cn(
-        "group relative rounded-2xl bg-dark-100/75 p-8 transition-colors duration-200 outline-none",
+        "group relative rounded-2xl bg-dark-100/75 p-6 sm:p-8 transition-colors duration-200 outline-none",
         hover && "hover:bg-dark-200/90 focus:bg-dark-200/90 active:bg-dark-200",
         className
       )}

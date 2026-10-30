@@ -7,11 +7,11 @@ const ProcessStepItem = ({ step, index, whatYouGetLabel, innerRef }) => {
     <div
       ref={innerRef}
       data-step-index={index}
-      className="scroll-mt-32 rounded-2xl bg-dark-100/75 p-8 transition-colors border-0 mb-6"
+      className="scroll-mt-32 rounded-2xl bg-dark-100/75 p-6 sm:p-8 transition-colors border-0 mb-6"
     >
       <FadeIn delay={0.05} direction="up" fullWidth>
         {/* Mobile/Tablet Header (hidden on desktop) */}
-        <div className="lg:hidden flex items-center justify-between gap-4 mb-6">
+        <div className="lg:hidden flex items-start justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
             <span className="font-sans text-3xl font-extrabold text-lime">
               {String(index + 1).padStart(2, "0")}

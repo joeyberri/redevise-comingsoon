@@ -32,7 +32,7 @@ const Difference = () => {
         </div>
 
         {/* Comparison Header Labels (Desktop only) */}
-        <div className="hidden md:grid grid-cols-12 gap-8 mb-4 px-6 font-sans text-xs font-bold uppercase tracking-wider text-text-muted">
+        <div className="hidden md:grid grid-cols-12 gap-4 lg:gap-8 mb-4 px-6 font-sans text-xs font-bold uppercase tracking-wider text-text-muted">
           <div className="col-span-4">{t("difference.label")}</div>
           <div className="col-span-4">{t("difference.themLabel")}</div>
           <div className="col-span-4 text-lime">{t("difference.usLabel")}</div>
@@ -43,7 +43,7 @@ const Difference = () => {
           {items.map((item, idx) => (
             <FadeIn key={idx} delay={idx * 0.05} fullWidth>
               <CorneredBox
-                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 p-6 md:p-8 rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 transition-colors duration-200 border-0 relative group/row overflow-hidden"
+                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-4 lg:gap-8 p-5 sm:p-6 lg:p-8 rounded-2xl bg-dark-100/75 hover:bg-dark-200/90 transition-colors duration-200 border-0 relative group/row overflow-hidden"
               >
                 {/* Title */}
                 <div className="col-span-1 md:col-span-4 flex items-center">

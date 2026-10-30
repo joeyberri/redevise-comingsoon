@@ -61,8 +61,8 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               viewport={{ once: true }}
               className="w-full lg:w-auto flex-1"
             >
-              {/* Slightly tightened xl/2xl scale so "enGineered" doesn't crowd the mascot */}
-              <h1 className="font-heading font-normal tracking-[-0.03em] leading-[0.84] text-[4rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7.25rem] xl:text-[8.25rem] 2xl:text-[10.25rem] mb-7 md:mb-9 select-none">
+              {/* Responsive headline with safe mobile sizing to prevent text clipping */}
+              <h1 className="font-heading font-normal tracking-[-0.03em] leading-[0.84] text-[3.25rem] min-[400px]:text-[4rem] sm:text-[5.5rem] md:text-[6.5rem] lg:text-[7.25rem] xl:text-[8.25rem] 2xl:text-[10.25rem] mb-7 md:mb-9 select-none">
                 <motion.span
                   variants={itemVariants}
                   className="block text-text"
@@ -178,7 +178,7 @@ const Hero = ({ onOpenInquiry = () => {} }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-              className="relative flex lg:hidden flex-col items-center justify-center w-full max-w-[280px] sm:max-w-[340px] mx-auto mt-4 select-none pointer-events-none"
+              className="relative flex lg:hidden flex-col items-center justify-center w-full max-w-[240px] sm:max-w-[280px] md:max-w-[320px] mx-auto mt-6 md:mt-8 select-none pointer-events-none"
             >
               <motion.img
                 src={robotWaving}

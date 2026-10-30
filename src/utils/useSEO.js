@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "./LanguageContext";
 
-export function useSEO({ key, title, description, canonicalPath, schema } = {}) {
+export function useSEO({ key, title, description, canonicalPath, schema, image } = {}) {
   const { pathname } = useLocation();
   const { t } = useLanguage();
 
@@ -40,6 +40,16 @@ export function useSEO({ key, title, description, canonicalPath, schema } = {}) 
       ogUrl.setAttribute("content", pageUrl);
     }
 
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage && image) {
+      ogImage.setAttribute("content", image);
+    }
+
+    const twitterImage = document.querySelector('meta[name="twitter:image"]');
+    if (twitterImage && image) {
+      twitterImage.setAttribute("content", image);
+    }
+
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink) {
       canonicalLink.setAttribute("href", pageUrl);
@@ -60,5 +70,5 @@ export function useSEO({ key, title, description, canonicalPath, schema } = {}) 
     } else if (dynamicScript) {
       dynamicScript.remove();
     }
-  }, [key, title, description, canonicalPath, pathname, t, schema]);
+  }, [key, title, description, canonicalPath, pathname, t, schema, image]);
 }

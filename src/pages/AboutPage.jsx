@@ -12,7 +12,7 @@ const AboutPage = () => {
 
   return (
     <Section name="about-page" spacing="generous">
-      <div className="container max-w-5xl">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ const AboutPage = () => {
               ))}
             </div>
             
-            <div className="rounded-3xl bg-dark-100/80 p-12 aspect-square flex items-center justify-center overflow-hidden border-0 shadow-2xl shadow-black/40">
+            <div className="rounded-3xl bg-dark-100/80 p-8 sm:p-12 aspect-square flex items-center justify-center overflow-hidden border-0 shadow-2xl shadow-black/40">
               <div className="text-center">
                 <div className="text-6xl md:text-7xl font-extrabold text-lime mb-4 font-sans tracking-tight">
                   {t('aboutPage.stats.num')}
@@ -46,9 +46,9 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-6 pt-8 border-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-0">
             {t('aboutPage.pillars').map((item, i) => (
-              <div key={i} className="rounded-2xl bg-dark-100/75 p-8 border-0">
+              <div key={i} className="rounded-2xl bg-dark-100/75 p-6 sm:p-8 border-0">
                 <Heading level={4} className="mb-2 text-lime font-heading font-normal text-lg">
                   {item.title}
                 </Heading>

@@ -21,6 +21,20 @@ function getFiles(dir) {
   return results;
 }
 
+function linkFirstOccurrence(body, targetRegex, replaceFn, url) {
+  if (body.includes(`(${url})`)) {
+    return body;
+  }
+  let matched = false;
+  return body.replace(targetRegex, (match, p1) => {
+    if (!matched) {
+      matched = true;
+      return replaceFn(match, p1);
+    }
+    return match;
+  });
+}
+
 function updateLinks() {
   if (!fs.existsSync(BLOG_DIR)) {
     console.error(`❌ Blog directory not found at: ${BLOG_DIR}`);
@@ -31,27 +45,48 @@ function updateLinks() {
   let updatedCount = 0;
 
   files.forEach(file => {
-    let content = fs.readFileSync(file, 'utf-8');
-    let modified = false;
+    let raw = fs.readFileSync(file, 'utf-8');
+    const match = raw.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
+    if (!match) return;
+
+    const frontmatter = match[0];
+    let body = raw.slice(frontmatter.length);
+    let originalBody = body;
 
     // 1. Replace legacy service hashes with new custom software landing page
-    if (content.includes('/services#software')) {
-      content = content.replaceAll('/services#software', '/services/custom-software-development');
-      modified = true;
+    if (body.includes('/services#software')) {
+      body = body.replaceAll('/services#software', '/services/custom-software-development');
     }
-    if (content.includes('/services#ecommerce')) {
-      content = content.replaceAll('/services#ecommerce', '/services/custom-software-development');
-      modified = true;
+    if (body.includes('/services#ecommerce')) {
+      body = body.replaceAll('/services#ecommerce', '/services/custom-software-development');
     }
 
-    // 2. Replace boilerplate automation opening with active internal link
-    if (content.includes('Workflow automation should handle')) {
-      content = content.replaceAll('Workflow automation should handle', '[Workflow automation](/services/workflow-automation) should handle');
-      modified = true;
-    }
+    // 2. Link first occurrence of "project estimator" to /estimate if not already linked
+    body = linkFirstOccurrence(
+      body,
+      /(?<!\[)\b(project estimator)\b(?!\])/i,
+      (match, p1) => `[${p1}](/estimate)`,
+      '/estimate'
+    );
 
-    if (modified) {
-      fs.writeFileSync(file, content, 'utf-8');
+    // 3. Link first occurrence of "workflow automation" to /services/workflow-automation if not already linked
+    body = linkFirstOccurrence(
+      body,
+      /(?<!\[)\b(workflow automation)\b(?!\])/i,
+      (match, p1) => `[${p1}](/services/workflow-automation)`,
+      '/services/workflow-automation'
+    );
+
+    // 4. Link first occurrence of "custom software development" to /services/custom-software-development if not already linked
+    body = linkFirstOccurrence(
+      body,
+      /(?<!\[)\b(custom software development)\b(?!\])/i,
+      (match, p1) => `[${p1}](/services/custom-software-development)`,
+      '/services/custom-software-development'
+    );
+
+    if (body !== originalBody) {
+      fs.writeFileSync(file, frontmatter + body, 'utf-8');
       updatedCount++;
     }
   });

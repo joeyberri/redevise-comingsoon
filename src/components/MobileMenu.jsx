@@ -31,7 +31,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[60] bg-dark-100/80 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-[60] bg-dark-100/80 backdrop-blur-md lg:hidden"
           />
 
           {/* Panel */}
@@ -40,7 +40,7 @@ const MobileMenu = ({ isOpen, onClose, onOpenInquiry, navLinks }) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 32, stiffness: 400 }}
-            className="fixed right-0 top-0 z-[70] h-full w-[80%] bg-dark-100/95 backdrop-blur-2xl p-8 border-0 md:hidden shadow-2xl shadow-black/80"
+            className="fixed right-0 top-0 z-[70] h-full w-[85%] sm:w-[380px] sm:max-w-sm bg-dark-100/95 backdrop-blur-2xl p-6 sm:p-8 border-0 lg:hidden shadow-2xl shadow-black/80"
           >
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between mb-12">

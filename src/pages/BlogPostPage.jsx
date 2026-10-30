@@ -80,6 +80,7 @@ const BlogPostPage = ({ onOpenInquiry = () => {} }) => {
     description: post ? post.summary : undefined,
     canonicalPath: post ? `/blog/${post.slug}` : undefined,
     schema: schemaJson,
+    image: post?.coverImage || undefined,
   });
 
   if (!post) {

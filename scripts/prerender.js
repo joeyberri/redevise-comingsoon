@@ -157,7 +157,7 @@ function getBlogPosts() {
   }
 }
 
-function replaceMetadata(template, title, description, pageUrl, schemaJson) {
+function replaceMetadata(template, title, description, pageUrl, schemaJson, image) {
   let html = template;
 
   // Replace Title Tag
@@ -170,6 +170,11 @@ function replaceMetadata(template, title, description, pageUrl, schemaJson) {
   html = html.replace(/<meta property="og:title"\s+content="[\s\S]*?"\s*\/?>/, `<meta property="og:title" content="${title}" />`);
   html = html.replace(/<meta property="og:description"\s+content="[\s\S]*?"\s*\/?>/, `<meta property="og:description" content="${description}" />`);
   html = html.replace(/<meta property="og:url"\s+content="[\s\S]*?"\s*\/?>/, `<meta property="og:url" content="${pageUrl}" />`);
+
+  if (image) {
+    html = html.replace(/<meta property="og:image"\s+content="[\s\S]*?"\s*\/?>/, `<meta property="og:image" content="${image}" />`);
+    html = html.replace(/<meta name="twitter:image"\s+content="[\s\S]*?"\s*\/?>/, `<meta name="twitter:image" content="${image}" />`);
+  }
 
   // Replace Twitter Tags
   html = html.replace(/<meta name="twitter:title"\s+content="[\s\S]*?"\s*\/?>/, `<meta name="twitter:title" content="${title}" />`);
@@ -232,7 +237,8 @@ function runPrerender() {
     const pageUrl = `${SITE_URL}/blog/${post.slug}`;
     const postTitle = `${post.title} | Redevise Blog`;
     const postSchema = getBlogPostSchema(post, pageUrl);
-    const pageHtml = replaceMetadata(template, postTitle, post.description, pageUrl, postSchema);
+    const postImage = post.coverImage || `${SITE_URL}/redevise.png`;
+    const pageHtml = replaceMetadata(template, postTitle, post.description, pageUrl, postSchema, postImage);
     fs.writeFileSync(path.join(postDir, 'index.html'), pageHtml, 'utf-8');
   });
 

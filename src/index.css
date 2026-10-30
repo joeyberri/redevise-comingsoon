@@ -343,6 +343,8 @@
   /* ─── Blog Prose Typography ─── */
   .blog-prose {
     @apply text-text-muted text-base md:text-lg leading-relaxed font-sans;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .blog-prose h1 {
@@ -428,7 +430,7 @@
   }
 
   .blog-prose table {
-    @apply w-full mb-6 border-collapse;
+    @apply w-full mb-6 border-collapse block overflow-x-auto max-w-full;
   }
 
   .blog-prose th {
